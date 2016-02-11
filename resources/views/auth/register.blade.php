@@ -36,10 +36,31 @@
           <div class="card bg-secondary shadow border-0">
             <div class="card-body px-lg-5 py-lg-5">
               <div class="text-center text-muted mb-4">
-                <small>sign up with credentials</small>
+                <small>Datos personales para crear un usuario</small>
               </div>
               <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
+                
+                <div class="form-group">
+                  
+                  <div class="form-check">
+                    <div class="row">
+                        
+                      <div class="col">
+                        <input class="form-check-input" name="rol" value="option1" type="radio">
+                        <label class="form-check-label">Estudiante</label>
+                      </div>
+                      
+                      <div class="col">
+                        <input class="form-check-input" name="rol" value="option1" type="radio">
+                        <label class="form-check-label">Profesor</label>
+                      </div>
+                    
+                    </div>
+                  </div>
+                  
+                </div>
+                
                 <div class="form-group{{ $errors->has('dni') ? ' has-error' : '' }}">
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
