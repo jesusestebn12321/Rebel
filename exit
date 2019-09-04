@@ -1,0 +1,149 @@
+[33mcommit cbc08694ed446f556e6e574ce4b54d360bb3ea02[m
+Author: Root <jesusesteban>
+Date:   Sun Aug 4 20:25:34 2019 +0100
+
+    nueva ruta para ver las matters que contienen las areas MattersCareer.show
+
+[33mcommit 82b672321a5f35636d98da6906b5495900511fc1[m
+Author: Root <jesusesteban>
+Date:   Sun Aug 4 19:12:20 2019 +0100
+
+    migraciones lista ya se puede borrar cualquier tipo de registro
+
+[33mcommit 92d7f91c81a3cdcb13aa06f4de14e83de0fc8bbc[m
+Author: Root <jesusesteban>
+Date:   Sun Aug 4 18:58:47 2019 +0100
+
+    rutas deletes
+
+[33mcommit 7be43ee6b4230a9159d57f4f8c25e4a2dc570a8d[m
+Author: Root <jesusesteban>
+Date:   Sun Aug 4 18:54:09 2019 +0100
+
+    nuevos estilos y apariencias para que esta se vea bien
+
+[33mcommit 6c0ccf1b12dda1ba2b32d52f6414c32d2342838f[m
+Author: Root <jesusesteban>
+Date:   Sun Aug 4 18:52:25 2019 +0100
+
+    agrege un nuevo parametro para que cuando el registro madre se elimina ese campo queda en NULL
+
+[33mcommit 48b53c47063fb703ea037dba0c6c29201ef3ee9d[m
+Author: Root <jesusesteban>
+Date:   Sun Aug 4 18:50:56 2019 +0100
+
+    Validacion en el delete de este controlado para poder eliminar si que se eliminen las foreign keys que estan asociadas a este
+
+[33mcommit 65ab234ee5c987f5db39a0f2f5086441535c5e6c[m
+Author: Root <jesusesteban>
+Date:   Sun Aug 4 17:09:57 2019 +0100
+
+    Reparacion en la vista y en el boton de crear que ahora no esta en la tabla sino que en el headerContent
+
+[33mcommit 9e74a167df6291ea71a421cc5188caeba0e4ba8b[m
+Author: Root <jesusesteban>
+Date:   Sun Aug 4 17:07:06 2019 +0100
+
+    Correpcion en el controlador en @create
+
+[33mcommit 492613109a431a83ff0d64052afd3f9adb5354ed[m
+Author: Root <jesusesteban>
+Date:   Sun Aug 4 17:06:06 2019 +0100
+
+    estetica
+
+[33mcommit 67f901e74b99ffd19a802386df6906444eb90115[m
+Author: Root <jesusesteban>
+Date:   Sun Aug 4 17:05:26 2019 +0100
+
+    Reparacion del modal ahora no tiene el campo de area solo que era un pequeño error que tenia
+
+[33mcommit 19f2bed1cb6b0a736291bde494f7c22726a47bdf[m
+Author: Root <jesusesteban>
+Date:   Sun Aug 4 17:04:10 2019 +0100
+
+    Reparacion en la vista y en el boton de crear que ahora no esta en la tabla sino que en el headerContent
+
+[33mcommit af9986b27ff2d9f30a028638f1410a9613f26a7e[m
+Author: Root <jesusesteban>
+Date:   Sun Aug 4 16:12:56 2019 +0100
+
+    Reparacion en la vista, controlador y route con un bugs de destroy esta funcionando
+
+[33mcommit 9ce38a054cd72c99ffc523e92e855208b85e7b34[m
+Author: Root <jesusesteban>
+Date:   Sun Aug 4 16:07:32 2019 +0100
+
+    Reparacion en la vista para mejor estetica
+
+[33mcommit ee05f673a29787e83643fd5ed935ed55443f16d6[m
+Author: Root <jesusesteban>
+Date:   Sun Aug 4 16:06:56 2019 +0100
+
+    Ruta agregada de Career.delete
+
+[33mcommit dcfe21ae5699ac4f38d5a7a38d0f0f9d343770c1[m
+Author: Root <jesusesteban>
+Date:   Sun Aug 4 16:05:56 2019 +0100
+
+    Quite lo items de matter y contents ahora se vera de una ves por la vista Career
+
+[33mcommit 54e72f6a08d543016c32eafcd86c567851c7cfc9[m
+Author: Root <jesusesteban>
+Date:   Sun Aug 4 16:03:59 2019 +0100
+
+    Reparacion delete de Career
+
+[33mcommit 98bb62e7dbeebee05f74d323fad58e660d531a5a[m
+Author: Root <jesusesteban>
+Date:   Sun Aug 4 15:27:49 2019 +0100
+
+    Reparacion detalle en la view user/teacher error de sintaxis en el controlador reparado
+
+[33mcommit 0b231cdd6f17b0eb11ecbfd4359359834e385949[m
+Author: Root <jesusesteban>
+Date:   Sun Aug 4 15:20:59 2019 +0100
+
+    Reparacion en view University, modalCreateUniversity, UniversityControllers Funciona Correctamente
+
+[33mcommit e91f2834cb50f2e833580e2499ebfd6bd1eee9e7[m
+Author: Root <jesusesteban>
+Date:   Sun Aug 4 15:19:49 2019 +0100
+
+    Reparacion en view University, modalCreateUniversity, UniversityControllers Funciona Correctamente
+
+[33mcommit 47480c7737a510265a6261d9e26ee60ef80928ca[m
+Author: Root <jesusesteban>
+Date:   Sun Aug 4 01:22:45 2019 +0100
+
+    bugs en Matters reparado
+
+[33mcommit 2d92ef45fe6969bcae0657f5acfb0d1843858666[m
+Author: Root <jesusesteban>
+Date:   Sun Aug 4 01:15:37 2019 +0100
+
+    Trabajos en vistas y controladores de career area university todo quedo corriendo bien falto fue el show de career
+
+[33mcommit 9a3202179a67a474f328d1f2144e879971d60c00[m
+Author: Root <jesusesteban>
+Date:   Sat Aug 3 22:09:40 2019 +0100
+
+    Rama de trabajo prueba esta rama es para trabajar con todo y reparar los bugs encontrados en el sistema, e modificado controladores y unas vistas para mejor entendimiento del administrador y de los usuarios
+
+[33mcommit 3908e6dd4bc3c3e441dc628c8079bab5c8a991a4[m
+Author: Root <jesusesteban>
+Date:   Fri Aug 2 07:22:20 2019 +0100
+
+    nuevas vistas
+
+[33mcommit 9b7dd20a5c6ab7546506efc1d723a76f374d7731[m
+Author: Root <jesusesteban>
+Date:   Fri Aug 2 07:21:38 2019 +0100
+
+    arreglos en vistas y en middleware de verificacion por admin
+
+[33mcommit 9feb17b17e3c1670c4fd09abd20975adbc789647[m
+Author: Root <jesusesteban>
+Date:   Fri Jul 19 01:50:06 2019 +0100
+
+    Equivalencia Demo
