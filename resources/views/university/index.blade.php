@@ -104,7 +104,7 @@
             </tr>
           </thead>
           <tbody>
-           @foreach($university as $item)
+           @forelse($university as $item)
            <tr id='{{$item->id}}'>
             <td>
               <input type="hidden" id='id{{$item->id}}' value='{{$item->id}}'>
@@ -128,7 +128,14 @@
              <a class="btn-info btn" data-target='#editUniversity' data-toggle='modal'  id="btn-1_{{$item->id}}" onclick="edit({{$item->id}})" href="#!"><i class="fa fa-edit"></i></a>
            </td>
          </tr>
-         @endforeach
+         @empty
+
+          <tr>
+            <td>
+              <font class='center'>No existen registros</font>
+            </td>
+         </tr>
+         @endforelse
        </tbody>
      </table>
    </div>

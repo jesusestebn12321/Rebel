@@ -43,7 +43,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                	@foreach($user as $item)
+                	@forelse($user as $item)
                   <tr>
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->dni }}</td>
@@ -61,7 +61,14 @@
                     	<a class="btn-info btn"><i class="fa fa-edit"></i></a>
                     </td>
                   </tr>
-                  @endforeach
+                  @empty
+
+                    <tr>
+                      <td>
+                        <font class='center'>No existen registros</font>
+                      </td>
+                   </tr>
+                   @endforelse
                 </tbody>
               </table>
             </div>

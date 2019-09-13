@@ -44,7 +44,7 @@
 	                  </tr>
 	                </thead>
 	                <tbody>
-	                	@foreach($matter as $item)
+	                	@forelse($matter as $item)
 	                    <tr id='{{$item->id}}'>
 	                    	<input type="hidden" id='td_Title{{$item->id}}' value="{{$item->content->title}}">
 	                    	<input type="hidden" id='td_Content{{$item->id}}' value="{{$item->content->content}}">
@@ -72,7 +72,14 @@
 	                        <a class="btn-info btn" data-target='#loadContent' data-toggle='modal' onclick="loadContent({{$item->id}})" href="#!"><i class="fa fa-file"></i></a>
 	                      </td>
 	                    </tr>
-	                  @endforeach
+	                  @empty
+
+                    <tr>
+                      <td>
+                        <font class='center'>No existen registros</font>
+                      </td>
+                   </tr>
+                   @endforelse
 	                </tbody>
               	</table>
             </div>

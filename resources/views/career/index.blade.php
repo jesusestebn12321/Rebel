@@ -85,7 +85,7 @@
 @include('layouts.modales.Career.modalCreateCareer')
 @include('layouts.modales.Career.modalEditCareer')
 <div class="row">
-  @foreach($career as $item)
+  @forelse($career as $item)
   <input type="hidden" value="{{$item->slug}}" id="id{{$item->id}}">
   <div class="col-xl-6 order-xl-2 mb-5 mb-xl-0 pt-4">
     <div class="card card-profile shadow">
@@ -151,7 +151,16 @@
       </div>
     </div>
   </div>
-  @endforeach
+  @empty
+
+    <div class="alert alert-success col-xl-9 order-xl-2 mb-5 mb-xl-0 pt-4">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+            no hy swss
+    </div>
+
+
+
+  @endforelse
 </div>
 
 @endsection

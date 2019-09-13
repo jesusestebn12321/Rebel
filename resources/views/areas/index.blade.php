@@ -118,7 +118,7 @@
             </tr>
           </thead>
           <tbody>
-           @foreach($area as $item)
+           @forelse($area as $item)
            <tr id='{{$item->id}}'>
             <td>
               <input type="hidden" id='id{{$item->id}}' value='{{$item->slug}}'>
@@ -147,7 +147,14 @@
              <a class="btn-info btn" data-target='#editArea' data-toggle='modal'  id="btn-1_{{$item->id}}" onclick="edit({{$item->id}})" href="#!"><i class="fa fa-edit"></i></a>
            </td>
          </tr>
-         @endforeach
+         @empty
+
+          <tr>
+            <td>
+              <font class='center'>No existen registros</font>
+            </td>
+         </tr>
+         @endforelse
        </tbody>
      </table>
    </div>
