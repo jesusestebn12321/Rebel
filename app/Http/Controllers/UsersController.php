@@ -26,11 +26,12 @@ class UsersController extends Controller
 
     public function profile(){
         $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->first();
-        if (count($matter_user)) {
+        if ($matter_user) {
             # code...
             return view('auth.profile.index',compact('matter_user'));
         } else {
             # code...
+        
             return view('auth.profile.create');
         }
         
