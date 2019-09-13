@@ -11,6 +11,7 @@
                   <a href="#">
                     <img src="{{ asset('template/assets/img/theme/user.jpg') }}" class="rounded-circle">
                   </a>
+                  <br><hr>
                 </div>
               </div>
             </div><br>
@@ -28,7 +29,11 @@
                 </h3>
                 <div class="h5 font-weight-300">
                   <i class="ni location_pin mr-2"></i>
-                  {{ Auth::user()->rol==2?  'Profesor':'Estudiante' }} 
+                  @if(Auth::user()->rol==0)
+                    Admin
+                  @else
+                    {{ Auth::user()->rol==2?  'Profesor':'Estudiante' }} 
+                  @endif
                 </div>
                 <div class="h5 mt-4">
                   <i class="ni business_briefcase-24 mr-2"></i>Area - 
