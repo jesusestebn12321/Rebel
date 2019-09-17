@@ -4,6 +4,8 @@ namespace Equivalencias\Http\Controllers;
 
 use Equivalencias\MatterUser;
 use Illuminate\Http\Request;
+use Equivalencias\Http\Requests\MatterUserRequests;
+
 use Auth;
 
 class MatterUserController extends Controller
@@ -33,7 +35,7 @@ class MatterUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MatterUserRequests $request)
     {
         $matter_user=MatterUser::create([
                 'matter_id'=>$request->matter_id,
