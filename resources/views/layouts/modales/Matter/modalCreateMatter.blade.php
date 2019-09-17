@@ -9,10 +9,14 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="{{route('University.store')}}">
+                @if(Auth::user()->hasRole(0))
+                <form class="form-horizontal" method="POST" action="{{route('Matters.store')}}">
+                @elseif(Auth::user()->hasRole(1))
+                <form class="form-horizontal" method="POST" action="{{route('Matter.store')}}">
+                @endif
                     {{ csrf_field() }}
                     <div class="form-group{{ $errors->has('version') ? ' has-error' : '' }}">
-                        <input id="version" type="text" placeholder="Version de la Unidad Curricular" class="form-control" name="version" autofocus required >
+                        <input id="version" type="number" placeholder="Version de la Unidad Curricular" class="form-control" name="version" autofocus required >
                         @if ($errors->has('version'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('version') }}</strong>
@@ -36,46 +40,35 @@
                         @endif
                     </div>
 
-                    <div class="form-group{{ $errors->has('content_1_id') ? ' has-error' : '' }}">
-                        <input id="content_1_id" type="text" placeholder="Nombre de la Universidad" class="form-control" name="content_1_id" autofocus required >
-                        @if ($errors->has('content_1_id'))
+                    <div class="form-group{{ $errors->has('career_id') ? ' has-error' : '' }}">
+                        <select id="career_id" class='form-control' value='0' name="career_id" size='1'>
+                            <option value="0">Carrera</option>
+
+                            @foreach($career as $item)
+                            <option value="{{$item->id}}">{{$item->id}} - {{$item->career}}</option>
+                            @endforeach                   
+                        </select>
+                        @if ($errors->has('career_id'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('content_1_id') }}</strong>
+                                <strong>{{ $errors->first('career_id') }}</strong>
                             </span>
                         @endif
                     </div>
-                    <div class="form-group{{ $errors->has('content_2_id') ? ' has-error' : '' }}">
-                        <input id="content_2_id" type="text" placeholder="Nombre de la Universidad" class="form-control" name="content_2_id" autofocus required >
-                        @if ($errors->has('content_2_id'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('content_2_id') }}</strong>
-                            </span>
-                        @endif
+
+                    <div class="form-group">
+                        <div class="row">
+                        
+                            <div class='col-7'>
+                                <input id="numberContent" type="number" placeholder="Nombre de la Universidad" class="form-control" name="numberContent" autofocus required > 
+                            </div>
+                            <div class="col-5">
+                                <a href="#" class='btn btn-info' onclick="contentNumber()">click</a>
+                            </div>
+                        </div>
+                        
                     </div>
-                    <div class="form-group{{ $errors->has('content_3_id') ? ' has-error' : '' }}">
-                        <input id="content_3_id" type="text" placeholder="Nombre de la Universidad" class="form-control" name="content_3_id" autofocus required >
-                        @if ($errors->has('content_3_id'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('content_3_id') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                    <div class="form-group{{ $errors->has('content_4_id') ? ' has-error' : '' }}">
-                        <input id="content_4_id" type="text" placeholder="Nombre de la Universidad" class="form-control" name="content_4_id" autofocus required >
-                        @if ($errors->has('content_4_id'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('content_4_id') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                    <div class="form-group{{ $errors->has('content_5_id') ? ' has-error' : '' }}">
-                        <input id="content_5_id" type="text" placeholder="Nombre de la Universidad" class="form-control" name="content_5_id" autofocus required >
-                        @if ($errors->has('content_5_id'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('content_5_id') }}</strong>
-                            </span>
-                        @endif
-                    </div>
+
+                    <div id="contentMatters"></div>
                 </div>
                 
                 <div class="modal-footer"> 
