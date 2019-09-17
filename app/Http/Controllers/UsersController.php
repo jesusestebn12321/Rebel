@@ -42,14 +42,20 @@ class UsersController extends Controller
         $matter_user=MatterUser::all();
         return view('career.teacherMatterShow',compact('matter_user','matter','career'));
     }
+    public function showStudent($slug){
+        $user=User::where('slug',$slug)->firstOrFail();
+        return view('auth.profile.show',compact('user'));
+    }
     public function store(Request $request){
 
     }
     public function update(Request $request, $id)
     {
     }
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $user=User::where('slug',$slug)->firstOrFail();
+        $user->delete();
+        return back()->with('success','success');
     }
 }
