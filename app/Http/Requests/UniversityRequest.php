@@ -4,7 +4,7 @@ namespace Equivalencias\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UniversityCreateRequest extends FormRequest
+class UniversityRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

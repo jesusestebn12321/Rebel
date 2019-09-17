@@ -18,9 +18,9 @@ Route::get('/Chart', 'HomeController@chart');
 Route::get('/', function () {
 	return view('auth.login');
 });
-Route::get('/Verifi',['as'=>'verifi','uses'=>'verifiController@index']); // rutas de verificacion de email
-Route::get('/AdminVerify',['as'=>'admin-verify','uses'=>'verifiController@AdminVerifyIndex']); // rutas de verificacion por admin index
-Route::get('/register/verify/{code}','verifiController@verify'); // rutas de verificacion de email
+Route::get('/Verifi',['as'=>'verifi','uses'=>'VerifiController@index']); // rutas de verificacion de email
+Route::get('/AdminVerify',['as'=>'admin-verify','uses'=>'VerifiController@AdminVerifyIndex']); // rutas de verificacion por admin index
+Route::get('/register/verify/{code}','VerifiController@verify'); // rutas de verificacion de email
 Auth::routes();
 
 Route::group(['middleware'=>['verifiUser']],function(){
@@ -33,14 +33,17 @@ Route::group(['middleware'=>['verifiUser']],function(){
 //Admin
 	Route::group(['middleware'=>['authen','rol'],'rol'=>['0']],function(){
 		Route::apiResource('/University','UniversityController',['parameters'=>['University'=>'slug']]);
-		Route::apiresource('/Areas','AreaController',['parameters'=>['Areas'=>'slug']]);
-		Route::apiresource('/Careers','CareerController',['parameters'=>['Careers'=>'slug']]);
-		Route::apiresource('/Careers','CareerController',['parameters'=>['Careers'=>'slug']]);
+		Route::apiResource('/Areas','AreaController',['parameters'=>['Areas'=>'slug']]);
+		Route::apiResource('/Careers','CareerController',['parameters'=>['Careers'=>'slug']]);
+		Route::apiResource('/Careers','CareerController',['parameters'=>['Careers'=>'slug']]);
 		Route::apiResource('/Matters','MatterController',['parameters'=>['Matters'=>'slug']]);
 		Route::apiResource('/Contents','ContentController',['parameters'=>['Contents'=>'slug']]);
 		Route::apiResource('/Users','UsersController',['parameters'=>['Contents'=>'slug']]);
 
 
+		Route::get('/Matters/edit/{slug}',['as'=>'Matters.edit','uses'=>'MatterController@edit']);
+		Route::get('/Matters/upDate/{slug}',['as'=>'Matters.up_date','uses'=>'MatterController@update']);
+		Route::get('/Matters/delete/{slug}',['as'=>'Matters.delete','uses'=>'MatterController@destroy']);
 
 		Route::get('/MattersCareer/show/{slug}',['as'=>'MattersCareer.show', 'uses'=>'CareerController@MatterCareerShow']);
 		Route::get('/MatterUsersCareer/show/{slug}',['as'=>'MatterUserCareer.show', 'uses'=>'UsersController@show']);
@@ -52,7 +55,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 		
 
 		Route::get('/Teacher',['as'=>'Teacher.index','uses'=>'UsersController@IndexTeacher']);
-		Route::get('/AdminVerify/{slug}',['as'=>'admin.verify','uses'=>'verifiController@AdminVerify']);
+		Route::get('/AdminVerify/{slug}',['as'=>'admin.verify','uses'=>'VerifiController@AdminVerify']);
 
 	});
 

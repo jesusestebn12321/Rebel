@@ -6,6 +6,7 @@ use Equivalencias\Area;
 use Equivalencias\Address;
 use Equivalencias\University;
 use Illuminate\Http\Request;
+use Equivalencias\Http\Requests\AreaRequests;
 
 class AreaController extends Controller
 {
@@ -37,7 +38,7 @@ class AreaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
+    public function store(AreaRequests $request){
         if($request->address!=''){
             $slug=str_slug($request->address.'_'.rand());
             $address=Address::create([
@@ -63,7 +64,7 @@ class AreaController extends Controller
         return $area;
     }
 
-    public function update(Request $request, $slug){
+    public function update(AreaRequests $request, $slug){
        $area=Area::where('slug','=',$slug)->first();
        $area->area=$request->area;
        $area->university_id=$request->university_id;
