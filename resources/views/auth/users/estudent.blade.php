@@ -42,8 +42,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                	@foreach($user as $item)
-                  @if($item->rol==2)
+                	@forelse($user as $item)
                   <tr>
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->dni }}</td>
@@ -55,13 +54,16 @@
                     <td>{{ $item->created_at }}</td>
                     <td>{{ $item->updated_at }}</td>
                     <td>
-                    	<a class="btn-primary btn"><i class="fa fa-eye"></i></a>
-                    	<a class="btn-danger btn"><i class="fa fa-remove"></i></a>
-                    	<a class="btn-info btn"><i class="fa fa-edit"></i></a>
+                    	<a class="btn-primary btn" href="{{route('Profile.show',$item->slug)}}"><i class="fa fa-eye"></i></a>
+                    	<a class="btn-danger btn" href="{{route('User.delete',$item->slug)}}"><i class="fa fa-remove"></i></a>
+                    	<a class="btn-info btn" href="#"><i class="fa fa-edit"></i></a>
                     </td>
                   </tr>
-                  @endif
-                  @endforeach
+                  @empty
+                    <td>
+                      <font class='center'>No existen registros</font>
+                    </td>
+                @endforelse
                 </tbody>
               </table>
             </div>
