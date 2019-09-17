@@ -53,8 +53,10 @@ Route::group(['middleware'=>['verifiUser']],function(){
 //--------------------------------------------SHOW---------------------------------------------------------------------
 		Route::get('/MattersCareer/show/{slug}',['as'=>'MattersCareer.show', 'uses'=>'CareerController@MatterCareerShow']);
 		Route::get('/MatterUsersCareer/show/{slug}',['as'=>'MatterUserCareer.show', 'uses'=>'UsersController@show']);
+		Route::get('/Profile/show/{slug}',['as'=>'Profile.show', 'uses'=>'UsersController@showStudent']);
 //------------------------------------------endSHOW---------------------------------------------------------------------
 //------------------------------------------DESTROY----------------------------------------------------------
+		Route::get('/User/Delete/{slug}',['as'=>'User.delete','uses'=>'UsersController@destroy']);
 		Route::get('/Areas/Delete/{slug}',['as'=>'Areas.delete', 'uses'=>'AreaController@delete'] );
 		Route::get('/Careers/Delete/{slug}',['as'=>'University.delete', 'uses'=>'UniversityController@delete'] );
 		Route::get('/Contents/Delete/{slug}',['as'=>'Contents.delete', 'uses'=>'ContentController@destroy'] );
