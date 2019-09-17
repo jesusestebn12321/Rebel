@@ -4,6 +4,7 @@ namespace Equivalencias\Http\Controllers;
 
 use Equivalencias\Content;
 use Illuminate\Http\Request;
+use Equivalencias\Http\Requests\ContentRequests;
 
 class ContentController extends Controller
 {
@@ -68,11 +69,12 @@ class ContentController extends Controller
      * @param  \Equivalencias\Content  $content
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(ContentRequests $request, $slug)
     {
+       
         $content=Content::where('slug',$slug)->firstOrFail();
-        $content->title=$request->input('title_'.$content->id);
-        $content->content=$request->input('content_'.$content->id);
+        $content->title=$request->input('title');
+        $content->content=$request->input('content');
         $content->save();
         //dd($content);
         return back()->with('success','Success');

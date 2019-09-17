@@ -72,7 +72,7 @@
                       <div>
                         <span class="heading">Titulo</span>
                         <span class="description">
-                         <input type="text" name="title_{{$item->id}}" value="{{$item->title}}" class="form-control"> 
+                         <input type="text" name="title" value="{{$item->title}}" class="form-control"> 
                         </span>
                       </div>
                     </div>
@@ -84,7 +84,7 @@
                   </h3>
                   <div class="h5 font-weight-300">
                     <p>
-                    <textarea value='{{$item->content}}' name="content_{{$item->id}}" class='form-control' placeholder="{{$item->content}}">{{$item->content}}</textarea>
+                    <textarea value='{{$item->content}}' name="content" class='form-control' placeholder="{{$item->content}}">{{$item->content}}</textarea>
                     </p>
                 </form>
                   </div>
