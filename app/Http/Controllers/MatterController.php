@@ -4,6 +4,7 @@ namespace Equivalencias\Http\Controllers;
 
 use Equivalencias\Matter;
 use Auth;
+use input;
 use Equivalencias\MatterUser;
 use Equivalencias\Content;
 use Equivalencias\Career;
@@ -17,7 +18,8 @@ class MatterController extends Controller
 
         $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->first();
         $matter=Matter::all();
-        return view('matter.teacher.index',compact('matter','matter_user'));
+        $career=Career::all();
+        return view('matter.index',compact('career','matter','matter_user'));
     }
 
     /**
@@ -27,7 +29,7 @@ class MatterController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -37,8 +39,25 @@ class MatterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $slug=str_slug($request->slug.rand());
+        $matter=Matter::create([
+            'slug'=>$request->slug,
+            'version'=>$request->version,
+            'matter'=>$request->matter,
+            'career_id'=>$request->career_id,
+        ]);
+        for ($i=0; $i < $request->numberContent; $i++) { 
+            $slug=str_slug($request->slug.rand());
+            $content=new Content();
+            $content->slug=$slug;
+            $content->title=$request->input('title_'.$i);
+            $content->content=$request->input('content_'.$i);
+            $content->matter_id=$matter->id;
+            $content->save();
+            
+        }
+        return back()->with('message','La materia fue creada');
     }
 
     /**
@@ -66,9 +85,13 @@ class MatterController extends Controller
      * @param  \Equivalencias\Matter  $Matter
      * @return \Illuminate\Http\Response
      */
-    public function edit(Matter $Matter)
+    public function edit($slug)
     {
-        //
+        $matter=Matter::where('slug',$slug)->firstOrFail();
+        $content=Content::where('matter_id',$matter->id)->get();
+        $career=Career::all();
+        //dump($matter);
+        return view('matter.teacher.edit',compact('matter','content','career'));        
     }
 
     /**
@@ -78,9 +101,15 @@ class MatterController extends Controller
      * @param  \Equivalencias\Matter  $Matter
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Matter $Matter)
+    public function update(Request $request, $slug)
     {
-        //
+        
+        $matter=Matter::where('slug',$slug)->firstOrFail();
+        $matter->version=$request->version;
+        $matter->matter=$request->matter;
+        $matter->career_id=$request->career_id;
+        $matter->save();
+        return back()->with('message','Success');
     }
 
     /**
