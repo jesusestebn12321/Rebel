@@ -118,8 +118,11 @@ class MatterController extends Controller
      * @param  \Equivalencias\Matter  $Matter
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Matter $Matter)
-    {
-        //
+    public function destroy($slug)
+    {   
+        $matter=Matter::where('slug',$slug)->firstOrFail();
+        $matter->delete();
+        return back()->with('message','Success');
+        
     }
 }

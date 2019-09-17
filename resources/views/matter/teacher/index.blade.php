@@ -70,7 +70,7 @@
 	                      	@if(Auth::user()->hasRole(0))
 	                      	<td>
 	                      		<a class="btn-primary btn" href="{{route('Matters.show',$item->slug)}}"><i class="fa fa-eye"></i></a>
-	                        	<a class="btn-danger btn" href="{{route('Matters.destroy',$item->slug)}}"><i class="fa fa-remove"></i></a> 
+	                        	<a class="btn-danger btn" href="{{route('Matters.delete',$item->slug)}}"><i class="fa fa-remove"></i></a> 
 	                        	<a class="btn-info btn" href="{{route('Matters.edit',$item->slug)}}"><i class="fa fa-edit"></i></a>
 	                        	<a class="btn-success btn" data-target='#loadContent' data-toggle='modal' onclick="loadContent({{$item->id}})" href="#!"><i class="fa fa-file"></i></a>
 		                    </td>

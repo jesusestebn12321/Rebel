@@ -42,8 +42,8 @@ Route::group(['middleware'=>['verifiUser']],function(){
 
 
 		Route::get('/Matters/edit/{slug}',['as'=>'Matters.edit','uses'=>'MatterController@edit']);
-
 		Route::get('/Matters/upDate/{slug}',['as'=>'Matters.up_date','uses'=>'MatterController@update']);
+		Route::get('/Matters/delete/{slug}',['as'=>'Matters.delete','uses'=>'MatterController@destroy']);
 
 		Route::get('/MattersCareer/show/{slug}',['as'=>'MattersCareer.show', 'uses'=>'CareerController@MatterCareerShow']);
 		Route::get('/MatterUsersCareer/show/{slug}',['as'=>'MatterUserCareer.show', 'uses'=>'UsersController@show']);
