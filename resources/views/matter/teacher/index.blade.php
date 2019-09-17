@@ -3,19 +3,21 @@
 @section('nameTitleTemplate','Unidades Curriculares')
 @section('js')
 <script>
-  	function show(id){
-	    $('#labelMatter').html($('#td_Matter'+id).html());
-	    $('#labelTitle').html($('#td_Title'+id).html());
-	    $('#labelContent').html($('#td_Content'+id).html());
-	    $('#labelCreate').html($('#td_Edit'+id).html());
-	    $('#labelEdit').html($('#td_Edit'+id).html());
+  	function contentNumber(){
+  		var xContetn=$('#numberContent').val();
+  		
+  		for (var i = 0; xContetn >	 i ; i++) {
+  			
+  			$('#contentMatters').append('<hr><div class="form-group">'+
+                        '<input type="text" placeholder="Title '+i+'" class="form-control" name="title_'+i+'" autofocus required ></div>'+
+                        '<div class="form-group">'+
+                        '<input type="text" placeholder="Contenido '+i+'" class="form-control" name="content_'+i+'" autofocus required ></div>');
+  		}
   	}
 
 </script>
 @section('content')
-@include('layouts.modales.Matter.teacher.modalCreateMatter')
-@include('layouts.modales.Matter.teacher.modalShowMatter')
-@include('layouts.modales.Matter.teacher.modalEditMatter')
+@include('layouts.modales.Matter.modalCreateMatter')
 <div class="row mt-5">
         <div class="col">
           <div class="card bg-default shadow">
@@ -65,12 +67,21 @@
 	                      	</td>
 	                      	<td id='td_Create{{$item->id}}'>{{ $item->created_at }}</td>
 	                      	<td id='td_Edit{{$item->id}}'>{{ $item->updated_at }}</td>
+	                      	@if(Auth::user()->hasRole(0))
 	                      	<td>
-	                      		<a class="btn-primary btn" href="{{route('Matter.show',$item->slug)}}"><i class="fa fa-eye"></i></a>
+	                      		<a class="btn-primary btn" href="{{route('Matters.show',$item->slug)}}"><i class="fa fa-eye"></i></a>
+	                        	<a class="btn-danger btn" href="{{route('Matters.destroy',$item->slug)}}"><i class="fa fa-remove"></i></a> 
+	                        	<a class="btn-info btn" href="{{route('Matters.edit',$item->slug)}}"><i class="fa fa-edit"></i></a>
+	                        	<a class="btn-success btn" data-target='#loadContent' data-toggle='modal' onclick="loadContent({{$item->id}})" href="#!"><i class="fa fa-file"></i></a>
+		                    </td>
+	                      	@elseif(Auth::user()->hasRole(1))
+		                    <td>
+	                      		<a class="btn-primary btn" href="{{route('Matters.show',$item->slug)}}"><i class="fa fa-eye"></i></a>
 	                        	<a class="btn-danger btn" href="{{route('Matter.destroy',$item->slug)}}"><i class="fa fa-remove"></i></a> 
 	                        	<a class="btn-info btn" data-target='#editMatter' data-toggle='modal'  id="btn-1_{{$item->id}}" onclick="edit({{$item->id}})" href="#!"><i class="fa fa-edit"></i></a>
 	                        	<a class="btn-success btn" data-target='#loadContent' data-toggle='modal' onclick="loadContent({{$item->id}})" href="#!"><i class="fa fa-file"></i></a>
-	                      </td>
+	                      	</td>
+	                      	@endif
 	                    </tr>
 	                  @endforeach
 	                </tbody>
