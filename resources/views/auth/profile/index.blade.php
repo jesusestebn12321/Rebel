@@ -28,8 +28,8 @@
                 </h3>
                 <div class="h5 font-weight-300">
                   <i class="ni location_pin mr-2"></i>
-                  @if(Auth::user()->rol!=0)
-                  {{ Auth::user()->rol==2?  'Profesor':'Estudiante' }} 
+                  @if(!Auth::user()->hasRole(0))
+                  {{ Auth::user()->hasRole(2)?  'Profesor':'Estudiante' }} 
                   @else
                   Administrador
                   @endif()

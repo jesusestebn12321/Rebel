@@ -29,30 +29,33 @@
                 </h3>
                 <div class="h5 font-weight-300">
                   <i class="ni location_pin mr-2"></i>
-                  @if(Auth::user()->rol==0)
-                    Admin
+                  @if(!Auth::user()->hasRole(0))
+                  {{ Auth::user()->hasRole(2)?  'Profesor':'Estudiante' }} 
                   @else
-                    {{ Auth::user()->rol==2?  'Profesor':'Estudiante' }} 
-                  @endif
+                  Administrador
+                  @endif()
                 </div>
-                <div class="h5 mt-4">
-                  <i class="ni business_briefcase-24 mr-2"></i>Area - 
-                  <select>
-                    <option></option>
-                  </select>
-                </div>
-                <div class="h5 mt-4">
-                  <i class="ni business_briefcase-24 mr-2"></i>Carrera - 
-                  <select>
-                    <option></option>
-                  </select>
-                </div>
-                <div class="h5 mt-4">
-                  <i class="ni business_briefcase-24 mr-2"></i>Unidad Curricular - 
-                  <select>
-                    <option></option>
-                  </select>
-                </div>
+                @if(!Auth::user()->hasRole(0))
+                  <div class="h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Area - 
+                    <select>
+                      <option></option>
+                    </select>
+                  </div>
+                  <div class="h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Carrera - 
+                    <select>
+                      <option></option>
+                    </select>
+                  </div>
+                  <div class="h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Unidad Curricular - 
+                    <select>
+                      <option></option>
+                    </select>
+                  </div>
+                @else
+                @endif()
               </div>
             </div>
           </div>
