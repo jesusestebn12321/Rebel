@@ -18,9 +18,9 @@ Route::get('/Chart', 'HomeController@chart');
 Route::get('/', function () {
 	return view('auth.login');
 });
-Route::get('/Verifi',['as'=>'verifi','uses'=>'verifiController@index']); // rutas de verificacion de email
-Route::get('/AdminVerify',['as'=>'admin-verify','uses'=>'verifiController@AdminVerifyIndex']); // rutas de verificacion por admin index
-Route::get('/register/verify/{code}','verifiController@verify'); // rutas de verificacion de email
+Route::get('/Verifi',['as'=>'verifi','uses'=>'VerifiController@index']); // rutas de verificacion de email
+Route::get('/AdminVerify',['as'=>'admin-verify','uses'=>'VerifiController@AdminVerifyIndex']); // rutas de verificacion por admin index
+Route::get('/register/verify/{code}','VerifiController@verify'); // rutas de verificacion de email
 Auth::routes();
 
 Route::group(['middleware'=>['verifiUser']],function(){
@@ -52,7 +52,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 		
 
 		Route::get('/Teacher',['as'=>'Teacher.index','uses'=>'UsersController@IndexTeacher']);
-		Route::get('/AdminVerify/{slug}',['as'=>'admin.verify','uses'=>'verifiController@AdminVerify']);
+		Route::get('/AdminVerify/{slug}',['as'=>'admin.verify','uses'=>'VerifiController@AdminVerify']);
 
 	});
 

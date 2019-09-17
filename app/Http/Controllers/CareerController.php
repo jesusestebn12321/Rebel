@@ -7,6 +7,8 @@ use Equivalencias\Career;
 use Equivalencias\Matter;
 use Equivalencias\Content;
 use Illuminate\Http\Request;
+use Equivalencias\Http\Requests\CareerRequests;
+
 
 class CareerController extends Controller
 {
@@ -20,7 +22,7 @@ class CareerController extends Controller
         $area=Area::all();
         return view('career.index',compact('area','career'));
     }
-    public function store(Request $request){
+    public function store(CareerRequests $request){
         $slug=str_slug($request->modalidad.'-'.$request->career.'_'.rand());
         $career=Career::create(['career'=>$request->career,'modalidad'=>$request->modalidad,'slug'=>$slug,'area_id'=>$request->area_id]);
         return back()->with('success','Exito');
@@ -36,7 +38,7 @@ class CareerController extends Controller
         // dd($matter);
         return view('career.matterUser',compact('matter','career','content'));
     }
-    public function update(Request $request, $slug){
+    public function update(CareerRequests $request, $slug){
         $career=Career::where('slug','=',$slug)->firstOrFail();
         $career->career=$request->career;
         $career->modalidad=$request->modalidad;
