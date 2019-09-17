@@ -31,7 +31,7 @@
 @section('content')
 <div class="row">
   {{-- {{ $matter }} --}}
-  @foreach($matter as $item)
+  @forelse($matter as $item)
   <input type="hidden" value="" id="id">
   <div class="col-xl-6 order-xl-2 mb-5 mb-xl-0 pt-4">
     <div class="card card-profile shadow">
@@ -66,7 +66,7 @@
           <div class="text-center">
             <div class='row'>
               
-            @foreach($item->content as $items)
+            @forelse($item->content as $items)
             {{-- <hr> --}}
             <div class='col-4'>
               <div class="h5 mt-4">
@@ -79,7 +79,12 @@
               </div>  
             </div>
             {{-- <hr> --}}
-            @endforeach
+            @empty
+
+          
+              <font class='center'>No existen registros</font>
+           
+         @endforelse
             </div>
           </div>
           <div class="text-center">
@@ -101,7 +106,12 @@
       </div>
     </div>
   </div>
-  @endforeach
+ @empty
+
+          
+              <font class='center'>No existen registros</font>
+           
+         @endforelse
 </div>
 
 @endsection

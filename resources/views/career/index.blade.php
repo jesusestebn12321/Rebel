@@ -51,10 +51,6 @@
       }
     });
   });
-
-
-
-
 </script>
 @endsection
 @section('headerContent')

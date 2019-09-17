@@ -66,7 +66,7 @@
 	                  </tr>
 	                </thead>
 	                <tbody>
-	                	@foreach($matter as $item)
+	                	@forelse($matter as $item)
 	                    <tr id='{{$item->id}}'>
 	                    	<input type="hidden" id='id{{$item->id}}' value='{{$item->id}}'>
 	                      	<td>
@@ -102,7 +102,13 @@
 	                      	</td>
 	                      	@endif
 	                    </tr>
-	                  @endforeach
+	                  	@empty
+							<td>
+				              <font class='center'>No existen registros</font>
+	                      	</td>
+          
+           
+         				@endforelse
 	                </tbody>
               	</table>
             </div>

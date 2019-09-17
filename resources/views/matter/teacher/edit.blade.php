@@ -30,9 +30,14 @@
                   <i class="ni business_briefcase-24 mr-2"></i>Carrera
                   <select class='form-control' name="career_id" size='1'>
                     <option value="{{$matter->career_id}}">{{$matter->career->career}}</option>
-                    @foreach($career as $item)
+                    @forelse($career as $item)
                     <option value="{{$item->id}}">{{$item->id}} - {{$item->career}}</option>
-                    @endforeach                   
+                    @empty
+
+          
+                        <font class='center'>No existen registros</font>
+                     
+                   @endforelse                  
                   </select> 
                 </div>
                 <div class="h5 mt-4">
@@ -49,7 +54,7 @@
 
         <div class="col-xl-8 order-xl-1">
           <div class='row'>
-        	@foreach($content as $item)
+        	@forelse($content as $item)
           <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0 pt-8 pt-md-4 pb-0 pb-md-4">
             <div class="card card-profile shadow">
               <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
@@ -80,7 +85,12 @@
               </div>
             </div>
           </div>
-  		  @endforeach
+  		 @empty
+
+          
+              <font class='center'>No existen registros</font>
+           
+         @endforelse
         </div>
       </div>
     </div>
