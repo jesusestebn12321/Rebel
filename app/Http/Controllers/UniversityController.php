@@ -3,14 +3,14 @@ namespace Equivalencias\Http\Controllers;
 use Equivalencias\University;
 use Illuminate\Http\Request;
 use Equivalencias\Address;
-use Equivalencias\Http\Requests\UniversityCreateRequest;
+use Equivalencias\Http\Requests\UniversityRequest;
 class UniversityController extends Controller{
     public function index(){
         $university=University::all();
         $address=Address::all();
         return view('university.index',compact('university','address'));
     }
-    public function store(UniversityCreateRequest $request){
+    public function store(UniversityRequest $request){
         if($request->address!=''){
             $slug=str_slug($request->address.'_'.rand());
             $address=Address::create([
@@ -29,7 +29,7 @@ class UniversityController extends Controller{
     }
     public function show($id){
     }
-    public function update(Request $request,$id){
+    public function update(UniversityRequest $request,$id){
         $university=University::Where('id','=',$request->id)->firstOrFail();
         $university->university=$request->university;
         $university->address_id=$request->address_id;
