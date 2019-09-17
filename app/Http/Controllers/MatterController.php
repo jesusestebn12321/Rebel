@@ -10,6 +10,8 @@ use Equivalencias\Content;
 use Equivalencias\Career;
 use Equivalencias\Http\Controllers\ContentController;
 use Illuminate\Http\Request;
+use Equivalencias\Http\Requests\MatterRequests;
+
 
 class MatterController extends Controller
 {
@@ -38,7 +40,7 @@ class MatterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MatterRequests $request)
     {   
         $slug=str_slug($request->slug.rand());
         $matter=Matter::create([
@@ -57,7 +59,7 @@ class MatterController extends Controller
             $content->save();
             
         }
-        return back()->with('message','La materia fue creada');
+        return back()->with('success','La materia fue creada');
     }
 
     /**
@@ -109,7 +111,7 @@ class MatterController extends Controller
         $matter->matter=$request->matter;
         $matter->career_id=$request->career_id;
         $matter->save();
-        return back()->with('message','Success');
+        return back()->with('success','Success');
     }
 
     /**
@@ -122,7 +124,7 @@ class MatterController extends Controller
     {   
         $matter=Matter::where('slug',$slug)->firstOrFail();
         $matter->delete();
-        return back()->with('message','Success');
+        return back()->with('success','Success');
         
     }
 }
