@@ -73,10 +73,10 @@
         <div class="card-body">
           <div class="row">
             <div class="col">
-              <span class="h2 font-weight-bold mb-0">Crear Carrera</span>
+              <span class="h2 font-weight-bold mb-0">Crear Area</span>
             </div>
             <div class="col-auto">
-              <a href="#" title data-original-title="Agregar Universidad" data-target='#createArea' data-toggle='modal' class='text-white'>
+              <a href="#" title data-original-title="Agregar Area" data-target='#createArea' data-toggle='modal' class='text-white'>
                 <div class="icon icon-shape bg-success text-white rounded-circle shadow">
                   <i class="fa fa-plus"></i>
                 </div>

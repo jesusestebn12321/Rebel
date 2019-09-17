@@ -58,11 +58,11 @@
                     <div class="form-group">
                         <div class="row">
                         
-                            <div class='col-7'>
+                            <div class='col-9'>
                                 <input id="numberContent" type="number" placeholder="Nombre de la Universidad" class="form-control" name="numberContent" autofocus required > 
                             </div>
-                            <div class="col-5">
-                                <a href="#" class='btn btn-info' onclick="contentNumber()">click</a>
+                            <div class="col-3">
+                                <a href="#" class='btn btn-block btn-info' onclick="contentNumber()">click</a>
                             </div>
                         </div>
                         

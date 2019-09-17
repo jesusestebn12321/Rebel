@@ -16,6 +16,30 @@
   	}
 
 </script>
+@section('headerContent')
+<div class="container">
+  <div class="row">
+    <div class="col-xl-6 col-lg-6 pt-4">
+      <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <span class="h2 font-weight-bold mb-0">Crear Unidad Curricular</span>
+            </div>
+            <div class="col-auto">
+              <a href="#" title data-original-title="Agregar Unidad Curricular" data-target='#createMatter' data-toggle='modal' class='text-white'>
+                <div class="icon icon-shape bg-success text-white rounded-circle shadow">
+                  <i class="fa fa-plus"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection
 @section('content')
 @include('layouts.modales.Matter.modalCreateMatter')
 <div class="row mt-5">
@@ -25,11 +49,6 @@
               <div class="row align-items-center">
                 <div class="col-8">
                   <h3 class="text-white mb-0">Unidades Curricula</h3>
-                </div>
-                <div class="col-4 text-right">
-                  <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                    <a href="#" title data-original-title="Agregar Universidad" data-target='#createMatter' data-toggle='modal' class='text-white'><i class="fa fa-plus"></i></a>
-                  </div>
                 </div>
               </div>
             </div>

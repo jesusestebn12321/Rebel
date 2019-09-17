@@ -61,7 +61,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col">
-              <span class="h2 font-weight-bold mb-0">Crear Carrera</span>
+              <span class="h2 font-weight-bold mb-0">Crear Universidad</span>
             </div>
             <div class="col-auto">
               <a href="#" title data-original-title="Agregar Universidad" data-target='#createUniversity' data-toggle='modal' class='text-white'>
