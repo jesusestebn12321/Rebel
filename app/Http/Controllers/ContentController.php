@@ -68,9 +68,14 @@ class ContentController extends Controller
      * @param  \Equivalencias\Content  $content
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Content $content)
+    public function update(Request $request, $slug)
     {
-        //
+        $content=Content::where('slug',$slug)->firstOrFail();
+        $content->title=$request->input('title_'.$content->id);
+        $content->content=$request->input('content_'.$content->id);
+        $content->save();
+        //dd($content);
+        return back()->with('success','Success');
     }
 
     /**
@@ -79,8 +84,10 @@ class ContentController extends Controller
      * @param  \Equivalencias\Content  $content
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Content $content)
-    {
-        //
+    public function destroy($slug)
+    {   
+        $content=Content::where('slug',$slug)->firstOrFail();
+        $content->delete();
+        return back()->with('success','Success');
     }
 }

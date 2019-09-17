@@ -59,8 +59,10 @@
             <div class="card card-profile shadow">
               <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                 <div class="d-flex justify-content-between">
-                  <a href="#" class="btn btn-sm btn-danger mr-4">borrar</a>
-                  <a href="#" class="btn btn-sm btn-info float-ri ght">Editar</a>
+                <form class="form-horizontal" action="{{route('Contents.up_date',$item->slug)}}">
+                  
+                  <a href="{{route('Contents.delete',$item->slug)}}" class="btn btn-sm btn-danger mr-4">borrar</a>
+                  <button type="submit" class="btn btn-sm btn-info float-ri ght">Editar</button>
                 </div>
               </div>
               <div class="card-body pt-0 pt-md-4">
@@ -69,7 +71,9 @@
                     <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                       <div>
                         <span class="heading">Titulo</span>
-                        <span class="description">{{$item->title}}</span>
+                        <span class="description">
+                         <input type="text" name="title_{{$item->id}}" value="{{$item->title}}" class="form-control"> 
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -79,7 +83,10 @@
                     Contenido
                   </h3>
                   <div class="h5 font-weight-300">
-                    <p>{{$item->content}}</p>
+                    <p>
+                    <textarea value='{{$item->content}}' name="content_{{$item->id}}" class='form-control' placeholder="{{$item->content}}">{{$item->content}}</textarea>
+                    </p>
+                </form>
                   </div>
                 </div>
               </div>

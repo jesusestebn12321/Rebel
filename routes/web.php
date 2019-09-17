@@ -32,6 +32,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 	Route::get('/Area/{id}','AreaController@show');
 //Admin
 	Route::group(['middleware'=>['authen','rol'],'rol'=>['0']],function(){
+//-------------------------------------------API------------------------------------------------------------------
 		Route::apiResource('/University','UniversityController',['parameters'=>['University'=>'slug']]);
 		Route::apiResource('/Areas','AreaController',['parameters'=>['Areas'=>'slug']]);
 		Route::apiResource('/Careers','CareerController',['parameters'=>['Careers'=>'slug']]);
@@ -39,20 +40,27 @@ Route::group(['middleware'=>['verifiUser']],function(){
 		Route::apiResource('/Matters','MatterController',['parameters'=>['Matters'=>'slug']]);
 		Route::apiResource('/Contents','ContentController',['parameters'=>['Contents'=>'slug']]);
 		Route::apiResource('/Users','UsersController',['parameters'=>['Contents'=>'slug']]);
-
-
+//-------------------------------------------endAPI------------------------------------------------------------------
+//-------------------------------------------EDIT------------------------------------------------------------------
 		Route::get('/Matters/edit/{slug}',['as'=>'Matters.edit','uses'=>'MatterController@edit']);
-		Route::get('/Matters/upDate/{slug}',['as'=>'Matters.up_date','uses'=>'MatterController@update']);
-		Route::get('/Matters/delete/{slug}',['as'=>'Matters.delete','uses'=>'MatterController@destroy']);
+//-------------------------------------------UPDATE------------------------------------------------------------------
 
+		Route::get('/Matters/upDate/{slug}',['as'=>'Matters.up_date','uses'=>'MatterController@update']);
+		Route::get('/Matters/upDate/{slug}',['as'=>'Matters.up_date','uses'=>'MatterController@update']);
+		Route::get('/Contents/upDate/{slug}',['as'=>'Contents.up_date','uses'=>'ContentController@update']);
+
+//------------------------------------------endUPDATE------------------------------------------------------------------
+//--------------------------------------------SHOW---------------------------------------------------------------------
 		Route::get('/MattersCareer/show/{slug}',['as'=>'MattersCareer.show', 'uses'=>'CareerController@MatterCareerShow']);
 		Route::get('/MatterUsersCareer/show/{slug}',['as'=>'MatterUserCareer.show', 'uses'=>'UsersController@show']);
-
-
-		Route::get('/Careers/Delete/{slug}',['as'=>'University.delete', 'uses'=>'UniversityController@delete'] );
+//------------------------------------------endSHOW---------------------------------------------------------------------
+//------------------------------------------DESTROY----------------------------------------------------------
 		Route::get('/Areas/Delete/{slug}',['as'=>'Areas.delete', 'uses'=>'AreaController@delete'] );
+		Route::get('/Careers/Delete/{slug}',['as'=>'University.delete', 'uses'=>'UniversityController@delete'] );
+		Route::get('/Contents/Delete/{slug}',['as'=>'Contents.delete', 'uses'=>'ContentController@destroy'] );
+		Route::get('/Matters/delete/{slug}',['as'=>'Matters.delete','uses'=>'MatterController@destroy']);
 		Route::get('/University/Delete/{slug}',['as'=>'Careers.delete', 'uses'=>'CareerController@delete'] );
-		
+//------------------------------------------endDESTROY----------------------------------------------------------
 
 		Route::get('/Teacher',['as'=>'Teacher.index','uses'=>'UsersController@IndexTeacher']);
 		Route::get('/AdminVerify/{slug}',['as'=>'admin.verify','uses'=>'VerifiController@AdminVerify']);
