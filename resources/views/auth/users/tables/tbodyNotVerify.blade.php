@@ -23,10 +23,10 @@
 </tr>
 @else
 <tr>
-    <td>
-      <font>No hay profesores que no este verificados</font>
-    </td>
-  </tr>
+  <td>
+    <font>No hay profesores que no este verificados</font>
+  </td>
+</tr>
 @endif
 @empty
   <tr>
