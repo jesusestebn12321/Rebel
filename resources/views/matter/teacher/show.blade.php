@@ -9,6 +9,7 @@
       $('#title'+arg).toggleClass('d-none');
       $('#content'+arg).toggleClass('d-none');
 
+
   }
   function edit2(arg){
       $('#edit2_'+arg).toggleClass('d-none');
@@ -16,7 +17,10 @@
       $('#title'+arg).toggleClass('d-none');
       $('#content'+arg).toggleClass('d-none');
   }
-
+  $(document).ready(function(){
+    var id=$('#id_matter');
+    $('#matter_id').val(id.val());
+  });
 
 </script>
 @endsection
@@ -58,6 +62,7 @@
                 <a href="#" id="edit1_{{$item->id}}" onclick="edit1({{$item->id}})" class="btn btn-sm btn-default float-right">Editar</a>
                 <form action="{{route('Contents.up_date',$item->slug)}}">
                 <button type="submit" onclick="edit2({{$item->id}})" id="edit2_{{$item->id}}" class="d-none btn btn-sm btn-info float-right">Editar</button>
+                <input type="hidden" id="id_matter" value="{{$matter->id}}" >
               </div>
             </div>
             <div class="card-body pt-0 pt-md-4">
