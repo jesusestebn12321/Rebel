@@ -60,6 +60,7 @@
 	                    <th scope="col">Codigo</th>
 	                    <th scope="col">Verción</th>
 	                    <th scope="col">Unidad Curricular</th>
+	                    <th scope="col">Nª contenido</th>
 	                    <th scope="col">Created_at</th>
 	                    <th scope="col">Updated_at</th>
 	                    <th scope="col"></th>
@@ -84,6 +85,7 @@
 	                       		<label id='labelEditmatter{{$item->id}}'>{{ $item->matter}}</label>
 	                        	<input class='d-none' id="EditUniversity{{$item->id}}" value="{{$item->matter}}">
 	                      	</td>
+	                      	<td>{{$item->content->count()}}</td>
 	                      	<td id='td_Create{{$item->id}}'>{{ $item->created_at }}</td>
 	                      	<td id='td_Edit{{$item->id}}'>{{ $item->updated_at }}</td>
 	                      	@if(Auth::user()->hasRole(0))

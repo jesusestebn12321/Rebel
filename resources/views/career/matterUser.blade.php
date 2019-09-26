@@ -55,7 +55,7 @@
             <div class="card-profile-stats d-flex justify-content-center ml-3 mt-md-5">
               <div>
                 <div class="d-flex justify-content-between">
-                  <a href="#" class="btn btn-sm btn-warning mr-0 text-lg">Añadir Contenido</a>
+                  <h2>Contenidos</h2>
                 </div>
               </div>
             </div>

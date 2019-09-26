@@ -23,9 +23,8 @@ class ContentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create(){
+        
     }
 
     /**
@@ -34,9 +33,17 @@ class ContentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContentRequests $request)
     {
-        //
+        $slug=str_slug($request->title.rand());
+        $content= Content::create([
+            'title'=>$request->input('title'),
+            'content'=>$request->input('content'),
+            'slug'=>$slug,
+            'matter_id'=>$request->input('matter_id')
+            ]);
+        return back()->with('success','success');
+
     }
 
     /**
@@ -76,7 +83,6 @@ class ContentController extends Controller
         $content->title=$request->input('title');
         $content->content=$request->input('content');
         $content->save();
-        //dd($content);
         return back()->with('success','Success');
     }
 
