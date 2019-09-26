@@ -14,6 +14,9 @@
                         '<input type="text" placeholder="Contenido '+i+'" class="form-control" name="content_'+i+'" autofocus required ></div>');
   		}
   	}
+  	function loadContent(arg){
+  		$('#matter_id').val(arg);
+  	}
 
 </script>
 @section('headerContent')
@@ -42,6 +45,7 @@
 @endsection
 @section('content')
 @include('layouts.modales.Matter.modalCreateMatter')
+@include('layouts.modales.content.modalCreateContent')
 <div class="row mt-5">
         <div class="col">
           <div class="card bg-default shadow">
@@ -93,14 +97,14 @@
 	                      		<a class="btn-primary btn" href="{{route('Matters.show',$item->slug)}}"><i class="fa fa-eye"></i></a>
 	                        	<a class="btn-danger btn" href="{{route('Matters.delete',$item->slug)}}"><i class="fa fa-remove"></i></a> 
 	                        	<a class="btn-info btn" href="{{route('Matters.edit',$item->slug)}}"><i class="fa fa-edit"></i></a>
-	                        	<a class="btn-success btn" data-target='#loadContent' data-toggle='modal' onclick="loadContent({{$item->id}})" href="#!"><i class="fa fa-file"></i></a>
+	                        	<a class="btn-success btn" data-target='#createContent' data-toggle='modal' onclick="loadContent({{$item->id}})" href="#!"><i class="fa fa-file"></i></a>
 		                    </td>
 	                      	@elseif(Auth::user()->hasRole(1))
 		                    <td>
 	                      		<a class="btn-primary btn" href="{{route('Matters.show',$item->slug)}}"><i class="fa fa-eye"></i></a>
 	                        	<a class="btn-danger btn" href="{{route('Matter.destroy',$item->slug)}}"><i class="fa fa-remove"></i></a> 
 	                        	<a class="btn-info btn" data-target='#editMatter' data-toggle='modal'  id="btn-1_{{$item->id}}" onclick="edit({{$item->id}})" href="#!"><i class="fa fa-edit"></i></a>
-	                        	<a class="btn-success btn" data-target='#loadContent' data-toggle='modal' onclick="loadContent({{$item->id}})" href="#!"><i class="fa fa-file"></i></a>
+	                        	<a class="btn-success btn" data-target='#createContent' data-toggle='modal' onclick="loadContent({{$item->id}})" href="#!"><i class="fa fa-file"></i></a>
 	                      	</td>
 	                      	@endif
 	                    </tr>
