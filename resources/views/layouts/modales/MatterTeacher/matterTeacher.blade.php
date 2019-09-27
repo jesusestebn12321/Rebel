@@ -13,11 +13,19 @@
                     {{ csrf_field() }}
                     <div class="form-group">
 
-                        <input id="dniTeacher" type="number" placeholder="Cedula Del Profesor" class="form-control"> 
-                        <input type="hidden" value="{{$matter->id}}"> 
+                        <input id="dniTeacher" name="user_id" type="number" placeholder="Cedula Del Profesor" class="form-control"> 
+                        <input type="hidden" name="matter_id" value="{{$matter->id}}"> 
                     </div>
                     <div id="teacherContent">
                     
+                    </div>
+                    <div class="form-group">
+                         <select id="university_id" class='form-control' value='1' name="type" size='1'>       
+                            <option>Tipo</option>
+                            <option value="0">Coordinador</option>
+                            <option value="1">Profesor</option>
+                        </select>
+
                     </div>
                 </div>
                 <div class="modal-footer"> 
