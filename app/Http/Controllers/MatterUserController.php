@@ -3,6 +3,7 @@
 namespace Equivalencias\Http\Controllers;
 
 use Equivalencias\MatterUser;
+use Equivalencias\User;
 use Illuminate\Http\Request;
 use Equivalencias\Http\Requests\MatterUserRequests;
 
@@ -43,6 +44,25 @@ class MatterUserController extends Controller
             ]);
         // dd($request);
         return back()->with('success','Lleno el perfil con exito');
+    }
+    public function add(MatterUserRequests $request){
+        $matter_user=MatterUser::create([
+                'matter_id'=>$request->matter_id,
+                'user_id'=>$request->user_id,
+            ]);
+        // dd($request);
+        return back()->with('success','Lleno el perfil con exito');
+    }
+    public function search($dni){
+        
+        $matter_teacher=MatterUser::where('dni',$dni)->firstOrFail();
+        if ($matter_teacher->rol==1) {
+            return $matter_teacher;
+        }else{
+            $error='Este Usuario no es un profesor';
+            return $error;
+        }
+
     }
 
     /**
