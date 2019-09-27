@@ -32,7 +32,7 @@ class CareerController extends Controller
         return $career;
     }
     public function MatterCareerShow($slug){
-        $career=Career::where('slug','=',$slug)->first();
+        $career=Career::where('slug','=',$slug)->firstOrFail();
         $matter=Matter::where('career_id','=',$career->id)->get();
         // $content=Content::where('matter_id','=',$matter->id)->get();
         // dd($matter);
