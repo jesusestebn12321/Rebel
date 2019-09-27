@@ -2,6 +2,8 @@
 @section('title','| Dashboard')
 @section('nameTitleTemplate','Dashboard')
 @section('js')
+<script src="{{asset('plugins/js/main.js')}}"></script>
+
 <script>
 	$('#areaOp').click(function(){
 		var career=$('#careerProfile');
