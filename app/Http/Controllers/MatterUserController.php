@@ -45,17 +45,27 @@ class MatterUserController extends Controller
         // dd($request);
         return back()->with('success','Lleno el perfil con exito');
     }
-    public function add(MatterUserRequests $request){
+    public function add(Request $request){
+        $teacher=User::where('dni',$request->user_id)->firstOrFail();
+        $matter_coordinator=MatterUser::where('type',$request->type)->firstOrFail();
+        
+        if($matter_coordinator){
+            
+            return back()->with('success','error, ya existe un coordinador de esta unidad curricular');
+        }else{
+            
         $matter_user=MatterUser::create([
                 'matter_id'=>$request->matter_id,
-                'user_id'=>$request->user_id,
+                'user_id'=>$teacher->id,
+                'type'=>$request->type,
+                'admin_confirmed'=>true
             ]);
-        // dd($request);
-        return back()->with('success','Lleno el perfil con exito');
+        return back()->with('success','succes');
+        }
     }
     public function search($dni){
         
-        $matter_teacher=MatterUser::where('dni',$dni)->firstOrFail();
+        $matter_teacher=User::where('dni',$dni)->firstOrFail();
         if ($matter_teacher->rol==1) {
             return $matter_teacher;
         }else{
