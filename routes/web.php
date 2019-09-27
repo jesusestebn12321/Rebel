@@ -66,6 +66,8 @@ Route::group(['middleware'=>['verifiUser']],function(){
 
 		Route::get('/Teacher',['as'=>'Teacher.index','uses'=>'UsersController@IndexTeacher']);
 		Route::get('/AdminVerify/{slug}',['as'=>'admin.verify','uses'=>'VerifiController@AdminVerify']);
+		Route::post('/MattersUsers',['as'=>'MattersTeacher.add','uses'=>'MatterUserController@add']);
+		Route::get('/MattersUsers/search/{dni}','MatterUserController@search');
 
 	});
 
