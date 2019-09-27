@@ -53,7 +53,6 @@
     <script>
       var APP_URL={!!json_encode(url('/'))!!};
     </script>
-    <script src="{{asset('plugins/js/main.js')}}"></script>
     
     @yield('js')
   </body>
