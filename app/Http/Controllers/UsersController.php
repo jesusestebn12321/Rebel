@@ -38,7 +38,7 @@ class UsersController extends Controller
     }
     public function show($slug){
         $career=Career::where('slug',$slug)->first();
-        $matter=Matter::where('career_id',$career->id)->get();
+        $matter=Matter::where('career_id',$career->id)->firstOrFail();
         $matter_user=MatterUser::all();
         return view('career.teacherMatterShow',compact('matter_user','matter','career'));
     }
