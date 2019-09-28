@@ -22,22 +22,10 @@ class AreaController extends Controller
         return view('areas.index',compact('area','university','address'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function create(){
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(AreaRequests $request){
         if($request->address!=''){
             $slug=str_slug($request->address.'_'.rand());
@@ -55,7 +43,7 @@ class AreaController extends Controller
             'university_id'=>$request->university_id,
             'slug'=>$slug,
         ]);
-        return back()->with('success','Exito');
+        return back()->with('success','Se a creado con exito el area');
 
     }
 
@@ -73,20 +61,12 @@ class AreaController extends Controller
        return $area;
    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \Equivalencias\Area  $area
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($slug){
-        dd('hola');
         try {
             $area=Area::Where('slug','=',$slug)->firstOrFail();
             $area->delete();
             return back()->with('success','Exito');
         } catch (Illuminate\Database\QueryException $e) {
-
             return back()->with('success','Error esta area contiene carreras');
         }
     }
@@ -94,10 +74,9 @@ class AreaController extends Controller
         try {
             $area=Area::Where('slug','=',$slug)->firstOrFail();
             $area->delete();
-            return back()->with('success','Exito');
+            return back()->with('success','Se a borrado con exito el area');
         } catch (Illuminate\Database\QueryException $e) {
-
-            return back()->with('success','Error esta area contiene carreras');
+            return back()->with('success','Se produjo un error esta area contiene carreras');
         }
     }
 }

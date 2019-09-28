@@ -12,11 +12,7 @@ use Equivalencias\Http\Requests\CareerRequests;
 
 class CareerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index(){
         $career=Career::all();
         $area=Area::all();
@@ -25,7 +21,7 @@ class CareerController extends Controller
     public function store(CareerRequests $request){
         $slug=str_slug($request->modalidad.'-'.$request->career.'_'.rand());
         $career=Career::create(['career'=>$request->career,'modalidad'=>$request->modalidad,'slug'=>$slug,'area_id'=>$request->area_id]);
-        return back()->with('success','Exito');
+        return back()->with('success','Se a creado con exito la carrera');
     }
     public function show($id){
         $career=Career::where('area_id','=',$id)->get();
@@ -45,14 +41,11 @@ class CareerController extends Controller
         return $career;
     }
     public function destroy($slug){
-        // $career=Career::where('slug','=',$slug)->firstOrFail();
-        // dd('hola');
-        // $career->delete();
-        // return back()->with('success','Exito');
+
     }
     public function delete($slug){
         $career=Career::where('slug','=',$slug)->firstOrFail();
         $career->delete();
-        return back()->with('success','Exito');
+        return back()->with('success','Se a borrado con exito la carrera');
     }
 }

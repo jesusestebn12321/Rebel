@@ -56,6 +56,6 @@ class UsersController extends Controller
     {
         $user=User::where('slug',$slug)->firstOrFail();
         $user->delete();
-        return back()->with('success','success');
+        return back()->with('success','Se a borrado con exito el usuario');
     }
 }

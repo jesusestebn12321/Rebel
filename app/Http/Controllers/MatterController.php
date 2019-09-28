@@ -59,7 +59,7 @@ class MatterController extends Controller
             $content->save();
             
         }
-        return back()->with('success','La materia fue creada');
+        return back()->with('success','Se a creado con exito la materia');
     }
 
     /**
@@ -92,7 +92,6 @@ class MatterController extends Controller
         $matter=Matter::where('slug',$slug)->firstOrFail();
         $content=Content::where('matter_id',$matter->id)->get();
         $career=Career::all();
-        //dump($matter);
         return view('matter.teacher.edit',compact('matter','content','career'));        
     }
 
@@ -111,7 +110,7 @@ class MatterController extends Controller
         $matter->matter=$request->matter;
         $matter->career_id=$request->career_id;
         $matter->save();
-        return back()->with('success','Success');
+        return back()->with('success','Se a editado con exito la materia');
     }
     public function updateAll(Request $request, $slug)
     {
@@ -128,7 +127,7 @@ class MatterController extends Controller
 
         }
 
-        return back()->with('success','Success');
+        return back()->with('success','Se a editado con exito la materia y sus contenidos');
     }
 
 
@@ -142,7 +141,7 @@ class MatterController extends Controller
     {   
         $matter=Matter::where('slug',$slug)->firstOrFail();
         $matter->delete();
-        return back()->with('success','Success');
+        return back()->with('success','Se a borrado con exito la materia');
         
     }
 }

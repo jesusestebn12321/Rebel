@@ -42,7 +42,7 @@ class ContentController extends Controller
             'slug'=>$slug,
             'matter_id'=>$request->input('matter_id')
             ]);
-        return back()->with('success','success');
+        return back()->with('success','Se a creado con exito el contenido');
 
     }
 
@@ -83,7 +83,7 @@ class ContentController extends Controller
         $content->title=$request->input('title');
         $content->content=$request->input('content');
         $content->save();
-        return back()->with('success','Success');
+        return back()->with('success','Se la editado con exito el contenido');
     }
 
     /**
@@ -96,6 +96,6 @@ class ContentController extends Controller
     {   
         $content=Content::where('slug',$slug)->firstOrFail();
         $content->delete();
-        return back()->with('success','Success');
+        return back()->with('success','Se a borrado con exito el contenido');
     }
 }

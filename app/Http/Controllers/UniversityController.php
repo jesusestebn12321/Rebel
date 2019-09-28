@@ -25,7 +25,7 @@ class UniversityController extends Controller{
             'address_id'=>$request->address_id,
             'slug'=>$slug,
         ]);
-        return back()->with('success','Exito');
+        return back()->with('success','Se a creado con exito la universidad');
     }
     public function show($id){
     }
@@ -40,11 +40,11 @@ class UniversityController extends Controller{
     public function destroy($slug){
         $university=University::Where('slug','=',$slug)->firstOrFail();
         $university->delete();
-        return back()->with('success','Exito');
+        return back()->with('success','Se a borrado con exito la universidad');
     }
     public function delete($slug){
         $university=University::Where('slug','=',$slug)->firstOrFail();
         $university->delete();
-        return back()->with('success','Exito');
+        return back()->with('success','Se a borrado con exito la universidad');
     }
 }

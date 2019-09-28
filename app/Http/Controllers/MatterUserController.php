@@ -51,7 +51,7 @@ class MatterUserController extends Controller
         
         if($matter_coordinator){
             
-            return back()->with('success','error, ya existe un coordinador de esta unidad curricular');
+            return back()->with('messages','error, ya existe un coordinador de esta unidad curricular');
         }else{
             
         $matter_user=MatterUser::create([
@@ -60,7 +60,7 @@ class MatterUserController extends Controller
                 'type'=>$request->type,
                 'admin_confirmed'=>true
             ]);
-        return back()->with('success','succes');
+        return back()->with('success','Se a añadido con exito la materia');
         }
     }
     public function search($dni){
