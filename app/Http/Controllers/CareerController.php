@@ -34,9 +34,7 @@ class CareerController extends Controller
     public function MatterCareerShow($slug){
         $career=Career::where('slug','=',$slug)->firstOrFail();
         $matter=Matter::where('career_id','=',$career->id)->get();
-        // $content=Content::where('matter_id','=',$matter->id)->get();
-        // dd($matter);
-        return view('career.matterUser',compact('matter','career','content'));
+        return view('career.matterUser',compact('matter','career'));
     }
     public function update(CareerRequests $request, $slug){
         $career=Career::where('slug','=',$slug)->firstOrFail();
