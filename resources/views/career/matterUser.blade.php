@@ -115,34 +115,34 @@
 <div class="row">
   {{-- {{ $matter }} --}}
   @forelse($matter as $item)
-  <form action="{{ route('Matters.up_date.all',$item->slug) }}" class="form-group" method="GET">    
+  <form action="{{ route('Matters.up_date.all',$item->slug) }}" class="form-horizontal col-6" method="GET">    
     <input type="hidden" name="countContent" value="{{$item->content->count()}}" id="countContent">
     <input type="hidden" name="career_id" value="{{$career->id}}" id="career_id">
-    <div class="col-xl-6 order-xl-2 mb-5 mb-xl-0 pt-4">
+    <div class="col-12 order-xl-2 mb-5 mb-xl-0 pt-4">
       <div class="card card-profile shadow">
         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
           <div class="d-flex justify-content-between">
-            <a href="#" onclick="edit({{$item->id}})"  id="btn_edit{{$item->id}}" class="btn btn-sm btn-info text-lg mr-4">Editar</a>
-            <a href="#" onclick="cancelar({{$item->id}})" id="btn_cancelar{{$item->id}}" class="d-none btn btn-sm btn-warning text-lg mr-4">Cancelar</a>
+            <a href="#!" onclick="edit({{$item->id}})"  id="btn_edit{{$item->id}}" class="btn btn-sm btn-info text-lg mr-4">Editar</a>
+            <a href="#!" onclick="cancelar({{$item->id}})" id="btn_cancelar{{$item->id}}" class="d-none btn btn-sm btn-warning text-lg mr-4">Cancelar</a>
             <a href="{{route('Matters.delete',$item->slug)}}" class="btn btn-sm btn-danger float-right text-lg">Borrar</a>
           </div>
-          <h1>
-            <i class="fa fa-tv"></i>
-            <span id="label_matter{{$item->id}}"> {{ $item->matter }}</span> 
+          <h1><i class="fa fa-tv"></i> <span id="label_matter{{$item->id}}"> {{ $item->matter }}</span> 
+          <div class="form-group col-9 center">
             <input type="text" value="{{$item->matter}}" class="form-control d-none" id="input_matter{{$item->id}}" name="matter">
+          </div>
           </h1>
-          <h2>
-            <i class="fa fa-tv"></i> 
-            Vercion: 
+          <h2><i class="fa fa-tv"></i> Vercion: 
             <span id="label_version{{$item->id}}"> {{ $item->version }}</span> 
-            <input type="text" value="{{$item->version}}" class="form-control d-none" id="input_version{{$item->id}}" name="version">
           </h2>
-          <h3>
-            <i class="fa fa-key"></i> 
-            Codigo: 
+          <div class="form-group col-9 center">
+            <input type="text" value="{{$item->version}}" class="form-control d-none" id="input_version{{$item->id}}" name="version">
+          </div>
+          <h3><i class="fa fa-key"></i> Codigo: 
             <span id="label_slug{{$item->id}}"> {{ $item->slug }}</span> 
-            <input type="text" value="{{$item->slug}}" class="form-control d-none" id="input_slug{{$item->id}}" name="slug">
           </h3>
+          <div class="form-group col-9 center">
+            <input type="text" value="{{$item->slug}}" class="form-control d-none" id="input_slug{{$item->id}}" name="slug">
+          </div>
         </div>
         <div class="card-body pt-0">
           <div class="row">
@@ -157,7 +157,6 @@
             </div>
           </div>
           <div class="text-center">
-
             <div class="text-center">
               <div class='row' id="divLabels{{$item->id}}">
                 @forelse($item->content as $items)
@@ -180,12 +179,12 @@
                 <?php $i=0; ?>
                @foreach($item->content as $items)
                 <div class='col-4'>
-                  <div class="h5 mt-4">
+                  <div class="mt-4 form-group">
                     <h3>Titulo</h3>
                     <input class="form-control" value="{{$items->title}}" name="title{{$items->id}}" id='inputTitle{{$items->id}}'>
                     <input value="{{$items->id}}" name="contentId{{$i}}" type='hidden'>
                   </div> 
-                  <div class="h5 mt-4">
+                  <div class="h5 mt-4 form-group">
                     <h3>Contenido</h3>
                     <textarea class="form-control" name="content{{$items->id}}" id="inputContent{{$items->id}}">{{ $items->content }}</textarea>
                   </div>  
@@ -212,7 +211,9 @@
             </div>
           </div>
         </div>
-        <div class="card-footer"><button class="btn-success btn-block btn d-none" id="btn_success{{$item->id}}"> Editar </button></div>
+        <div class="card-footer">
+          <button class="btn-success btn-block btn d-none" id="btn_success{{$item->id}}">Editar</button>
+        </div>
       </div>
     </div>
   </form>
