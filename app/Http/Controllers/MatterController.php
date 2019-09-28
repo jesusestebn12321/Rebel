@@ -113,6 +113,24 @@ class MatterController extends Controller
         $matter->save();
         return back()->with('success','Success');
     }
+    public function updateAll(Request $request, $slug)
+    {
+        $matter=Matter::where('slug',$request->slug)->firstOrFail();
+        $matter->version=$request->version;
+        $matter->matter=$request->matter;
+        $matter->career_id=$request->career_id;
+        $matter->save();
+        for ($i=0; $i < $request->countContent; $i++) { 
+            $content=Content::where('id',$request->input('contentId'.$i) )->first();
+            $content->title=$request->input('title'.$content->id);
+            $content->content=$request->input('content'.$content->id);
+            $content->save();
+
+        }
+
+        return back()->with('success','Success');
+    }
+
 
     /**
      * Remove the specified resource from storage.
