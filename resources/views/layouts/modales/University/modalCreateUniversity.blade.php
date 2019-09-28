@@ -29,7 +29,7 @@
 
                     </div>
                     <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-                        <input id="address" type="text" placeholder="Otra Direccion" class="d-none form-control" name="address" autofocus required>
+                        <input id="address" type="text" placeholder="Otra Direccion" class="d-none form-control" name="address" autofocus>
                         @if ($errors->has('address'))
                         <span class="help-block">
                             <strong>{{$errors->first('address')}}</strong>
