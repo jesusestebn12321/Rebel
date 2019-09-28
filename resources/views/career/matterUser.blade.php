@@ -2,7 +2,89 @@
 @section('title','| Carreras '.$career->career)
 @section('nameTitleTemplate','Carrera '.$career->career)
 @section('js')
+<script>
+    function contentNumber(){
+      var xContetn=$('#numberContent').val();
+      
+      for (var i = 0; xContetn >   i ; i++) {
+        
+        $('#contentMatters').append('<hr><div class="form-group">'+
+                        '<input type="text" placeholder="Title '+i+'" class="form-control" name="title_'+i+'" autofocus required ></div>'+
+                        '<div class="form-group">'+ 
+                        '<textarea placeholder="Contenido '+i+'" class="form-control" name="content_'+i+'" autofocus required ></textarea>');
+      }
+    }
+    function loadContent(arg){
+      $('#matter_id').val(arg);
+    }
+    function edit(arg){
+      var countContent=$('#countContent');
+      var input_matter=$('#input_matter'+arg);
+      var input_version=$('#input_version'+arg);
+      var input_slug=$('#input_slug'+arg);
+      var label_matter=$('#label_matter'+arg);
+      var label_version=$('#label_version'+arg);
+      var label_slug=$('#label_slug'+arg);
+      var divLabels=$('#divLabels'+arg);
+      var divInput=$('#divInput'+arg);
+      var btn_edit=$('#btn_edit'+arg);
+      var btn_cancelar=$('#btn_cancelar'+arg);
+      var btn_success=$('#btn_success'+arg);
+      
+      rDnone(input_matter);
+      rDnone(input_version);
+      rDnone(input_slug);
+      rDnone(divInput);
+      rDnone(btn_cancelar);
+      rDnone(btn_success);
+      
+      aDnone(label_matter);
+      aDnone(label_slug);
+      aDnone(label_version);
+      aDnone(divLabels);
+      aDnone(btn_edit);
 
+
+    }
+    function cancelar(arg){
+      var countContent=$('#countContent');
+      var input_matter=$('#input_matter'+arg);
+      var input_version=$('#input_version'+arg);
+      var input_slug=$('#input_slug'+arg);
+      var label_matter=$('#label_matter'+arg);
+      var label_version=$('#label_version'+arg);
+      var label_slug=$('#label_slug'+arg);
+      var divLabels=$('#divLabels'+arg);
+      var divInput=$('#divInput'+arg);
+      var btn_cancelar=$('#btn_cancelar'+arg);
+      var btn_edit=$('#btn_edit'+arg);
+      var btn_success=$('#btn_success'+arg);
+
+      aDnone(input_matter);
+      aDnone(input_version);
+      aDnone(input_slug);
+      aDnone(divInput);
+      aDnone(btn_cancelar);
+      aDnone(btn_success);
+    
+      rDnone(label_matter);
+      rDnone(label_slug);
+      rDnone(label_version);
+      rDnone(divLabels);
+      rDnone(btn_edit);
+
+
+    }
+    function rDnone(arg){
+      arg.removeClass('d-none');
+      return  true;
+    }
+    function aDnone(arg){
+      arg.addClass('d-none');
+      return  true;
+    }
+
+</script>
 @endsection
 @section('headerContent')
 <div class="container">
@@ -15,7 +97,7 @@
               <span class="h2 font-weight-bold mb-0">Añadir Unidad curricular</span>
             </div>
             <div class="col-auto">
-              <a href="#" title data-original-title="Agregar Carreras" data-target='#createCareer' data-toggle='modal' class='text-white'>
+              <a href="#" title data-original-title="Agregar Unidad Curricular" data-target='#addMatter' data-toggle='modal' class='text-white'>
                 <div class="icon icon-shape bg-success text-white rounded-circle shadow">
                   <i class="fa fa-plus"></i>
                 </div>
@@ -27,91 +109,116 @@
     </div>
   </div>
 </div>
+@include('layouts.modales.Matter.modalAddMatters')
 @endsection
 @section('content')
 <div class="row">
   {{-- {{ $matter }} --}}
   @forelse($matter as $item)
-  <input type="hidden" value="" id="id">
-  <div class="col-xl-6 order-xl-2 mb-5 mb-xl-0 pt-4">
-    <div class="card card-profile shadow">
-      <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-        <div class="d-flex justify-content-between">
-          <a href="#" onclick="edit()" data-target='#editCareer' data-toggle='modal'  id="btn-1_" class="btn btn-sm btn-info text-lg mr-4">Editar</a>
-          <a href="#" class="btn btn-sm btn-danger float-right text-lg">Borrar</a>
+  <form action="{{ route('Matters.up_date.all',$item->slug) }}" class="form-group" method="GET">    
+    <input type="hidden" name="countContent" value="{{$item->content->count()}}" id="countContent">
+    <input type="hidden" name="career_id" value="{{$career->id}}" id="career_id">
+    <div class="col-xl-6 order-xl-2 mb-5 mb-xl-0 pt-4">
+      <div class="card card-profile shadow">
+        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+          <div class="d-flex justify-content-between">
+            <a href="#" onclick="edit({{$item->id}})"  id="btn_edit{{$item->id}}" class="btn btn-sm btn-info text-lg mr-4">Editar</a>
+            <a href="#" onclick="cancelar({{$item->id}})" id="btn_cancelar{{$item->id}}" class="d-none btn btn-sm btn-warning text-lg mr-4">Cancelar</a>
+            <a href="{{route('Matters.delete',$item->slug)}}" class="btn btn-sm btn-danger float-right text-lg">Borrar</a>
+          </div>
+          <h1>
+            <i class="fa fa-tv"></i>
+            <span id="label_matter{{$item->id}}"> {{ $item->matter }}</span> 
+            <input type="text" value="{{$item->matter}}" class="form-control d-none" id="input_matter{{$item->id}}" name="matter">
+          </h1>
+          <h2>
+            <i class="fa fa-tv"></i> 
+            Vercion: 
+            <span id="label_version{{$item->id}}"> {{ $item->version }}</span> 
+            <input type="text" value="{{$item->version}}" class="form-control d-none" id="input_version{{$item->id}}" name="version">
+          </h2>
+          <h3>
+            <i class="fa fa-key"></i> 
+            Codigo: 
+            <span id="label_slug{{$item->id}}"> {{ $item->slug }}</span> 
+            <input type="text" value="{{$item->slug}}" class="form-control d-none" id="input_slug{{$item->id}}" name="slug">
+          </h3>
         </div>
-        <h1><span class="fa fa-tv"></span> 
-          {{ $item->matter }}<span></span> 
-          <input type="hidden" id="EditCareer" value="">
-        </h1>
-        <h2><span class="fa fa-tv"></span> 
-          Vercion: {{ $item->version }}<span></span> 
-          <input type="hidden" id="EditCareer" value="">
-        </h2>
-      </div>
-      <div class="card-body pt-0">
-        <div class="row">
-          <div class="col">
-            <div class="card-profile-stats d-flex justify-content-center ml-3 mt-md-5">
+        <div class="card-body pt-0">
+          <div class="row">
+            <div class="col">
+              <div class="card-profile-stats d-flex justify-content-center ml-3 mt-md-5">
+                <div>
+                  <div class="d-flex justify-content-between">
+                    <h2>Contenidos  </h2><hr>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+
+            <div class="text-center">
+              <div class='row' id="divLabels{{$item->id}}">
+                @forelse($item->content as $items)
+                <hr>
+                <div class='col-4'>
+                  <div class="h5 mt-4">
+                    <h3>Titulo</h3><p id="labelTitle{{ $items->id }}">{{ $items->title }}</p>
+                  </div> 
+                  <div class="h5 mt-4">
+                    <h3>Contenido</h3><p id="labelContent{{$item->id}}"> {{ $items->content }} </p>
+                  </div>  
+                </div>
+                <hr>
+                @empty
+                  <font class='center'>No existen registros</font>
+                @endforelse
+              </div>   
+
+              <div class="row d-none" id="divInput{{$item->id}}">
+                <?php $i=0; ?>
+               @foreach($item->content as $items)
+                <div class='col-4'>
+                  <div class="h5 mt-4">
+                    <h3>Titulo</h3>
+                    <input class="form-control" value="{{$items->title}}" name="title{{$items->id}}" id='inputTitle{{$items->id}}'>
+                    <input value="{{$items->id}}" name="contentId{{$i}}" type='hidden'>
+                  </div> 
+                  <div class="h5 mt-4">
+                    <h3>Contenido</h3>
+                    <textarea class="form-control" name="content{{$items->id}}" id="inputContent{{$items->id}}">{{ $items->content }}</textarea>
+                  </div>  
+                </div>
+                <?php $i++; ?>
+                
+               @endforeach   
+              </div>
+            </div>
+            <div class="text-center">
               <div>
-                <div class="d-flex justify-content-between">
-                  <h2>Contenidos</h2>
+                <hr class="my-4">
+                <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                  <div>
+                    <span class="heading">Registro Creado</span>
+                    <span class="description" id='labelCreate'>{{ $item->created_at }}</span>
+                  </div>
+                  <div>
+                    <span class="heading">Registro Editado</span>
+                    <span class="description" id='labelEdit'>{{ $item->updated_at }}</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="text-center">
-
-          <div class="text-center">
-            <div class='row'>
-              
-            @forelse($item->content as $items)
-            {{-- <hr> --}}
-            <div class='col-4'>
-              <div class="h5 mt-4">
-                <h3>Titulo</h3> {{ $items->title }}<span id="labelEditArea"></span>
-                <input type="hidden" id='EditAreaI' value="">
-              </div> 
-              <div class="h5 mt-4">
-                <h3>Contenido</h3> {{ $items->content }}<span id="labelEditArea"></span>
-                <input type="hidden" id='EditAreaI' value="">
-              </div>  
-            </div>
-            {{-- <hr> --}}
-            @empty
-
-          
-              <font class='center'>No existen registros</font>
-           
-         @endforelse
-            </div>
-          </div>
-          <div class="text-center">
-            <div>
-              <hr class="my-4">
-              <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                <div>
-                  <span class="heading">Registro Creado</span>
-                  <span class="description" id='labelCreate'>{{ $item->created_at }}</span>
-                </div>
-                <div>
-                  <span class="heading">Registro Editado</span>
-                  <span class="description" id='labelEdit'>{{ $item->updated_at }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="card-footer"><button class="btn-success btn-block btn d-none" id="btn_success{{$item->id}}"> Editar </button></div>
       </div>
     </div>
-  </div>
- @empty
-
-          
-              <font class='center'>No existen registros</font>
-           
-         @endforelse
+  </form>
+  @empty
+    <font class='center'>No existen registros</font>
+  @endforelse
 </div>
 
 @endsection
