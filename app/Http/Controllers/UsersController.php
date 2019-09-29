@@ -26,7 +26,7 @@ class UsersController extends Controller
 
     public function profile(){
         $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->first();
-        if ($matter_user) {
+        if ($matter_user && Auth::user()->hasRole(0)) {
             # code...
             return view('auth.profile.index',compact('matter_user'));
         } else {
@@ -49,8 +49,14 @@ class UsersController extends Controller
     public function store(Request $request){
 
     }
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $slug){
+        $user=User::where('slug',$slug)->firstOrFail();
+        $user->name=$request->name;
+        $user->lastname=$request->lastname;
+        $user->save();
+        return back()->with('success','Exito al editar sus datos personales');
+
+
     }
     public function destroy($slug)
     {
