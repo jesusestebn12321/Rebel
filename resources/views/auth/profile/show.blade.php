@@ -26,7 +26,6 @@
                 <h3>
                   {{ $user->name }} {{ $user->lastname }}
                 </h3>
-                <div class="h5 font-weight-300"><i class="ni location_pin mr-2"></i>Estudiante </div>
                 <div>
                   <i class="ni education_hat mr-2"></i>
                   {{ $user->matter }}
