@@ -26,9 +26,7 @@ class CreateMatterUsersTable extends Migration
             ->on('users')
             ->onDelete('set null');
 
-            $table->integer('type')->default(0);
-            $table->boolean('admin_confirmed')->default(0);
-
+            
             $table->timestamps();
         });
     }
