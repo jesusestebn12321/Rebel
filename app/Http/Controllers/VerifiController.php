@@ -5,6 +5,7 @@ namespace Equivalencias\Http\Controllers;
 use Illuminate\Http\Request;
 use Equivalencias\User;
 use Equivalencias\MatterUser;
+use Equivalencias\Teacher;
 use Auth;
 class VerifiController extends Controller
 {
@@ -34,11 +35,21 @@ class VerifiController extends Controller
         return redirect('/home')->with('notification', 'Has confirmado correctamente tu correo!');
     }
     public function AdminVerify($slug){
-        $user = User::where('slug','=',$slug)->first();
+        
+        $teacher = Teacher::where('slug',$slug)->firstOrFail();
+        if ($teacher->admin_confirmed==1) {
+            # code...
+            $teacher->admin_confirmed = false;
+            $message='Se le removio la verificacion al usuario';
+        } else {
+            # code...
+            $teacher->admin_confirmed = true;
+            $message='Usuario Verificado Por el Administrador';
+            
+        }
+        $teacher->save();
+        
 
-        $matter_user = MatterUser::where('user_id',$user->id)->first();
-        $matter_user->admin_confirmed = true;
-        $matter_user->save();
-        return back();
+        return back()->with('success',$message);
     }
 }
