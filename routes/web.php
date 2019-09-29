@@ -16,6 +16,8 @@ use Equivalencias\Career;
 Route::get('/Chart', 'HomeController@chart');
 
 Route::get('/', function () {
+	
+	return view('auth.login');
 	return view('auth.login');
 });
 Route::get('/Verifi',['as'=>'verifi','uses'=>'VerifiController@index']); // rutas de verificacion de email
@@ -27,8 +29,10 @@ Route::group(['middleware'=>['verifiUser']],function(){
 
 	Route::get('/Profile',['as'=>'profile-index','uses'=>'UsersController@profile']);
 	Route::get('/Profile/upDate',['as'=>'profile.upData', 'uses'=>'ProfileController@update'] );
+	
+	Route::get('/Profile/User/upDate',['as'=>'User.up_date', 'uses'=>'UsersController@update'] );
 
-	Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/', 'HomeController@index')->name('home');
 	Route::get('/Area/{id}','AreaController@show');
 //Admin
 	Route::group(['middleware'=>['authen','rol'],'rol'=>['0']],function(){
