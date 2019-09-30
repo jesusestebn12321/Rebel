@@ -45,10 +45,15 @@ class UsersController extends Controller
         $user->name=$request->name;
         $user->lastname=$request->lastname;
         $user->save();
-        
         return back()->with('success','Exito al editar sus datos personales');
-
-
+    }
+    public function Supdate(Request $request,$slug){
+        $user=User::where('id',$request->id)->firstOrFail();
+        $user->name=$request->name;
+        $user->dni=$request->dni;
+        $user->lastname=$request->lastname;
+        $user->save();
+        return back()->with('success','Exito al editar sus datos personales');
     }
     public function destroy($slug)
     {

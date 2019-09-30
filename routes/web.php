@@ -57,6 +57,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 		Route::get('/MattersAll/upDate/{slug}',['as'=>'Matters.up_date.all','uses'=>'MatterController@updateAll']);
 		Route::get('/Contents/upDate/{slug}',['as'=>'Contents.up_date','uses'=>'ContentController@update']);
 		Route::get('/Users/upDate/{slug}',['as'=>'Users.up_date','uses'=>'UsersController@update']);
+		Route::get('/Students/upDate/{slug}',['as'=>'Student.up_date','uses'=>'UsersController@Supdate']);
 
 //------------------------------------------endUPDATE------------------------------------------------------------------
 

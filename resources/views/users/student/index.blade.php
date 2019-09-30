@@ -2,9 +2,18 @@
 @section('title','| Estudiantes')
 @section('nameTitleTemplate','Estudiantes')
 @section('js')
+  <script type="text/javascript">
+    function edit(id){
+      $('#ModalId').val($('#tdId'+id).text());
+      $('#ModalDni').val($('#tdDni'+id).text());
+      $('#ModalLastname').val($('#tdLastname'+id).text());
+      $('#ModalName').val($('#tdName'+id).text());
 
+    }
+  </script>
 @endsection
 @section('content')
+@include('layouts.modales.Users.Student.modalEditStudent')
  <div class="row mt-5">
         <div class="col">
           <div class="card bg-default shadow">
@@ -30,19 +39,19 @@
                 <tbody>
                 	@forelse($user as $item)
                   <tr>
-                    <td>{{ $item->id }}</td>
-                    <td>{{ $item->dni }}</td>
-                    <td>{{ $item->name }}</td>
-                    <td>{{ $item->lastname }}</td>
+                    <td id="tdId{{$item->id}}">{{ $item->id }}</td>
+                    <td id="tdDni{{$item->id}}">{{ $item->dni }}</td>
+                    <td id="tdName{{$item->id}}">{{ $item->name }}</td>
+                    <td id="tdLastname{{$item->id}}">{{ $item->lastname }}</td>
                     <td>{{ $item->email }}</td>
                     <td>{{ $item->confirmed==1?'Verificado':'Aun no se a Verificado'}}</td>
                     <td>{{ $item->last_login}}</td>
                     <td>{{ $item->created_at }}</td>
                     <td>{{ $item->updated_at }}</td>
                     <td>
-                    	<a class="btn-primary btn" href="{{route('Profile.show',$item->slug)}}"><i class="fa fa-eye"></i></a>
-                    	<a class="btn-danger btn" href="{{route('User.delete',$item->slug)}}"><i class="fa fa-remove"></i></a>
-                    	<a class="btn-info btn" href="#"><i class="fa fa-edit"></i></a>
+                    	<a class="btn-primary btn" title="Ver" href="{{route('Profile.show',$item->slug)}}"><i class="fa fa-eye"></i></a>
+                    	<a class="btn-danger btn" title="Borrar" href="{{route('User.delete',$item->slug)}}"><i class="fa fa-remove"></i></a>
+                    	<a class="btn-info btn" title="Editar" onclick="edit({{$item->id}})" href="#" data-target='#editStudent' data-toggle='modal'><i class="fa fa-edit"></i></a>
                     </td>
                   </tr>
                   @empty
