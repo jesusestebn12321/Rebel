@@ -18,7 +18,7 @@ class UsersController extends Controller
     public function index(){
         $user=User::where('rol','2')->get();
         return view('auth.users.student',compact('user'));
-    }
+    } 
     
     public function profile(){
         $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->first();
