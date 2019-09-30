@@ -38,13 +38,13 @@ class HomeController extends Controller
 
     public function chart(){
         $teacher=User::where('rol','=',1)->get()->count();
-        $estudents=User::where('rol','=',2)->get()->count();
+        $students=User::where('rol','=',2)->get()->count();
         $area= Area::all()->count();
         $matter= Matter::all()->count();
         $career= Career::all()->count();
 
         $label=['Estudiantes','Profesores','Areas','Carreras','Materias'] ;
-        $data = [$estudents,$teacher,$area,$career,$matter];
+        $data = [$students,$teacher,$area,$career,$matter];
         $json=array("label"=>$label,"data"=>$data);
 
 
