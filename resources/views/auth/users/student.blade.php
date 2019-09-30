@@ -2,21 +2,7 @@
 @section('title','| Estudiantes')
 @section('nameTitleTemplate','Estudiantes')
 @section('js')
-<script>
-  var btnUserTeacher=$('#userTeacher');
-  var userTeacherTable=$('#userTeacherTable');
-  var btnUserEstudents=$('#userEstudents');
-  var userEstudentsTable=$('#userEstudentsTable');
-  
-  btnUserTeacher.click(function(){
-    userTeacherTable.removeClass('d-none');
-    userEstudentsTable.addClass('d-none');
-  });
-  var btnUserEstudents.click(function(){
-    userTeacherTable.addClass('d-none');
-    userEstudentsTable.removeClass('d-none');
-  });
-</script>
+
 @endsection
 @section('content')
  <div class="row mt-5">

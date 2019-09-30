@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMatterUsersTable extends Migration
+class CreateTeachersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,16 @@ class CreateMatterUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('matter_users', function (Blueprint $table) {
+        Schema::create('teachers', function (Blueprint $table) {
             $table->increments('id');
-            
-            $table->unsignedInteger('matter_id')->nullable();
-            $table->foreign('matter_id')->references('id')
-            ->on('matters')
-            ->onDelete('set null');
-
+            $table->string('slug')->unique();
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')
-            ->on('users')
-            ->onDelete('set null');
+            ->on('users');
 
-            
+            $table->integer('type')->default(0);
+            $table->boolean('admin_confirmed')->default(0);
+
             $table->timestamps();
         });
     }
@@ -38,6 +34,6 @@ class CreateMatterUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('matter_users');
+        Schema::dropIfExists('teachers');
     }
 }
