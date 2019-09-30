@@ -17,7 +17,7 @@ class UsersController extends Controller
      */
     public function index(){
         $user=User::where('rol','2')->get();
-        return view('auth.users.student',compact('user'));
+        return view('users.student.index',compact('user'));
     } 
     
     public function profile(){
