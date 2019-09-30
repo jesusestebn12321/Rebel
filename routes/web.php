@@ -15,9 +15,10 @@
 use Equivalencias\Career;
 Route::get('/Chart', 'HomeController@chart');
 
-Route::get('/', function () {
-	
-	return view('auth.login');
+Route::get('/noPermission', function () {	
+	return view('permission.noPermission');
+});
+Route::get('/', function () {	
 	return view('auth.login');
 });
 Route::get('/Verifi',['as'=>'verifi','uses'=>'VerifiController@index']); // rutas de verificacion de email
