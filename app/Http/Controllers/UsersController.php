@@ -22,15 +22,7 @@ class UsersController extends Controller
     
     public function profile(){
         $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->first();
-        if ($matter_user && Auth::user()->hasRole(0)) {
-            # code...
-            return view('auth.profile.index',compact('matter_user'));
-        } else {
-            # code...
-        
-            return view('auth.profile.create');
-        }
-        
+        return view('profile.index',compact('matter_user'));
     }
     public function show($slug){
         $career=Career::where('slug',$slug)->first();
@@ -54,6 +46,7 @@ class UsersController extends Controller
         $user->name=$request->name;
         $user->lastname=$request->lastname;
         $user->save();
+        
         return back()->with('success','Exito al editar sus datos personales');
 
 
