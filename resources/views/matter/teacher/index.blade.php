@@ -45,7 +45,7 @@
 @endsection
 @section('content')
 @include('layouts.modales.Matter.modalCreateMatter')
-@include('layouts.modales.content.modalCreateContent')
+@include('layouts.modales.content.modalCreateContents')
 <div class="row mt-5">
         <div class="col">
           <div class="card bg-default shadow">
