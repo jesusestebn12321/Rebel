@@ -14,7 +14,6 @@
 // rama master  
 use Equivalencias\Career;
 Route::get('/Chart', 'HomeController@chart');
-
 Route::get('/noPermission', function () {	
 	return view('permission.noPermission');
 });
@@ -57,14 +56,16 @@ Route::group(['middleware'=>['verifiUser']],function(){
 		Route::get('/Matters/upDate/{slug}',['as'=>'Matters.up_date','uses'=>'MatterController@update']);
 		Route::get('/MattersAll/upDate/{slug}',['as'=>'Matters.up_date.all','uses'=>'MatterController@updateAll']);
 		Route::get('/Contents/upDate/{slug}',['as'=>'Contents.up_date','uses'=>'ContentController@update']);
+		Route::get('/Users/upDate/{slug}',['as'=>'Users.up_date','uses'=>'UsersController@update']);
 
 //------------------------------------------endUPDATE------------------------------------------------------------------
 
 
 //--------------------------------------------SHOW---------------------------------------------------------------------
-		Route::get('/MattersCareer/show/{slug}',['as'=>'MattersCareer.show', 'uses'=>'CareerController@MatterCareerShow']);
-		Route::get('/MatterUsersCareer/show/{slug}',['as'=>'MatterUserCareer.show', 'uses'=>'UsersController@show']);
-		Route::get('/Profile/show/{slug}',['as'=>'Profile.show', 'uses'=>'UsersController@showStudent']);
+		Route::get('/MattersCareer/Show/{slug}',['as'=>'MattersCareer.show', 'uses'=>'CareerController@MatterCareerShow']);
+		Route::get('/MatterUsersCareer/Show/{slug}',['as'=>'MatterUserCareer.show', 'uses'=>'UsersController@show']);
+		Route::get('/Profile/Student/Show/{slug}',['as'=>'Profile.show', 'uses'=>'UsersController@showStudent']);
+		Route::get('/Profile/Teacher/Show/{slug}',['as'=>'Profile.Teacher.show', 'uses'=>'TeacherController@show']);
 //------------------------------------------endSHOW---------------------------------------------------------------------
 
 

@@ -47,7 +47,8 @@
     </div>
   </div>
 </div>
-@include('layouts.modales.content.modalCreateContent')
+@include('layouts.modales.content.modalCreateContents')
+
 @endsection
 @section('content')
 <div class="container-fluid mt--8">

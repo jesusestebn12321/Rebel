@@ -3,6 +3,7 @@
 namespace Equivalencias\Http\Controllers;
 
 use Equivalencias\Teacher;
+use Equivalencias\MatterUser;
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
@@ -43,9 +44,10 @@ class TeacherController extends Controller
      * @param  \Equivalencias\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function show(Teacher $teacher)
-    {
-        //
+    public function show($slug){
+        $teacher=Teacher::where('slug',$slug)->first();
+        $matter_teacher=MatterUser::where('user_id',$teacher->user->id)->get();
+        return view('users.teacher.show',compact('teacher','matter_teacher'));
     }
 
     /**

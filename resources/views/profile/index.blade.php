@@ -1,6 +1,15 @@
 @extends('layouts.appDashboard')
 @section('title','| Perfil')
 @section('nameTitleTemplate','Perfil')
+@section('js')
+<script type="text/javascript">
+  $('#btn-edit-fullname').click(function(){
+    $('#h3-fullname').addClass('d-none');
+    $('#form-fullname').removeClass('d-none');
+    $('#btn-edit-fullname').addClass('d-none');
+  });
+</script>
+@endsection
 @section('content')
 <div class="row">
         <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
@@ -12,9 +21,14 @@
                     <img src="{{ asset('template/assets/img/theme/user.jpg') }}" class="rounded-circle">
                   </a>
                 </div>
+                <div class="card-header">
+                  <div class="col-4 ml-7 text-right">
+                    <a id="btn-edit-fullname" class="text-white btn btn-sm btn-primary">Editar</a>
+                  </div>
+                </div>
               </div>
             </div><br>
-            <div class="card-body pt-0 pt-md-4">
+            <div class="card-body pt-0 pt-md-6">
               <div class="row">
                 <div class="col">
                   <div class="card-profile-stats d-flex justify-content-center mt-md-5">
@@ -23,33 +37,62 @@
                 </div>
               </div>
               <div class="text-center">
-                <h3>
+                <h3 id="h3-fullname">
                   {{ Auth::user()->name }} {{ Auth::user()->lastname }}
                 </h3>
-                <div class="h5 font-weight-300">
+
+                <form action="{{route('Users.up_date',Auth::user()->slug)}}" id="form-fullname" class="d-none container form-horizontal">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">Nombre</label>
+                        <input type="text" id="input-first-name" name='name' class="form-control form-control-alternative" placeholder="{{Auth::user()->name}}" value="{{Auth::user()->name}}" required>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-last-name">Apellido</label>
+                        <input type="text" id="input-last-name" name='lastname' required class="form-control form-control-alternative" placeholder="{{Auth::user()->lastname}}" value="{{Auth::user()->lastname}}">
+                      </div>
+                    </div>    
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <button type="submit" class="btn btn-block btn-success">Editar</button>
+                    </div>
+                  </div>
+                </form>
+
+
+
+                <div class="h5 mt-4 font-weight-300">
                   <i class="ni location_pin mr-2"></i>
                   @if(!Auth::user()->hasRole(0))
-                  {{ Auth::user()->hasRole(2)?  'Profesor':'Estudiante' }} 
+                  <b>{{ Auth::user()->hasRole(2)?  'Profesor':'Estudiante' }} </b>
                   @else
-                  Administrador
+                  <b>Administrador</b>
                   @endif()
                 </div>
-                <div>
-                  <i class="ni education_hat mr-2"></i>
-                  {{ $matter_user->matter->career->area->university->university }}
-                </div>
-                <div class="h5 mt-4">
-                  <i class="ni business_briefcase-24 mr-2"></i>Area - 
-                  {{ $matter_user->matter->career->area->area }}
-                </div>
-                <div class="h5 mt-4">
-                  <i class="ni business_briefcase-24 mr-2"></i>Carrera - 
-                  {{ $matter_user->matter->career->career}}
-                </div>
-                <div class="h5 mt-4">
-                  <i class="ni business_briefcase-24 mr-2"></i>Unidad Curricular - 
-                  {{ $matter_user->matter->matter}}
-                </div>
+                @if(!Auth::user()->hasRole(0))
+                  <div class="h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Area - 
+                    <select>
+                      <option></option>
+                    </select>
+                  </div>
+                  <div class="h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Carrera - 
+                    <select>
+                      <option></option>
+                    </select>
+                  </div>
+                  <div class="h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Unidad Curricular - 
+                    <select>
+                      <option></option>
+                    </select>
+                  </div>
+                @endif
               </div>
             </div>
           </div>
@@ -100,21 +143,6 @@
                     </div>
                   </div>
               </form>
-
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-first-name">Nombre</label>
-                        <input type="text" id="input-first-name" name='name' class="form-control form-control-alternative" placeholder="{{Auth::user()->name}}" value="{{Auth::user()->name}}">
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-last-name">Apellido</label>
-                        <input type="text" id="input-last-name" name='lastname' class="form-control form-control-alternative" placeholder="{{Auth::user()->lastname}}" value="{{Auth::user()->lastaname}}">
-                      </div>
-                    </div>
-                  </div>
                 </div>
             </div>
           </div>
