@@ -14,7 +14,7 @@
 // rama master  
 use Equivalencias\Career;
 Route::get('/Chart', 'HomeController@chart');
-Route::get('//noPermission',function(){
+Route::get('/noPermission',function(){
 	return view('permission.noPermission');
 });
 Route::get('/', function () {
@@ -55,6 +55,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 		Route::get('/Matters/upDate/{slug}',['as'=>'Matters.up_date','uses'=>'MatterController@update']);
 		Route::get('/MattersAll/upDate/{slug}',['as'=>'Matters.up_date.all','uses'=>'MatterController@updateAll']);
 		Route::get('/Contents/upDate/{slug}',['as'=>'Contents.up_date','uses'=>'ContentController@update']);
+		Route::get('/Users/upDate/{slug}',['as'=>'Users.up_date','uses'=>'UsersController@update']);
 
 //------------------------------------------endUPDATE------------------------------------------------------------------
 
