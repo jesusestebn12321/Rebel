@@ -14,7 +14,7 @@
   <td>{{ $item->user->created_at }}</td>
   <td>{{ $item->user->updated_at }}</td>
   <td>
-    <a class="btn-primary btn" href="{{route('Profile.show',$item->user->slug)}}" title="Ver Usuario"><i class="fa fa-eye"></i></a>
+    <a class="btn-primary btn" href="{{route('Profile.Teacher.show',$item->slug)}}" title="Ver Usuario"><i class="fa fa-eye"></i></a>
     <a class="btn-danger btn" href="{{route('User.delete',$item->user->slug)}}" title="Borrar Usuario"><i class="fa fa-remove"></i></a>
     <a href="{{ route('admin.verify', $item->slug)}}" title="Remover Verificacion" class="btn-warning btn"><i class="fa fa-vimeo"></i></a>
  </td>
