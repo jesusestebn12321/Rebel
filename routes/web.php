@@ -60,9 +60,10 @@ Route::group(['middleware'=>['verifiUser']],function(){
 
 
 //--------------------------------------------SHOW---------------------------------------------------------------------
-		Route::get('/MattersCareer/show/{slug}',['as'=>'MattersCareer.show', 'uses'=>'CareerController@MatterCareerShow']);
-		Route::get('/MatterUsersCareer/show/{slug}',['as'=>'MatterUserCareer.show', 'uses'=>'UsersController@show']);
-		Route::get('/Profile/show/{slug}',['as'=>'Profile.show', 'uses'=>'UsersController@showStudent']);
+		Route::get('/MattersCareer/Show/{slug}',['as'=>'MattersCareer.show', 'uses'=>'CareerController@MatterCareerShow']);
+		Route::get('/MatterUsersCareer/Show/{slug}',['as'=>'MatterUserCareer.show', 'uses'=>'UsersController@show']);
+		Route::get('/Profile/Student/Show/{slug}',['as'=>'Profile.show', 'uses'=>'UsersController@showStudent']);
+		Route::get('/Profile/Teacher/Show/{slug}',['as'=>'Profile.Teacher.show', 'uses'=>'TeacherController@show']);
 //------------------------------------------endSHOW---------------------------------------------------------------------
 
 
