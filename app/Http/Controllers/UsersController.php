@@ -45,11 +45,6 @@ class UsersController extends Controller
         $matter=Matter::where('career_id',$career->id)->firstOrFail();
         return view('auth.profile.student.show',compact('user','matter','career'));
     }
-    public function showTeacher($slug){
-        $teacher=Teacher::where('slug',$slug)->firstOrFail();
-        $matter_user=MatterUser::where('career_id',$career->id)->firstOrFail();
-        return view('auth.profile.teacher.show',compact('teacher','matter','career'));
-    }
     
     public function store(Request $request){
 
