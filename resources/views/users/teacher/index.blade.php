@@ -28,6 +28,7 @@
 </script>
 @endsection
 @section('headerContent')
+@include('layouts.modales.Users.Teacher.modalEditTeacher')
 <div class="container">
   <div class="row">
     <div class="col-xl-3 col-lg-6">
@@ -110,9 +111,9 @@
               <th scope="col"></th>
             </tr>
           </thead>
-          @include('auth.users.tables.tbodyAll')
-          @include('auth.users.tables.tbodyVerify')
-          @include('auth.users.tables.tbodyNotVerify')
+          @include('users.teacher.tables.tbodyAll')
+          @include('users.teacher.tables.tbodyVerify')
+          @include('users.teacher.tables.tbodyNotVerify')
      </table>
    </div>
  </div>

@@ -18,7 +18,8 @@ Route::get('/Chart', 'HomeController@chart');
 Route::get('/noPermission', function () {	
 	return view('permission.noPermission');
 });
-Route::get('/', function () {	
+
+Route::get('/', function () {
 	return view('auth.login');
 });
 Route::get('/Verifi',['as'=>'verifi','uses'=>'VerifiController@index']); // rutas de verificacion de email
@@ -77,7 +78,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 
 //------------------------------------------endDESTROY----------------------------------------------------------
 
-		Route::get('/Teacher',['as'=>'Teacher.index','uses'=>'UsersController@IndexTeacher']);
+		Route::get('/Teacher',['as'=>'Teacher.index','uses'=>'TeacherController@index']);
 		Route::get('/AdminVerify/{slug}',['as'=>'admin.verify','uses'=>'VerifiController@AdminVerify']);
 		Route::POST('/MattersUsers/create',['as'=>'MattersTeacher.add','uses'=>'MatterUserController@add']);
 		Route::get('/MattersUsers/search/{dni}','MatterUserController@search');
