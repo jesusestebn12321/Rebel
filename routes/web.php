@@ -94,6 +94,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 			Route::apiResource('/Content','MatterController',['parameters'=>['Content'=>'slug']]);
 			Route::apiResource('/Matter','MatterController',['parameters'=>['Matter'=>'slug']]);
 			Route::apiResource('/MatterUser','MatterUserController',['parameters'=>['MatterUser'=>'slug'],'only'=>['index','update']]);
+			Route::get('/', 'HomeController@index')->name('home');
 
 		});
 		Route::apiResource('/MatterUser','MatterUserController',['only'=>['store']]);
