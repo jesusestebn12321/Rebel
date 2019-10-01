@@ -3,6 +3,10 @@
 namespace Equivalencias\Http\Controllers;
 
 use Equivalencias\Content;
+use Equivalencias\MatterUser;
+use Equivalencias\Matter;
+use Equivalencias\Teacher;
+use Auth;
 use Illuminate\Http\Request;
 use Equivalencias\Http\Requests\ContentRequests;
 
@@ -53,9 +57,11 @@ class ContentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){
-        $content=Content::where('matter_id','=',$matter->id)->get();
-        
-        return $content;
+        $matter_U=MatterUser::where('user_id',Auth::user()->id)->firstOrFail();
+        $matter_user=Teacher::where('user_id',Auth::user()->id)->firstOrFail();
+        $content=Content::where('matter_id','=',$matter_U->matter_id)->get();
+        $matter= Matter::where('id',$matter_U->matter_id)->firstOrFail();
+        return view('content.show',compact('content','matter_user','matter'));
     }
 
     /**

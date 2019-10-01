@@ -101,13 +101,13 @@ Route::group(['middleware'=>['verifiUser']],function(){
 				Route::apiResource('/MatterUser','MatterUserController',['parameters'=>['MatterUser'=>'slug'],'only'=>['index','update']]);
 			});
 			
-
 			Route::get('/Matter',['as'=>'Matter.index','uses'=>'MatterController@index']);
 			Route::get('/Matter/Show/{slug}',['as'=>'Matter.show','uses'=>'MatterController@show']);
 			Route::get('/Matter/Edit/{slug}',['as'=>'Matter.edit','uses'=>'MatterController@edit']);
 				
 			Route::get('/Matters/upDate/{slug}',['as'=>'Matters.up_date','uses'=>'MatterController@update']);
 			
+			Route::get('/Contents/{slug}', ['as'=>'Contents.show','uses'=>'ContentController@show']);
 			Route::get('/Contents/upDate/{slug}',['as'=>'Contents.up_date','uses'=>'ContentController@update']);
 			Route::get('/Contents/Delete/{slug}',['as'=>'Contents.delete', 'uses'=>'ContentController@destroy'] );
 
