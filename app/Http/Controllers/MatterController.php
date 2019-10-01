@@ -2,15 +2,18 @@
 
 namespace Equivalencias\Http\Controllers;
 
-use Equivalencias\Matter;
-use Auth;
-use input;
+
+use Equivalencias\Http\Requests\MatterRequests;
+use Illuminate\Http\Request;
+
+
 use Equivalencias\MatterUser;
 use Equivalencias\Content;
+use Equivalencias\Teacher;
+use Equivalencias\Matter;
 use Equivalencias\Career;
-use Equivalencias\Http\Controllers\ContentController;
-use Illuminate\Http\Request;
-use Equivalencias\Http\Requests\MatterRequests;
+use Auth;
+use input;
 
 
 class MatterController extends Controller
@@ -18,10 +21,11 @@ class MatterController extends Controller
    public function index()
     {
 
-        $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->first();
+        $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->firstOrFail();
         $matter=Matter::all();
         $career=Career::all();
-        return view('matter.index',compact('career','matter','matter_user'));
+        $teacher=Teacher::where('user_id',Auth::user()->id)->firstOrFail();
+        return view('matter.index',compact('career','matter','matter_user','teacher'));
     }
 
     /**
@@ -72,7 +76,8 @@ class MatterController extends Controller
     public function show($slug){
         $matter=Matter::where('slug','=',$slug)->firstOrFail();
         $content=Content::where('matter_id','=',$matter->id)->get();
-        return view('matter.teacher.show',compact('matter','content'));
+        $matter_user=Teacher::where('user_id',Auth::user()->id)->firstOrFail();
+        return view('matter.teacher.show',compact('matter','content','matter_user'));
     }
 
 
@@ -92,7 +97,8 @@ class MatterController extends Controller
         $matter=Matter::where('slug',$slug)->firstOrFail();
         $content=Content::where('matter_id',$matter->id)->get();
         $career=Career::all();
-        return view('matter.teacher.edit',compact('matter','content','career'));        
+        $matter_user=Teacher::where('user_id',Auth::user()->id)->firstOrFail();
+        return view('matter.teacher.edit',compact('matter','content','career','matter_user'));        
     }
 
     /**

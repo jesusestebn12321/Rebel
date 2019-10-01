@@ -19,6 +19,7 @@
   	}
 
 </script>
+@if(Auth::user()->hasRole(0))
 @section('headerContent')
 <div class="container">
   <div class="row">
@@ -42,10 +43,13 @@
     </div>
   </div>
 </div>
-@endsection
-@section('content')
 @include('layouts.modales.Matter.modalCreateMatter')
+@endsection
+@endif
+@section('content')
+
 @include('layouts.modales.content.modalCreateContents')
+
 <div class="row mt-5">
         <div class="col">
           <div class="card bg-default shadow">
@@ -101,10 +105,11 @@
 		                    </td>
 	                      	@elseif(Auth::user()->hasRole(1))
 		                    <td>
-	                      		<a class="btn-primary btn" href="{{route('Matters.show',$item->slug)}}"><i class="fa fa-eye"></i></a>
-	                        	<a class="btn-danger btn" href="{{route('Matter.destroy',$item->slug)}}"><i class="fa fa-remove"></i></a> 
-	                        	<a class="btn-info btn" data-target='#editMatter' data-toggle='modal'  id="btn-1_{{$item->id}}" onclick="edit({{$item->id}})" href="#!"><i class="fa fa-edit"></i></a>
+	                      		<a class="btn-primary btn" href="{{route('Matter.show',$item->slug)}}"><i class="fa fa-eye"></i></a>
+	                      		@if($teacher->type==0)
+	                        	<a class="btn-info btn" href="{{route('Matter.edit',$item->slug)}}"><i class="fa fa-edit"></i></a>
 	                        	<a class="btn-success btn" data-target='#createContent' data-toggle='modal' onclick="loadContent({{$item->id}})" href="#!"><i class="fa fa-file"></i></a>
+	                        	@endif
 	                      	</td>
 	                      	@endif
 	                    </tr>

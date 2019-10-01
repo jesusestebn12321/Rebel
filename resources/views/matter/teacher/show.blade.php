@@ -24,6 +24,7 @@
 
 </script>
 @endsection
+@if($matter_user->type==0)
 @section('headerContent')
 <div class="container">
   <div class="row">
@@ -48,8 +49,8 @@
   </div>
 </div>
 @include('layouts.modales.content.modalCreateContents')
-
 @endsection
+@endif
 @section('content')
 <div class="container-fluid mt--8">
       <div class="row">
