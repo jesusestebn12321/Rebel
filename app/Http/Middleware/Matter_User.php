@@ -2,7 +2,7 @@
 
 namespace Equivalencias\Http\Middleware;
 
-use Equivalencias\MatterUser;
+use Equivalencias\Teacher;
 use Auth;
 use Closure;
 
@@ -17,8 +17,8 @@ class Matter_User
      */
     public function handle($request, Closure $next)
     {
-        $matter_user=MatterUser::where('user_id',Auth::user()->id)->first();
-        if ($matter_user->admin_confirmed==0){
+        $matter_teacher=Teacher::where('user_id',Auth::user()->id)->firstOrFail();
+        if ($matter_teacher->admin_confirmed==0){
             return redirect()->route('admin-verify');
         }
             return $next($request);
