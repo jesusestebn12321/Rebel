@@ -91,16 +91,34 @@ Route::group(['middleware'=>['verifiUser']],function(){
 	Route::group(['middleware'=>['authen','rol'],'rol'=>['1']],function(){
 		//middleware de verificacion por el admin
 		Route::group(['middleware'=>['matter_user']],function(){
-			Route::apiResource('/Content','MatterController',['parameters'=>['Content'=>'slug']]);
-			Route::apiResource('/Matter','MatterController',['parameters'=>['Matter'=>'slug']]);
-			Route::apiResource('/MatterUser','MatterUserController',['parameters'=>['MatterUser'=>'slug'],'only'=>['index','update']]);
+			
 			Route::get('/', 'HomeController@index')->name('home');
 
+			//middleware de verificacion que solo sea el coordinado quien carge los contenidos
+			Route::group(['middleware'=>['teacher_roles']],function(){
+
+				Route::apiResource('/Content','MatterController',['parameters'=>['Content'=>'slug']]);
+				Route::apiResource('/MatterUser','MatterUserController',['parameters'=>['MatterUser'=>'slug'],'only'=>['index','update']]);
+			});
+			
+
+			Route::get('/Matter',['as'=>'Matter.index','uses'=>'MatterController@index']);
+			Route::get('/Matter/Show/{slug}',['as'=>'Matter.show','uses'=>'MatterController@show']);
+			Route::get('/Matter/Edit/{slug}',['as'=>'Matter.edit','uses'=>'MatterController@edit']);
+				
+			Route::get('/Matters/upDate/{slug}',['as'=>'Matters.up_date','uses'=>'MatterController@update']);
+			Route::get('/Contents/upDate/{slug}',['as'=>'Contents.up_date','uses'=>'ContentController@update']);
+
+
+			
+			Route::apiResource('/MatterUser','MatterUserController',['only'=>['store']]);
+			
+			Route::get('/Area/Show/{id}',['as'=>'Area.show','uses'=>'AreaController@show']);
+			Route::get('/Career/Show/{id}',['as'=>'Career.show','uses'=>'CareerController@show']);
+			Route::get('/Matter/Show/{id}',['as'=>'Matter.show','uses'=>'MatterController@showTwo']);
+
 		});
-		Route::apiResource('/MatterUser','MatterUserController',['only'=>['store']]);
-		Route::get('/Area/Show/{id}',['as'=>'Area.show','uses'=>'AreaController@show']);
-		Route::get('/Career/Show/{id}',['as'=>'Career.show','uses'=>'CareerController@show']);
-		Route::get('/Matter/Show/{id}',['as'=>'Matter.show','uses'=>'MatterController@showTwo']);
+		
 
 	});
 
