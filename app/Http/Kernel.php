@@ -61,5 +61,6 @@ class Kernel extends HttpKernel
         'authen'=> \Equivalencias\Http\Middleware\Authen::class,
         'verifiUser'=> \Equivalencias\Http\Middleware\VerifiUser::class,
         'matter_user'=> \Equivalencias\Http\Middleware\Matter_User::class,
+        'teacher_roles'=> \Equivalencias\Http\Middleware\Teacher_Roles::class,
     ];
 }
