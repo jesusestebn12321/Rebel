@@ -97,7 +97,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 			//middleware de verificacion que solo sea el coordinado quien carge los contenidos
 			Route::group(['middleware'=>['teacher_roles']],function(){
 
-				Route::apiResource('/Content','MatterController',['parameters'=>['Content'=>'slug']]);
+				Route::apiResource('/Contents','ContentController',['parameters'=>['Contents'=>'slug']]);
 				Route::apiResource('/MatterUser','MatterUserController',['parameters'=>['MatterUser'=>'slug'],'only'=>['index','update']]);
 			});
 			
@@ -107,7 +107,9 @@ Route::group(['middleware'=>['verifiUser']],function(){
 			Route::get('/Matter/Edit/{slug}',['as'=>'Matter.edit','uses'=>'MatterController@edit']);
 				
 			Route::get('/Matters/upDate/{slug}',['as'=>'Matters.up_date','uses'=>'MatterController@update']);
+			
 			Route::get('/Contents/upDate/{slug}',['as'=>'Contents.up_date','uses'=>'ContentController@update']);
+			Route::get('/Contents/Delete/{slug}',['as'=>'Contents.delete', 'uses'=>'ContentController@destroy'] );
 
 
 			
