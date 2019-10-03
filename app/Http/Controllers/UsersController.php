@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Equivalencias\User;
 use Equivalencias\Career;
 use Equivalencias\MatterUser;
+use Equivalencias\Teacher;
 use Equivalencias\Matter;
 use Auth;
 class UsersController extends Controller
@@ -21,7 +22,7 @@ class UsersController extends Controller
     } 
     
     public function profile(){
-        $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->first();
+        $matter_user=Teacher::where('user_id','=',Auth::user()->id)->first();
         return view('profile.index',compact('matter_user'));
     }
     public function show($slug){

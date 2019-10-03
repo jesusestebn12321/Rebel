@@ -22,7 +22,7 @@
                   </a>
                 </div>
                 <div class="card-header">
-                  <div class="col-4 ml-7 text-right">
+                  <div class="col-4 ml-9 text-right">
                     <a id="btn-edit-fullname" class="text-white btn btn-sm btn-primary">Editar</a>
                   </div>
                 </div>
@@ -65,34 +65,31 @@
 
 
 
-                <div class="h5 mt-4 font-weight-300">
+                <div class="h3 mt-4 font-weight-300">
                   <i class="ni location_pin mr-2"></i>
+
                   @if(!Auth::user()->hasRole(0))
-                  <b>{{ Auth::user()->hasRole(2)?  'Profesor':'Estudiante' }} </b>
+
+                  <b>{{ Auth::user()->hasRole(1)?'Profesor':'Estudiante'}} {{$matter_user->type==0?'- Coordinador':''}}  </b>
                   @else
                   <b>Administrador</b>
-                  @endif()
+                  @endif
                 </div>
-                @if(!Auth::user()->hasRole(0))
+                <div class="h5 mt-4">
+                  @forelse(Auth::user()->matter_user as $item)
+                  <i class="ni business_briefcase-24 mr-2"></i>Area - {{$item->matter->career->area->area}} 
+                </div>
                   <div class="h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Area - 
-                    <select>
-                      <option></option>
-                    </select>
+                    <i class="ni business_briefcase-24 mr-2"></i>Carrera - {{$item->matter->career->career}}
                   </div>
                   <div class="h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Carrera - 
-                    <select>
-                      <option></option>
-                    </select>
+                    <i class="ni business_briefcase-24 mr-2"></i>Unidad Curricular - {{$item->matter->matter}}
                   </div>
-                  <div class="h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Unidad Curricular - 
-                    <select>
-                      <option></option>
-                    </select>
-                  </div>
-                @endif
+                  @empty
+                    <h4>
+                      no tiene ningun area, carrera y materia asignada.
+                    </h4>
+                  @endforelse
               </div>
             </div>
           </div>

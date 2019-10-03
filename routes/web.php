@@ -101,6 +101,8 @@ Route::group(['middleware'=>['verifiUser']],function(){
 				Route::apiResource('/MatterUser','MatterUserController',['parameters'=>['MatterUser'=>'slug'],'only'=>['index','update']]);
 			});
 			
+			Route::get('/Users/upDate/{slug}',['as'=>'Users.up_date','uses'=>'UsersController@update']);
+			
 			Route::get('/Matter',['as'=>'Matter.index','uses'=>'MatterController@index']);
 			Route::get('/Matter/Show/{slug}',['as'=>'Matter.show','uses'=>'MatterController@show']);
 			Route::get('/Matter/Edit/{slug}',['as'=>'Matter.edit','uses'=>'MatterController@edit']);
