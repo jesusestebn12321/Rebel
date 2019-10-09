@@ -134,7 +134,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 
 //Estudiasnte 
 	Route::group(['middleware'=>['authen','rol'],'rol'=>['2']],function(){
-		Route::get('/', 'HomeController@index')->name('home');
+		Route::get('/', 'HomeController@indexstudents')->name('home');
 		Route::get('/Download/{slug}',['as'=>'Download.index','uses'=>'DownloadController@index']);
 
 	});
