@@ -11,6 +11,9 @@ class MatterUser extends Model
    	public function user(){
     	return $this->belongsTo(User::class,'user_id');
     }
+    public function teacher(){
+    	return $this->belongsTo(Teacher::class,'user_id');
+    }
     public function matter(){
     	return $this->belongsTo(Matter::class,'matter_id');
     }
