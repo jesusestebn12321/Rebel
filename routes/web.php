@@ -99,6 +99,11 @@ Route::group(['middleware'=>['verifiUser']],function(){
 
 				Route::apiResource('/Contents','ContentController',['parameters'=>['Contents'=>'slug']]);
 				Route::apiResource('/MatterUser','MatterUserController',['parameters'=>['MatterUser'=>'slug'],'only'=>['index','update']]);
+				Route::get('/Matter/Asignar',['as'=>'Matter.asignar.index','uses'=>'MatterController@asignarIndex']);
+				Route::get('/seacherTeacher/{dni}','MatterUserController@search');
+				Route::get('/Matter/Asignar/{id}',['as'=>'Matter.asignar.teacher','uses'=>'MatterUserController@asignar']);
+				Route::get('/Matter/Asignar/Delete/{id}',['as'=>'Matter.asignar.delete','uses'=>'MatterUserController@destroy']);
+
 			});
 			
 			Route::get('/Users/upDate/{slug}',['as'=>'Users.up_date','uses'=>'UsersController@update']);
