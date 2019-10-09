@@ -135,6 +135,24 @@ class MatterController extends Controller
 
         return back()->with('success','Se a editado con exito la materia y sus contenidos');
     }
+    public function asignarIndex(){
+        $career=Career::all();
+        
+        $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->firstOrFail();
+        $matter=Matter::where('id',$matter_user->matter_id)->firstOrFail();
+        $teacher=MatterUser::where('matter_id',$matter->id)->get();
+        
+        return view('matter.teacher.asignar', compact('career','matter','matter_user','teacher'));
+    }
+    public function asignarMatter(Request $request, $dni){
+        $user=User::where('dni',$dni)->firstOrFail();
+        $teacher=Teacher::where('user_id',$user->id)->firstOrFail();
+        $matter_user=MatterUser::create([
+            'matter_id'=>$request->matter_id,
+            'user_id'=>$teacher->id
+            ]);
+        return back()->with('success','Unidad curricular asignada con exito.');
+    }
 
 
     /**

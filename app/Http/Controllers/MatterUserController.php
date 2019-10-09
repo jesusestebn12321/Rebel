@@ -45,6 +45,16 @@ class MatterUserController extends Controller
         // dd($request);
         return back()->with('success','Lleno el perfil con exito');
     }
+    public function asignar(Request $request,$id)
+    {
+        $user=User::where('dni',$request->dni)->firstOrFail();
+        $matter_user=MatterUser::create([
+                'matter_id'=>$id,
+                'user_id'=>$user->id,
+            ]);
+        // dd($request);
+        return back()->with('success','Unidad curricular asignada con exito');
+    }
     public function add(Request $request){
         $teacher=User::where('dni',$request->user_id)->firstOrFail();
         $matter_coordinator=MatterUser::where('type',$request->type)->firstOrFail();
@@ -115,8 +125,9 @@ class MatterUserController extends Controller
      * @param  \Equivalencias\MatterUser  $matterUser
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MatterUser $matterUser)
-    {
-        //
+    public function destroy($id){
+        $matter_user=MatterUser::where('id',$id)->firstOrFail();
+        $matter_user->delete();
+        return back()->with('success','Exito');   
     }
 }
