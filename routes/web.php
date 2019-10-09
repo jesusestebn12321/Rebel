@@ -39,6 +39,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 	Route::group(['middleware'=>['authen','rol'],'rol'=>['0']],function(){
 
 //-------------------------------------------API------------------------------------------------------------------
+		Route::get('/', 'HomeController@index')->name('home');
 		Route::apiResource('/University','UniversityController',['parameters'=>['University'=>'slug']]);
 		Route::apiResource('/Areas','AreaController',['parameters'=>['Areas'=>'slug']]);
 		Route::apiResource('/Careers','CareerController',['parameters'=>['Careers'=>'slug']]);
@@ -133,6 +134,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 
 //Estudiasnte 
 	Route::group(['middleware'=>['authen','rol'],'rol'=>['2']],function(){
+		Route::get('/', 'HomeController@indexstudents')->name('home');
 		Route::get('/Download/{slug}',['as'=>'Download.index','uses'=>'DownloadController@index']);
 
 	});

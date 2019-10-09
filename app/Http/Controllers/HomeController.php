@@ -26,29 +26,26 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->first();
         $area= Area::all();
         $matter= Matter::all();
         $career= Career::all();
         return view('home',compact('matter_user','matter','area','career'));      
-
     }
-
+    public function indexStudents(){
+        $matter=MatterUser::where('user_id','=',Auth::user()->id)->get();
+        return view('homeStudent',compact('matter'));      
+    }
     public function chart(){
         $teacher=User::where('rol','=',1)->get()->count();
         $students=User::where('rol','=',2)->get()->count();
         $area= Area::all()->count();
         $matter= Matter::all()->count();
         $career= Career::all()->count();
-
-        $label=['Estudiantes','Profesores','Areas','Carreras','Materias'] ;
+        $label=['Estudiantes','Profesores','Areas','Carreras','Materias'];
         $data = [$students,$teacher,$area,$career,$matter];
         $json=array("label"=>$label,"data"=>$data);
-
-
         return $json;      
-
     }
 }
