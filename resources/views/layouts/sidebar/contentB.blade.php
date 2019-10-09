@@ -11,7 +11,7 @@
 		</a>
 	</li>
 	<li class="nav-item">
-		<a class="nav-link font-italic" href="{{route('Contents.index')}}">
+		<a class="nav-link font-italic" href="{{route('Matter.asignar.index')}}">
 			<i class="ni ni-folder-17 text-info"></i> Asignar materia al profesor
 		</a>
 	</li>
