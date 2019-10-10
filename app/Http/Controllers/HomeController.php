@@ -31,11 +31,12 @@ class HomeController extends Controller
         $area= Area::all();
         $matter= Matter::all();
         $career= Career::all();
-        return view('home',compact('matter_user','matter','area','career'));      
-    }
-    public function indexStudents(){
-        $matter=MatterUser::where('user_id','=',Auth::user()->id)->get();
-        return view('homeStudent',compact('matter'));      
+        if (Auth::user()->hasRole(2)) {
+            return view('homeStudent',compact('matter'));      
+        }else{
+            return view('home',compact('matter_user','matter','area','career'));      
+        }
+        
     }
     public function chart(){
         $teacher=User::where('rol','=',1)->get()->count();
