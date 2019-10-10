@@ -31,8 +31,6 @@ Route::group(['middleware'=>['verifiUser']],function(){
 	Route::get('/Profile',['as'=>'profile-index','uses'=>'UsersController@profile']);
 	Route::get('/Profile/upDate',['as'=>'profile.upData', 'uses'=>'ProfileController@update'] );
 	
-	Route::get('/Profile/User/upDate',['as'=>'User.up_date', 'uses'=>'UsersController@update'] );
-
 	Route::get('/', 'HomeController@index')->name('home');
 	Route::get('/Area/{id}','AreaController@show');
 //Admin
@@ -137,7 +135,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 		Route::get('/', 'HomeController@indexstudents')->name('home');
 		Route::get('/Download/{slug}',['as'=>'Download.index','uses'=>'DownloadController@index']);
 		Route::get('/Users/upDate/{slug}',['as'=>'Users.up_date','uses'=>'UsersController@update']);
-		
+
 
 	});
 
