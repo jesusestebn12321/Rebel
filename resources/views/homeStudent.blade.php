@@ -25,7 +25,7 @@
 		            	</tr>
 		          	</thead>
 		          	<tbody>
-		           	@forelse($matter as $item)
+		           	@forelse($matter_user as $item)
 		              	<tr>
 		                 	<td>{{$item->matter->slug }}</td>
 		                 	<td>{{$item->matter->version }}</td>
