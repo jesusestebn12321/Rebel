@@ -118,8 +118,7 @@
 				              <font class='center'>No existen registros</font>
 	                      	</td>
           
-           
-         				@endforelse
+              			@endforelse
 	                </tbody>
               	</table>
             </div>
