@@ -14,8 +14,9 @@
 // rama master  
 use Equivalencias\Career;
 Route::get('/Chart', 'HomeController@chart');
-Route::get('/noPermission', function () {	
-	return view('permission.noPermission');
+Route::get('/noPermission', function () {
+	$matter_user=Auth::user();
+	return view('permission.noPermission', compact('matter_user'));
 });
 
 Route::get('/', function () {
@@ -32,12 +33,13 @@ Route::group(['middleware'=>['verifiUser']],function(){
 	Route::get('/Profile/upDate',['as'=>'profile.upData', 'uses'=>'ProfileController@update'] );
 	
 	Route::get('/', 'HomeController@index')->name('home');
+	Route::get('/Users/upDate/{slug}',['as'=>'Users.up_date','uses'=>'UsersController@update']);
+
 	Route::get('/Area/{id}','AreaController@show');
 //Admin
 	Route::group(['middleware'=>['authen','rol'],'rol'=>['0']],function(){
 
 		//-------------------------------------------API------------------------------------------------------------------
-		Route::get('/', 'HomeController@index')->name('home');
 		Route::apiResource('/University','UniversityController',['parameters'=>['University'=>'slug']]);
 		Route::apiResource('/Areas','AreaController',['parameters'=>['Areas'=>'slug']]);
 		Route::apiResource('/Careers','CareerController',['parameters'=>['Careers'=>'slug']]);
@@ -55,7 +57,6 @@ Route::group(['middleware'=>['verifiUser']],function(){
 		Route::get('/Matters/upDate/{slug}',['as'=>'Matters.up_date','uses'=>'MatterController@update']);
 		Route::get('/MattersAll/upDate/{slug}',['as'=>'Matters.up_date.all','uses'=>'MatterController@updateAll']);
 		Route::get('/Contents/upDate/{slug}',['as'=>'Contents.up_date','uses'=>'ContentController@update']);
-		Route::get('/Users/upDate/{slug}',['as'=>'Users.up_date','uses'=>'UsersController@update']);
 		Route::get('/Students/upDate/{slug}',['as'=>'Student.up_date','uses'=>'UsersController@Supdate']);
 
 		//------------------------------------------endUPDATE------------------------------------------------------------------
@@ -69,7 +70,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 		//------------------------------------------endSHOW---------------------------------------------------------------------
 
 
-//------------------------------------------DESTROY----------------------------------------------------------
+		//------------------------------------------DESTROY----------------------------------------------------------
 		Route::get('/User/Delete/{slug}',['as'=>'User.delete','uses'=>'UsersController@destroy']);
 		Route::get('/Areas/Delete/{slug}',['as'=>'Areas.delete', 'uses'=>'AreaController@delete'] );
 		Route::get('/Careers/Delete/{slug}',['as'=>'University.delete', 'uses'=>'UniversityController@delete'] );
@@ -91,7 +92,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 		//middleware de verificacion por el admin
 		Route::group(['middleware'=>['matter_user']],function(){
 			
-			Route::get('/', 'HomeController@index')->name('home');
+			
 
 			//middleware de verificacion que solo sea el coordinado quien carge los contenidos
 			Route::group(['middleware'=>['teacher_roles']],function(){
@@ -104,9 +105,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 				Route::get('/Matter/Asignar/Delete/{id}',['as'=>'Matter.asignar.delete','uses'=>'MatterUserController@destroy']);
 
 			});
-			
-			Route::get('/Users/upDate/{slug}',['as'=>'Users.up_date','uses'=>'UsersController@update']);
-			
+						
 			Route::get('/Matter',['as'=>'Matter.index','uses'=>'MatterController@index']);
 			Route::get('/Matter/Show/{slug}',['as'=>'Matter.show','uses'=>'MatterController@show']);
 			Route::get('/Matter/Edit/{slug}',['as'=>'Matter.edit','uses'=>'MatterController@edit']);
@@ -116,8 +115,6 @@ Route::group(['middleware'=>['verifiUser']],function(){
 			Route::get('/Contents/{slug}', ['as'=>'Contents.show','uses'=>'ContentController@show']);
 			Route::get('/Contents/upDate/{slug}',['as'=>'Contents.up_date','uses'=>'ContentController@update']);
 			Route::get('/Contents/Delete/{slug}',['as'=>'Contents.delete', 'uses'=>'ContentController@destroy'] );
-
-
 			
 			Route::apiResource('/MatterUser','MatterUserController',['only'=>['store']]);
 			
@@ -132,11 +129,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 
 //Estudiasnte 
 	Route::group(['middleware'=>['authen','rol'],'rol'=>['2']],function(){
-		Route::get('/', 'HomeController@indexstudents')->name('home');
 		Route::get('/Download/{slug}',['as'=>'Download.index','uses'=>'DownloadController@index']);
-		Route::get('/Users/upDate/{slug}',['as'=>'Users.up_date','uses'=>'UsersController@update']);
-
-
 	});
 
 });
