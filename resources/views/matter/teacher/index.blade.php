@@ -1,37 +1,41 @@
-@extends('layouts.appDashboard')
-@section('title','| Unidades Curriculares')
-@section('nameTitleTemplate','Unidades Curriculares')
+@section('title','| Unidad Curricular '. $matter_user->matter->matter)
+@section('nameTitleTemplate','Unidad Curricular '. $matter_user->matter->matter)
 @section('js')
-<script>
-  	function contentNumber(){
-  		var xContetn=$('#numberContent').val();
-  		
-  		for (var i = 0; xContetn >	 i ; i++) {
-  			
-  			$('#contentMatters').append('<hr><div class="form-group">'+
-                        '<input type="text" placeholder="Title '+i+'" class="form-control" name="title_'+i+'" autofocus required ></div>'+
-                        '<div class="form-group">'+
-                        '<input type="text" placeholder="Contenido '+i+'" class="form-control" name="content_'+i+'" autofocus required ></div>');
-  		}
-  	}
-  	function loadContent(arg){
-  		$('#matter_id').val(arg);
-  	}
+<script type="text/javascript">
+  function edit1(arg){
+      $('#edit2_'+arg).toggleClass('d-none');
+      $('#edit1_'+arg).toggleClass('d-none');
+      $('#title'+arg).toggleClass('d-none');
+      $('#content'+arg).toggleClass('d-none');
+
+
+  }
+  function edit2(arg){
+      $('#edit2_'+arg).toggleClass('d-none');
+      $('#edit1_'+arg).toggleClass('d-none');
+      $('#title'+arg).toggleClass('d-none');
+      $('#content'+arg).toggleClass('d-none');
+  }
+  $(document).ready(function(){
+    var id=$('#id_matter');
+    $('#matter_id').val(id.val());
+  });
 
 </script>
-@if(Auth::user()->hasRole(0))
+@endsection
+@if($matter_user->type==0)
 @section('headerContent')
 <div class="container">
   <div class="row">
-    <div class="col-xl-6 col-lg-6 pt-4">
+    <div class="col-xl-4 col-lg-6 pt-4">
       <div class="card card-stats mb-4 mb-xl-0">
         <div class="card-body">
           <div class="row">
             <div class="col">
-              <span class="h2 font-weight-bold mb-0">Crear Unidad Curricular</span>
+              <span class="h2 font-weight-bold mb-0">Crear un contenido</span>
             </div>
             <div class="col-auto">
-              <a href="#" title data-original-title="Agregar Unidad Curricular" data-target='#createMatter' data-toggle='modal' class='text-white'>
+              <a href="#" title data-original-title="Agregar contenido" data-target='#createContent' data-toggle='modal' class='text-white'>
                 <div class="icon icon-shape bg-success text-white rounded-circle shadow">
                   <i class="fa fa-plus"></i>
                 </div>
@@ -43,87 +47,90 @@
     </div>
   </div>
 </div>
-@include('layouts.modales.Matter.modalCreateMatter')
+@include('layouts.modales.content.modalCreateContents')
 @endsection
 @endif
 @section('content')
-
-@include('layouts.modales.content.modalCreateContents')
-
-<div class="row mt-5">
-        <div class="col">
-          <div class="card bg-default shadow">
-            <div class="card-header bg-transparent border-0">
-              <div class="row align-items-center">
-                <div class="col-8">
-                  <h3 class="text-white mb-0">Unidades Curricula</h3>
+<div class="container-fluid mt--8">
+      <div class="row">
+        <div class="col-12 order-xl-2 mb-5 mb-xl-0">
+          <div class="card card-profile shadow">
+            <div class="card-body pt-0 pt-md-4">
+              <div class="text-center">
+                <h3>
+                  Unidad Curricular | {{ $matter_user->matter->matter }}
+                </h3>
+                <div>
+                  <i class="ni education_hat mr-2"></i>
+                  <h5>Versión | {{ $matter_user->matter->version }}</h5>
+                </div>
+                <div class="h5 mt-4">
+                  <i class="ni business_briefcase-24 mr-2"></i>Carrera | {{$matter_user->matter->career->career}} 
+                </div>
+                <div class="card-footer">
+                 <div class="text-center">
+                    <div class="row">
+                      <div class="col-6">
+                        <h4>Creada</h4>
+                        <div class="h5 mt-4">
+                          <i class="ni business_briefcase-24 mr-2"></i>{{$matter_user->matter->created_at}} 
+                        </div>
+                      </div>
+                      <div class="col-6">                        
+                        <h4>Editada</h4>
+                        <div class="h5 mt-4">
+                          <i class="ni business_briefcase-24 mr-2"></i>{{$matter_user->matter->updated_at}} 
+                        </div>
+                      </div>
+                    </div>
+                 </div>
                 </div>
               </div>
             </div>
-            <div class="table-responsive">
-              	<table class="table align-items-center table-dark table-flush">
-	                <thead class="thead-dark">
-	                  <tr>
-	                    <th scope="col">ID</th>
-	                    <th scope="col">Codigo</th>
-	                    <th scope="col">Verción</th>
-	                    <th scope="col">Unidad Curricular</th>
-	                    <th scope="col">Nª contenido</th>
-	                    <th scope="col">Created_at</th>
-	                    <th scope="col">Updated_at</th>
-	                    <th scope="col"></th>
-	                  </tr>
-	                </thead>
-	                <tbody>
-	                	@forelse($matter as $item)
-	                    <tr id='{{$item->id}}'>
-	                    	<input type="hidden" id='id{{$item->id}}' value='{{$item->id}}'>
-	                      	<td>
-	                      		{{$item->id}}
-	                      	</td>
-	                      	<td>
-	                       		<input type="hidden" id='slug{{$item->id}}' value='{{$item->slug}}'>
-	                        	{{ $item->slug }}
-	                      	</td>
-	                      	<td>
-	                        	<input type="hidden" id='version{{$item->id}}' value='{{$item->version}}'>
-	                        	{{ $item->version }}
-	                      	</td>
-	                      	<td id='td_matter{{$item->id}}'>
-	                       		<label id='labelEditmatter{{$item->id}}'>{{ $item->matter}}</label>
-	                        	<input class='d-none' id="EditUniversity{{$item->id}}" value="{{$item->matter}}">
-	                      	</td>
-	                      	<td>{{$item->content->count()}}</td>
-	                      	<td id='td_Create{{$item->id}}'>{{ $item->created_at }}</td>
-	                      	<td id='td_Edit{{$item->id}}'>{{ $item->updated_at }}</td>
-	                      	@if(Auth::user()->hasRole(0))
-	                      	<td>
-	                      		<a class="btn-primary btn" href="{{route('Matters.show',$item->slug)}}"><i class="fa fa-eye"></i></a>
-	                        	<a class="btn-danger btn" href="{{route('Matters.delete',$item->slug)}}"><i class="fa fa-remove"></i></a> 
-	                        	<a class="btn-info btn" href="{{route('Matters.edit',$item->slug)}}"><i class="fa fa-edit"></i></a>
-	                        	<a class="btn-success btn" data-target='#createContent' data-toggle='modal' onclick="loadContent({{$item->id}})" href="#!"><i class="fa fa-file"></i></a>
-		                    </td>
-	                      	@elseif(Auth::user()->hasRole(1))
-		                    <td>
-	                      		<a class="btn-primary btn" href="{{route('Matter.show',$item->slug)}}"><i class="fa fa-eye"></i></a>
-	                      		@if($teacher->type==0)
-	                        	<a class="btn-info btn" href="{{route('Matter.edit',$item->slug)}}"><i class="fa fa-edit"></i></a>
-	                        	<a class="btn-success btn" data-target='#createContent' data-toggle='modal' onclick="loadContent({{$item->id}})" href="#!"><i class="fa fa-file"></i></a>
-	                        	@endif
-	                      	</td>
-	                      	@endif
-	                    </tr>
-	                  	@empty
-							<td>
-				              <font class='center'>No existen registros</font>
-	                      	</td>
-          
-           
-         				@endforelse
-	                </tbody>
-              	</table>
+          </div>
+        </div>
+
+      	@forelse($matter_user->matter->content as $item)
+        <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0 pt-8 pt-md-4 pb-0 pb-md-4">
+          <div class="card card-profile shadow">
+            <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+              <div class="d-flex justify-content-between">
+                @if($matter_user->type==0)
+                <a href="{{route('Contents.delete',$item->slug)}}" class="btn btn-sm btn-danger mr-4">borrar</a>
+                @endif
+                <a href="#" id="edit1_{{$item->id}}" onclick="edit1({{$item->id}})" class="btn btn-sm btn-default float-right">Editar</a>
+                <form action="{{route('Contents.up_date',$item->slug)}}">
+                <button type="submit" onclick="edit2({{$item->id}})" id="edit2_{{$item->id}}" class="d-none btn btn-sm btn-info float-right">Editar</button>
+                <input type="hidden" id="id_matter" value="{{$matter_user->matter->id}}" >
+              </div>
+            </div>
+            <div class="card-body pt-0 pt-md-4">
+              <div class="text-center">
+                <h3>
+                  {{$item->title}}
+                  <input type="text" id="title{{$item->id}}" class="d-none form-control" name="title">
+                </h3>
+                <hr class="my-4">
+                <p>{{$item->content}}</p>
+                <textarea name="content" id="content{{$item->id}}" class="d-none form-control" ></textarea>
+                </form>
+              </div>
             </div>
           </div>
         </div>
-</div>
+    @empty
+      <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0 pt-8 pt-md-4 pb-0 pb-md-4">
+          <div class="card bg-info card-profile shadow">
+            <div class="card-body pt-0 pt-md-4">
+              <div class="text-center">
+                <h3 class="text-white">
+                  No hay contenido para esta unidad curricular
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+		@endforelse
+      </div>
+    </div>
 @endsection
