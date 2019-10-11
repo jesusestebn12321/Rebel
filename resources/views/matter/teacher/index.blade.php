@@ -90,7 +90,7 @@
           </div>
         </div>
 
-      	@forelse($matter_user->matter->content as $item)
+        @forelse($matter_user->matter->content as $item)
         <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0 pt-8 pt-md-4 pb-0 pb-md-4">
           <div class="card card-profile shadow">
             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
@@ -130,7 +130,7 @@
             </div>
           </div>
         </div>
-		@endforelse
+    @endforelse
       </div>
     </div>
 @endsection
