@@ -7,7 +7,7 @@
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
   <title> Rebel @yield('title')</title>
-  <link href="{{asset('template/assets/img/brand/favicon.png')}}" rel="icon" type="image/png">
+  <link href="{{asset('template/assets/img/brand/blue.png')}}" rel="icon" type="image/png">
   <!-- Icons -->
   <link href="{{asset('template/assets/vendor/nucleo/css/nucleo.css')}}" rel="stylesheet">
   <link href="{{asset('template/assets/vendor/fonts/css/font-awesome.min.css')}}" rel="stylesheet">
