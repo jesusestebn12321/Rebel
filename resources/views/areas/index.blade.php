@@ -140,11 +140,11 @@
             <td id='td_Create{{$item->id}}'>{{ $item->created_at }}</td>
             <td id='td_Edit{{$item->id}}'>{{ $item->updated_at }}</td>
             <td>
-             <a class="btn-primary btn" onclick="show({{$item->id}})" data-target='#showArea' data-toggle='modal' href="#!"><i class="fa fa-eye"></i></a>
+             <a class="btn-primary btn" title='Ver Area' onclick="show({{$item->id}})" data-target='#showArea' data-toggle='modal' href="#!"><i class="fa fa-eye"></i></a>
 
-             <a class="btn-danger btn" href="{{route('Areas.delete',$item->slug)}}"><i class="fa fa-remove"></i></a>
+             <a class="btn-danger btn" title="Borrar Area" href="{{route('Areas.delete',$item->slug)}}"><i class="fa fa-remove"></i></a>
 
-             <a class="btn-info btn" data-target='#editArea' data-toggle='modal'  id="btn-1_{{$item->id}}" onclick="edit({{$item->id}})" href="#!"><i class="fa fa-edit"></i></a>
+             <a class="btn-info btn" title="Editar Area" data-target='#editArea' data-toggle='modal'  id="btn-1_{{$item->id}}" onclick="edit({{$item->id}})" href="#!"><i class="fa fa-edit"></i></a>
            </td>
          </tr>
          @empty
