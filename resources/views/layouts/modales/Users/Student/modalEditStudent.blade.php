@@ -16,17 +16,29 @@
 
                     <input  type="hidden" id='ModalId' name="id">
 
-                    <div class="form-group">
-                        <label><i class="fa fa-tv"></i>Cedula</label>
-                        <input id="ModalDni" type="number" class="form-control" name="dni" autofocus required >
+                    <div class="form-group row">
+                        <div class="col-3">
+                            <label class="font-italic form-control-label">Cedula: </label>
+                        </div>
+                        <div class="col-9">
+                            <input id="ModalDni" type="number" class="form-control" name="dni" autofocus required > 
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label><i class="fa fa-tv"></i>Nombre</label>
-                        <input id="ModalName" type="text" class="form-control" name="name" autofocus required >
+                    <div class="form-group row">
+                        <div class="col-3">
+                            <label class="font-italic form-control-label">Nombre: </label>
+                        </div>
+                        <div class="col-9">
+                            <input id="ModalName" type="text" class="form-control" name="name" autofocus required >
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label><i class="fa fa-tv"></i>Apellido</label>
-                        <input id="ModalLastname" type="text" class="form-control" name="lastname" autofocus required >
+                    <div class="form-group row">
+                        <div class="col-3">
+                            <label class="font-italic form-control-label">Apellido: </label>
+                        </div>
+                        <div class="col-9">
+                            <input id="ModalLastname" type="text" class="form-control" name="lastname" autofocus required >
+                        </div>
                     </div>
 
                 </div>

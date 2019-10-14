@@ -61,7 +61,7 @@
               <div class="d-flex justify-content-between">
 
                 @if($matter_user->type==0)
-                <a href="{{route('Contents.delete',$item->slug)}}" class="btn btn-sm btn-danger mr-4">borrar</a>
+                <a href="{{route('Contents.delete',$item->slug)}}" class="btn btn-sm btn-danger mr-4">Borrar</a>
                 @endif
                 <a href="#" id="edit1_{{$item->id}}" onclick="edit1({{$item->id}})" class="btn btn-sm btn-default float-right">Editar</a>
                 <form action="{{route('Contents.up_date',$item->slug)}}">

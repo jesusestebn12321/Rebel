@@ -3,7 +3,7 @@
 @section('nameTitleTemplate','Perfil')
 @section('content')
 <div class="row">
-  <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0">
+  <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
     <div class="card card-profile shadow">
       <div class="row justify-content-center">
         <div class="col-lg-3 order-lg-2">
@@ -31,7 +31,7 @@
       </div>
     </div>
   </div>
-  <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0 table-responsive">
+  <div class="col-xl-8 order-xl-1 mb-5 mb-xl-0 table-responsive">
     <table class="table align-items-center table-dark table-flush">
       <thead class="thead-dark">
         <tr>

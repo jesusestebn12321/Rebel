@@ -3,10 +3,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="col">
-                    <h3><span class="fa fa-user"></span> 
+                    <h3><span class="fa fa-plus"></span> 
                         Crear Universidad
                     </h3>
                 </div>
+                <button class="close" aria-hidden="true" data-dismiss="modal" id='close'>&times;</button>
+
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" method="POST" action="{{route('University.store')}}">

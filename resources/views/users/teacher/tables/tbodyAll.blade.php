@@ -16,7 +16,7 @@
     <a class="btn-primary btn" href="{{route('Profile.Teacher.show',$item->slug)}}" title="Ver Usuario"><i class="fa fa-eye"></i></a>
     <a class="btn-danger btn" href="{{route('User.delete',$item->user->slug)}}" title="Borrar Usuario"><i class="fa fa-remove"></i></a>
     @if($item->admin_confirmed!=1)
-    <a href="{{ route('admin.verify', $item->slug)}}" title="No Verificado" class="btn-success btn"><i class="fa fa-vimeo"></i></a>
+    <a href="{{ route('admin.verify', $item->slug)}}" title="Verificar" class="btn-success btn"><i class="fa fa-vimeo"></i></a>
     @else
     <a href="{{ route('admin.verify', $item->slug)}}" title="Remover Verificacion" class="btn-warning btn"><i class="fa fa-vimeo"></i></a>
     @endif

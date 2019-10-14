@@ -58,8 +58,8 @@
             </div>
             <div class="col-auto">
               <a href="#" id='teacherVerify' class="text-white">
-                <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                  <i class="fa fa-lock"></i>
+                <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                  <i class="fa fa-unlock"></i>
                 </div>
               </a>
             </div>
@@ -76,8 +76,8 @@
             </div>
             <div class="col-auto">
               <a href="#" id='teacherNotVerify' class="text-white">
-                <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                  <i class="fa fa-unlock"></i>
+                <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                  <i class="fa fa-lock"></i>
                 </div>
               </a>
             </div>

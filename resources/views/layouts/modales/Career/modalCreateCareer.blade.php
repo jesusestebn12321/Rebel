@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="col">
-                    <h3><span class="ni ni-ruler-pencil"></span> 
+                    <h3><span class="fa fa-plus"></span> 
                         Crear Carrera
                     </h3>
                 </div>

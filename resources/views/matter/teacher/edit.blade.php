@@ -61,7 +61,7 @@
                 <div class="d-flex justify-content-between">
                 <form class="form-horizontal" action="{{route('Contents.up_date',$item->slug)}}">
                   
-                  <a href="{{route('Contents.delete',$item->slug)}}" class="btn btn-sm btn-danger mr-4">borrar</a>
+                  <a href="{{route('Contents.delete',$item->slug)}}" class="btn btn-sm btn-danger mr-4">Borrar</a>
                   <button type="submit" class="btn btn-sm btn-info float-ri ght">Editar</button>
                 </div>
               </div>

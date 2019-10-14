@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="col">
-                    <h3><span class="fa fa-user"></span> 
+                    <h3><span class="fa fa-plus"></span> 
                         Crear Area
                     </h3>
                 </div>
