@@ -33,15 +33,9 @@
                     @forelse($career as $item)
                     <option value="{{$item->id}}">{{$item->id}} - {{$item->career}}</option>
                     @empty
-
-          
                         <font class='center'>No existen registros</font>
-                     
                    @endforelse                  
                   </select> 
-                </div>
-                <div class="h5 mt-4">
-                  <i class="ni business_briefcase-24 mr-2"></i>Unidad Curricular - 
                 </div>
               </div>
             </div>
