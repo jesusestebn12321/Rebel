@@ -88,7 +88,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 	});
 
 //Profesores
-	Route::group(['middleware'=>['authen','rol'],'rol'=>['1']],function(){
+	Route::group(['middleware'=>['authen','rol'],'rol'=>['1','0']],function(){
 		//middleware de verificacion por el admin
 		Route::group(['middleware'=>['matter_user']],function(){
 			
