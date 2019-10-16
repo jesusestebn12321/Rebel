@@ -43,7 +43,6 @@ Route::group(['middleware'=>['verifiUser']],function(){
 		Route::apiResource('/University','UniversityController',['parameters'=>['University'=>'slug']]);
 		Route::apiResource('/Areas','AreaController',['parameters'=>['Areas'=>'slug']]);
 		Route::apiResource('/Careers','CareerController',['parameters'=>['Careers'=>'slug']]);
-		Route::apiResource('/Careers','CareerController',['parameters'=>['Careers'=>'slug']]);
 		Route::apiResource('/Matters','MatterController',['parameters'=>['Matters'=>'slug']]);
 		Route::apiResource('/Contents','ContentController',['parameters'=>['Contents'=>'slug']]);
 		Route::apiResource('/Users','UsersController',['parameters'=>['Contents'=>'slug']]);
@@ -64,7 +63,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 
 		//--------------------------------------------SHOW---------------------------------------------------------------------
 		Route::get('/MattersCareer/Show/{slug}',['as'=>'MattersCareer.show', 'uses'=>'CareerController@MatterCareerShow']);
-		Route::get('/MatterUsersCareer/Show/{slug}',['as'=>'MatterUserCareer.show', 'uses'=>'UsersController@show']);
+		Route::get('/MatterUsersCareer/Show/{slug}',['as'=>'MatterUserCareer.show', 'uses'=>'UsersController@showTeacher']);
 		Route::get('/Profile/Student/Show/{slug}',['as'=>'Profile.show', 'uses'=>'UsersController@showStudent']);
 		Route::get('/Profile/Teacher/Show/{slug}',['as'=>'Profile.Teacher.show', 'uses'=>'TeacherController@show']);
 		//------------------------------------------endSHOW---------------------------------------------------------------------
