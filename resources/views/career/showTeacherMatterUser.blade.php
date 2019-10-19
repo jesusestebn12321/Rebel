@@ -31,31 +31,6 @@
 
 </script>
 @endsection
-@section('headerContent')
-<div class="container">
-  <div class="row">
-    <div class="col-xl-4 col-lg-6 pt-4">
-      <div class="card card-stats mb-4 mb-xl-0">
-        <div class="card-body">
-          <div class="row">
-            <div class="col">
-              <span class="h2 font-weight-bold mb-0">Añadir Profesor</span>
-            </div>
-            <div class="col-auto">
-              <a href="#" title data-original-title="Agregar Carreras" data-target='#addMatterTeacher' data-toggle='modal' class='text-white'>
-                <div class="icon icon-shape bg-success text-white rounded-circle shadow">
-                  <i class="fa fa-plus"></i>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-@include('layouts.modales.MatterTeacher.teacherMatter')
-@endsection
 @section('content')
 <div class="row">
   {{-- {{ $matter }} --}}

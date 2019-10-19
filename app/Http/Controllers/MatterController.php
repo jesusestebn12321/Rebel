@@ -77,7 +77,8 @@ class MatterController extends Controller
         $matter=Matter::where('slug','=',$slug)->firstOrFail();
         $content=Content::where('matter_id','=',$matter->id)->get();
         $matter_user=Teacher::where('user_id',Auth::user()->id)->firstOrFail();
-        return view('matter.teacher.show',compact('matter','content','matter_user'));
+        $teachers=MatterUser::where('matter_id',$matter->id)->get();
+        return view('matter.teacher.show',compact('matter','content','matter_user','teachers'));
     }
 
 

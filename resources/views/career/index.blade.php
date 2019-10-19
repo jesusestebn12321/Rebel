@@ -98,7 +98,7 @@
             <div class="card-profile-stats d-flex justify-content-center ml-3 mt-md-5">
               <div>
                 <div class="d-flex justify-content-between">
-                  <a href="{{ route('MattersCareer.show',$item->slug) }}" class="btn btn-sm btn-warning mr-0 text-lg">Und. Curriculares</a>
+                  <a href="{{ route('MattersCareer.show',$item->slug) }}" class="btn btn-sm btn-warning mr-0 text-lg">{{$item->matter->count()}} Und. Curriculares </a>
                 </div>
               </div>
               <div>
