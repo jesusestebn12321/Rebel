@@ -3,6 +3,7 @@
 namespace Equivalencias\Http\Controllers;
 
 use Equivalencias\MatterUser;
+use Equivalencias\Teacher;
 use Equivalencias\User;
 use Illuminate\Http\Request;
 use Equivalencias\Http\Requests\MatterUserRequests;
@@ -57,21 +58,13 @@ class MatterUserController extends Controller
     }
     public function add(Request $request){
         $teacher=User::where('dni',$request->user_id)->firstOrFail();
-        $matter_coordinator=MatterUser::where('type',$request->type)->firstOrFail();
-        
-        if($matter_coordinator){
-            
-            return back()->with('messages','error, ya existe un coordinador de esta unidad curricular');
-        }else{
-            
+        $matter_coordinator=Teacher::where('type',$request->type)->firstOrFail();
         $matter_user=MatterUser::create([
                 'matter_id'=>$request->matter_id,
                 'user_id'=>$teacher->id,
-                'type'=>$request->type,
                 'admin_confirmed'=>true
             ]);
         return back()->with('success','Se a añadido con exito la materia');
-        }
     }
     public function search($dni){
         
