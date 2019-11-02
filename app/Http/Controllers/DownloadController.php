@@ -25,10 +25,8 @@ class DownloadController extends Controller
     public function adminArea(){
         $area=Area::all();
         $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
-        
         $pdf=PDF::loadView('pdf.areaAll',compact('area','today'));
         $pdf->download('ReportesDeLasAreas.pdf');
-        
         return $pdf->stream();
     }
     public function adminCareers(){
