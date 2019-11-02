@@ -1,0 +1,1 @@
+@extends('pdf.layouts.app')
