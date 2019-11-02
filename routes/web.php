@@ -18,6 +18,7 @@ Route::get('/noPermission', function () {
 	$matter_user=Auth::user();
 	return view('permission.noPermission', compact('matter_user'));
 });
+Route::get('/ReporteArea', ['as'=>'report.area','uses'=>'DownloadController@adminArea']);
 
 Route::get('/', function () {
 	return view('auth.login');
