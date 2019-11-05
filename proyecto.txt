@@ -1,0 +1,154 @@
+“Rebel” sistema de control y gestionamiento de versiones de materias y equivalencias.
+
+Jesús Esteban Villalta Gonzalez 
+
+jesusesteban12321@gmail.com
+
+Área de ingeniería en Sistemas
+
+Programa de Ingeniería en Informática
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+San Juan de los Morros, octubre de 2019.
+
+
+
+“Rebel” sistema de control y gestionamiento de versiones de materias y equivalencias.
+
+Jesús Esteban Villalta Gonzalez 
+
+jesusesteban12321@gmail.com
+
+
+
+Resumen: este proyecto sera realizado he implementado para cumplir con las necesidades actuales de los estudiantes y profesores de nuestra Universidad Nacional Experimental Romulo Gallegos; y asi, mejorar la calidad y la seguriadad del sistema.
+
+
+
+Palabras claves: Seguridad, automatizar y mejorar.
+
+
+
+
+
+Introducción
+
+Este sistema de información será implementado en laravel 5.8, es de código abierto para desarrollar aplicaciones y servicios web; fue creado en 2011 por Taylor Otwell, gran parte de laravel está formado por dependencias especialmente de Symfony, las características de laravel son:
+
+
+
+		Sistema de Ruteo
+
+		PeticionFluent
+
+		Eloquent ORM
+
+		Blade, motor de plantillas
+
+		Patrón MVC
+
+		Componentes de Symfony
+
+	
+
+En la comunidad de desarrolladores es muy considerado ya ha sido descargado más de 320.000 veces.
+
+En este proyecto va a ser implementado por la causa de actualizar, mejorar y reforzar la seguridad del proyecto que se encuentra ya existente. 
+
+Los detalles más sobresalientes son no tener validaciones de correo, validaciones de formularios, validaciones de URLs, base de dato, entre otros. El efecto de implementar esta actualización es la mejora y automatizaciones, seguridad de los datos de la institución, validar el sistema vigente, agregar módulos funcionales al sistema, algunos errores técnicos y más estilo para que sea más agradable a la vista de los usuarios.
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------
+
+
+
+		Metodología de desarrollo.
+
+Descripción de las metodologías existentes y pertinentes.
+
+El Modelo de prototipos, en Ingeniería de software, pertenece a los modelos de desarrollo evolutivo. El prototipo debe ser construido en poco tiempo, usando los programas adecuados y no se debe utilizar muchos recursos.
+
+
+
+Etapas.
+
+		Comunicación
+
+		Plan rápido.
+
+		Modelado, diseño rápido
+
+		Construcción del Prototipo
+
+		Desarrollo, entrega y retroalimentación
+
+		Entrega del desarrollo final
+
+		Recolección y refinamiento de requisitos
+
+		Desarrollo, evaluación del prototipo por el cliente
+
+		Refinamiento del prototipo
+
+		Producto de Ingeniería
+
+
+
+Ventajas.
+
+	Este modelo es útil cuando el cliente conoce los objetivos generales para el software, pero no identifica los requisitos detallados de entrada, procesamiento o salida.
+
+	También ofrece un mejor enfoque cuando el responsable del desarrollo del software está inseguro de la eficacia de un algoritmo, de la adaptabilidad de un sistema operativo o de la forma que debería tomar la interacción humano-máquina.
+
+
+
+Inconvenientes.
+
+	El usuario tiende a crearse unas expectativas cuando ve el prototipo de cara al sistema final. A causa de la intención de crear un prototipo de forma rápida, se suelen desatender aspectos importantes, tales como la calidad y el mantenimiento a largo plazo, lo que obliga en la mayor parte de los casos a reconstruirlo una vez que el prototipo ha cumplido su función. Es frecuente que el usuario se muestre reacio a ello y pida que sobre ese prototipo se construya el sistema final, lo que lo convertiría en un prototipo evolutivo, pero partiendo de un estado poco recomendado.
+
+	En aras de desarrollar rápidamente el prototipo, el desarrollador suele tomar algunas decisiones de implementación poco convenientes (por ejemplo, elegir un lenguaje de programación incorrecto porque proporcione un desarrollo más rápido). Con el paso del tiempo, el desarrollador puede olvidarse de la razón que le llevó a tomar tales decisiones, con lo que se corre el riesgo de que dichas elecciones pasen a formar parte del sistema final.
+
+
+
+Selección y justificación de la metodología de trabajo.
+
+Debido al desarrollo o etapas de esta metodología la he tomado en cuenta por el motivo de que el cliente no está muy seguro no tiene la certeza de cómo puede funcionar el sistema y no tener los suficientes datos o requerimientos para desarrollarlo, esta metodología es bastante factible ya que esta una método evolutivo que este se encarga de que el prototipo valla evolucionando según las necesidades o lo requerimientos expuesto por el cliente.
+
+
+
+Implementación de la metodología de desarrollo.
+
+Emplear el método de prototipo para la gestión de proyectos reporta numerosos e interesantes beneficios que compensan las dificultades de su implantación; generar un demo funcional lógicamente y estéticamente, para que el cliente se dé cuenta cómo puede marchar el proyecto, recolectar toda la información posible y plasmarla en el demo o prototipo, es necesario ya que esta es la base del sistema, utilizar herramientas de CASE o mejor conocidas como repositorios, ya que estoy implementando un método de prototipo evolutivo.
+
+
+
