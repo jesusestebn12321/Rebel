@@ -17,7 +17,7 @@ class CreateContentsTable extends Migration
             $table->increments('id');
             $table->string('slug')->unique();
             $table->string('title');
-            $table->string('content');
+            $table->longText('content');
             
             $table->unsignedInteger('matter_id')->nullable();
             $table->foreign('matter_id')->references('id')
