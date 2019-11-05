@@ -21,7 +21,9 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('lastname');
             $table->string('password');
-            $table->integer('rol');
+            $table->unsignedInteger('rol_id')->nullable();
+            $table->foreign('rol_id')->references('id')
+            ->on('rols');
             $table->boolean('confirmed')->default(0);
             $table->string('confirmation_code')->nullable();
             $table->string('last_login')->nullable();

@@ -17,7 +17,7 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $user=User::where('rol','2')->get();
+        $user=User::where('rol_id','2')->get();
         return view('users.student.index',compact('user'));
     } 
     

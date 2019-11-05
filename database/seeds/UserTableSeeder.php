@@ -20,7 +20,7 @@ class UserTableSeeder extends Seeder
             'lastname'=>'Villalta',
             'email'=>'admin@gmail.com',
             'password' => bcrypt('123456'),
-            'rol' => 0,
+            'rol_id' => 0,
             'confirmed' => true,
         ]);
         User::create([
@@ -30,7 +30,7 @@ class UserTableSeeder extends Seeder
             'lastname'=>'Villalta',
             'email'=>'admin@unerg.edu',
             'password' => bcrypt('123456'),
-            'rol' => 1,
+            'rol_id' => 1,
             'confirmed' => true,
         ]);
         User::create([
@@ -40,7 +40,7 @@ class UserTableSeeder extends Seeder
             'lastname'=>'Villalta',
             'email'=>'root@gmail.com',
             'password' => bcrypt('123456'),
-            'rol' => 2,
+            'rol_id' => 2,
             'confirmed' => true,
         ]);
 

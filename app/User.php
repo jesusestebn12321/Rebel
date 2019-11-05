@@ -13,14 +13,14 @@ class User extends Authenticatable
     
     protected $table='users';
     protected $fillable = [
-       'slug','name','lastname','rol', 'email', 'password','last_login','confirmed','confirmation_code','dni'
+       'slug','name','lastname','rol_id', 'email', 'password','last_login','confirmed','confirmation_code','dni'
     ];
     protected $hidden = [
         'password', 'remember_token',
     ];
 
     private function checkIfUserHasRole($need_role){
-        return (strtolower($need_role) == strtolower(Auth::User()->rol)) ? true : null;
+        return (strtolower($need_role) == strtolower(Auth::User()->rol_id)) ? true : null;
     }
     
     public function hasRole($rol){
@@ -34,6 +34,9 @@ class User extends Authenticatable
             return $this->checkIfUserHasRole($rol);
         }
         return false;
+    }
+    public function rol(){
+        return $this->hasMany(Rol::class,'rol_id');
     }
 
     public function matter_user(){

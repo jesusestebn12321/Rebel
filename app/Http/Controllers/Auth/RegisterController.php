@@ -90,7 +90,7 @@ class RegisterController extends Controller
             'email'     => $data['email'],
             'slug'      => $slug,
             'password'  => bcrypt($data['password']),
-            'rol'       => $data['rol'],
+            'rol_id'       => $data['rol'],
             'confirmation_code' => $data['confirmation_code']
         ]);
 

@@ -23,6 +23,6 @@ class CheckRole
     }
     private function getRequiredRoleForRute($route){
         $actions = $route->getAction();
-        return isset($actions['rol']) ? $actions['rol'] : null;
+        return isset($actions['rol_id']) ? $actions['rol_id'] : null;
     }
 }

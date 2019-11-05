@@ -38,7 +38,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 
 	Route::get('/Area/{id}','AreaController@show');
 //Admin
-	Route::group(['middleware'=>['authen','rol'],'rol'=>['0']],function(){
+	Route::group(['middleware'=>['authen','rol'],'rol_id'=>['0']],function(){
 
 		//-------------------------------------------API------------------------------------------------------------------
 		Route::apiResource('/University','UniversityController',['parameters'=>['University'=>'slug']]);
