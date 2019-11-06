@@ -25,7 +25,7 @@
 @section('headerContent')
 <div class="container">
   <div class="row">
-    <div class="col-xl-4 col-lg-6 pt-4">
+    <div class="col-xl-4 col-lg-6 pt-4 mb-4">
       <div class="card card-stats mb-4 mb-xl-0">
         <div class="card-body">
           <div class="row">
