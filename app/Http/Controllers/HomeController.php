@@ -40,8 +40,8 @@ class HomeController extends Controller
         
     }
     public function chart(){
-        $teacher=User::where('rol_id','=',1)->get()->count();
-        $students=User::where('rol_id','=',2)->get()->count();
+        $teacher=User::where('rol_id','=',2)->get()->count();
+        $students=User::where('rol_id','=',3)->get()->count();
         $area= Area::all()->count();
         $matter= Matter::all()->count();
         $career= Career::all()->count();
