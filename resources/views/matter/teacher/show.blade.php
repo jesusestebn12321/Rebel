@@ -35,7 +35,7 @@
 
 </script>
 @endsection
-@if($matter_user->type==0)
+@if($teacher->hasRole(5))
 @section('headerContent')
 <div class="container">
   <div class="row">
@@ -107,13 +107,13 @@
                   <div class="row">
 
                   	@forelse($content as $items)
-                    @if($items->confirmation==true)
+                    @if($items->status==true)
                     <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0 pt-8 pt-md-4 pb-0 pb-md-4">
                       <div class="card card-profile shadow">
                         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                          <span class="float-right badge-pill badge badge-success">Verción: {{$items->version}} - {{$items->confirmation==true?'Actualizada':'Desactualizada'}}</span>
+                          <span class="float-right badge-pill badge badge-success">Verción: {{$items->version}} - {{$items->status==true?'Actualizada':'Desactualizada'}}</span>
                           <div class="d-flex justify-content-between">
-                            @if($matter_user->type==0)
+                            @if($teacher->hasRole(5))
                             <a href="{{route('Contents.delete',$items->slug)}}" class="btn btn-sm btn-danger mr-4">Borrar</a>
                             @endif
                             <a href="#" id="edit1_{{$items->id}}" onclick="edit1({{$items->id}})" class="btn btn-sm btn-default float-right">Editar</a>
@@ -180,13 +180,13 @@
                   <div class="row">
 
                     @forelse($content as $items)
-                    @if($items->confirmation==false)
+                    @if($items->status==false)
                     <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0 pt-8 pt-md-4 pb-0 pb-md-4">
                       <div class="card card-profile shadow">
                         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                            <span class="float-right badge-pill badge badge-danger">Verción: {{$items->version}} - {{$items->confirmation==true?'Actualizada':'Desactualizada'}}</span>
+                            <span class="float-right badge-pill badge badge-danger">Verción: {{$items->version}} - {{$items->status==true?'Actualizada':'Desactualizada'}}</span>
                           <div class="d-flex justify-content-between">
-                            @if($matter_user->type==0)
+                            @if($teacher->hasRole(5))
                             <a href="{{route('Contents.delete',$items->slug)}}" class="btn btn-sm btn-danger mr-4">Borrar</a>
                             @endif
                             <a href="#" id="edit1_{{$items->id}}" onclick="edit1({{$items->id}})" class="btn btn-sm btn-default float-right">Editar</a>
