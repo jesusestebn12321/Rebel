@@ -20,6 +20,7 @@ class CreateContentsTable extends Migration
             $table->string('title');
             $table->string('introdution');
             $table->longText('content');
+            $table->boolean('status')->default(0);
             $table->boolean('confirmation')->default(0);
 
             $table->unsignedInteger('matter_id')->nullable();
