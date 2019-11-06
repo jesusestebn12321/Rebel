@@ -7,6 +7,13 @@
       $('#edit1_'+arg).toggleClass('d-none');
       $('#title'+arg).toggleClass('d-none');
       $('#content'+arg).toggleClass('d-none');
+       $('#content'+arg).wysihtml5({
+        toolbar: { fa: true }
+      });
+      $('#title'+arg).wysihtml5({
+        toolbar: { fa: true }
+      });
+
 
 
   }
@@ -20,19 +27,25 @@
     var id=$('#id_matter');
     $('#matter_id').val(id.val());
   });
+   $('#content').wysihtml5({
+        toolbar: { fa: true }
+    });
+    $('#introdution').wysihtml5({
+        toolbar: { fa: true }
+    });
 
 </script>
 @endsection
-@if($matter_user->type==0)
+@if($teacher->hasRole(5))
 @section('headerContent')
 <div class="container">
   <div class="row">
-    <div class="col-xl-4 col-lg-6 pt-4">
-      <div class="card card-stats mb-4 mb-xl-0">
+    <div class="col-xl-4 col-lg-6 pt-4 mb-4">
+      <div class="card card-stats mb-9 mb-xl-0">
         <div class="card-body">
           <div class="row">
             <div class="col">
-              <span class="h2 font-weight-bold mb-0">Crear un contenido</span>
+              <span class="h2 font-weight-bold mb-5">Crear un contenido</span>
             </div>
             <div class="col-auto">
               <a href="#" title data-original-title="Agregar contenido" data-target='#createContent' data-toggle='modal' class='text-white'>
@@ -91,14 +104,19 @@
         </div>
 
         @forelse($matter_user->matter->content as $item)
-        <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0 pt-8 pt-md-4 pb-0 pb-md-4">
+        <div class="col-xl-6 order-xl-2 mb-5 mb-xl-0 pt-8 pt-md-4 pb-0 pb-md-4">
           <div class="card card-profile shadow">
             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
               <div class="d-flex justify-content-between">
-                @if($matter_user->type==0)
+                @if($teacher->hasRole(5))
                 <a href="{{route('Contents.delete',$item->slug)}}" class="btn btn-sm btn-danger mr-4">borrar</a>
                 @endif
                 <a href="#" id="edit1_{{$item->id}}" onclick="edit1({{$item->id}})" class="btn btn-sm btn-default float-right">Editar</a>
+                @if($item->status==false)
+                <span class="float-right badge-pill badge badge-danger">Verción: {{$item->version}} - {{$item->status==true?'actualizada':'Desactualizada'}}</span>
+                @else
+                <span class="float-right badge-pill badge badge-success">Verción: {{$item->version}} - {{$item->status==true?'Actualizada':'Desactualizada'}}</span>
+                @endif
                 <form action="{{route('Contents.up_date',$item->slug)}}">
                 <button type="submit" onclick="edit2({{$item->id}})" id="edit2_{{$item->id}}" class="d-none btn btn-sm btn-info float-right">Editar</button>
                 <input type="hidden" id="id_matter" value="{{$matter_user->matter->id}}" >
@@ -106,16 +124,41 @@
             </div>
             <div class="card-body pt-0 pt-md-4">
               <div class="text-center">
-                <h3>
-                  {{$item->title}}
-                  <input type="text" id="title{{$item->id}}" class="d-none form-control" name="title">
+                <h3 class="text-center">
+                  <blockquote>{!!$item->title!!}</blockquote>
+                  <textarea id="title{{$item->id}}" class="d-none form-control" name="title">{!!$item->title!!}</textarea>
                 </h3>
                 <hr class="my-4">
-                <p>{{$item->content}}</p>
-                <textarea name="content" id="content{{$item->id}}" class="d-none form-control" ></textarea>
+                <blockquote>{!! $item->content !!}</blockquote>
+                <textarea name="content" id="content{{$item->id}}" class="d-none form-control" >{!! $item->content !!}</textarea>
+
+
                 </form>
               </div>
             </div>
+
+            <div class="card-footer">
+              <div class="text-center">
+                  <div class="row">
+                    <div class="col-6">
+                      <h4>Creada</h4>
+                      <div class="h5 mt-4">
+                        <i class="ni business_briefcase-24 mr-2"></i>{{$item->created_at}} 
+                      </div>
+                    </div>
+                    <div class="col-6">                        
+                      <h4>Editada</h4>
+                      <div class="h5 mt-4">
+                        <i class="ni business_briefcase-24 mr-2"></i>{{$item->updated_at}} 
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+
+
+
+
           </div>
         </div>
     @empty
