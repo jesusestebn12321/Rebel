@@ -54,13 +54,23 @@ class UserTableSeeder extends Seeder
             'confirmed' => true,
         ]);
         User::create([
-            'slug'=> str_slug('Jesus-Villalta_2523'),
+            'slug'=> str_slug('Jesus-Villalta_2'),
             'name'=>'Yesenia',
             'lastname'=>'Gonzalez',
+            'dni'=>252,
+            'email'=>'teacher@gmail.com',
+            'password' => bcrypt('123456'),
+            'rol_id' => 2,
+            'confirmed' => true,
+        ]);
+        User::create([
+            'slug'=> str_slug('Jesus-Villalta_22'),
+            'name'=>'Franco',
+            'lastname'=>'Alias',
             'dni'=>2523,
             'email'=>'coordinador@gmail.com',
             'password' => bcrypt('123456'),
-            'rol_id' => 5,
+            'rol_id' => 2,
             'confirmed' => true,
         ]);
 
