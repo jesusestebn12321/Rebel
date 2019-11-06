@@ -19,7 +19,7 @@ class TeacherSeed extends Seeder
             'admin_confirmed'=>'1',
         ]);
         Teacher::create([
-            'slug'=> str_slug('teacher-trial-1'),
+            'slug'=> str_slug('teacher-trial-2'),
             'user_id'=>'5',
             'rol_id'=>'2',
             'admin_confirmed'=>'1',
