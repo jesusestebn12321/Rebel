@@ -62,8 +62,8 @@
 
                 @if($teacher->hasRole(5))
                 <a href="{{route('Contents.delete',$item->slug)}}" class="btn btn-sm btn-danger mr-4">Borrar</a>
-                @endif
                 <a href="#" id="edit1_{{$item->id}}" onclick="edit1({{$item->id}})" class="btn btn-sm btn-default float-right">Editar</a>
+                @endif
                 <form action="{{route('Contents.up_date',$item->slug)}}">
                 <button type="submit" onclick="edit2({{$item->id}})" id="edit2_{{$item->id}}" class="d-none btn btn-sm btn-info float-right">Editar</button>
                 <input type="hidden" id="id_matter" value="{{$matter->id}}" >
@@ -72,11 +72,11 @@
             <div class="card-body pt-0 pt-md-4">
               <div class="text-center">
                 <h3>
-                  {{$item->title}}
+                  {!!$item->title!!}
                   <input type="text" id="title{{$item->id}}" class="d-none form-control" name="title">
                 </h3>
                 <hr class="my-4">
-                <p>{{$item->content}}</p>
+                <p>{!!  $item->content!!}</p>
                 <textarea name="content" id="content{{$item->id}}" class="d-none form-control" ></textarea>
                 </form>
               </div>
