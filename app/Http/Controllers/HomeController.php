@@ -5,6 +5,7 @@ namespace Equivalencias\Http\Controllers;
 use Equivalencias\MatterUser;
 use Equivalencias\User;
 use Equivalencias\Matter;
+use Equivalencias\Teacher;
 use Equivalencias\Career;
 use Equivalencias\Area;
 use Illuminate\Http\Request;
@@ -28,6 +29,7 @@ class HomeController extends Controller
      */
     public function index(){
         $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->first();
+        $teacher=Teacher::where('user_id','=',Auth::user()->id)->first();
         $area= Area::all();
         $matter= Matter::all();
         $career= Career::all();
@@ -35,7 +37,7 @@ class HomeController extends Controller
             $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->get();
             return view('homeStudent',compact('matter_user'));      
         }else{
-            return view('home',compact('matter_user','matter','area','career'));      
+            return view('home',compact('matter_user','matter','area','career','teacher'));      
         }
         
     }
