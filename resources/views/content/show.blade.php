@@ -24,7 +24,7 @@
 
 </script>
 @endsection
-@if($matter_user->type==0)
+@if($teacher->hasRole(5))
 @section('headerContent')
 <div class="container">
   <div class="row">
@@ -60,7 +60,7 @@
             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
               <div class="d-flex justify-content-between">
 
-                @if($matter_user->type==0)
+                @if($teacher->hasRole(5))
                 <a href="{{route('Contents.delete',$item->slug)}}" class="btn btn-sm btn-danger mr-4">Borrar</a>
                 @endif
                 <a href="#" id="edit1_{{$item->id}}" onclick="edit1({{$item->id}})" class="btn btn-sm btn-default float-right">Editar</a>
