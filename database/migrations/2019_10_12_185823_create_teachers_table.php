@@ -19,8 +19,11 @@ class CreateTeachersTable extends Migration
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')
             ->on('users');
+            
+            $table->unsignedInteger('rol_id')->nullable();
+            $table->foreign('rol_id')->references('id')
+            ->on('rols');
 
-            $table->integer('type')->default(0);
             $table->boolean('admin_confirmed')->default(0);
 
             $table->timestamps();
