@@ -13,6 +13,9 @@
   <link href="{{asset('template/assets/vendor/fonts/css/font-awesome.min.css')}}" rel="stylesheet">
   <!-- Argon CSS -->
   <link  type="text/css" href="{{asset('template/assets/css/argon.css')}}" rel="stylesheet">
+  
+  <link rel="stylesheet" href="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+
   <link  type="text/css" href="{{asset('plugins/css/main.css')}}" rel="stylesheet">
 </head>
 
@@ -49,6 +52,8 @@
     <script src="{{asset('template/assets/vendor/chart.js/dist/Chart.extension.js')}}"></script>
     <!-- Argon JS -->
     <script src="{{asset('template/assets/vendor/clipboard/dist/clipboard.min.js')}}"></script>
+    <script src="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
+
     <script src="{{asset('template/assets/js/argon.js')}}"></script>
     <script>
       var APP_URL={!!json_encode(url('/'))!!};

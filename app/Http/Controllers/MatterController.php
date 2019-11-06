@@ -21,10 +21,10 @@ class MatterController extends Controller
    public function index()
     {
 
-        $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->firstOrFail();
+        $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->first();
         $matter=Matter::all();
         $career=Career::all();
-        $teacher=Teacher::where('user_id',Auth::user()->id)->firstOrFail();
+        $teacher=Teacher::where('user_id',Auth::user()->id)->first();
         return view('matter.index',compact('career','matter','matter_user','teacher'));
     }
 

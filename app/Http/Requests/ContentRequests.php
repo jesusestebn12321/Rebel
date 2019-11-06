@@ -26,8 +26,8 @@ class ContentRequests extends FormRequest
     {   
         return [
             //'slug' => 'required|unique:areas,slug',
-            'title' => 'required|string|min:1|max:150',
-            'content' => 'required|string|min:1|max:250',
+            'title' => 'required|string|min:1|max:250',
+            'content' => 'required|string|min:1',
         ];
     }
      public function messages()

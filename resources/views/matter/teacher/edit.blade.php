@@ -1,7 +1,13 @@
 @extends('layouts.appDashboard')
 @section('title','| Unidad Curricular '. $matter->matter)
 @section('nameTitleTemplate','Unidad Curricular '. $matter->matter)
-
+@section('js')
+<script type="text/javascript">
+  $('textarea').wysihtml5({
+        toolbar: { fa: true }
+      });
+</script>
+@endsection
 @section('content')
 <div class="container-fluid mt--8">
       <div class="row">
@@ -49,7 +55,7 @@
         <div class="col-xl-8 order-xl-1">
           <div class='row'>
         	@forelse($content as $item)
-          <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0 pt-8 pt-md-4 pb-0 pb-md-4">
+          <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0 pt-8 pt-md-4 pb-0 pb-md-4">
             <div class="card card-profile shadow">
               <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                 <div class="d-flex justify-content-between">
@@ -63,13 +69,9 @@
                 <div class="row">
                   <div class="col">
                     <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                      <div>
                         <span class="heading">Titulo</span>
-                        <span class="description">
-                         <input type="text" name="title" value="{{$item->title}}" class="form-control"> 
-                        </span>
-                      </div>
                     </div>
+                    <textarea class="form-control" name="title">{!!$item->title!!}</textarea>
                   </div>
                 </div>
                 <div class="text-center">
@@ -78,7 +80,7 @@
                   </h3>
                   <div class="h5 font-weight-300">
                     <p>
-                    <textarea value='{{$item->content}}' name="content" class='form-control' placeholder="{{$item->content}}">{{$item->content}}</textarea>
+                    <textarea value='{{$item->content}}' name="content" class='form-control' placeholder="{{$item->content}}">{!!$item->content!!}</textarea>
                     </p>
                 </form>
                   </div>
