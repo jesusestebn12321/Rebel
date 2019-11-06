@@ -14,15 +14,32 @@
                     {{ csrf_field() }}
                     <input type="hidden" id="matter_id" value="" name="matter_id">
                     <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                        <input id="title" type="text" placeholder="Nombre de la title" class="form-control" name="title" autofocus required >
+                        <input id="title" type="text" placeholder="Titulo del Contenido" class="form-control" name="title" autofocus required >
                         @if ($errors->has('title'))
                         <span class="help-block">
                             <strong>{{ $errors->first('title') }}</strong>
                         </span>
                         @endif
                     </div>
+                    <div class="form-group{{ $errors->has('version') ? ' has-error' : '' }}">
+                        <input id="version" type="text" placeholder="version del contenido" class="form-control" name="version" autofocus required >
+                        
+                        @if ($errors->has('version'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('version') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                    <div class="form-group{{ $errors->has('introdution') ? ' has-error' : '' }}">
+                        <textarea id="introdution" type="text" placeholder="Introduccion" class="form-control" name="introdution" autofocus required > </textarea>
+                        @if ($errors->has('introdution'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('introdution') }}</strong>
+                        </span>
+                        @endif
+                    </div>
                     <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
-                        <textarea id="content" type="text" placeholder="Nombre de la contenido" class="form-control" name="content" autofocus required> </textarea>
+                        <textarea id="content" type="text" placeholder="Contenido" class="form-control" name="content" autofocus required> </textarea>
                         @if ($errors->has('content'))
                         <span class="help-block">
                             <strong>{{ $errors->first('content') }}</strong>
