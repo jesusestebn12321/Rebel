@@ -110,8 +110,8 @@
               <div class="d-flex justify-content-between">
                 @if($teacher->hasRole(5))
                 <a href="{{route('Contents.delete',$item->slug)}}" class="btn btn-sm btn-danger mr-4">borrar</a>
-                @endif
                 <a href="#" id="edit1_{{$item->id}}" onclick="edit1({{$item->id}})" class="btn btn-sm btn-default float-right">Editar</a>
+                @endif
                 @if($item->status==false)
                 <span class="float-right badge-pill badge badge-danger">Verción: {{$item->version}} - {{$item->status==true?'actualizada':'Desactualizada'}}</span>
                 @else
