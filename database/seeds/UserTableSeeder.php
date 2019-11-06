@@ -16,31 +16,51 @@ class UserTableSeeder extends Seeder
         User::create([
             'slug'=> str_slug('Jesus-Villalta_25237118'),
             'name'=>'Jesus',
+            'lastname'=>'Villalta',
             'dni'=>25237118,
-            'lastname'=>'Villalta',
             'email'=>'admin@gmail.com',
-            'password' => bcrypt('123456'),
-            'rol_id' => 0,
-            'confirmed' => true,
-        ]);
-        User::create([
-            'slug'=> str_slug('Jesus-Villalta_2523711'),
-            'name'=>'Jesus',
-            'dni'=>2523711,
-            'lastname'=>'Villalta',
-            'email'=>'admin@unerg.edu',
             'password' => bcrypt('123456'),
             'rol_id' => 1,
             'confirmed' => true,
         ]);
         User::create([
-            'slug'=> str_slug('Jesus-Villalta_252371'),
-            'name'=>'Jesus',
-            'dni'=>252371,
+            'slug'=> str_slug('Jesus-Villalta_2523711'),
+            'name'=>'Luis',
             'lastname'=>'Villalta',
-            'email'=>'root@gmail.com',
+            'dni'=>2523711,
+            'email'=>'admin@unerg.edu',
             'password' => bcrypt('123456'),
             'rol_id' => 2,
+            'confirmed' => true,
+        ]);
+        User::create([
+            'slug'=> str_slug('Jesus-Villalta_252371'),
+            'name'=>'Otilio',
+            'lastname'=>'Villalta',
+            'dni'=>252371,
+            'email'=>'root@gmail.com',
+            'password' => bcrypt('123456'),
+            'rol_id' => 3,
+            'confirmed' => true,
+        ]);
+        User::create([
+            'slug'=> str_slug('Jesus-Villalta_25237'),
+            'name'=>'Maria',
+            'lastname'=>'Gonzalez',
+            'dni'=>25237,
+            'email'=>'curricular@gmail.com',
+            'password' => bcrypt('123456'),
+            'rol_id' => 4,
+            'confirmed' => true,
+        ]);
+        User::create([
+            'slug'=> str_slug('Jesus-Villalta_2523'),
+            'name'=>'Yesenia',
+            'lastname'=>'Gonzalez',
+            'dni'=>2523,
+            'email'=>'coordinador@gmail.com',
+            'password' => bcrypt('123456'),
+            'rol_id' => 5,
             'confirmed' => true,
         ]);
 

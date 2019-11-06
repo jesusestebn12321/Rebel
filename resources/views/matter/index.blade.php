@@ -1,6 +1,6 @@
 @extends('layouts.appDashboard')
-@if(Auth::user()->hasRole(1))
+@if(Auth::user()->hasRole(2))
 	@include('matter.teacher.index')
-@elseif(Auth::user()->hasRole(0))
+@elseif(Auth::user()->hasRole(1))
 	@include('matter.admin.index')
 @endif

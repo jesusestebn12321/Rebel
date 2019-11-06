@@ -62,10 +62,10 @@
 </script>
 @endsection
 @section('content')
-@if(Auth::user()->hasRole(1) && !isset($matter_user))  
+@if(Auth::user()->hasRole(2) && !isset($matter_user))  
 	@include('layouts.modales.profile.profileModal')
 @endif
-@if(!Auth::user()->hasRole(2))  
+@if(!Auth::user()->hasRole(3))  
 <div class="row">
 
 	<div class="col-xl-12">

@@ -31,7 +31,7 @@ class HomeController extends Controller
         $area= Area::all();
         $matter= Matter::all();
         $career= Career::all();
-        if (Auth::user()->hasRole(2)) {
+        if (Auth::user()->hasRole(3)) {
             $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->get();
             return view('homeStudent',compact('matter_user'));      
         }else{

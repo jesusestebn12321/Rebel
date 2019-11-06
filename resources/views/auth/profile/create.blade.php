@@ -29,13 +29,13 @@
                 </h3>
                 <div class="h5 font-weight-300">
                   <i class="ni location_pin mr-2"></i>
-                  @if(!Auth::user()->hasRole(0))
-                  {{ Auth::user()->hasRole(2)?  'Profesor':'Estudiante' }} 
+                  @if(!Auth::user()->hasRole(1))
+                  {{ Auth::user()->hasRole(3)?  'Profesor':'Estudiante' }} 
                   @else
                   Administrador
                   @endif()
                 </div>
-                @if(!Auth::user()->hasRole(0))
+                @if(!Auth::user()->hasRole(1))
                   <div class="h5 mt-4">
                     <i class="ni business_briefcase-24 mr-2"></i>Area - 
                     <select>
@@ -55,7 +55,7 @@
                     </select>
                   </div>
                 @else
-                @endif()
+                @endif
               </div>
             </div>
           </div>

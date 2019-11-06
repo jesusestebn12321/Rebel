@@ -16,7 +16,7 @@
   <link  type="text/css" href="{{asset('plugins/css/main.css')}}" rel="stylesheet">
 </head>
 
-  @if(Auth::user()->hasRole(1) && !isset($matter_user))
+  @if(Auth::user()->hasRole(2) && !isset($matter_user))
   <body class="modal-open" style="padding-right: 25.9922px;">
   @else
   <body>

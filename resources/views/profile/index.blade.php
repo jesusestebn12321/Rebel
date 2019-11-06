@@ -68,9 +68,9 @@
                 <div class="h3 mt-4 font-weight-300">
                   <i class="ni location_pin mr-2"></i>
 
-                  @if(!Auth::user()->hasRole(0))
+                  @if(!Auth::user()->hasRole(1))
 
-                  <b>{{ Auth::user()->hasRole(1)?'Profesor':'Estudiante'}} {{$matter_user->type==0?'- Coordinador':''}}  </b>
+                  <b>{{ Auth::user()->hasRole(2)?'Profesor':'Estudiante'}} {{$matter_user->type==0?'- Coordinador':''}}  </b>
                   @else
                   <b>Administrador</b>
                   @endif

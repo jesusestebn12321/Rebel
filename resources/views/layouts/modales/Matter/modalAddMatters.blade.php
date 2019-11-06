@@ -11,9 +11,9 @@
 
                 </div>
                 <div class="modal-body">
-                @if(Auth::user()->hasRole(0))
+                @if(Auth::user()->hasRole(1))
                 <form class="form-horizontal" method="POST" action="{{route('Matters.store')}}">
-                @elseif(Auth::user()->hasRole(1))
+                @elseif(Auth::user()->hasRole(2))
                 <form class="form-horizontal" method="POST" action="{{route('Matter.store')}}">
                 @endif
                     {{ csrf_field() }}

@@ -38,7 +38,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 
 	Route::get('/Area/{id}','AreaController@show');
 //Admin
-	Route::group(['middleware'=>['authen','rol'],'rol_id'=>['0']],function(){
+	Route::group(['middleware'=>['authen','rol'],'rol_id'=>['1']],function(){
 
 		//-------------------------------------------API------------------------------------------------------------------
 		Route::apiResource('/University','UniversityController',['parameters'=>['University'=>'slug']]);
@@ -88,7 +88,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 	});
 
 //Profesores
-	Route::group(['middleware'=>['authen','rol'],'rol'=>['1','0']],function(){
+	Route::group(['middleware'=>['authen','rol'],'rol'=>['1','2']],function(){
 		//middleware de verificacion por el admin
 		Route::group(['middleware'=>['matter_user']],function(){
 			
@@ -128,7 +128,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 	});
 
 //Estudiasnte 
-	Route::group(['middleware'=>['authen','rol'],'rol'=>['2']],function(){
+	Route::group(['middleware'=>['authen','rol'],'rol'=>['3']],function(){
 		Route::get('/Download/{slug}',['as'=>'Download.index','uses'=>'DownloadController@index']);
 	});
 

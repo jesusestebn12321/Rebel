@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Equivalencias\Rol;
+
 class RolSeeder extends Seeder
 {
     /**
@@ -21,7 +22,10 @@ class RolSeeder extends Seeder
             'rol'=>'Estudiante',
         ]);
         Rol::create([
-            'rol'=>'VUC',
+            'rol'=>'AdminCurricular',
+        ]);
+        Rol::create([
+            'rol'=>'Coordinador',
         ]);
     }
 }

@@ -45,11 +45,11 @@
               <i class="ni ni-tv-2 text-primary"></i> Dashboard
             </a>
           </li>
-          @if(Auth::user()->hasRole(0))
+          @if(Auth::user()->hasRole(1))
             @include('layouts.sidebar.contentA')
-          @elseif(Auth::user()->hasRole(1) && !isset($mater_user))
+          @elseif(Auth::user()->hasRole(2) && !isset($mater_user))
             @include('layouts.sidebar.contentB')
-          @elseif(Auth::user()->hasRole(2))
+          @elseif(Auth::user()->hasRole(3))
             @include('layouts.sidebar.contentC')
           @endif
            <li class="nav-item">

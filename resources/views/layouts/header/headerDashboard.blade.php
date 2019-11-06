@@ -9,7 +9,7 @@
           <hr class='bg-white display-3 col-2'>
           <p class="text-white mt-0 mb-5" style='text-align: center'>Sistema de equivalencias <b class='display-4'>"Rebel"</b>,  gestor de Contenidos de unidades curriculares</p>
 
-          @if(Auth::user()->hasRole(1) && !isset($matter_user))  
+          @if(Auth::user()->hasRole(2) && !isset($matter_user))  
           <p class="text-white mt-0 mb-5" style='text-align: center'>Rellene su perfil academico</p>
           @endif
 
