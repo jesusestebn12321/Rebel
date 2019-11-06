@@ -141,9 +141,10 @@ class MatterController extends Controller
         
         $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->firstOrFail();
         $matter=Matter::where('id',$matter_user->matter_id)->firstOrFail();
-        $teacher=MatterUser::where('matter_id',$matter->id)->get();
+        $teacherAll=MatterUser::where('matter_id',$matter->id)->get();
+        $teacher=Teacher::where('user_id','=',Auth::user()->id)->first();
         
-        return view('matter.teacher.asignar', compact('career','matter','matter_user','teacher'));
+        return view('matter.teacher.asignar', compact('career','matter','matter_user','teacher','teacherAll'));
     }
     public function asignarMatter(Request $request, $dni){
         $user=User::where('dni',$dni)->firstOrFail();
