@@ -61,9 +61,10 @@ class ContentController extends Controller
     public function show($id){
         $matter_U=MatterUser::where('user_id',Auth::user()->id)->firstOrFail();
         $matter_user=Teacher::where('user_id',Auth::user()->id)->firstOrFail();
+        $teacher=Teacher::where('user_id',Auth::user()->id)->firstOrFail();
         $content=Content::where('matter_id','=',$matter_U->matter_id)->get();
         $matter= Matter::where('id',$matter_U->matter_id)->firstOrFail();
-        return view('content.show',compact('content','matter_user','matter'));
+        return view('content.show',compact('content','teacher','matter_user','matter'));
     }
 
     /**
