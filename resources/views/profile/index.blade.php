@@ -70,7 +70,7 @@
 
                   @if(!Auth::user()->hasRole(1))
 
-                  <b>{{ Auth::user()->hasRole(2)?'Profesor':'Estudiante'}} {{$matter_user->type==0?'- Coordinador':''}}  </b>
+                  <b>{{ Auth::user()->hasRole(2)?'Profesor':'Estudiante'}} {{$teacher->hasRole(5)?'- Coordinador':''}}  </b>
                   @else
                   <b>Administrador</b>
                   @endif
