@@ -43,6 +43,8 @@ class ContentController extends Controller
         $content= Content::create([
             'title'=>$request->input('title'),
             'content'=>$request->input('content'),
+            'version'=>$request->input('version'),
+            'introdution'=>$request->input('introdution'),
             'slug'=>$slug,
             'matter_id'=>$request->input('matter_id')
             ]);
