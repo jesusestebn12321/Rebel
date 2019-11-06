@@ -11,4 +11,7 @@ class Rol extends Model
     public function user(){
     	return $this->belongsTo(User::class,'rol_id');
     }
+    public function teacher(){
+    	return $this->belongsTo(Teacher::class,'rol_id');
+    }
 }
