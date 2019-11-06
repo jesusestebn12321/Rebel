@@ -107,25 +107,26 @@
                   <div class="row">
 
                   	@forelse($content as $items)
+                    @if($items->confirmation==true)
                     <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0 pt-8 pt-md-4 pb-0 pb-md-4">
                       <div class="card card-profile shadow">
                         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                          <span class="float-right badge-pill badge badge-success">Verción: {{$items->version}} - {{$items->confirmation==true?'Actualizada':'Desactualizada'}}</span>
                           <div class="d-flex justify-content-between">
                             @if($matter_user->type==0)
                             <a href="{{route('Contents.delete',$items->slug)}}" class="btn btn-sm btn-danger mr-4">Borrar</a>
                             @endif
                             <a href="#" id="edit1_{{$items->id}}" onclick="edit1({{$items->id}})" class="btn btn-sm btn-default float-right">Editar</a>
-                            
                             <form action="{{route('Contents.up_date',$items->slug)}}">
-                            
+                              
                             <button type="submit" onclick="edit2({{$items->id}})" id="edit2_{{$items->id}}" class="d-none btn btn-sm btn-info float-right">Editar</button>
                             <input type="hidden" id="id_matter" value="{{$matter->id}}" >
                           </div>
                         </div>
                         <div class="card-body pt-0 pt-md-4">
                           
-                          <div class="text-center">
-                            <h3>
+                          <div class="text-justify">
+                            <h3 class="text-center">
                               <blockquote>{!!$items->title!!}</blockquote>
                               <textarea id="title{{$items->id}}" class="d-none form-control" name="title">{!!$items->title!!}</textarea>
                             </h3>
@@ -135,8 +136,27 @@
                             </form>
                           </div>
                         </div>
+                        <div class="card-footer">
+                          <div class="text-center">
+                              <div class="row">
+                                <div class="col-6">
+                                  <h4>Creada</h4>
+                                  <div class="h5 mt-4">
+                                    <i class="ni business_briefcase-24 mr-2"></i>{{$items->created_at}} 
+                                  </div>
+                                </div>
+                                <div class="col-6">                        
+                                  <h4>Editada</h4>
+                                  <div class="h5 mt-4">
+                                    <i class="ni business_briefcase-24 mr-2"></i>{{$items->updated_at}} 
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
+                    @endif
                     @empty
                     <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0 pt-8 pt-md-4 pb-0 pb-md-4">
                       <div class="card bg-info card-profile shadow">
@@ -153,6 +173,79 @@
                   </div>
                 </div>
 
+           <!--     -------------------------------------------------------------------- -->
+            <div class="card-body pt-0 pt-md-4">
+              <div class="text-center">
+                <div class="container-fluid">
+                  <div class="row">
+
+                    @forelse($content as $items)
+                    @if($items->confirmation==false)
+                    <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                      <div class="card card-profile shadow">
+                        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                            <span class="float-right badge-pill badge badge-danger">Verción: {{$items->version}} - {{$items->confirmation==true?'Actualizada':'Desactualizada'}}</span>
+                          <div class="d-flex justify-content-between">
+                            @if($matter_user->type==0)
+                            <a href="{{route('Contents.delete',$items->slug)}}" class="btn btn-sm btn-danger mr-4">Borrar</a>
+                            @endif
+                            <a href="#" id="edit1_{{$items->id}}" onclick="edit1({{$items->id}})" class="btn btn-sm btn-default float-right">Editar</a>
+                            <form action="{{route('Contents.up_date',$items->slug)}}">
+                            
+                            <button type="submit" onclick="edit2({{$items->id}})" id="edit2_{{$items->id}}" class="d-none btn btn-sm btn-info float-right">Editar</button>
+                            <input type="hidden" id="id_matter" value="{{$matter->id}}" >
+                          </div>
+                        </div>
+                        <div class="card-body pt-0 pt-md-4">
+                          
+                          <div class="text-justify">
+                            <h3 class="text-center">
+                              <blockquote>{!!$items->title!!}</blockquote>
+                              <textarea id="title{{$items->id}}" class="d-none form-control" name="title">{!!$items->title!!}</textarea>
+                            </h3>
+                            <hr class="my-4">
+                            <blockquote>{!! $items->content !!}</blockquote>
+                            <textarea name="content" id="content{{$items->id}}" class="d-none form-control" >{!! $items->content !!}</textarea>
+                            </form>
+                          </div>
+                        </div>
+                        <div class="card-footer">
+                         <div class="text-center">
+                            <div class="row">
+                              <div class="col-6">
+                                <h4>Creada</h4>
+                                <div class="h5 mt-4">
+                                  <i class="ni business_briefcase-24 mr-2"></i>{{$items->created_at}} 
+                                </div>
+                              </div>
+                              <div class="col-6">                        
+                                <h4>Editada</h4>
+                                <div class="h5 mt-4">
+                                  <i class="ni business_briefcase-24 mr-2"></i>{{$items->updated_at}} 
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      </div>
+                      
+                    </div>
+                    @endif
+                    @empty
+                    <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                      <div class="card bg-info card-profile shadow">
+                        <div class="card-body pt-0 pt-md-4">
+                          <div class="text-center">
+                            <h3 class="text-white">
+                              No hay contenido para esta unidad curricular
+                            </h3>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    @endforelse
+                  </div>
+                </div>
 
                 <div class="card-footer">
                  <div class="text-center">
