@@ -117,6 +117,11 @@
                 @else
                 <span class="float-right badge-pill badge badge-success">Verción: {{$item->version}} - {{$item->status==true?'Actualizada':'Desactualizada'}}</span>
                 @endif
+                @if($item->confirmation==false)
+                <span class="float-right badge-pill badge badge-danger">{{$item->confirmation==true?'confimada':'espera por la confirmación....'}}</span>
+                @else
+                <span class="float-right badge-pill badge badge-success">{{$item->confirmation==true?'confimada':'espera por la confirmación....'}}</span>
+                @endif
                 <form action="{{route('Contents.up_date',$item->slug)}}">
                 <button type="submit" onclick="edit2({{$item->id}})" id="edit2_{{$item->id}}" class="d-none btn btn-sm btn-info float-right">Editar</button>
                 <input type="hidden" id="id_matter" value="{{$matter_user->matter->id}}" >
