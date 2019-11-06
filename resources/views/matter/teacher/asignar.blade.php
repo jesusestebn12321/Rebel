@@ -89,7 +89,7 @@
   </div>
   <hr> <h2>Profesores de la unidad Curricular</h2> <hr>
   <div class="row">
-    @forelse($teacher as $item)  
+    @forelse($teacherAll as $item)  
     <div class="col-4 order-xl-2 mb-8 mt-4 mb-xl-0">
       <div class="card card-profile shadow">
         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
