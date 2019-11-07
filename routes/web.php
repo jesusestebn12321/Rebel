@@ -132,4 +132,14 @@ Route::group(['middleware'=>['verifiUser']],function(){
 		Route::get('/Download/{slug}',['as'=>'Download.index','uses'=>'DownloadController@index']);
 	});
 
+//AdminCurricular 
+	Route::group(['middleware'=>['authen','rol'],'rol'=>['4']],function(){
+
+		Route::get('/Matter/Show/{slug}',['as'=>'Matters.show','uses'=>'MatterController@showAll']);
+		Route::get('/Verify/Content/{slug}',['as'=>'verify.content','uses'=>'adminCurricular@verify']);
+		Route::get('/Remove/Content/{slug}',['as'=>'remove.content','uses'=>'adminCurricular@remove']);
+		Route::get('/Matters',['as'=>'Matters.index','uses'=>'MatterController@index']);
+
+	});
+
 });
