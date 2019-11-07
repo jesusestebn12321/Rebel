@@ -3,4 +3,6 @@
 	@include('matter.teacher.index')
 @elseif(Auth::user()->hasRole(1))
 	@include('matter.admin.index')
+@elseif(Auth::user()->hasRole(4))
+	@include('matter.adminCurricular.index')
 @endif
