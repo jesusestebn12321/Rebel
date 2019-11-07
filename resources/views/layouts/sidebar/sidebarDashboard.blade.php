@@ -46,11 +46,13 @@
             </a>
           </li>
           @if(Auth::user()->hasRole(1))
-            @include('layouts.sidebar.contentA')
+            @include('layouts.sidebar.contentAdmin')
           @elseif(Auth::user()->hasRole(2) && !isset($mater_user))
-            @include('layouts.sidebar.contentB')
+            @include('layouts.sidebar.contentTeacher')
           @elseif(Auth::user()->hasRole(3))
-            @include('layouts.sidebar.contentC')
+            @include('layouts.sidebar.contentStudent')
+          @elseif(Auth::user()->hasRole(4))
+            @include('layouts.sidebar.contentAdminCurricular')
           @endif
            <li class="nav-item">
             <a class="nav-link font-italic" href="{{ route('profile-index') }}">
