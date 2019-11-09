@@ -104,6 +104,8 @@ Route::group(['middleware'=>['verifiUser']],function(){
 				Route::get('/Matter/Asignar/{id}',['as'=>'Matter.asignar.teacher','uses'=>'MatterUserController@asignar']);
 				Route::get('/Matter/Asignar/Delete/{id}',['as'=>'Matter.asignar.delete','uses'=>'MatterUserController@destroy']);
 
+				Route::post('/Matter/RollBackContent',['as'=>'rollback','uses'=>'ContentController@VersionBack']);
+
 			});
 						
 			Route::get('/Matter',['as'=>'Matter.index','uses'=>'MatterController@index']);
