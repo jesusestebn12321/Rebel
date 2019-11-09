@@ -13,7 +13,7 @@ class MatterUserSeeder extends Seeder
     {
         MatterUser::create([
             'matter_id'=>'1',
-            'user_id'=>'2',
+            'user_id'=>'1',
             
         ]);
     }
