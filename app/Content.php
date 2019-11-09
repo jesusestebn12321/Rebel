@@ -12,4 +12,8 @@ class Content extends Model
     public function matters(){
     	return $this->belongsTo(Matter::class,'matter_id');
     }
+    public function contentVersion(){
+    	return $this->hasMany(ContentVersion::class,'content_id');
+    }
+
 }
