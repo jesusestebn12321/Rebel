@@ -18,7 +18,7 @@ class CreateContentsTable extends Migration
             $table->string('slug')->unique();
             $table->string('version');
             $table->string('title');
-            $table->string('introdution');
+            $table->longText('introdution');
             $table->longText('content');
             $table->boolean('status')->default(0);
             $table->boolean('confirmation')->default(0);
