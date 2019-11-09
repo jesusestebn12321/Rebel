@@ -8,7 +8,11 @@
       $('#edit1_'+arg).toggleClass('d-none');
       $('#title'+arg).toggleClass('d-none');
       $('#content'+arg).toggleClass('d-none');
+      $('#introdution'+arg).toggleClass('d-none');
       $('#content'+arg).wysihtml5({
+        toolbar: { fa: true }
+      });
+      $('#introdution'+arg).wysihtml5({
         toolbar: { fa: true }
       });
       $('#title'+arg).wysihtml5({
@@ -21,7 +25,11 @@
       $('#edit1_'+arg).toggleClass('d-none');
       $('#title'+arg).toggleClass('d-none');
       $('#content'+arg).toggleClass('d-none');
+      $('#introdution'+arg).toggleClass('d-none');
       $('#content'+arg).wysihtml5({
+        toolbar: { fa: true }
+      });
+      $('#introdution'+arg).wysihtml5({
         toolbar: { fa: true }
       });
       $('#title'+arg).wysihtml5({
@@ -131,6 +139,15 @@
                               <textarea id="title{{$items->id}}" class="d-none form-control" name="title">{!!$items->title!!}</textarea>
                             </h3>
                             <hr class="my-4">
+                            <label>Introduccion</label>
+                            <hr class="my-4">
+                            <blockquote>{!! $items->introdution !!}</blockquote>
+                            <textarea name="introdution" id="introdution{{$items->id}}" class="d-none form-control" >{!! $items->introdution !!}</textarea>
+
+                            <hr class="my-4">
+                            <label>Contenido</label>
+                            <hr class="my-4">
+                            
                             <blockquote>{!! $items->content !!}</blockquote>
                             <textarea name="content" id="content{{$items->id}}" class="d-none form-control" >{!! $items->content !!}</textarea>
                             </form>

@@ -8,6 +8,7 @@
       $('#edit1_'+arg).toggleClass('d-none');
       $('#title'+arg).toggleClass('d-none');
       $('#content'+arg).toggleClass('d-none');
+      $('#introdution'+arg).toggleClass('d-none');
 
 
   }
@@ -16,6 +17,7 @@
       $('#edit1_'+arg).toggleClass('d-none');
       $('#title'+arg).toggleClass('d-none');
       $('#content'+arg).toggleClass('d-none');
+      $('#introdution'+arg).toggleClass('d-none');
   }
   $(document).ready(function(){
     var id=$('#id_matter');
@@ -76,7 +78,11 @@
                   <input type="text" id="title{{$item->id}}" class="d-none form-control" name="title">
                 </h3>
                 <hr class="my-4">
-                <p>{!!  $item->content!!}</p>
+                <label>Introduccion</label>
+                <p>{!!  $item->introdution!!}</p>
+                <textarea name="introdution" id="introdution{{$item->id}}" class="d-none form-control" ></textarea><p>
+                <label>Contenido</label>
+                {!!  $item->content!!}</p>
                 <textarea name="content" id="content{{$item->id}}" class="d-none form-control" ></textarea>
                 </form>
               </div>

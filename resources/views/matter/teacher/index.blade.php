@@ -7,11 +7,18 @@
       $('#edit1_'+arg).toggleClass('d-none');
       $('#title'+arg).toggleClass('d-none');
       $('#content'+arg).toggleClass('d-none');
-       $('#content'+arg).wysihtml5({
+      $('#introdution'+arg).toggleClass('d-none');
+      
+      $('#content'+arg).wysihtml5({
         toolbar: { fa: true }
       });
+      
       $('#title'+arg).wysihtml5({
         toolbar: { fa: true }
+      });
+      
+      $('#introdution'+arg).wysihtml5({
+          toolbar: { fa: true }
       });
 
 
@@ -22,17 +29,19 @@
       $('#edit1_'+arg).toggleClass('d-none');
       $('#title'+arg).toggleClass('d-none');
       $('#content'+arg).toggleClass('d-none');
+      $('#introdution'+arg).toggleClass('d-none');
   }
   $(document).ready(function(){
     var id=$('#id_matter');
     $('#matter_id').val(id.val());
   });
-   $('#content').wysihtml5({
-        toolbar: { fa: true }
-    });
-    $('#introdution').wysihtml5({
-        toolbar: { fa: true }
-    });
+  $('#content').wysihtml5({
+    toolbar: { fa: true }
+  });
+  $('#introdution').wysihtml5({
+    toolbar: { fa: true }
+  });
+      
 
 </script>
 @endsection
@@ -122,23 +131,46 @@
                 @else
                 <span class="float-right badge-pill badge badge-success">{{$item->confirmation==true?'confimada':'espera por la confirmación....'}}</span>
                 @endif
-                <form action="{{route('Contents.up_date',$item->slug)}}">
-                <button type="submit" onclick="edit2({{$item->id}})" id="edit2_{{$item->id}}" class="d-none btn btn-sm btn-info float-right">Editar</button>
-                <input type="hidden" id="id_matter" value="{{$matter_user->matter->id}}" >
+              </div>
+                <br>
+              <div class="d-flex justify-content-between">
+                <form method="POST" action="{{route('rollback')}}">
+                    {{ csrf_field() }}
+                  
+                  <select class='form-control' value='0' name="slug" size='1'>
+                      <option value="0">Versiones</option>
+                      @forelse($item->contentVersion as $items)
+
+                        <option value="{{$items->slug}}">Version | {{$items->version}} - {!!$items->title!!}</option>
+                      @empty
+                        <option><label>----- No hay versiones para esta materia -----</label></option>
+                      @endforelse                   
+                    </select>
+                    <button type="submit" class="btn btn-block btn-info">rollback</button>
+                  
+
+                </form>
               </div>
             </div>
             <div class="card-body pt-0 pt-md-4">
               <div class="text-center">
                 <h3 class="text-center">
+                <form action="{{route('Contents.up_date',$item->slug)}}">
+                <input type="hidden" id="id_matter" value="{{$matter_user->matter->id}}" >
                   <blockquote>{!!$item->title!!}</blockquote>
                   <textarea id="title{{$item->id}}" class="d-none form-control" name="title">{!!$item->title!!}</textarea>
                 </h3>
                 <hr class="my-4">
+                <label>Introduccion:</label>
+                <blockquote>{!! $item->introdution !!}</blockquote>
+                <textarea name="introdution" id="introdution{{$item->id}}" class="d-none form-control" >{!! $item->introdution !!}</textarea>
+
+                <hr class="my-4">
+                <label>Contenido:</label>
                 <blockquote>{!! $item->content !!}</blockquote>
                 <textarea name="content" id="content{{$item->id}}" class="d-none form-control" >{!! $item->content !!}</textarea>
 
 
-                </form>
               </div>
             </div>
 
@@ -158,6 +190,8 @@
                       </div>
                     </div>
                   </div>
+                <button type="submit" onclick="edit2({{$item->id}})" id="edit2_{{$item->id}}" class="d-none btn btn-block btn-info">Editar</button>
+                </form>
               </div>
             </div>
 

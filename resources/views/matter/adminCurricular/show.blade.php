@@ -8,7 +8,11 @@
       $('#edit1_'+arg).toggleClass('d-none');
       $('#title'+arg).toggleClass('d-none');
       $('#content'+arg).toggleClass('d-none');
-       $('#content'+arg).wysihtml5({
+      $('#introdution'+arg).toggleClass('d-none');
+      $('#content'+arg).wysihtml5({
+        toolbar: { fa: true }
+      });
+      $('#introdution'+arg).wysihtml5({
         toolbar: { fa: true }
       });
       $('#title'+arg).wysihtml5({
@@ -23,6 +27,7 @@
       $('#edit1_'+arg).toggleClass('d-none');
       $('#title'+arg).toggleClass('d-none');
       $('#content'+arg).toggleClass('d-none');
+      $('#introdution'+arg).toggleClass('d-none');
   }
   $(document).ready(function(){
     var id=$('#id_matter');
@@ -140,6 +145,8 @@
                 </h3>
                 <hr class="my-4">
                 <blockquote>{!! $item->content !!}</blockquote>
+                <hr class="my-4">
+                <blockquote>{!! $item->introdution !!}</blockquote>
               </div>
             </div>
 
