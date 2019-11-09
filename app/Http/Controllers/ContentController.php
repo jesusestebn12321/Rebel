@@ -3,6 +3,7 @@
 namespace Equivalencias\Http\Controllers;
 
 use Equivalencias\Content;
+use Equivalencias\contentVersion;
 use Equivalencias\MatterUser;
 use Equivalencias\Matter;
 use Equivalencias\Teacher;
@@ -40,6 +41,7 @@ class ContentController extends Controller
     public function store(ContentRequests $request)
     {
         $slug=str_slug($request->title.rand());
+
         $content= Content::create([
             'title'=>$request->input('title'),
             'content'=>$request->input('content'),
@@ -87,14 +89,43 @@ class ContentController extends Controller
      */
     public function update(ContentRequests $request, $slug)
     {
-       
         $content=Content::where('slug',$slug)->firstOrFail();
+        $contentV=ContentVersion::where('content_id',$content->id)->get();
+        $version=$contentV->count();
+        
+        $slug=str_slug($content->version.$content->title.rand());
+        $contentV=ContentVersion::create([
+                'slug'=>$slug,
+                'title'=>$content->title,
+                'content'=>$content->content,
+                'version'=>$content->version,
+                'introdution'=>$content->introdution,
+                'content_id'=>$content->id,
+            ]);
+        $content->version=$version+1;
         $content->title=$request->input('title');
+        $content->introdution=$request->input('introdution');
         $content->content=$request->input('content');
+        $content->status=0;
+        $content->confirmation=false;
         $content->save();
         return back()->with('success','Se la editado con exito el contenido');
     }
 
+    public function VersionBack(Request $request){
+        $contentVersion=ContentVersion::where('slug',$request->input('slug'))->first();
+        $content=Content::where('id',$contentVersion->content_id)->first();
+        $content->version=$contentVersion->version;
+        $content->title=$contentVersion->title;
+        $content->introdution=$contentVersion->introdution;
+        $content->content=$contentVersion->content;
+        $content->status=0;
+        $content->confirmation=false;
+        $content->save();
+
+
+        return back()->with('success','Se la editado con exito el contenido');
+    }
     /**
      * Remove the specified resource from storage.
      *
