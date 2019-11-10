@@ -100,28 +100,7 @@
 
 
 
-                <a href="#" class="btn btn-sm btn-info float-right" href="#" role="button" data-toggle="dropdown" aria-haspopup="truearia-expanded="false" title="Retroceder versión"><i class="fa fa-upload"></i></a>
-
-
-                <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-                    <div class=" dropdown-header noti-title">
-                        <h6 class="text-overflow m-0">Versiones!</h6>
-                    </div>
-                    <a href="{{route('profile-index')}}" class="dropdown-item">
-                        <i class="fa fa-vimeo"></i>
-                        <span>Version 1</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="{{route('profile-index')}}" class="dropdown-item">
-                        <i class="fa fa-vimeo"></i>
-                        <span>Version 2</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="{{route('profile-index')}}" class="dropdown-item">
-                        <i class="fa fa-vimeo"></i>
-                        <span>Version 3</span>
-                    </a>
-                </div>
+                
 
                
 
@@ -137,6 +116,35 @@
                 @endif
                
                </div>
+               <br>
+               <div class="d-flex justify-content-between">
+                <form method="POST" action="{{route('rollback')}}">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="content_id" value="{{$item->id}}">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-8">
+                          <select class='form-control col' value='0' name="slug" size='1'>
+                              <option class='text-center' value="0">------ Versiones ------</option>
+                              @forelse($item->contentVersion as $items)
+
+                                <option value="{{$items->slug}}">Version | {{$items->version}} - {!!$items->title!!}</option>
+                              @empty
+                                <option><label>------ No hay versiones para esta materia ------</label></option>
+                              @endforelse                   
+                          </select>
+                          
+                        </div>
+                        <div class="col-4">
+                          <button type="submit" class="btn btn-block btn-info float-right">rollback</button>
+                          
+                        </div>
+                      </div>
+                    </div>
+                  
+
+                </form>
+              </div>
             </div>
             <div class="card-body pt-0 pt-md-4">
               <div class="text-center">

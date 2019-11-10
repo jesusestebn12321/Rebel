@@ -85,7 +85,8 @@ class MatterController extends Controller
     public function showAll($slug){
         $matter=Matter::where('slug','=',$slug)->firstOrFail();
         $content=Content::where('matter_id','=',$matter->id)->get();
-        return view('matter.adminCurricular.show',compact('matter','content'));
+        $contentV=contentVersion::all();
+        return view('matter.adminCurricular.show',compact('matter','content','contentV'));
     }
 
 
