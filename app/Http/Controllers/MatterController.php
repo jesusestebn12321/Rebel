@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use Equivalencias\MatterUser;
 use Equivalencias\Content;
+use Equivalencias\contentVersion;
 use Equivalencias\Teacher;
 use Equivalencias\Matter;
 use Equivalencias\Career;
@@ -25,7 +26,8 @@ class MatterController extends Controller
         $matter=Matter::all();
         $career=Career::all();
         $teacher=Teacher::where('user_id',Auth::user()->id)->first();
-        return view('matter.index',compact('career','matter','matter_user','teacher'));
+        $contentV=contentVersion::all();
+        return view('matter.index',compact('career','matter','matter_user','teacher','contentV'));
     }
 
     /**
