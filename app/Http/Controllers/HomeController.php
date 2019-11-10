@@ -4,6 +4,8 @@ namespace Equivalencias\Http\Controllers;
 
 use Equivalencias\MatterUser;
 use Equivalencias\User;
+use Equivalencias\Content;
+use Equivalencias\contentVersion;
 use Equivalencias\Matter;
 use Equivalencias\Teacher;
 use Equivalencias\Career;
@@ -42,14 +44,43 @@ class HomeController extends Controller
         
     }
     public function chart(){
-        $teacher=User::where('rol_id','=',2)->get()->count();
-        $students=User::where('rol_id','=',3)->get()->count();
-        $area= Area::all()->count();
-        $matter= Matter::all()->count();
-        $career= Career::all()->count();
-        $label=['Estudiantes','Profesores','Areas','Carreras','Materias'];
-        $data = [$students,$teacher,$area,$career,$matter];
-        $json=array("label"=>$label,"data"=>$data);
-        return $json;      
+        
+        if(Auth::user()->hasRole(1)){
+
+            $teacher=Teacher::where('rol_id','=',2)->get()->count();
+            $coordinadores=Teacher::where('rol_id','=',5)->get()->count();
+            $students=User::where('rol_id','=',3)->get()->count();
+            $area= Area::all()->count();
+            $content= Content::all()->count();
+            $contentV= contentVersion::all()->count();
+            $matter= Matter::all()->count();
+            $career= Career::all()->count();
+
+            
+
+
+
+            $label=['Estudiantes','Profesores','Coordinadores','Areas','Carreras','Materias','Contenidos','Versiones de Contenidos'];
+
+            $data = [$students,$teacher,$coordinadores,$area,$career,$matter,$content,$contentV];
+            $json=array("label"=>$label,"data"=>$data);
+            return $json;
+
+        }
+        elseif (Auth::user()->hasRole(2)) {
+            # code...
+
+            $teacher=Teacher::where('rol_id','=',2)->get()->count();
+            $coordinadores=Teacher::where('rol_id','=',5)->get()->count();
+            $contents= MatterUser::where('user_id',Auth::user()->id)->first();
+            $content=$contents->matter->content->count();
+            
+
+            $label=['Profesores','Coordinadores','Contenidos'];
+
+            $data = [$teacher,$coordinadores,$content];
+            $json=array("label"=>$label,"data"=>$data);
+            return $json;      
+        }
     }
 }
