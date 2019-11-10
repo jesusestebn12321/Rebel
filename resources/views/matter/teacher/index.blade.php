@@ -136,17 +136,27 @@
               <div class="d-flex justify-content-between">
                 <form method="POST" action="{{route('rollback')}}">
                     {{ csrf_field() }}
-                  
-                  <select class='form-control' value='0' name="slug" size='1'>
-                      <option value="0">Versiones</option>
-                      @forelse($item->contentVersion as $items)
+                    <input type="hidden" name="content_id" value="{{$item->id}}">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-8">
+                          <select class='form-control col' value='0' name="slug" size='1'>
+                              <option class='text-center' value="0">------ Versiones ------</option>
+                              @forelse($item->contentVersion as $items)
 
-                        <option value="{{$items->slug}}">Version | {{$items->version}} - {!!$items->title!!}</option>
-                      @empty
-                        <option><label>----- No hay versiones para esta materia -----</label></option>
-                      @endforelse                   
-                    </select>
-                    <button type="submit" class="btn btn-block btn-info">rollback</button>
+                                <option value="{{$items->slug}}">Version | {{$items->version}} - {!!$items->title!!}</option>
+                              @empty
+                                <option><label>------ No hay versiones para esta materia ------</label></option>
+                              @endforelse                   
+                          </select>
+                          
+                        </div>
+                        <div class="col-4">
+                          <button type="submit" class="btn btn-block btn-info float-right">rollback</button>
+                          
+                        </div>
+                      </div>
+                    </div>
                   
 
                 </form>

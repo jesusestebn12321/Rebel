@@ -109,22 +109,59 @@ class ContentController extends Controller
         $content->status=0;
         $content->confirmation=false;
         $content->save();
-        return back()->with('success','Se la editado con exito el contenido');
+        return back()->with('success','Se a editado con exito el contenido');
     }
 
     public function VersionBack(Request $request){
         $contentVersion=ContentVersion::where('slug',$request->input('slug'))->first();
         $content=Content::where('id',$contentVersion->content_id)->first();
-        $content->version=$contentVersion->version;
-        $content->title=$contentVersion->title;
-        $content->introdution=$contentVersion->introdution;
-        $content->content=$contentVersion->content;
-        $content->status=0;
-        $content->confirmation=false;
-        $content->save();
+        $contentAll=ContentVersion::where('content_id',$contentVersion->content_id)->get();
+        $if=0;
+        $else=0;
+        foreach ($contentAll as $item) {
+            if ($item->content==$content->content && $item->title==$content->title && $item->introdution==$content->introdution) {
+                $if++;
+            } else {
+                $else++;
+                
+            }    
+        }
+
+        if ($if>=1) {
+            $content->version=$contentVersion->version;
+            $content->title=$contentVersion->title;
+            $content->introdution=$contentVersion->introdution;
+            $content->content=$contentVersion->content;
+            $content->status=0;
+            $content->confirmation=false;
+            $content->save();
+
+            return back()->with('success','Se a cambiado la version deñ contenido con exito.');
+        } else {
+            $slug=str_slug($content->version.$content->title.rand());
+            $contentV=ContentVersion::create([
+                'slug'=>$slug,
+                'title'=>$content->title,
+                'content'=>$content->content,
+                'version'=>$content->version,
+                'introdution'=>$content->introdution,
+                'content_id'=>$content->id,
+            ]);
+
+            $content->version=$contentVersion->version;
+            $content->title=$contentVersion->title;
+            $content->introdution=$contentVersion->introdution;
+            $content->content=$contentVersion->content;
+            $content->status=0;
+            $content->confirmation=false;
+            $content->save();
 
 
-        return back()->with('success','Se la editado con exito el contenido');
+            return back()->with('success','Se a cambiado la version deñ contenido con exito.');
+
+        }
+        //dd('else='.$else.'if='.$if);
+        
     }
     /**
      * Remove the specified resource from storage.
