@@ -133,6 +133,8 @@
                 @endif
               </div>
                 <br>
+                @if($teacher->hasRole(5))
+              
               <div class="d-flex justify-content-between">
                 <form method="POST" action="{{route('rollback')}}">
                     {{ csrf_field() }}
@@ -161,6 +163,8 @@
 
                 </form>
               </div>
+                @endif
+              
             </div>
             <div class="card-body pt-0 pt-md-4">
               <div class="text-center">
