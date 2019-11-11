@@ -134,7 +134,6 @@
               </div>
                 <br>
                 @if($teacher->hasRole(5))
-              
               <div class="d-flex justify-content-between">
                 <form method="POST" action="{{route('rollback')}}">
                     {{ csrf_field() }}
