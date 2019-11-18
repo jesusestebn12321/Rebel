@@ -122,7 +122,7 @@
       <div class="card card-profile shadow">
         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
           <div class="d-flex justify-content-between">
-            <a href="#!" onclick="edit({{$item->id}})"  id="btn_edit{{$item->id}}" class="btn btn-sm btn-info text-lg mr-4">Editar</a>
+            <!-- <a href="#!" onclick="edit({{$item->id}})"  id="btn_edit{{$item->id}}" class="btn btn-sm btn-info text-lg mr-4">Editar</a> boton para editar los contenidos de la materia por el admin -->
             <a href="#!" onclick="cancelar({{$item->id}})" id="btn_cancelar{{$item->id}}" class="d-none btn btn-sm btn-warning text-lg mr-4">Cancelar</a>
             <a href="{{route('Matters.delete',$item->slug)}}" class="btn btn-sm btn-danger float-right text-lg">Borrar</a>
           </div>
@@ -150,50 +150,63 @@
               <div class="card-profile-stats d-flex justify-content-center ml-3 mt-md-5">
                 <div>
                   <div class="d-flex justify-content-between">
-                    <h2>Contenidos  </h2><hr>
+                    <a href="{{route('Contents.show',$item->id)}}" class='btn btn-warning'>Ver Contenidos <span class="badge badge-default text-white">{{$item->content->count()}}</span> </a>  
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="text-center">
-            <div class="text-center">
-              <div class='row' id="divLabels{{$item->id}}">
-                @forelse($item->content as $items)
-                <hr>
-                <div class='col-4'>
-                  <div class="h5 mt-4">
-                    <h3>Titulo</h3><p id="labelTitle{{ $items->id }}">{{ $items->title }}</p>
-                  </div> 
-                  <div class="h5 mt-4">
-                    <h3>Contenido</h3><p id="labelContent{{$item->id}}"> {{ $items->content }} </p>
-                  </div>  
-                </div>
-                <hr>
-                @empty
-                  <font class='center'>No existen registros</font>
-                @endforelse
-              </div>   
+<!--        
 
-              <div class="row d-none" id="divInput{{$item->id}}">
-                <?php $i=0; ?>
-               @foreach($item->content as $items)
-                <div class='col-4'>
-                  <div class="mt-4 form-group">
-                    <h3>Titulo</h3>
-                    <input class="form-control" value="{{$items->title}}" name="title{{$items->id}}" id='inputTitle{{$items->id}}'>
-                    <input value="{{$items->id}}" name="contentId{{$i}}" type='hidden'>
-                  </div> 
-                  <div class="h5 mt-4 form-group">
-                    <h3>Contenido</h3>
-                    <textarea class="form-control" name="content{{$items->id}}" id="inputContent{{$items->id}}">{{ $items->content }}</textarea>
-                  </div>  
-                </div>
-                <?php $i++; ?>
-                
-               @endforeach   
-              </div>
+    estos son los contenidos mostrados por esta vistqa sirve para editarlos y verlos contenidos solo descomentar y descomentar el boton y funciona
+
+
+          <div class='row' id="divLabels{{$item->id}}">
+            @forelse($item->content as $items)
+            <hr>
+            <div class='col-4'>
+              <div class="h5 mt-4">
+                <h3>Titulo</h3><p id="labelTitle{{ $items->id }}">{{ $items->title }}</p>
+              </div> 
+              <div class="h5 mt-4">
+                <h3>Contenido</h3><p id="labelContent{{$item->id}}"> {{ $items->content }} </p>
+              </div>  
             </div>
+            <hr>
+            @empty
+              <font class='center'>No existen registros</font>
+            @endforelse
+          </div>   
+          <div class="row d-none" id="divInput{{$item->id}}">
+            <?php $i=0; ?>
+           @foreach($item->content as $items)
+            <div class='col-4'>
+              <div class="mt-4 form-group">
+                <h3>Titulo</h3>
+                <input class="form-control" value="{{$items->title}}" name="title{{$items->id}}" id='inputTitle{{$items->id}}'>
+                <input value="{{$items->id}}" name="contentId{{$i}}" type='hidden'>
+              </div> 
+              <div class="h5 mt-4 form-group">
+                <h3>Contenido</h3>
+                <textarea class="form-control" name="content{{$items->id}}" id="inputContent{{$items->id}}">{{ $items->content }}</textarea>
+              </div>  
+            </div>
+            <?php $i++; ?>
+            
+           @endforeach   
+          </div>
+        </div>
+        <div class="text-center">
+
+-->
+
+
+
+
+
+
+
             <div class="text-center">
               <div>
                 <hr class="my-4">
