@@ -1,0 +1,47 @@
+
+.input input[value]:not([value=""]) > label{
+  background:#00FFEE;
+  color:#00FFEE;
+}
+
+.radios { 
+  position:relative;
+  display: block;
+  background:none;
+}
+.radios input { display: none; }
+.radios input:checked + label { 
+  background:#6c3aeb;
+  border: solid 1px rgba(0,0,0,.15);
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.6);
+}
+
+.radios input:checked + label.students{
+    background: linear-gradient(87deg, #5e72e4 0, #825ee4 100%) !important;
+  background:#4a5ef8;
+}
+
+.radios input:checked + label.teacher{
+    background: linear-gradient(87deg, #8965e0 0, #bc65e0 100%) !important;
+    
+}
+
+.radios label { 
+  font-family: helvetica;
+  cursor: pointer; 
+  display: inline-block; 
+  border: solid 1px #cbc8d4;
+  margin-right: 2px; 
+  width: 120px; 
+  height: 40px; 
+  text-align: center; 
+  line-height: 40px;
+  border-radius: 3px;
+  background:#e9e7ef;
+}
+.radios label:last-child { margin-right: 0; }
+.radios label:hover {     
+  background: #d6d1e5; 
+  border: solid 1px rgba(0,0,0,.15); 
+}

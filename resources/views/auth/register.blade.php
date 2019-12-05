@@ -42,31 +42,30 @@
                         {{ csrf_field() }}
                 
                 <div class="form-group">
-                  
-                  <div class="form-check">
-                    <div class="row">
-                        
-                      <div class="col">
-                        <input class="form-check-input" name="rol" value="option1" type="radio">
-                        <label class="form-check-label">Estudiante</label>
+                    <div class="container-fluid">
+                  <div class="row">
+                      <div class="col-6">
+                        <div class="input radios">
+                          <input type="radio" name="rol" id="students" value="students"/>
+                          <label for="students" class="students">Estudiante</label>
+                        </div>
                       </div>
-                      
-                      <div class="col">
-                        <input class="form-check-input" name="rol" value="option1" type="radio">
-                        <label class="form-check-label">Profesor</label>
+                      <div class="col-6">
+                        <div class="input radios">
+                          <input type="radio" name="rol" id="teacher" value="teacher"/>
+                          <label for="teacher" class="teacher">Profesor</label> 
+                        </div>
                       </div>
-                    
                     </div>
                   </div>
-                  
                 </div>
-                
+                <hr>
                 <div class="form-group{{ $errors->has('dni') ? ' has-error' : '' }}">
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-credit-card"></i></span>
                     </div>
-                    <input id="dni" type="number" placeholder="Nombre" class="form-control" name="dni" value="{{ old('dni') }}" required autofocus>
+                    <input id="dni" type="number" placeholder="Cedula" class="form-control" name="dni" value="{{ old('dni') }}" required autofocus>
                     @if ($errors->has('dni'))
                         <span class="help-block">
                             <strong>{{ $errors->first('dni') }}</strong>

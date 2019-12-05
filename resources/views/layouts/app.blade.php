@@ -14,6 +14,7 @@
   <link href="{{asset('template/assets/vendor/fonts/css/font-awesome.min.css')}}" rel="stylesheet">
   <!-- Argon CSS -->
   <link type="text/css" href="{{asset('template/assets/css/argon.css')}}" rel="stylesheet">
+  <link type="text/css" href="{{asset('plugins/css/main.css')}}" rel="stylesheet">
 </head>
 
 <body class="bg-default">
