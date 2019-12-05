@@ -73,15 +73,16 @@ class RegisterController extends Controller
      * @return \Equivalencias\User
      */
     protected function create(array $data){
+        //dd($data);
         $slug=str_slug($data['name'].'_'.$data['lastname'].'-'.$data['dni']);
         $data['confirmation_code']= ''.$slug.'-token='.rand().str_random(29).rand().'-Reble';
         
         $e=$data['email'];
         $dominio=explode('@', $e, 2);
-        if($dominio[1]=='unerg.edu.ve'){
-            $data['rol']=1;
-        }else{
+        if($dominio[1]=='unerg.edu.ve' || $data['rol']=="teacher"){
             $data['rol']=2;
+        }else{
+            $data['rol']=3;
         }
         $user= User::create([
             'name'      => $data['name'],
