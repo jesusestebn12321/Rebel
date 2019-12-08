@@ -17,7 +17,6 @@
 	                  <tr>
 	                    <th scope="col">ID</th>
 	                    <th scope="col">Codigo</th>
-	                    <th scope="col">Verción</th>
 	                    <th scope="col">Unidad Curricular</th>
                       <th scope="col">Nª contenido</th>
 	                    <th scope="col">Nª en espera o sin verificar</th>
@@ -36,10 +35,6 @@
 	                      	<td>
 	                       		<input type="hidden" id='slug{{$item->id}}' value='{{$item->slug}}'>
 	                        	{{ $item->slug }}
-	                      	</td>
-	                      	<td>
-	                        	<input type="hidden" id='version{{$item->id}}' value='{{$item->version}}'>
-	                        	{{ $item->version }}
 	                      	</td>
 	                      	<td id='td_matter{{$item->id}}'>
 	                       		<label id='labelEditmatter{{$item->id}}'>{{ $item->matter}}</label>
