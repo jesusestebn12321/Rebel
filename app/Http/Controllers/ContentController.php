@@ -22,6 +22,12 @@ class ContentController extends Controller
     {
         //
     }
+    public function error($id)
+    {
+
+        $content=Content::where('status',1)->where('matter_id',$id)->get();
+        return view('content.error',compact('content'));
+    }
 
     /**
      * Show the form for creating a new resource.
