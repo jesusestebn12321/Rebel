@@ -20,7 +20,7 @@ Route::get('/noPermission', function () {
 });
 Route::get('/ReporteArea', ['as'=>'report.area','uses'=>'DownloadController@adminArea']);
 
-Route::get('/ErrorContent', ['as'=>'content.error','uses'=>'ContentController@error']);
+Route::get('/ErrorContent/{id}', ['as'=>'content.error','uses'=>'ContentController@error']);
 
 Route::get('/', function () {
 	return view('auth.login');

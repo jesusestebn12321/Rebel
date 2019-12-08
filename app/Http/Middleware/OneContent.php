@@ -22,7 +22,7 @@ class OneContent
         $content=Content::where('status',1)->where('matter_id',$matter->id)->get();
         //dd($content);
         if($content->count()>1){
-            return redirect()->route('content.error');
+            return redirect()->route('content.error',$matter->id);
         }else{
 
             return $response;
