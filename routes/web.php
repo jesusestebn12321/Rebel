@@ -20,6 +20,8 @@ Route::get('/noPermission', function () {
 });
 Route::get('/ReporteArea', ['as'=>'report.area','uses'=>'DownloadController@adminArea']);
 
+Route::get('/ErrorContent', ['as'=>'content.error','uses'=>'ContentController@error']);
+
 Route::get('/', function () {
 	return view('auth.login');
 });
@@ -139,11 +141,18 @@ Route::group(['middleware'=>['verifiUser']],function(){
 
 		Route::post('/Matter/RollBackContent',['as'=>'rollback','uses'=>'ContentController@VersionBack']);
 		
-		Route::get('/Matter/Show/{slug}',['as'=>'Matters.show','uses'=>'MatterController@showAll']);
+
+			Route::get('/Matter/Show/{slug}',['middleware'=>'OneContent','as'=>'Matters.show','uses'=>'MatterController@showAll']);
+		
+		
 		Route::get('/Verify/Content/{slug}',['as'=>'verify.content','uses'=>'adminCurricular@verify']);
+		
+		Route::get('/ContentVigente/{id}',['as'=>'content.vigente','uses'=>'adminCurricular@one_content']);
+		
 		Route::get('/Remove/Content/{slug}',['as'=>'remove.content','uses'=>'adminCurricular@remove']);
 		Route::get('/Matters',['as'=>'Matters.index','uses'=>'MatterController@index']);
 
 	});
+
 
 });
