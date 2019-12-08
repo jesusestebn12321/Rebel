@@ -44,42 +44,7 @@
 @section('content')
 <div class="container-fluid mt--8">
       <div class="row">
-        <div class="col-12 order-xl-2 mb-5 mb-xl-0">
-          <div class="card card-profile shadow">
-            <div class="card-body pt-0 pt-md-4">
-              <div class="text-center">
-                <h3>
-                  Unidad Curricular | {{ $matter->matter }}
-                </h3>
-                <div>
-                  <i class="ni education_hat mr-2"></i>
-                  <h5>Versión | {{ $matter->version }}</h5>
-                </div>
-                <div class="h5 mt-4">
-                  <i class="ni business_briefcase-24 mr-2"></i>Carrera | {{$matter->career->career}} 
-                </div>
-                <div class="card-footer">
-                 <div class="text-center">
-                    <div class="row">
-                      <div class="col-6">
-                        <h4>Creada</h4>
-                        <div class="h5 mt-4">
-                          <i class="ni business_briefcase-24 mr-2"></i>{{$matter->created_at}} 
-                        </div>
-                      </div>
-                      <div class="col-6">                        
-                        <h4>Editada</h4>
-                        <div class="h5 mt-4">
-                          <i class="ni business_briefcase-24 mr-2"></i>{{$matter->updated_at}} 
-                        </div>
-                      </div>
-                    </div>
-                 </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        
 
         @forelse($matter->content as $item)
         <div class="col-xl-6 order-xl-2 mb-5 mb-xl-0 pt-8 pt-md-4 pb-0 pb-md-4">
