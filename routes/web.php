@@ -18,16 +18,26 @@ Route::get('/noPermission', function () {
 	$matter_user=Auth::user();
 	return view('permission.noPermission', compact('matter_user'));
 });
+
+
 Route::get('/ReporteArea', ['as'=>'report.area','uses'=>'DownloadController@adminArea']);
+
+Route::get('/ReporteQR', ['as'=>'report.qr','uses'=>'DownloadController@QRContents']);
 
 Route::get('/ErrorContent/{id}', ['as'=>'content.error','uses'=>'ContentController@error']);
 
 Route::get('/', function () {
 	return view('auth.login');
 });
+
+
+
 Route::get('/Verifi',['as'=>'verifi','uses'=>'VerifiController@index']); // rutas de verificacion de email
 Route::get('/AdminVerify',['as'=>'admin-verify','uses'=>'VerifiController@AdminVerifyIndex']); // rutas de verificacion por admin index
 Route::get('/register/verify/{code}','VerifiController@verify'); // rutas de verificacion de email
+
+
+
 Auth::routes();
 
 Route::group(['middleware'=>['verifiUser']],function(){

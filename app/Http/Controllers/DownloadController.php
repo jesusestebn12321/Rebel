@@ -2,11 +2,14 @@
 
 namespace Equivalencias\Http\Controllers;
 
+use SimpleSoftwareIO\QrCode\BaconQrCodeGenerator;
 use Illuminate\Http\Request;
 use Equivalencias\Career;
 use Equivalencias\Area;
 use PDF;
 use Carbon\Carbon;
+use Auth;
+use QrCode;
 class DownloadController extends Controller
 {
     //descargar pdf Equivalencias para los estudiantes 
@@ -27,6 +30,16 @@ class DownloadController extends Controller
         $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
         $pdf=PDF::loadView('pdf.areaAll',compact('area','today'));
         $pdf->download('ReportesDeLasAreas.pdf');
+        return $pdf->stream();
+    }
+    public function QRContents(){
+
+     
+        
+        $area=Area::all();
+        $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
+        $pdf=PDF::loadView('QR.pdfContentQR',compact('area','today'));
+        $pdf->download('Reporte_De_Los_Contenidos_'.Auth::user()->dni.'.pdf');
         return $pdf->stream();
     }
     public function adminCareers(){
