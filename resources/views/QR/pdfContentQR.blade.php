@@ -3,7 +3,7 @@
 	<div style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 20px; padding-left: 10px">
 	<div style="float: right; position: relative !important">
 		 <img style="padding: 0px" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(80)->generate('127.0.0.1:otilio')) !!} ">
-	</div>
+	</div> 
 	<div style="width:60px;height:60px;display:inline-block;">
 		<img style="width:10%;height:10%" src="{{asset('template/assets/img/brand/blue.png')}}" >
 	</div>
