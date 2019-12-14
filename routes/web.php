@@ -18,7 +18,7 @@ Route::get('/noPermission', function () {
 	$matter_user=Auth::user();
 	return view('permission.noPermission', compact('matter_user'));
 });
-Route::get('/ErrorContent/{id}', ['middleware'=>'auth','as'=>'content.error','uses'=>'ContentController@error']);
+Route::get('/ErrorContent/{id}', ['middleware'=>'authen','as'=>'content.error','uses'=>'ContentController@error']);
 
 
 
