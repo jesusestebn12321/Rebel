@@ -9,6 +9,7 @@ use Equivalencias\Area;
 use PDF;
 use Carbon\Carbon;
 use Auth;
+use url;
 use QrCode;
 class DownloadController extends Controller
 {
@@ -38,9 +39,12 @@ class DownloadController extends Controller
         
         $area=Area::all();
         $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
-        $pdf=PDF::loadView('QR.pdfContentQR',compact('area','today'));
-        $pdf->download('Reporte_De_Los_Contenidos_'.Auth::user()->dni.'.pdf');
+        $urlConfir=url('').'/CodigoQEverificarPDF/'. Auth::user()->id;
+        return View('QR.pdfContentQR',compact('area','today','urlConfir'));
+        //$pdf->download('Reporte_De_Los_Contenidos_'.Auth::user()->dni.'.pdf');
         return $pdf->stream();
+
+
     }
     public function adminCareers(){
         $career=Career::all();

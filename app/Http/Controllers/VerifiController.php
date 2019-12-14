@@ -52,4 +52,8 @@ class VerifiController extends Controller
 
         return back()->with('success',$message);
     }
+    public function verificacionPDF($id){
+        $matter_user=MatterUser::where('user_id',$id)->first();
+        return view('QR.verificacion',compact('matter_user'));
+    }
 }
