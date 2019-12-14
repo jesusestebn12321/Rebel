@@ -18,13 +18,17 @@ Route::get('/noPermission', function () {
 	$matter_user=Auth::user();
 	return view('permission.noPermission', compact('matter_user'));
 });
+Route::get('/ErrorContent/{id}', ['middleware'=>'auth','as'=>'content.error','uses'=>'ContentController@error']);
+
+
 
 
 Route::get('/ReporteArea', ['as'=>'report.area','uses'=>'DownloadController@adminArea']);
 
 Route::get('/ReporteQR', ['as'=>'report.qr','uses'=>'DownloadController@QRContents']);
 
-Route::get('/ErrorContent/{id}', ['as'=>'content.error','uses'=>'ContentController@error']);
+
+
 
 Route::get('/', function () {
 	return view('auth.login');
