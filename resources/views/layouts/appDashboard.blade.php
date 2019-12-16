@@ -38,6 +38,7 @@
       <!-- Page content -->
       <div class="container-fluid mt--7">
         @yield('content')
+
         <!-- Footer -->
         @include('layouts.footer.footerDashboard')
       </div>
@@ -54,9 +55,19 @@
     <script src="{{asset('template/assets/vendor/clipboard/dist/clipboard.min.js')}}"></script>
     <script src="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
 
+    <script src="{{asset('plugins/input-mask/jquery.inputmask.js')}}"></script>
+  <script src="{{asset('plugins/input-mask/jquery.inputmask.date.extensions.js')}}"></script>
+  <script src="{{asset('plugins/input-mask/jquery.inputmask.extensions.js')}}"></script>
+
+
     <script src="{{asset('template/assets/js/argon.js')}}"></script>
     <script>
       var APP_URL={!!json_encode(url('/'))!!};
+      $(function(){
+        $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+        //Money Euro
+        $('[data-mask]').inputmask()
+        });
     </script>
     
     @yield('js')
