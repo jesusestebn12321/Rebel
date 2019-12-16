@@ -1,3 +1,5 @@
+@include('layouts.modales.PDF.suvery')
+
 <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
       <!-- Toggler -->
@@ -55,6 +57,12 @@
             @include('layouts.sidebar.contentAdminCurricular')
           @endif
            <li class="nav-item">
+            <a class="nav-link font-italic"  data-target='#downloadContent' data-toggle='modal' href="#">
+              <i class="fa fa-arrow-down text-red"></i> Descarga Contenidos
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a class="nav-link font-italic" href="{{ route('profile-index') }}">
               <i class="ni ni-single-02 text-yellow"></i> User profile
             </a>
