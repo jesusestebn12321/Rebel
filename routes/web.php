@@ -25,8 +25,8 @@ Route::get('/ErrorContent/{id}', ['middleware'=>'authen','as'=>'content.error','
 
 Route::get('/ReporteArea', ['as'=>'report.area','uses'=>'DownloadController@adminArea']);
 
-Route::get('/ReporteQR', ['as'=>'report.qr','uses'=>'DownloadController@QRContents']);
-Route::get('/CodigoQEverificarPDF/{id}', ['uses'=>'VerifiController@verificacionPDF']);
+Route::post('/ReporteQR', ['as'=>'report.qr','uses'=>'DownloadController@QRContents']);
+Route::get('/CodigoQEverificarPDF/{slug}', ['uses'=>'VerifiController@verificacionPDF']);
 
 
 
