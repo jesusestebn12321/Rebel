@@ -9,13 +9,16 @@
 	</div>
 	<div style="display:inline-block; margin-left: 10px;padding-bottom:10px;padding-top:10px;margin-top:-10px;top:-10px;position:relative">
 		<div>
-			<b>universidad nacional experimental romulo gallego</b>
+			<b>{{$university->university}}</b>
 		</div>
 		<div>
-			<b>ENTIDAD FEDERAL:</b> sadasdasd
+			<b>{{Auth::user()->matter_user[0]->matter->career->area->area}}</b>
 		</div>
 		<div>
-			<b>PERÍODO PRESUPUESTARIO:</b>sadasdasd
+			<b>Periodo estudiantil:</b>{{$download->start_student}}-{{$download->last_student}}
+		</div>
+		<div>
+			<b>Status del estudiante</b>{{$download->start_student}}-{{$download->last_student}}
 		</div>
 	</div>
 	<center>
@@ -30,29 +33,40 @@
 		<tr>
 			
 			<th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">ID</font></b></th>
-	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Universidad</font></b></th>
-	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Areas</font></b></th>
-	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Coordenadas</font></b></th>
+	        
+	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Materia</font></b></th>
+	        
+	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Contenido</font></b></th>
+	        
 	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Created_at</font></b></th>
+	        
 	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Updated_at</font></b></th>
 		</tr>
 	</thead>
 	<tbody>
-	@foreach($area as $item)
+	@foreach($matter_user as $item)
 	<tr>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->university->university }}</font></b>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->id }}</font></b>
 		</td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->area }}</font></b>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->matter->matter }}</font></b>
 		</td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->address->addres }}</font></b>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">
+		@forelse($item->matter->content as $content)
+			
+			{{ $content }}
+		@empty
+			no hay un contenido verificado para esta materia 
+		@endforelse
+
+		</font></b>
 		</td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->created_at }}</font></b>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item }}</font></b>
 		</td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->updated_at }}</font></b>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item }}</font></b>
 		</td>
 	</tr>
 	@endforeach
 	</tbody>
-	<tfoot><tr><td></td></tr></tfoot>
+	<!--tfoot><tr><td></td></tr></tfoot -->
 </table>
 @endsection
