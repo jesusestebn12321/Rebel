@@ -62,6 +62,7 @@ class RegisterController extends Controller
             'lastname' => 'required|string|max:255',
             'email'    => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'rol' => 'required|in:teacher,students',
             'dni'      => 'required|integer|min:1|unique:users,dni'
         ]);
     }
@@ -75,15 +76,26 @@ class RegisterController extends Controller
     protected function create(array $data){
         //dd($data);
         $slug=str_slug($data['name'].'_'.$data['lastname'].'-'.$data['dni']);
-        $data['confirmation_code']= ''.$slug.'-token='.rand().str_random(29).rand().'-Reble';
+        $data['confirmation_code']= ''.$slug.'-token='.rand().'-'.str_random(30).rand().'_'.str_random(30).'-Rebel';
         
         $e=$data['email'];
         $dominio=explode('@', $e, 2);
-        if($dominio[1]=='unerg.edu.ve' || $data['rol']=="teacher"){
+        //dd($dominio);
+        if($dominio[1]=='unerg.edu.ve' && $data['rol']=="teacher"){
             $data['rol']=2;
+            //dd($data);
         }else{
             $data['rol']=3;
         }
+        //
+        $mail=Mail::send('emails.confimation_code', $data, function($message) use ($data) {
+            $message->from($data['email'],'Rebel');
+            $message->to($data['email'], $data['name'])->subject('Por favor confirma tu correo, para poder iniciar seccion en el sistema Rebel');
+        });
+        if ($mail->fails()) {
+            return redirect()->back()->withInput()->withErrors($mail->errors());
+        }
+
         $user= User::create([
             'name'      => $data['name'],
             'dni'       => $data['dni'],
@@ -91,15 +103,10 @@ class RegisterController extends Controller
             'email'     => $data['email'],
             'slug'      => $slug,
             'password'  => bcrypt($data['password']),
-            'rol_id'       => $data['rol'],
+            'rol_id'    => $data['rol'],
             'confirmation_code' => $data['confirmation_code']
         ]);
 
-            Mail::send('emails.confimation_code', $data, function($message) use ($data) {
-            $message->from($data['email'],'curso');
-            $message->to($data['email'], $data['name'])->subject('Por favor confirma tu correo');
-            });
-            
         return $user;
     }
 }
