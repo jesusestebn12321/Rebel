@@ -15,7 +15,7 @@ class MatterTableSeeder extends Seeder
         //
         Matter::create([
             'slug'=> str_slug('Medicina-Sanjuan_1'),
-            'matter'=>'Mamalo',
+            'matter'=>'Matematica',
             'version'=>'v-1',
             'career_id'=>'1',
         ]);

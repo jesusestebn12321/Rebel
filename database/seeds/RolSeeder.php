@@ -13,16 +13,16 @@ class RolSeeder extends Seeder
     public function run()
     {
         Rol::create([
-            'rol'=>'Admin',
+            'rol'=>'Administrador',
         ]);
         Rol::create([
-            'rol'=>'Teacher',
+            'rol'=>'Profesor',
         ]);
         Rol::create([
             'rol'=>'Estudiante',
         ]);
         Rol::create([
-            'rol'=>'AdminCurricular',
+            'rol'=>'Administrador Curricular',
         ]);
         Rol::create([
             'rol'=>'Coordinador',

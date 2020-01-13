@@ -14,10 +14,10 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         User::create([
-            'slug'=> str_slug('Jesus-Villalta_25237118'),
+            'slug'=> str_slug('Jesus-Villalta_21437318'),
             'name'=>'Jesus',
             'lastname'=>'Villalta',
-            'dni'=>25237118,
+            'dni'=>21437318,
             'email'=>'admin@gmail.com',
             'password' => bcrypt('123456'),
             'rol_id' => 1,

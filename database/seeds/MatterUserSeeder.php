@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Equivalencias\MatterUser;
 
 class MatterUserSeeder extends Seeder
 {

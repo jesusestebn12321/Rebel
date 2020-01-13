@@ -13,7 +13,7 @@ class AddressTableSeeder extends Seeder
     {
         Address::create([
             'slug'=> str_slug('San_juan_1'),
-            'addres'=>'IngSistema',
+            'addres'=>'San Juan de los morros',
         ]);
     }
 }
