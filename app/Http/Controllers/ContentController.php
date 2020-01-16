@@ -81,9 +81,16 @@ class ContentController extends Controller
      * @param  \Equivalencias\Content  $content
      * @return \Illuminate\Http\Response
      */
-    public function edit(Content $content)
+    public function edit($slug)
     {
         //
+        $matter_U=MatterUser::where('user_id',Auth::user()->id)->firstOrFail();
+        $matter_user=Teacher::where('user_id',Auth::user()->id)->firstOrFail();
+        $teacher=Teacher::where('user_id',Auth::user()->id)->firstOrFail();
+        $content=Content::where('matter_id','=',$matter_U->matter_id)->where('slug',$slug)->first();
+
+
+        return view('content.edit',compact('content','teacher','matter_user'));
     }
 
     /**
@@ -115,7 +122,7 @@ class ContentController extends Controller
         $content->status=0;
         $content->confirmation=false;
         $content->save();
-        return back()->with('success','Se a editado con exito el contenido');
+        return redirect()->route('Matter.index')->with('success','Se a editado con exito el contenido');
     }
 
     public function VersionBack(Request $request){
