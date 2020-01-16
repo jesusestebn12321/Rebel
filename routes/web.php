@@ -18,6 +18,7 @@ Route::get('/noPermission', function () {
 	$matter_user=Auth::user();
 	return view('permission.noPermission', compact('matter_user'));
 });
+Route::get('/Vitacora', ['middleware'=>['authen','rol'],'rol'=>['1'],'as'=>'report.area','uses'=>'VitacoraController@index']);
 Route::get('/ReporteArea', ['as'=>'report.area','uses'=>'DownloadController@adminArea']);
 
 Route::get('/ErrorContent/{id}', ['as'=>'content.error','uses'=>'ContentController@error']);
