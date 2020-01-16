@@ -4,11 +4,13 @@ namespace Equivalencias\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Equivalencias\Teacher;
+use Equivalencias\MatterUser;
 use Equivalencias\Matter;
 use Equivalencias\Career;
 use Equivalencias\Area;
-use PDF;
 use Carbon\Carbon;
+use PDF;
+use Auth;
 class DownloadController extends Controller
 {
     //descargar pdf Equivalencias para los estudiantes 
@@ -53,7 +55,13 @@ class DownloadController extends Controller
     }
     //descargar pdf materias y contenido de la materias del profesor correspondiente
     public function teacherMatter($slug){
-
+        $teacher=Teacher::where('user_id',Auth::user()->id)->first();
+        $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
+        $url=url('/VerificarDescargaProfesor/'.Auth::user()->id);
+        $matter_user=MatterUser::where('user_id',Auth::user()->id)->first();
+        $pdf=PDF::loadView('pdf.matterTeacher',compact('matter_user','content','teacher','today','url'));
+        $pdf->download('ReportesDeLasAreas.pdf');
+        return $pdf->stream();
     }
     //descargar pdf de los profesores a quien coordina
     public function CoordinadorTeachers($slug){
