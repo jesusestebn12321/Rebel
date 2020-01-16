@@ -117,7 +117,11 @@ Route::group(['middleware'=>['verifiUser']],function(){
 			Route::get('/Matters/upDate/{slug}',['as'=>'Matters.up_date','uses'=>'MatterController@update']);
 			
 			Route::get('/Contents/{slug}', ['as'=>'Contents.show','uses'=>'ContentController@show']);
+			
+			Route::get('/Contents/Edit/{slug}', ['as'=>'Contents.edit','uses'=>'ContentController@edit']);
+			
 			Route::get('/Contents/upDate/{slug}',['as'=>'Contents.up_date','uses'=>'ContentController@update']);
+			
 			Route::get('/Contents/Delete/{slug}',['as'=>'Contents.delete', 'uses'=>'ContentController@destroy'] );
 			
 			Route::apiResource('/MatterUser','MatterUserController',['only'=>['store']]);
