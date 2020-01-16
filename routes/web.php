@@ -42,6 +42,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 //Admin
 	Route::group(['middleware'=>['authen','rol'],'rol_id'=>['1']],function(){
 
+		Route::get('/Vitacora', ['uses'=>'\Rap2hpoutre\LaravelLogViewer\LogViewerController@index']);
 		//-------------------------------------------API------------------------------------------------------------------
 		Route::apiResource('/University','UniversityController',['parameters'=>['University'=>'slug']]);
 		Route::apiResource('/Areas','AreaController',['parameters'=>['Areas'=>'slug']]);

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a3155ceb7f34ab30fd7814cf34cdc6b7",
+    "content-hash": "86ce885924ee49a2e0793c3ca242db18",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1077,6 +1077,7 @@
                 "cron",
                 "schedule"
             ],
+            "abandoned": "dragonmantank/cron-expression",
             "time": "2019-12-28T04:23:06+00:00"
         },
         {
@@ -1618,6 +1619,65 @@
                 "uuid"
             ],
             "time": "2019-12-17T08:18:51+00:00"
+        },
+        {
+            "name": "rap2hpoutre/laravel-log-viewer",
+            "version": "v1.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rap2hpoutre/laravel-log-viewer.git",
+                "reference": "031ed45cd09814f5ab3c03a235b4511994911683"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rap2hpoutre/laravel-log-viewer/zipball/031ed45cd09814f5ab3c03a235b4511994911683",
+                "reference": "031ed45cd09814f5ab3c03a235b4511994911683",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.2.*|5.*|^6.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "3.7.*",
+                "phpunit/phpunit": "^7"
+            },
+            "type": "laravel-package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rap2hpoutre\\LaravelLogViewer\\LaravelLogViewerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/controllers"
+                ],
+                "psr-0": {
+                    "Rap2hpoutre\\LaravelLogViewer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "rap2hpoutre",
+                    "email": "raphaelht@gmail.com"
+                }
+            ],
+            "description": "A Laravel log reader",
+            "keywords": [
+                "laravel",
+                "log",
+                "log-reader",
+                "log-viewer",
+                "logging",
+                "lumen"
+            ],
+            "time": "2019-12-03T22:00:29+00:00"
         },
         {
             "name": "sabberworm/php-css-parser",
@@ -4776,16 +4836,16 @@
         },
         {
             "name": "symfony/thanks",
-            "version": "v1.2.4",
+            "version": "v1.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/thanks.git",
-                "reference": "6021b6862da1e91d3673aab0f2045a91d0f5ac79"
+                "reference": "a8a5fbe3907a52cb7e2bb704d3b0231782b4193c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/thanks/zipball/6021b6862da1e91d3673aab0f2045a91d0f5ac79",
-                "reference": "6021b6862da1e91d3673aab0f2045a91d0f5ac79",
+                "url": "https://api.github.com/repos/symfony/thanks/zipball/a8a5fbe3907a52cb7e2bb704d3b0231782b4193c",
+                "reference": "a8a5fbe3907a52cb7e2bb704d3b0231782b4193c",
                 "shasum": ""
             },
             "require": {
@@ -4815,7 +4875,7 @@
                 }
             ],
             "description": "Encourages sending ⭐ and 💵 to fellow PHP package maintainers (not limited to Symfony components)!",
-            "time": "2019-11-29T16:13:13+00:00"
+            "time": "2020-01-15T17:39:29+00:00"
         },
         {
             "name": "theseer/tokenizer",
