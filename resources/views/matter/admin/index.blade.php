@@ -40,6 +40,24 @@
         </div>
       </div>
     </div>
+    <div class="col-xl-4 col-lg-6 pt-4">
+      <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <span class="h2 font-weight-bold mb-0">Reporte de las Unidades Curriculares</span>
+            </div>
+            <div class="col-auto">
+              <a href="{{route('report.matter')}}" class='text-white'>
+                <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                  <i class="fa fa-download"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 @endsection
