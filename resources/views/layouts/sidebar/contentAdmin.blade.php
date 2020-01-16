@@ -37,7 +37,7 @@
     <i class="ni ni-book-bookmark text-indigo"></i> Unidades Curriculares
   </a>
 </li>     
-<li class="nav-item">
+<!--<li class="nav-item">
   <a class="nav-link font-italic" href="#!">
     <i class="ni ni-briefcase-24 text-red"></i> Direcciones
   </a>
@@ -46,4 +46,4 @@
   <a class="nav-link font-italic" href="#!">
     <i class="ni ni-badge text-success"></i> Departamentos
   </a>
-</li>          
+</li>-->          
