@@ -3,6 +3,8 @@
 namespace Equivalencias\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Equivalencias\Teacher;
+use Equivalencias\Matter;
 use Equivalencias\Career;
 use Equivalencias\Area;
 use PDF;
@@ -15,24 +17,39 @@ class DownloadController extends Controller
     }
     //descargar pdf de los profesores
     public function adminTeacher(){
-
+        $teacher=Teacher::all();
+        $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
+        $url=url('/Teacher');
+        $pdf=PDF::loadView('pdf.teacherAll',compact('teacher','today','url'));
+        $pdf->download('ReportesDeLasAreas.pdf');
+        return $pdf->stream();
     }
     //descargar pdf de las materias
-    public function adminMatters(){
-
+    public function adminMatter(){
+        $matter=Matter::all();
+        $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
+        $url=url('/Matter');
+        $pdf=PDF::loadView('pdf.teacherAll',compact('matter','today','url'));
+        $pdf->download('ReportesDeLasAreas.pdf');
+        return $pdf->stream();
     }
     //descargar pdf careras 
     public function adminArea(){
         $area=Area::all();
         $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
-        $pdf=PDF::loadView('pdf.areaAll',compact('area','today'));
+        $url=url('/Areas');
+        //return View('QR.pdfContentQR',compact('area','today','url'));
+        $pdf=PDF::loadView('pdf.areaAll',compact('area','today','url'));
         $pdf->download('ReportesDeLasAreas.pdf');
         return $pdf->stream();
     }
-    public function adminCareers(){
+    public function adminCareer(){
         $career=Career::all();
-        $pdf=PDF::loadView('pdf.layouts.app');
-        return $pdf->download('tuto.pdf');
+        $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
+        $url=url('/Careers');
+        $pdf=PDF::loadView('pdf.careerAll',compact('career','today','url'));
+        $pdf->download('ReportesDeLasAreas.pdf');
+        return $pdf->stream();
     }
     //descargar pdf materias y contenido de la materias del profesor correspondiente
     public function teacherMatter($slug){

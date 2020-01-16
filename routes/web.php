@@ -18,7 +18,7 @@ Route::get('/noPermission', function () {
 	$matter_user=Auth::user();
 	return view('permission.noPermission', compact('matter_user'));
 });
-Route::get('/ReporteArea', ['as'=>'report.area','uses'=>'DownloadController@adminArea']);
+
 
 Route::get('/ErrorContent/{id}', ['as'=>'content.error','uses'=>'ContentController@error']);
 
@@ -43,6 +43,20 @@ Route::group(['middleware'=>['verifiUser']],function(){
 	Route::group(['middleware'=>['authen','rol'],'rol_id'=>['1']],function(){
 
 		Route::get('/telescope', ['uses'=>'\Laravel\Telescope\Http\Controllers\HomeController@index ']);
+
+		//--------------------------------REPORTES------------------------------------
+		
+		Route::get('/ReporteArea', ['as'=>'report.area','uses'=>'DownloadController@adminArea']);
+
+		Route::get('/ReporteCareer', ['as'=>'report.career','uses'=>'DownloadController@adminCareer']);
+
+		Route::get('/ReporteTeacher', ['as'=>'report.teacher','uses'=>'DownloadController@adminTeacher']);
+
+		Route::get('/ReporteMatter', ['as'=>'report.matter','uses'=>'DownloadController@adminMatter']);
+
+		//--------------------------------------------------------------------
+
+
 		//-------------------------------------------API------------------------------------------------------------------
 		Route::apiResource('/University','UniversityController',['parameters'=>['University'=>'slug']]);
 		Route::apiResource('/Areas','AreaController',['parameters'=>['Areas'=>'slug']]);
