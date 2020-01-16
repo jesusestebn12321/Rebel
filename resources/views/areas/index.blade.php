@@ -173,10 +173,10 @@
             </td>
          </tr>
          @endforelse
-       </tbody>
-     </table>
-   </div>
- </div>
-</div>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection
