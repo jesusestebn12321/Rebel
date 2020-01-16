@@ -95,7 +95,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 		Route::get('/Matters/delete/{slug}',['as'=>'Matters.delete','uses'=>'MatterController@destroy']);
 		Route::get('/University/Delete/{slug}',['as'=>'Careers.delete', 'uses'=>'CareerController@delete'] );
 
-//------------------------------------------endDESTROY----------------------------------------------------------
+			//------------------------------------------endDESTROY----------------------------------------------------------
 
 		Route::get('/Teacher',['as'=>'Teacher.index','uses'=>'TeacherController@index']);
 		Route::get('/AdminVerify/{slug}',['as'=>'admin.verify','uses'=>'VerifiController@AdminVerify']);
@@ -124,7 +124,11 @@ Route::group(['middleware'=>['verifiUser']],function(){
 				Route::post('/Matter/RollBackContent',['as'=>'rollback','uses'=>'ContentController@VersionBack']);
 
 			});
-						
+			
+			Route::get('/DownloadTeacherMatter/{slug}',['as'=>'reportTeacher.matter','uses'=>'DownloadController@teacherMatter']);
+			
+
+					
 			Route::get('/Matter',['as'=>'Matter.index','uses'=>'MatterController@index']);
 			Route::get('/Matter/Show/{slug}',['as'=>'Matter.show','uses'=>'MatterController@show']);
 			Route::get('/Matter/Edit/{slug}',['as'=>'Matter.edit','uses'=>'MatterController@edit']);
