@@ -44,8 +44,6 @@
 @section('content')
 <div class="container-fluid mt--8">
       <div class="row">
-        
-
         @forelse($matter->content as $item)
         <div class="col-xl-6 order-xl-2 mb-5 mb-xl-0 pt-8 pt-md-4 pb-0 pb-md-4">
           <div class="card card-profile shadow">
@@ -59,15 +57,6 @@
                 @endif
                 
                 <a href="#" class="btn btn-sm btn-default float-right" title="Ver Versione Antiguas"><i class="fa fa-eye"></i></a>
-
-
-
-
-
-
-                
-
-               
 
                 @if($item->status==false)
                 <span class="float-right badge-pill badge badge-danger">Verción: {{$item->version}} - {{$item->status==true?'actualizada':'Desactualizada'}}</span>
