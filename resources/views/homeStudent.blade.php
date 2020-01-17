@@ -1,6 +1,7 @@
 @extends('layouts.appDashboard')
 @section('title','| Dashboard')
 @section('nameTitleTemplate','Dashboard')
+@include('layouts.modales.PDF.suveryDownload')
 @section('content')
 <div class="row mt-5">
 	<div class="col">

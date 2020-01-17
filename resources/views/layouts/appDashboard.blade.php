@@ -53,6 +53,7 @@
     <!-- Argon JS -->
     <script src="{{asset('template/assets/vendor/clipboard/dist/clipboard.min.js')}}"></script>
     <script src="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
+    <script src="{{asset('plugins/input-mask/jquery.inputmask.js')}}"></script>
 
     <script src="{{asset('template/assets/js/argon.js')}}"></script>
     <script>

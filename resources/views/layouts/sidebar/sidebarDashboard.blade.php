@@ -56,7 +56,7 @@
           @endif
            <li class="nav-item">
             <a class="nav-link font-italic" href="{{ route('profile-index') }}">
-              <i class="ni ni-single-02 text-yellow"></i> User profile
+              <i class="ni ni-single-02 text-yellow"></i> Perfil
             </a>
           </li>
           <li class="nav-item"> 
