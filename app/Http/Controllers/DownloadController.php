@@ -1,10 +1,11 @@
 <?php
 
 namespace Equivalencias\Http\Controllers;
-
 use Illuminate\Http\Request;
-use Equivalencias\Teacher;
+
 use Equivalencias\MatterUser;
+use Equivalencias\Content;
+use Equivalencias\Teacher;
 use Equivalencias\Matter;
 use Equivalencias\Career;
 use Equivalencias\Area;
@@ -14,8 +15,34 @@ use Auth;
 class DownloadController extends Controller
 {
     //descargar pdf Equivalencias para los estudiantes 
-    public function equivalenciaStudents($slug){
+    public function equivalenciaStudents($slug, Request $request){
+        
+        $matter_user= MatterUser::where('user_id',Auth::user()->id)->get();
+        
+        $d=0;
+        $m=0;
+        $y=0;
+        $contents=[];
+        $data_start=$request->start_student;
+        $data_last=$request->last_student;
+        foreach ($matter_user as $item) {
+            $start_matter=$item->created_at->format('yy-m-d');
+            $content=Content::where('created_at','>=',$start_matter)
+                ->where('matter_id',$item->id)
+                ->get();
+            foreach ($content as $items) {
+                if ($items->created_at >= $start_matter && $items->updated_at <= $data_last) {
+                   
+                        $contents=[$content];
+                }
+            }
+        }
 
+        $url=url('/VerificarEquivalencia/{'.Auth::user()->id.'}/');
+        return View('pdf.equivalencia',compact('contents','today','url'));
+        $pdf=PDF::loadView('pdf.teacherAll',compact('matter','today','url'));
+        $pdf->download('ReportesDeLasAreas.pdf');
+        return $pdf->stream();
     }
     //descargar pdf de los profesores
     public function adminTeacher(){
