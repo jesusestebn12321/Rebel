@@ -19,6 +19,7 @@ Route::get('/noPermission', function () {
 	return view('permission.noPermission', compact('matter_user'));
 });
 
+Route::get('/DownloadEquivalencias/{slug}',['as'=>'equivalencia','uses'=>'DownloadController@equivalenciaStudents']);
 
 Route::get('/ErrorContent/{id}', ['as'=>'content.error','uses'=>'ContentController@error']);
 
