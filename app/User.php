@@ -42,6 +42,9 @@ class User extends Authenticatable
     public function matter_user(){
         return $this->hasMany(MatterUser::class,'user_id');
     }
+    public function studen_matter(){
+        return $this->hasMany(StudentMatter::class,'user_id');
+    }
     public function teacher(){
         return $this->hasMany(Teacher::class,'user_id');
     }
