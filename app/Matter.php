@@ -14,6 +14,9 @@ class Matter extends Model{
     	return $this->hasMany(Content::class,'matter_id');
     } 
     public function matter_user(){
-		  return $this->hasMany(MatterUser::class,'matter_id');
-	  }
+          return $this->hasMany(MatterUser::class,'matter_id');
+    } 
+    public function student_matter(){
+		  return $this->hasMany(StudentMatter::class,'matter_id');
+	}
 }
