@@ -3,7 +3,10 @@
 namespace Equivalencias\Http\Controllers;
 use Illuminate\Http\Request;
 
+use Equivalencias\contentVersion;
+use Equivalencias\StudentMatter;
 use Equivalencias\MatterUser;
+use Equivalencias\Download;
 use Equivalencias\Content;
 use Equivalencias\Teacher;
 use Equivalencias\Matter;
@@ -12,36 +15,45 @@ use Equivalencias\Area;
 use Carbon\Carbon;
 use PDF;
 use Auth;
+use json;
+use Illuminate\Support\Collection;
 class DownloadController extends Controller
 {
     //descargar pdf Equivalencias para los estudiantes 
     public function equivalenciaStudents($slug, Request $request){
-        
-        $matter_user= MatterUser::where('user_id',Auth::user()->id)->get();
-        
-        $d=0;
-        $m=0;
-        $y=0;
-        $contents=[];
-        $data_start=$request->start_student;
-        $data_last=$request->last_student;
+
+        $matter_user= StudentMatter::where('user_id',Auth::user()->id)->get();
+        $i=0;
         foreach ($matter_user as $item) {
-            $start_matter=$item->created_at->format('yy-m-d');
-            $content=Content::where('created_at','>=',$start_matter)
+            $version=$item->version;
+            $content=Content::where('version',$item->version)
                 ->where('matter_id',$item->id)
-                ->get();
-            foreach ($content as $items) {
-                if ($items->created_at >= $start_matter && $items->updated_at <= $data_last) {
-                   
-                        $contents=[$content];
+                ->first();
+            $i++;
+            if (!$content) {
+                foreach ($item->matter->content as $items) {
+                    $content_version=contentVersion::where('content_id',$items->id)->get();
+                    foreach ($content_version as $item_version) {
+                        if ($item_version->version == $version) {
+                            $contents[$i]=collect($item_version);
+                        }
+                    }
                 }
+            }if($content){
+                $contents[$i]=collect($content);
             }
         }
-
+        $slug=str_slug('downloand-'.Auth::user()->id.'-'.now().'-equivalencia');
+        Download::Create([
+            'slug'=>$slug,
+            'user_id'=>Auth::user()->id,
+            'start_student'=>now(),
+            'last_student'=>now(),
+            'status'=>0,
+            ]);
         $url=url('/VerificarEquivalencia/{'.Auth::user()->id.'}/');
-        return View('pdf.equivalencia',compact('contents','today','url'));
-        $pdf=PDF::loadView('pdf.teacherAll',compact('matter','today','url'));
-        $pdf->download('ReportesDeLasAreas.pdf');
+        $pdf=PDF::loadView('pdf.equivalencia',compact('contents','today','url'));
+        $pdf->download('Equivalencia'.Auth::user()->dni.now().'.pdf');
         return $pdf->stream();
     }
     //descargar pdf de los profesores
@@ -50,7 +62,7 @@ class DownloadController extends Controller
         $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
         $url=url('/Teacher');
         $pdf=PDF::loadView('pdf.teacherAll',compact('teacher','today','url'));
-        $pdf->download('ReportesDeLasAreas.pdf');
+        $pdf->download('ReportesDeLosTeacher'.now().'.pdf');
         return $pdf->stream();
     }
     //descargar pdf de las materias
@@ -59,7 +71,7 @@ class DownloadController extends Controller
         $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
         $url=url('/Matter');
         $pdf=PDF::loadView('pdf.teacherAll',compact('matter','today','url'));
-        $pdf->download('ReportesDeLasAreas.pdf');
+        $pdf->download('ReportesDeLasMaterias'.now().'.pdf');
         return $pdf->stream();
     }
     //descargar pdf careras 
@@ -77,7 +89,7 @@ class DownloadController extends Controller
         $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
         $url=url('/Careers');
         $pdf=PDF::loadView('pdf.careerAll',compact('career','today','url'));
-        $pdf->download('ReportesDeLasAreas.pdf');
+        $pdf->download('ReportesDeLasCarreras'.now().'.pdf');
         return $pdf->stream();
     }
     //descargar pdf materias y contenido de la materias del profesor correspondiente
@@ -87,7 +99,7 @@ class DownloadController extends Controller
         $url=url('/VerificarDescargaProfesor/'.Auth::user()->id);
         $matter_user=MatterUser::where('user_id',Auth::user()->id)->first();
         $pdf=PDF::loadView('pdf.matterTeacher',compact('matter_user','content','teacher','today','url'));
-        $pdf->download('ReportesDeLasAreas.pdf');
+        $pdf->download('ReportesProfesoresMaterias'.now().'.pdf');
         return $pdf->stream();
     }
     //descargar pdf de los profesores a quien coordina
