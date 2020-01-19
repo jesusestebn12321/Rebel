@@ -54,7 +54,9 @@ class ContentController extends Controller
             'version'=>$request->input('version'),
             'introdution'=>$request->input('introdution'),
             'slug'=>$slug,
-            'matter_id'=>$request->input('matter_id')
+            'matter_id'=>$request->input('matter_id'),
+            'status'=>1,
+            'confirmation'=>0
             ]);
         return back()->with('success','Se a creado con exito el contenido');
 
@@ -70,7 +72,7 @@ class ContentController extends Controller
         $matter_U=MatterUser::where('user_id',Auth::user()->id)->firstOrFail();
         $matter_user=Teacher::where('user_id',Auth::user()->id)->firstOrFail();
         $teacher=Teacher::where('user_id',Auth::user()->id)->firstOrFail();
-        $content=Content::where('matter_id','=',$matter_U->matter_id)->get();
+        $content=Content::where('slug',$id)->first();
         $matter= Matter::where('id',$matter_U->matter_id)->firstOrFail();
         return view('content.show',compact('content','teacher','matter_user','matter'));
     }
@@ -123,6 +125,22 @@ class ContentController extends Controller
         $content->confirmation=false;
         $content->save();
         return redirect()->route('Matter.index')->with('success','Se a editado con exito el contenido');
+    }
+
+    public function update_status($slug){
+        $content=Content::where('slug',$slug)->first();
+        $content_verify=Content::where('matter_id',$content->matters->id)->get();
+
+        foreach ($content_verify as $item) {
+            # code...
+            $item->status=0;
+            $item->save();
+        }
+        //dd($content);
+        $content->status=1;
+        $content->save();
+
+        return back()->with('success','Contenido Actualizado.');
     }
 
     public function VersionBack(Request $request){

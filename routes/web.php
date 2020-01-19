@@ -118,7 +118,9 @@ Route::group(['middleware'=>['verifiUser']],function(){
 				Route::apiResource('/Contents','ContentController',['parameters'=>['Contents'=>'slug']]);
 				Route::apiResource('/MatterUser','MatterUserController',['parameters'=>['MatterUser'=>'slug'],'only'=>['index','update']]);
 				Route::get('/Matter/Asignar',['as'=>'Matter.asignar.index','uses'=>'MatterController@asignarIndex']);
+				
 				Route::get('/seacherTeacher/{dni}','MatterUserController@search');
+
 				Route::get('/Matter/Asignar/{id}',['as'=>'Matter.asignar.teacher','uses'=>'MatterUserController@asignar']);
 				Route::get('/Matter/Asignar/Delete/{id}',['as'=>'Matter.asignar.delete','uses'=>'MatterUserController@destroy']);
 
@@ -143,6 +145,8 @@ Route::group(['middleware'=>['verifiUser']],function(){
 			Route::get('/Contents/upDate/{slug}',['as'=>'Contents.up_date','uses'=>'ContentController@update']);
 			
 			Route::get('/Contents/Delete/{slug}',['as'=>'Contents.delete', 'uses'=>'ContentController@destroy'] );
+
+			Route::get('/Contents/UpdateStatus/{slug}',['as'=>'Contents.update_status', 'uses'=>'ContentController@update_status'] );
 			
 			Route::apiResource('/MatterUser','MatterUserController',['only'=>['store']]);
 			

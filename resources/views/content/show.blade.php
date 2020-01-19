@@ -26,70 +26,43 @@
 
 </script>
 @endsection
-@if($teacher->hasRole(5) && Auth::user()->hasRole(2))
-@section('headerContent')
-<div class="container">
-  <div class="row">
-    <div class="col-xl-4 col-lg-6 pt-4">
-      <div class="card card-stats mb-4 mb-xl-0">
-        <div class="card-body">
-          <div class="row">
-            <div class="col">
-              <span class="h2 font-weight-bold mb-0">Crear un contenido</span>
-            </div>
-            <div class="col-auto">
-              <a href="#" title data-original-title="Agregar contenido" data-target='#createContent' data-toggle='modal' class='text-white'>
-                <div class="icon icon-shape bg-success text-white rounded-circle shadow">
-                  <i class="fa fa-plus"></i>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-@include('layouts.modales.content.modalCreateContents')
-@endsection
-@endif
 @section('content')
 <div class="container-fluid mt--8">
       <div class="row">
-      	@forelse($content as $item)
+      	@if($content)
         <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0 pt-8 pt-md-4 pb-0 pb-md-4">
           <div class="card card-profile shadow">
             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
               <div class="d-flex justify-content-between">
 
                 @if($teacher->hasRole(5) && Auth::user()->hasRole(2))
-                <a href="{{route('Contents.delete',$item->slug)}}" class="btn btn-sm btn-danger mr-4">Borrar</a>
-                <a href="#" id="edit1_{{$item->id}}" onclick="edit1({{$item->id}})" class="btn btn-sm btn-default float-right">Editar</a>
+                <a href="{{route('Contents.delete',$content->slug)}}" class="btn btn-sm btn-danger mr-4">Borrar</a>
                 @endif
-                <form action="{{route('Contents.up_date',$item->slug)}}">
-                <button type="submit" onclick="edit2({{$item->id}})" id="edit2_{{$item->id}}" class="d-none btn btn-sm btn-info float-right">Editar</button>
+
+                <form action="{{route('Contents.up_date',$content->slug)}}">
+                <button type="submit" onclick="edit2({{$content->id}})" id="edit2_{{$content->id}}" class="d-none btn btn-sm btn-info float-right">Editar</button>
                 <input type="hidden" id="id_matter" value="{{$matter->id}}" >
               </div>
             </div>
             <div class="card-body pt-0 pt-md-4">
               <div class="text-center">
                 <h3>
-                  {!!$item->title!!}
-                  <input type="text" id="title{{$item->id}}" class="d-none form-control" name="title">
+                  {!!$content->title!!}
+                  <input type="text" id="title{{$content->id}}" class="d-none form-control" name="title">
                 </h3>
                 <hr class="my-4">
                 <label>Introduccion</label>
-                <p>{!!  $item->introdution!!}</p>
-                <textarea name="introdution" id="introdution{{$item->id}}" class="d-none form-control" ></textarea><p>
+                <p>{!!  $content->introdution!!}</p>
+                <textarea name="introdution" id="introdution{{$content->id}}" class="d-none form-control" ></textarea><p>
                 <label>Contenido</label>
-                {!!  $item->content!!}</p>
-                <textarea name="content" id="content{{$item->id}}" class="d-none form-control" ></textarea>
+                {!!  $content->content!!}</p>
+                <textarea name="content" id="content{{$content->id}}" class="d-none form-control" ></textarea>
                 </form>
               </div>
             </div>
           </div>
         </div>
-    @empty
+    @else
       <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0 pt-8 pt-md-4 pb-0 pb-md-4">
           <div class="card bg-info card-profile shadow">
             <div class="card-body pt-0 pt-md-4">
@@ -101,7 +74,7 @@
             </div>
           </div>
         </div>
-		@endforelse
+		@endif
       </div>
     </div>
 @endsection

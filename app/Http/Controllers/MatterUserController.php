@@ -68,8 +68,8 @@ class MatterUserController extends Controller
     }
     public function search($dni){
         
-        $matter_teacher=User::where('dni',$dni)->firstOrFail();
-        if ($matter_teacher->rol==1) {
+        $matter_teacher=User::where('dni',$dni)->first();
+        if ($matter_teacher->rol_id==2) {
             return $matter_teacher;
         }else{
             $error='Este Usuario no es un profesor';

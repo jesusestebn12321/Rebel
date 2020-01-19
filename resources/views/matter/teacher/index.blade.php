@@ -93,12 +93,13 @@
 @section('content')
 <div class="container-fluid mt--8">
       <div class="row">
-        <div class="col-12 order-xl-2 mb-5 mb-xl-0">
+        <div class="col-12 order-xl-2 mb-5 mb-xl-0 mt-4">
           <div class="card card-profile shadow">
             <div class="card-body pt-0 pt-md-4">
               <div class="text-center">
                 <h3>
                   Unidad Curricular | {{ $matter_user->matter->matter }}
+                  <input value='{{$matter_user->matter->id}}' type="hidden" id="id_matter" name="">
                 </h3>
                 <div>
                   <i class="ni education_hat mr-2"></i>
@@ -163,10 +164,9 @@
                       <td><label>{!!$item->title!!}</label></td>
                       <td>{!!$item->version!!}</td>
                       <td>
-                        @if($item->status==false)
-                        {{$item->status==true?'actualizada':'Desactualizada'}}
+                        @if($item->status==false)Desactualizada
                         @else
-                        {{$item->status==true?'Actualizada':'Desactualizada'}}
+                        Actualizada
                         @endif
                       </td>
                       <td>
@@ -185,6 +185,9 @@
                         <a href="{{route('Contents.edit',$item->slug)}}" id="edit1_{{$item->id}}" class="btn btn-sm btn-info">Editar</a>
 
                         <a href="{{route('Contents.show', $item->slug)}}" class="btn btn-sm btn-warning">Ver</a>
+                        @if($item->status==false)
+                          <a href="{{route('Contents.update_status', $item->slug)}}" class="btn btn-sm btn-success">Actualizar</a>
+                        @endif
                         @endif   
                       </td>
                     </tr>
