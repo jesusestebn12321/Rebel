@@ -1,6 +1,6 @@
 @extends('layouts.appDashboard')
 @section('title','| Unidad Curricular '. $matter->matter)
-@section('nameTitleTemplate','Carrera '. $matter->career->career .' | Unidad Curricular '. $matter->matter)
+@section('nameTitleTemplate','Unidad Curricular '. $matter->matter)
 @section('js')
 <script type="text/javascript">
  function edit1(arg){
@@ -42,87 +42,76 @@
 </script>
 @endsection
 @section('content')
-<div class="container-fluid mt--8">
-      <div class="row">
-        @if($content)
-        <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0 pt-8 pt-md-4 pb-0 pb-md-4">
-          <div class="card card-profile shadow">
-            <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-              <div class="d-flex justify-content-between">
-               
-                @if(Auth::user()->hasRole(4))
-                @if($content->confirmation==true)
-                  <a href="{{route('remove.content',$content->slug)}}" class="btn btn-sm btn-danger float-right" title="Remover verificación"><i class="fa fa-remove"></i></a>
-                @elseif($content->confirmation==false)
-                  <a href="{{route('verify.content',$content->slug)}}" class="btn btn-sm btn-success float-right" title="Verificar"><i class="fa fa-check"></i></a>
-                @endif
-                <a href="#" class="btn btn-sm btn-default float-right" title="Ver Versione Antiguas"><i class="fa fa-eye"></i></a>
-
-                @endif
-                @if($content->status==false)
-                <span class="float-right badge-pill badge badge-danger">Verción: {{$content->version}} - {{$content->status==true?'actualizada':'Desactualizada'}}</span>
-                @else
-                <span class="float-right badge-pill badge badge-success">Verción: {{$content->version}} - {{$content->status==true?'Actualizada':'Desactualizada'}}</span>
-                @endif
-                @if($content->confirmation==false)
-                <span class="float-right badge-pill badge badge-danger">{{$content->confirmation==true?'confimada':'espera por la confirmación....'}}</span>
-                @else
-                <span class="float-right badge-pill badge badge-success">{{$content->confirmation==true?'confimada':'espera por la confirmación....'}}</span>
-               
-               </div>
-               <br>
-               
-                @endif
-            </div>
-            <div class="card-body pt-0 pt-md-4">
-              <div class="text-center">
-                <h3 class="text-center">
-                  <blockquote>{!!$content->title!!}</blockquote>
-                </h3>
-                <hr class="my-4">
-                <blockquote>{!! $content->content !!}</blockquote>
-                <hr class="my-4">
-                <blockquote>{!! $content->introdution !!}</blockquote>
-              </div>
-            </div>
-
-            <div class="card-footer">
-              <div class="text-center">
-                  <div class="row">
-                    <div class="col-6">
-                      <h4>Creada</h4>
-                      <div class="h5 mt-4">
-                        <i class="ni business_briefcase-24 mr-2"></i>{{$content->created_at}} 
-                      </div>
-                    </div>
-                    <div class="col-6">                        
-                      <h4>Editada</h4>
-                      <div class="h5 mt-4">
-                        <i class="ni business_briefcase-24 mr-2"></i>{{$content->updated_at}} 
-                      </div>
-                    </div>
-                  </div>
-              </div>
-            </div>
-
-
-
-
+<div class="row mt-5">
+  <div class="col">
+    <div class="card bg-default shadow">
+      <div class="card-header bg-transparent border-0">
+        <div class="row align-items-center">
+          <div class="col-8">
+            <h3 class="text-white mb-0">Contenidos</h3>
           </div>
         </div>
-    @else
-      <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0 pt-8 pt-md-4 pb-0 pb-md-4">
-          <div class="card bg-info card-profile shadow">
-            <div class="card-body pt-0 pt-md-4">
-              <div class="text-center">
-                <h3 class="text-white">
-                  No hay contenido para esta unidad curricular
-                </h3>
-              </div>
-            </div>
-          </div>
-        </div>
-    @endif
+      </div>
+      <div class="table-responsive">
+        <table class="table align-items-center table-dark table-flush">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Codigo</th>
+              <th scope="col">Contenido</th>
+              <th scope="col">Introduccion</th>
+              <th scope="col">Versión</th>
+              <th scope="col">Estatus</th>
+              <th scope="col">Validado</th>
+              <th scope="col">Created_at</th>
+              <th scope="col">Updated_at</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+          @forelse($matter->content as $item)
+            <tr>
+              <td>{!!$item->id!!}</td>
+              <td>{!!$item->slug!!}</td>
+              <td>{!!$item->content!!}</td>
+              <td>{!!$item->introdution!!}</td>
+              <td>{!!$item->version!!}</td>
+              <td>
+                @if($item->status==false)
+                  <span>{{$item->status==true?'actualizada':'Desactualizada'}}</span>
+                  @else
+                  <span>{{$item->status==true?'Actualizada':'Desactualizada'}}</span>
+                @endif
+              </td>
+              <td>
+                @if($item->confirmation==false)
+                  <span>{{$item->confirmation==true?'confimada':'espera por la confirmación....'}}</span>
+                  @else
+                  <span>{{$item->confirmation==true?'confimada':'espera por la confirmación....'}}</span>
+                @endif
+              </td>
+              <td>
+                {{$item->created_at}}
+              </td>
+              <td>
+                {{$item->updated_at}}
+              </td>
+              <td>
+                @if($item->confirmation==true)
+                  <a href="{{route('remove.content',$item->slug)}}" class="btn btn-sm btn-danger">Desautorizar</a>
+                @elseif($item->confirmation==false)
+                  <a href="{{route('verify.content',$item->slug)}}" id="edit1_{{$item->id}}" class="btn btn-sm btn-info">Verificar</a>
+                @endif
+                <a href="{{route('Contents.show', $item->slug)}}" class="btn btn-sm btn-warning">Ver</a>
+              </td>
+            </tr>
+          @empty
+          <tr><td>No Hay ningun contenido para esta unidad curricular</td></tr>
+          @endforelse
+          </tbody>
+        </table>
       </div>
     </div>
+  </div>
+</div>
 @endsection
