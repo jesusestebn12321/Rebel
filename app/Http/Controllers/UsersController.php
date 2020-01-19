@@ -3,11 +3,13 @@
 namespace Equivalencias\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Equivalencias\User;
-use Equivalencias\Career;
 use Equivalencias\MatterUser;
+use Equivalencias\University;
 use Equivalencias\Teacher;
 use Equivalencias\Matter;
+use Equivalencias\Career;
+use Equivalencias\User;
+use Equivalencias\Area;
 use Auth;
 class UsersController extends Controller
 {
@@ -22,8 +24,7 @@ class UsersController extends Controller
     } 
     
     public function profile(){
-        $matter_user=Teacher::where('user_id','=',Auth::user()->id)->first();
-        return view('profile.index',compact('matter_user'));
+        return view('profile.index', compact('university','teacher','matter_user'));
     }
 
     public function showTeacher($slug){
