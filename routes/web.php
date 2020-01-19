@@ -126,11 +126,8 @@ Route::group(['middleware'=>['verifiUser']],function(){
 
 				Route::post('/Matter/RollBackContent',['as'=>'rollback','uses'=>'ContentController@VersionBack']);
 
+				Route::get('/DownloadTeacherMatter/{slug}',['as'=>'reportTeacher.matter','uses'=>'DownloadController@teacherMatter']);
 			});
-			
-			Route::get('/DownloadTeacherMatter/{slug}',['as'=>'reportTeacher.matter','uses'=>'DownloadController@teacherMatter']);
-			
-
 					
 			Route::get('/Matter',['as'=>'Matter.index','uses'=>'MatterController@index']);
 			Route::get('/Matter/Show/{slug}',['as'=>'Matter.show','uses'=>'MatterController@show']);
