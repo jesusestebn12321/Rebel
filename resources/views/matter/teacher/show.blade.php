@@ -190,7 +190,7 @@
                   </div>
                 </div>
 
-           <!--     -------------------------------------------------------------------- -->
+           
             <div class="card-body pt-0 pt-md-4">
               <div class="text-center">
                 <div class="container-fluid">

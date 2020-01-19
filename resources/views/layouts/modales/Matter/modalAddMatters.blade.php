@@ -42,21 +42,6 @@
                             </span>
                         @endif
                     </div>
-
-                    <div class="form-group">
-                        <div class="row">
-                        
-                            <div class='col-9'>
-                                <input id="numberContent" type="number" placeholder="Nombre de la Universidad" class="form-control" name="numberContent" autofocus required > 
-                            </div>
-                            <div class="col-3">
-                                <a href="#" class='btn btn-block btn-info' onclick="contentNumber()">click</a>
-                            </div>
-                        </div>
-                        
-                    </div>
-
-                    <div id="contentMatters"></div>
                 </div>
                 
                 <div class="modal-footer"> 

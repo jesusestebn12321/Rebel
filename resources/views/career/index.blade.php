@@ -4,12 +4,12 @@
 @section('js')
 <script>
   function show(id){
-    $('#labelArea').html($('#td_Area'+id).html());
-    $('#labelAddress').html($('#td_Address'+id).html());
-    $('#labelCareer').html($('#td_Career'+id).html());
-    $('#labelModalidad').html($('#td_Modalidad'+id).html());
-    $('#labelCreate').html($('#td_Create'+id).html());
-    $('#labelEdit').html($('#td_Edit'+id).html());
+    $('#labelArea').html($('#Area'+id).html());
+    $('#labelAddress').html($('#Address'+id).html());
+    $('#labelCareer').html($('#Career'+id).html());
+    $('#labelModalidad').html($('#Modalidad'+id).html());
+    $('#labelCreate').html($('#Create'+id).html());
+    $('#labelEdit').html($('#Edit'+id).html());
   }
   function edit(id){
     $('#ModalId').val($('#id'+id).val());
@@ -98,83 +98,102 @@
 @section('content')
 @include('layouts.modales.Career.modalCreateCareer')
 @include('layouts.modales.Career.modalEditCareer')
-<div class="row">
-  @forelse($career as $item)
-  <input type="hidden" value="{{$item->slug}}" id="id{{$item->id}}">
-  <div class="col-xl-6 order-xl-2 mb-5 mb-xl-0 pt-4">
-    <div class="card card-profile shadow">
-      <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-        <div class="d-flex justify-content-between">
-          <a href="#" onclick="edit({{$item->id}})" data-target='#editCareer' data-toggle='modal'  id="btn-1_{{$item->id}}" class="btn btn-sm btn-info text-lg mr-4">Editar</a>
-          <a href="{{route('Careers.delete',$item->slug)}}" class="btn btn-sm btn-danger float-right text-lg">Borrar</a>
+@include('layouts.modales.Career.modalShowCareer')
+<div class="row mt-5">
+  <div class="col">
+    <div class="card bg-default shadow">
+      <div class="card-header bg-transparent border-0">
+        <div class="row align-items-center">
+          <div class="col-8">
+            <h3 class="text-white mb-0">Carreras</h3>
+          </div>
         </div>
-      </div>
-      <div class="card-body pt-0">
-        <div class="row">
 
-          <div class="col">
-            <div class="card-profile-stats d-flex justify-content-center ml-3 mt-md-5">
-              <div>
-                <div class="d-flex justify-content-between">
-                  <a href="{{ route('MattersCareer.show',$item->slug) }}" class="btn btn-sm btn-warning mr-0 text-lg">{{$item->matter->count()}} Und. Curriculares </a>
-                </div>
-              </div>
-              <div>
-                <div class="d-flex justify-content-between">
-                  <a href="{{ route('MatterUserCareer.show',$item->slug) }}" class="btn btn-sm btn-success mr-0 text-lg">Profesores</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="text-center">
-          <h3><span class="fa fa-tv"></span> 
-            Carrera - <span>{{ $item->career }}</span> 
-            <input type="hidden" id="EditCareer{{$item->id}}" value="{{ $item->career }}">
-          </h3>
-          <div class="text-center">
-            <div class="h5 mt-4">
-              <i class="ni ni-building mr-2"></i>Area - <span id="labelEditArea{{$item->id}}">{{ $item->area->area }}</span>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-items-center table-dark table-flush">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Universidad</th>
+              <th scope="col">Areas</th>
+              <th scope="col">Coordenadas</th>
+              <th scope="col">Carrera</th>
+              <th scope="col">Modalidad</th>
+              <th scope="col">Unidades Curriculares</th>
+              <th scope="col">Profesores</th>
+              <th scope="col">Created_at</th>
+              <th scope="col">Updated_at</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+          @forelse($career as $item)
+
+          <tr id='{{$item->id}}'>
+            <td>
+              <input type="hidden" id='id{{$item->id}}' value='{{$item->slug}}'>
+              {{ $item->id }}
+            </td>
+            <td id="University{{$item->id}}">
+              <label >{{ $item->area->university->university }}</label>
+              <input class='d-none' id="EditUniversity{{$item->id}}" value="{{$item->area->university->id}}">
+            </td>
+            <td id="Area{{$item->id}}">
+              <label >{{ $item->area->area }}</label>
               <input type="hidden" id='EditAreaI{{$item->id}}' value="{{$item->id}}">
-            </div>
-            <div class="h5 mt-4">
-              <i class="ni ni-map-big mr-2"></i>Localización - <span id="labelEditModalidad{{$item->id}}">{{ $item->area->address->addres }}</span>
-              <input type="hidden" id='EditAddress{{$item->id}}' value="{{$item->area->address->addres}}">
-            </div>
-            <div class="h5 mt-4">
-              <i class="ni ni-ruler-pencil mr-2"></i>Modalidad - <span>{{ $item->modalidad }}</span> 
+            </td>
+
+            <td id="Address{{$item->id}}">
+              <label >{{ $item->area->address->addres }}</label>
+              <input class='d-none' id="EditAddress{{$item->id}}" value="{{$item->address_id}}">
+            </td>
+            <td id="Career{{$item->id}}">
+              <label >{{ $item->career }}</label>
+              <input type="hidden" id="EditCareer{{$item->id}}" value="{{ $item->career }}">
+            </td>
+            <td id="Modalidad{{$item->id}}">
+              <label >{{ $item->modalidad }}</label>
               <input type="hidden" id='EditModalidad{{$item->id}}' value="{{$item->modalidad}}">
+            </td>
+            <td>
+              <a href="{{ route('MattersCareer.show',$item->slug) }}" class="btn btn-sm btn-info">{{ $item->matter->count() }}</a>
+              <input type="hidden" id='EditAddress{{$item->id}}' value="{{$item->area->address->addres}}">
+            </td>
+            <td>
+              <a href="{{ route('MatterUserCareer.show',$item->slug) }}"  class=" btn btn-info btn-sm">ver</a>
+              <input class='d-none' id="EditAddress{{$item->id}}" value="{{$item->address_id}}">
+            </td>  
+            <td id='Create{{$item->id}}'><label >{{ $item->created_at }}</label></td>
+            <td id='Edit{{$item->id}}'><label >{{ $item->updated_at }}</label></td>
+            <td>
+              <a class="btn-primary btn" title='Ver Area' onclick="show({{$item->id}})" data-target='#showCareer' data-toggle='modal' href="#!"><i class="fa fa-eye"></i></a>
+
+              <a class="btn-danger btn" title="Borrar Area" href="{{route('Careers.delete',$item->slug)}}"><i class="fa fa-remove"></i></a>
+
+              <a class="btn-info btn" title="Editar Carrera" id="btn-1_{{$item->id}}" onclick="edit({{$item->id}})" data-target='#editCareer' data-toggle='modal'  id="btn-1_{{$item->id}}" href="#!"><i class="fa fa-edit"></i></a>
+
+           </td>
+          </tr>
+        @empty
+        <tr>
+          <td>
+            <div class="alert alert-success col-xl-9 order-xl-2 mb-5 mb-xl-0 pt-4">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    No hay Carreras 
             </div>
-          </div>
-          <div class="text-center">
-            <div>
-              <hr class="my-4">
-              <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                <div>
-                  <span class="heading">Registro Creado</span>
-                  <span class="description" id='labelCreate'>{{ $item->created_at }}</span>
-                </div>
-                <div>
-                  <span class="heading">Registro Editado</span>
-                  <span class="description" id='labelEdit'>{{ $item->updated_at }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+              
+          </td>
+
+        </tr>
+
+
+        @endforelse
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-  @empty
-
-    <div class="alert alert-success col-xl-9 order-xl-2 mb-5 mb-xl-0 pt-4">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-            no hy swss
-    </div>
-
-
-
-  @endforelse
 </div>
 
 @endsection

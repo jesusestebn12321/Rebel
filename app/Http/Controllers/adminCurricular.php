@@ -20,6 +20,7 @@ class adminCurricular extends Controller
             $item->status=0;
             $item->save();
         }
+        //dd($content);
         $content->confirmation=true;
         $content->status=1;
         $content->save();
@@ -42,8 +43,9 @@ class adminCurricular extends Controller
 
     public function remove($slug){
         $content=Content::where('slug',$slug)->first();
-        $content->confirmation=false;
+        $content->confirmation=0;
         $content->status=0;
+        //dd($content);
         $content->save();
         return back()->with('success','Contenido Verificado.');
     }

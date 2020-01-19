@@ -26,7 +26,7 @@
 
 </script>
 @endsection
-@if($teacher->hasRole(5))
+@if($teacher->hasRole(5) && Auth::user()->hasRole(2))
 @section('headerContent')
 <div class="container">
   <div class="row">
@@ -57,12 +57,12 @@
 <div class="container-fluid mt--8">
       <div class="row">
       	@forelse($content as $item)
-        <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0 pt-8 pt-md-4 pb-0 pb-md-4">
+        <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0 pt-8 pt-md-4 pb-0 pb-md-4">
           <div class="card card-profile shadow">
             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
               <div class="d-flex justify-content-between">
 
-                @if($teacher->hasRole(5))
+                @if($teacher->hasRole(5) && Auth::user()->hasRole(2))
                 <a href="{{route('Contents.delete',$item->slug)}}" class="btn btn-sm btn-danger mr-4">Borrar</a>
                 <a href="#" id="edit1_{{$item->id}}" onclick="edit1({{$item->id}})" class="btn btn-sm btn-default float-right">Editar</a>
                 @endif

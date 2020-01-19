@@ -55,7 +55,7 @@ class MatterController extends Controller
             'matter'=>$request->matter,
             'career_id'=>$request->career_id,
         ]);
-        for ($i=0; $i < $request->numberContent; $i++) { 
+        /*for ($i=0; $i < $request->numberContent; $i++) { 
             $slug=str_slug($request->slug.rand());
             $content=new Content();
             $content->slug=$slug;
@@ -64,7 +64,7 @@ class MatterController extends Controller
             $content->matter_id=$matter->id;
             $content->save();
             
-        }
+        }*/
         return back()->with('success','Se a creado con exito la materia');
     }
 
@@ -77,14 +77,15 @@ class MatterController extends Controller
     
     public function show($slug){
         $matter=Matter::where('slug','=',$slug)->firstOrFail();
-        $content=Content::where('matter_id','=',$matter->id)->get();
+        $content=Content::where('matter_id',$matter->id)->first();
         $matter_user=Teacher::where('user_id',Auth::user()->id)->firstOrFail();
         $teachers=MatterUser::where('matter_id',$matter->id)->get();
         return view('matter.teacher.show',compact('matter','content','matter_user','teachers'));
     }
     public function showAll($slug){
         $matter=Matter::where('slug','=',$slug)->first();
-        $content=Content::where('matter_id','=',$matter->id)->get();
+        $content=Content::where('matter_id',$matter->id)->first();
+        //dd($content);
         $contentV=contentVersion::all();
         return view('matter.adminCurricular.show',compact('matter','content','contentV'));
     }

@@ -112,19 +112,16 @@
 	                      	<td id='td_Edit{{$item->id}}'>{{ $item->updated_at }}</td>
 	                      	<td>
 	                      		<a class="btn-primary btn" title="Ver Materia" href="{{route('Matters.show',$item->slug)}}"><i class="fa fa-eye"></i></a>
-	                        	<a class="btn-danger btn" title="Borrar Materia" href="{{route('Matters.delete',$item->slug)}}"><i class="fa fa-remove"></i></a> 
-	                        	<a class="btn-info btn" title="Editar Materia" href="{{route('Matters.edit',$item->slug)}}"><i class="fa fa-edit"></i></a>
-	                        	<a class="btn-success btn" title="Crear Contenido a la Materia" data-target='#createContent' data-toggle='modal' onclick="loadContent({{$item->id}})" href="#!"><i class="fa fa-file"></i></a>
 		                    </td>
 	                    </tr>
 	                  	@empty
-						<tr>
-								
-							<td>
-				              <font class='center'>No existen registros</font>
-	                      	</td>
-						</tr>
-         				@endforelse
+          						<tr>
+          								
+          							<td>
+				                  <font class='center'>No existen registros</font>
+	                      </td>
+						          </tr>
+         				      @endforelse
 	                </tbody>
               	</table>
             </div>
