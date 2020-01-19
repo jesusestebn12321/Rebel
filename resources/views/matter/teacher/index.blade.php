@@ -184,11 +184,11 @@
 
                         <a href="{{route('Contents.edit',$item->slug)}}" id="edit1_{{$item->id}}" class="btn btn-sm btn-info">Editar</a>
 
-                        <a href="{{route('Contents.show', $item->slug)}}" class="btn btn-sm btn-warning">Ver</a>
                         @if($item->status==false)
                           <a href="{{route('Contents.update_status', $item->slug)}}" class="btn btn-sm btn-success">Actualizar</a>
                         @endif
                         @endif   
+                        <a href="{{route('Contents.show', $item->slug)}}" class="btn btn-sm btn-warning">Ver</a>
                       </td>
                     </tr>
                   </tbody>

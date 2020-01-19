@@ -11,10 +11,5 @@
 		</a>
 	</li>
 	@else
-	<li class="nav-item">
-		<a class="nav-link font-italic" href="{{route('Contents.show',$matter_user->matter_id)}}">
-			<i class="ni ni-folder-17 text-info"></i> Ver Contenido
-		</a>
-	</li>
 	@endif
 @endif
