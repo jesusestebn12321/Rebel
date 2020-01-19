@@ -2,15 +2,17 @@
 
 namespace Equivalencias\Http\Controllers;
 
-use Equivalencias\MatterUser;
-use Equivalencias\User;
-use Equivalencias\Content;
-use Equivalencias\contentVersion;
-use Equivalencias\Matter;
-use Equivalencias\Teacher;
-use Equivalencias\Career;
-use Equivalencias\Area;
 use Illuminate\Http\Request;
+
+use Equivalencias\contentVersion;
+use Equivalencias\StudentMatter;
+use Equivalencias\MatterUser;
+use Equivalencias\Content;
+use Equivalencias\Teacher;
+use Equivalencias\Matter;
+use Equivalencias\Career;
+use Equivalencias\User;
+use Equivalencias\Area;
 use Auth;
 class HomeController extends Controller
 {
@@ -36,7 +38,7 @@ class HomeController extends Controller
         $matter= Matter::all();
         $career= Career::all();
         if (Auth::user()->hasRole(3)) {
-            $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->get();
+            $matter_user=StudentMatter::where('user_id',Auth::user()->id)->get();
             return view('homeStudent',compact('matter_user'));      
         }else{
             return view('home',compact('matter_user','matter','area','career','teacher'));      

@@ -26,6 +26,11 @@ class CreateContentVersionsTable extends Migration
                      ->on('contents')
                      ->onDelete('set null');
 
+            $table->unsignedInteger('matter_id')->nullable();
+            $table->foreign('matter_id')->references('id')
+                     ->on('matters')
+                     ->onDelete('set null');
+
             $table->timestamps();
         });
     }

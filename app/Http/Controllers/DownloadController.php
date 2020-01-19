@@ -14,8 +14,10 @@ use Equivalencias\Career;
 use Equivalencias\Area;
 use Carbon\Carbon;
 use PDF;
+use Illuminate\Support\Arr;
 use Auth;
 use json;
+use collect;
 use Illuminate\Support\Collection;
 class DownloadController extends Controller
 {
@@ -24,25 +26,28 @@ class DownloadController extends Controller
 
         $matter_user= StudentMatter::where('user_id',Auth::user()->id)->get();
         $i=0;
+
         foreach ($matter_user as $item) {
             $version=$item->version;
             $content=Content::where('version',$item->version)
                 ->where('matter_id',$item->id)
                 ->first();
-            $i++;
             if (!$content) {
                 foreach ($item->matter->content as $items) {
                     $content_version=contentVersion::where('content_id',$items->id)->get();
                     foreach ($content_version as $item_version) {
                         if ($item_version->version == $version) {
-                            $contents[$i]=collect($item_version);
+                            $contents[$i]=Arr::add($item_version,$i,null);
+                            //dd($contents);
                         }
                     }
                 }
             }if($content){
-                $contents[$i]=collect($content);
+                $contents[$i]=Arr::add($content,$i,null);
             }
+            $i++;
         }
+        //dd($contents);
         $slug=str_slug('downloand-'.Auth::user()->id.'-'.now().'-equivalencia');
         Download::Create([
             'slug'=>$slug,
@@ -53,7 +58,7 @@ class DownloadController extends Controller
             ]);
         $url=url('/VerificarEquivalencia/{'.Auth::user()->id.'}/');
         $pdf=PDF::loadView('pdf.equivalencia',compact('contents','today','url'));
-        $pdf->download('Equivalencia'.Auth::user()->dni.now().'.pdf');
+        $pdf->download('Equivalencia_'.Auth::user()->dni.'_'.now().'.pdf');
         return $pdf->stream();
     }
     //descargar pdf de los profesores

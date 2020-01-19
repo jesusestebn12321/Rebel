@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
-	<title></title>
+	<title>@yield('title')</title>
 	<meta name="generator" content="LibreOffice 5.4.0.3 (Linux)">
 	<meta name="created" content="2019-08-07T20:14:11">
 	<meta name="changed" content="2019-08-07T20:14:11">
@@ -59,8 +59,8 @@
 			/*position: absolute !important;*/
 		}
 
-		@yield('style_inline')
 	</style>
+	@yield('style_inline')
 </head>
 <body>
 	@yield('content')

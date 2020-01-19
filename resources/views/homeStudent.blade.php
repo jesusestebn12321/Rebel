@@ -1,7 +1,7 @@
 @extends('layouts.appDashboard')
 @section('title','| Dashboard')
 @section('nameTitleTemplate','Dashboard')
-@include('layouts.modales.PDF.suveryDownload')
+@include('layouts.modales.content.modalShowContent')
 @section('content')
 <div class="row mt-5">
 	<div class="col">
@@ -20,7 +20,7 @@
 		              	<th scope="col">ID</th>
 		              	<th scope="col">Codigo</th>
 		              	<th scope="col">Unidad Curricular</th>
-		              	<th scope="col">Verción</th>
+		              	<th scope="col">Contenido</th>
 		              	<th scope="col">Created_at</th>
 		              	<th scope="col">Updated_at</th>
 		            	</tr>
@@ -31,7 +31,7 @@
 		                 	<td>{{$item->matter->slug }}</td>
 		                 	<td>{{$item->matter->version }}</td>
 		                 	<td>{{$item->matter->matter}}</td>
-		                 	<td>{{$item->matter->content->count()}}</td>
+		                 	<td><a href="#" data-target='#showContent' data-toggle='modal'>{{$item->matter->content->count()}}</a></td>
 		                 	<td>{{$item->matter->created_at }}</td>
 		                 	<td>{{$item->matter->updated_at }}</td>
 		              	</tr>

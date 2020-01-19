@@ -1,4 +1,3 @@
-
 .input input[value]:not([value=""]) > label{
   background:#00FFEE;
   color:#00FFEE;
