@@ -13,7 +13,7 @@
             <p class="text-white mt-0 mb-5">Ups! al parecer no tienes permisos para utilizar esta
                     función...<br>Pagina No permitida para este el usuario {{Auth::user()->name}}, consulta tus derechos dentro del sistema.
                 Tal vez deberías </p>
-            <a href="{{url('/home')}}" class="btn btn-info">Inicio</a>
+            <a href="{{url('/')}}" class="btn btn-info">Inicio</a>
           </div>
         </div>
       </div>

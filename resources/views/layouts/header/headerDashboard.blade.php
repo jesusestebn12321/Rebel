@@ -1,11 +1,12 @@
 <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 60px; background-image: url({{ asset('template/assets/img/theme/profile-cover.jpg') }}); background-size: cover; background-position: center top;">
   <span class="mask bg-gradient-default opacity-8"></span>
-  @if (url()->current()==url('/home'))
+  @if (url()->current()==url('/'))
   <div class="container-fluid align-items-center">
     <div class="header-body">
       <div class="row">
         <div class="col-lg-12 col-md-12">
-          <h1 class="display-3 text-white" style='text-align: center'>¡Bienvenido/a {{Auth::user()->name}}! </h1>
+          <h1 class="display-3 text-white" style='text-align: center'>¡Bienvenido/a
+          {{Auth::user()->name}}! </h1>
           <hr class='bg-white display-3 col-2'>
           <p class="text-white mt-0 mb-5" style='text-align: center'>Sistema de equivalencias <b class='display-4'>"Rebel"</b>,  gestor de Contenidos de unidades curriculares</p>
 
