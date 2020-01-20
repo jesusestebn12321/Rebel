@@ -73,7 +73,7 @@
                   Coordinador
                 @endif
               </b>
-            @else if(Auth::user()->hasRole(4) || Auth::user()->hasRole(1))
+            @elseif(Auth::user()->hasRole(4) || Auth::user()->hasRole(1))
               <b>{{Auth::user()->hasRole(1)?'Administrador':'Administrador Curricular'}}</b>
             @endif
           </div>
