@@ -24,18 +24,14 @@
     });
   });
 
-
-
-
-
-
 </script>
 @endsection
 @section('content')
 <div class="row">
-  {{-- {{ $matter }} --}}
+ 
+    
+  
   @foreach($matter_user as $items)
-  @if($items->matter->career_id==$career->id)
    <div class="col-xl-4 order-xl-2 mb-8 mb-xl-6">
           <div class="card card-profile shadow">
             <div class="row justify-content-center">
@@ -70,7 +66,7 @@
                   <i class="ni education_hat mr-2"></i>Unidad Curricular
                 </div>
                 <div>
-                  {{ $items->matter->matter }}
+                  {{ $items->matters->matter }}
                 </div>
               </div>
              
@@ -79,7 +75,6 @@
             </div>
           </div>
         </div>
-  @endif
   @endforeach
 </div>
 

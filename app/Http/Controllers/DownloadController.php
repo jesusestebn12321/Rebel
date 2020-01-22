@@ -5,7 +5,6 @@ use Illuminate\Http\Request;
 
 use Equivalencias\contentVersion;
 use Equivalencias\StudentMatter;
-use Equivalencias\MatterUser;
 use Equivalencias\Download;
 use Illuminate\Support\Arr;
 use Equivalencias\Content;
@@ -81,11 +80,9 @@ class DownloadController extends Controller
     }
     //descargar pdf careras 
     public function adminArea(){
-        $area=Area::all()->paginate(7);
-        dd($area);
+        $area=Area::all();
         $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
         $url=url('/Areas');
-        return View('QR.pdfContentQR',compact('area','today','url'));
         $pdf=PDF::loadView('pdf.areaAll',compact('area','today','url'));
         $pdf->download('ReportesDeLasAreas.pdf');
         return $pdf->stream();
@@ -103,7 +100,7 @@ class DownloadController extends Controller
         $teacher=Teacher::where('user_id',Auth::user()->id)->first();
         $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
         $url=url('/VerificarDescargaProfesor/'.Auth::user()->id);
-        $matter_user=MatterUser::where('user_id',Auth::user()->id)->first();
+        $matter_user=Teacher::where('user_id',Auth::user()->id)->first();
         $pdf=PDF::loadView('pdf.matterTeacher',compact('matter_user','content','teacher','today','url'));
         $pdf->download('ReportesProfesoresMaterias'.now().'.pdf');
         return $pdf->stream();

@@ -21,6 +21,5 @@ class DatabaseSeeder extends Seeder
         $this->call(MatterTableSeeder::class);
         $this->call(ContentTableSeed::class);
         $this->call(TeacherSeed::class);
-        $this->call(MatterUserSeeder::class);
     }
 }

@@ -4,6 +4,7 @@ namespace Equivalencias\Http\Middleware;
 
 use Closure;
 use Auth;
+use Equivalencias\Teacher;
 class VerifiTeacher
 {
     /**
@@ -14,8 +15,8 @@ class VerifiTeacher
      * @return mixed
      */
     public function handle($request, Closure $next){
-        $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->first();
-        if ($matter_user->rol_teacher==1){
+        $matter_user=Teacher::where('user_id','=',Auth::user()->id)->first();
+        if ($matter_user->rol_id==2){
             return $next($request);
         }
         return redirect()->route('home');

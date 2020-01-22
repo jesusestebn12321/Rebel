@@ -4,7 +4,6 @@ namespace Equivalencias\Http\Controllers;
 
 use Equivalencias\Content;
 use Equivalencias\contentVersion;
-use Equivalencias\MatterUser;
 use Equivalencias\Matter;
 use Equivalencias\Teacher;
 use Auth;
@@ -69,11 +68,9 @@ class ContentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){
-        $matter_U=MatterUser::where('user_id',Auth::user()->id)->firstOrFail();
-        $matter_user=Teacher::where('user_id',Auth::user()->id)->firstOrFail();
         $teacher=Teacher::where('user_id',Auth::user()->id)->firstOrFail();
         $content=Content::where('slug',$id)->first();
-        $matter= Matter::where('id',$matter_U->matter_id)->firstOrFail();
+        $matter= Matter::where('id',$teacher->matter_id)->firstOrFail();
         return view('content.show',compact('content','teacher','matter_user','matter'));
     }
 
@@ -86,10 +83,10 @@ class ContentController extends Controller
     public function edit($slug)
     {
         //
-        $matter_U=MatterUser::where('user_id',Auth::user()->id)->firstOrFail();
+        
         $matter_user=Teacher::where('user_id',Auth::user()->id)->firstOrFail();
         $teacher=Teacher::where('user_id',Auth::user()->id)->firstOrFail();
-        $content=Content::where('matter_id','=',$matter_U->matter_id)->where('slug',$slug)->first();
+        $content=Content::where('matter_id','=',$teacher->matter_id)->where('slug',$slug)->first();
 
 
         return view('content.edit',compact('content','teacher','matter_user'));

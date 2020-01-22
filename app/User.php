@@ -39,9 +39,6 @@ class User extends Authenticatable
         return $this->hasMany(Rol::class,'rol_id');
     }
 
-    public function matter_user(){
-        return $this->hasMany(MatterUser::class,'user_id');
-    }
     public function studen_matter(){
         return $this->hasMany(StudentMatter::class,'user_id');
     }

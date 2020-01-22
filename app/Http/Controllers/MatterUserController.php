@@ -2,7 +2,7 @@
 
 namespace Equivalencias\Http\Controllers;
 
-use Equivalencias\MatterUser;
+
 use Equivalencias\Teacher;
 use Equivalencias\User;
 use Illuminate\Http\Request;
@@ -37,11 +37,12 @@ class MatterUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MatterUserRequests $request)
+    public function store(Request $request)
     {
-        $matter_user=MatterUser::create([
+        $matter_user=Teacher::create([
                 'matter_id'=>$request->matter_id,
                 'user_id'=>Auth::user()->id,
+                'rol_id'=>2,
             ]);
         // dd($request);
         return back()->with('success','Lleno el perfil con exito');
@@ -49,19 +50,21 @@ class MatterUserController extends Controller
     public function asignar(Request $request,$id)
     {
         $user=User::where('dni',$request->dni)->firstOrFail();
-        $matter_user=MatterUser::create([
+        $matter_user=Teacher::create([
                 'matter_id'=>$id,
                 'user_id'=>$user->id,
+                'rol_id'=>2,
             ]);
         // dd($request);
         return back()->with('success','Unidad curricular asignada con exito');
     }
     public function add(Request $request){
         $teacher=User::where('dni',$request->user_id)->firstOrFail();
-        $matter_coordinator=Teacher::where('type',$request->type)->firstOrFail();
-        $matter_user=MatterUser::create([
+        $matter_coordinator=Teacher::where('rol_id',$request->type)->firstOrFail();
+        $matter_user=Teacher::create([
                 'matter_id'=>$request->matter_id,
                 'user_id'=>$teacher->id,
+                'rol_id'=>2,
                 'admin_confirmed'=>true
             ]);
         return back()->with('success','Se a añadido con exito la materia');
@@ -119,7 +122,7 @@ class MatterUserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id){
-        $matter_user=MatterUser::where('id',$id)->firstOrFail();
+        $matter_user=Teacher::where('id',$id)->firstOrFail();
         $matter_user->delete();
         return back()->with('success','Exito');   
     }

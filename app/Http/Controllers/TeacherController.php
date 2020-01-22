@@ -45,8 +45,7 @@ class TeacherController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($slug){
-        $teacher=Teacher::where('slug',$slug)->first();
-        $matter_teacher=MatterUser::where('user_id',$teacher->user->id)->get();
+        $teacher=Teacher::where('slug',$slug)->first()->get();
         return view('users.teacher.show',compact('teacher','matter_teacher'));
     }
 

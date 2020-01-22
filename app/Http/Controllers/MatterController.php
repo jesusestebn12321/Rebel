@@ -7,7 +7,6 @@ use Equivalencias\Http\Requests\MatterRequests;
 use Illuminate\Http\Request;
 
 
-use Equivalencias\MatterUser;
 use Equivalencias\Content;
 use Equivalencias\contentVersion;
 use Equivalencias\Teacher;
@@ -22,7 +21,7 @@ class MatterController extends Controller
    public function index()
     {
 
-        $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->first();
+        $matter_user=Teacher::where('user_id','=',Auth::user()->id)->first();
         $matter=Matter::all();
         $career=Career::all();
         $teacher=Teacher::where('user_id',Auth::user()->id)->first();
@@ -84,7 +83,7 @@ class MatterController extends Controller
         $matter=Matter::where('slug','=',$slug)->firstOrFail();
         $content=Content::where('matter_id',$matter->id)->first();
         $matter_user=Teacher::where('user_id',Auth::user()->id)->firstOrFail();
-        $teachers=MatterUser::where('matter_id',$matter->id)->get();
+        $teachers=Teacher::where('matter_id',$matter->id)->get();
         return view('matter.teacher.show',compact('matter','content','matter_user','teachers'));
     }
     public function showAll($slug){
@@ -163,19 +162,20 @@ class MatterController extends Controller
     public function asignarIndex(){
         $career=Career::all();
         
-        $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->firstOrFail();
+        $matter_user=Teacher::where('user_id','=',Auth::user()->id)->firstOrFail();
         $matter=Matter::where('id',$matter_user->matter_id)->firstOrFail();
-        $teacherAll=MatterUser::where('matter_id',$matter->id)->get();
-        $teacher=Teacher::where('user_id','=',Auth::user()->id)->first();
+        $teacherAll=Teacher::where('matter_id',$matter->id)->get();
+        $teacher=$matter_user;
         
         return view('matter.teacher.asignar', compact('career','matter','matter_user','teacher','teacherAll'));
     }
     public function asignarMatter(Request $request, $dni){
         $user=User::where('dni',$dni)->firstOrFail();
         $teacher=Teacher::where('user_id',$user->id)->firstOrFail();
-        $matter_user=MatterUser::create([
+        $matter_user=Teacher::create([
             'matter_id'=>$request->matter_id,
-            'user_id'=>$teacher->id
+            'user_id'=>$teacher->id,
+            'rol_id'=>2
             ]);
         return back()->with('success','Unidad curricular asignada con exito.');
     }

@@ -12,8 +12,8 @@ class Teacher extends Model
     public function user(){
     	return $this->belongsTo(User::class,'user_id');
     }
-    public function matter(){
-    	return $this->hasMany(MatterUser::class,'user_id');
+    public function matters(){
+    	return $this->belongsTo(Matter::class,'user_id');
     }
     private function checkIfUserHasRole($need_role){
         return (strtolower($need_role) == strtolower($this->rol_id)) ? true : null;

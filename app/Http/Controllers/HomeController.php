@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 use Equivalencias\contentVersion;
 use Equivalencias\StudentMatter;
-use Equivalencias\MatterUser;
 use Equivalencias\Content;
 use Equivalencias\Teacher;
 use Equivalencias\Matter;
@@ -32,7 +31,6 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->first();
         $teacher=Teacher::where('user_id','=',Auth::user()->id)->first();
         $area= Area::all();
         $matter= Matter::all();
@@ -41,7 +39,7 @@ class HomeController extends Controller
             $matter_user=StudentMatter::where('user_id',Auth::user()->id)->get();
             return view('homeStudent',compact('matter_user'));      
         }else{
-            return view('home',compact('matter_user','matter','area','career','teacher'));      
+            return view('home',compact('matter','area','career','teacher'));      
         }
         
     }
@@ -70,9 +68,8 @@ class HomeController extends Controller
 
             $teacher=Teacher::where('rol_id','=',2)->get()->count();
             $coordinadores=Teacher::where('rol_id','=',5)->get()->count();
-            $contents= MatterUser::where('user_id',Auth::user()->id)->first();
+            $contents= Teacher::where('user_id',Auth::user()->id)->first();
             $content=$contents->matter->content->count();
-            
 
             $label=['Profesores','Coordinadores','Contenidos'];
 

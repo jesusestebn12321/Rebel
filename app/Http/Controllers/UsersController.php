@@ -3,6 +3,7 @@
 namespace Equivalencias\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Equivalencias\StudentMatter;
 use Equivalencias\MatterUser;
 use Equivalencias\University;
 use Equivalencias\Teacher;
@@ -28,15 +29,15 @@ class UsersController extends Controller
     }
 
     public function showTeacher($slug){
-        $career=Career::where('slug',$slug)->firstOrFail();
+        $career=Career::where('slug',$slug)->first();
         $matter=Matter::where('career_id',$career->id)->firstOrFail();
-        $matter_user=MatterUser::where('matter_id',$matter->id)->get();
+        $matter_user=Teacher::where('matter_id',$matter->id)->get();
         return view('career.showTeacherMatterUser',compact('matter_user','matter','career'));
     }
 
     public function showStudent($slug){
         $user=User::where('slug',$slug)->first();
-        $matter_student=MatterUser::where('user_id',$user->id)->get();
+        $matter_student=StudentMatter::where('user_id',$user->id)->get();
         return view('users.student.show',compact('user','matter_student'));
     }
     
