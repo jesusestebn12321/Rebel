@@ -31,7 +31,7 @@
 		                 	<td>{{$item->matter->slug }}</td>
 		                 	<td>{{$item->matter->version }}</td>
 		                 	<td>{{$item->matter->matter}}</td>
-		                 	<td><a href="#" data-target='#showContent' data-toggle='modal'>{{$item->matter->content->count()}}</a></td>
+		                 	<td><a href="#" data-target='#showContent' class="btn btn-sm btn-info" data-toggle='modal'>VER</a></td>
 		                 	<td>{{$item->matter->created_at }}</td>
 		                 	<td>{{$item->matter->updated_at }}</td>
 		              	</tr>

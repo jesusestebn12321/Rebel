@@ -29,9 +29,9 @@ class DownloadController extends Controller
 
         foreach ($matter_user as $item) {
             $version=$item->version;
-            $content=Content::where('version',$item->version)
-                ->where('matter_id',$item->id)
-                ->first();
+            $content=Content::where('version',$version)
+                ->where('matter_id',$item->id)->first();
+                //dd($content);
             if (!$content) {
                 foreach ($item->matter->content as $items) {
                     $content_version=contentVersion::where('content_id',$items->id)->get();
@@ -57,9 +57,9 @@ class DownloadController extends Controller
             'status'=>0,
             ]);
         $url=url('/VerificarEquivalencia/{'.Auth::user()->id.'}/');
-        $pdf=PDF::loadView('pdf.equivalencia',compact('contents','today','url'));
+        $pdf=PDF::loadView('pdf.equivalencia',compact('contents','today','url'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif']);
         $pdf->download('Equivalencia_'.Auth::user()->dni.'_'.now().'.pdf');
-        return $pdf->stream();
+        return $pdf->stream('Equivalencia_'.Auth::user()->dni.'_'.now().'pdf');
     }
     //descargar pdf de los profesores
     public function adminTeacher(){

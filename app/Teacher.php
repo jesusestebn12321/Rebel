@@ -8,7 +8,7 @@ use Auth;
 class Teacher extends Model
 {
     protected $table='teachers';
-    protected $fillable = ['id','slug','user_id','rol_id','admin_confirmed'];
+    protected $fillable = ['id','slug','user_id','rol_id','admin_confirmed','matter_id'];
     public function user(){
     	return $this->belongsTo(User::class,'user_id');
     }
