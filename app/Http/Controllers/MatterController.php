@@ -53,6 +53,11 @@ class MatterController extends Controller
             'slug'=>$request->slug,
             'version'=>$request->version,
             'matter'=>$request->matter,
+            'semester'=>$request->semester,
+            'credit'=>$request->credit,
+            'ht'=>$request->ht,
+            'hp'=>$request->hp,
+            'hl'=>$request->hl,
             'career_id'=>$request->career_id,
         ]);
         /*for ($i=0; $i < $request->numberContent; $i++) { 
@@ -124,6 +129,11 @@ class MatterController extends Controller
         $matter=Matter::where('slug',$slug)->firstOrFail();
         $matter->version=$request->version;
         $matter->matter=$request->matter;
+        $matter->semester=$request->semester;
+        $matter->credit=$request->credit;
+        $matter->ht=$request->ht;
+        $matter->hp=$request->hp;
+        $matter->hl=$request->hl;
         $matter->career_id=$request->career_id;
         $matter->save();
         return back()->with('success','Se a editado con exito la materia');
@@ -133,6 +143,11 @@ class MatterController extends Controller
         $matter=Matter::where('slug',$request->slug)->firstOrFail();
         $matter->version=$request->version;
         $matter->matter=$request->matter;
+        $matter->semester=$request->semester;
+        $matter->credit=$request->credit;
+        $matter->ht=$request->ht;
+        $matter->hp=$request->hp;
+        $matter->hl=$request->hl;
         $matter->career_id=$request->career_id;
         $matter->save();
         for ($i=0; $i < $request->countContent; $i++) { 
