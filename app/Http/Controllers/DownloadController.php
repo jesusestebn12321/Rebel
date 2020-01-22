@@ -7,17 +7,17 @@ use Equivalencias\contentVersion;
 use Equivalencias\StudentMatter;
 use Equivalencias\MatterUser;
 use Equivalencias\Download;
+use Illuminate\Support\Arr;
 use Equivalencias\Content;
 use Equivalencias\Teacher;
 use Equivalencias\Matter;
 use Equivalencias\Career;
 use Equivalencias\Area;
 use Carbon\Carbon;
-use PDF;
-use Illuminate\Support\Arr;
+use collect;
 use Auth;
 use json;
-use collect;
+use PDF;
 use Illuminate\Support\Collection;
 class DownloadController extends Controller
 {
@@ -81,10 +81,11 @@ class DownloadController extends Controller
     }
     //descargar pdf careras 
     public function adminArea(){
-        $area=Area::all();
+        $area=Area::all()->paginate(7);
+        dd($area);
         $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
         $url=url('/Areas');
-        //return View('QR.pdfContentQR',compact('area','today','url'));
+        return View('QR.pdfContentQR',compact('area','today','url'));
         $pdf=PDF::loadView('pdf.areaAll',compact('area','today','url'));
         $pdf->download('ReportesDeLasAreas.pdf');
         return $pdf->stream();
