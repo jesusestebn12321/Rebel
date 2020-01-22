@@ -1,3 +1,4 @@
+@extends('layouts.appDashboard')
 @section('title','| Unidades Curriculares')
 @section('nameTitleTemplate','Unidades Curriculares')	
 @section('content')
@@ -19,7 +20,6 @@
 	                    <th scope="col">Codigo</th>
 	                    <th scope="col">Unidad Curricular</th>
                       	<th scope="col">Nª contenido</th>
-	                    <th scope="col">Nª en espera o sin verificar</th>
 	                    <th scope="col">Created_at</th>
 	                    <th scope="col">Updated_at</th>
 	                    <th scope="col"></th>
@@ -41,7 +41,6 @@
 	                        	<input class='d-none' id="EditUniversity{{$item->id}}" value="{{$item->matter}}">
 	                      	</td>
                           <td>{{$item->content->count()}}</td>
-	                      	<td>324234</td>
 	                      	<td id='td_Create{{$item->id}}'>{{ $item->created_at }}</td>
 	                      	<td id='td_Edit{{$item->id}}'>{{ $item->updated_at }}</td>
 	                      	<td>

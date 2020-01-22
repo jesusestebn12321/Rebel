@@ -2,10 +2,14 @@
 
 namespace Equivalencias\Http\Controllers;
 
-use Equivalencias\Area;
+use Equivalencias\contentVersion;
+use Equivalencias\Teacher;
 use Equivalencias\Career;
 use Equivalencias\Matter;
 use Equivalencias\Content;
+use Equivalencias\Area;
+use Auth;
+
 use Illuminate\Http\Request;
 use Equivalencias\Http\Requests\CareerRequests;
 
@@ -26,6 +30,13 @@ class CareerController extends Controller
     public function show($id){
         $career=Career::where('area_id','=',$id)->get();
         return $career;
+    }
+    public function showMatter($slug){
+        $career=Career::where('slug',$slug)->first();
+        $matter=Matter::where('career_id',$career->id)->get();
+        $teacher=Teacher::where('user_id',Auth::user()->id)->first();
+        $contentV=contentVersion::all();
+        return view('matter.adminCurricular.index',compact('career','matter','matter_user','teacher','contentV'));
     }
     public function MatterCareerShow($slug){
         $career=Career::where('slug','=',$slug)->firstOrFail();

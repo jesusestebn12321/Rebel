@@ -17,5 +17,15 @@ class MatterUserSeeder extends Seeder
             'user_id'=>'1',
             
         ]);
+        MatterUser::create([
+            'matter_id'=>'1',
+            'user_id'=>'2',
+            
+        ]);
+        MatterUser::create([
+            'matter_id'=>'1',
+            'user_id'=>'3',
+            
+        ]);
     }
 }

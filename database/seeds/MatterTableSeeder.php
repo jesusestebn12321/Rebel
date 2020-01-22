@@ -14,9 +14,31 @@ class MatterTableSeeder extends Seeder
     {
         //
         Matter::create([
-            'slug'=> str_slug('Medicina-Sanjuan_1'),
+            'slug'=> str_slug('trial-1'),
             'version'=>'v-1',
-            'matter'=>'Matematica',
+            'matter'=>'Matematica I',
+            'semester'=>'cuatro',
+            'credit'=>100,
+            'ht'=>3,
+            'hl'=>0,
+            'hp'=>3,
+            'career_id'=>'1',
+        ]);
+        Matter::create([
+            'slug'=> str_slug('trial-2'),
+            'version'=>'v-1',
+            'matter'=>'Matematica II',
+            'semester'=>'cuatro',
+            'credit'=>100,
+            'ht'=>3,
+            'hl'=>0,
+            'hp'=>3,
+            'career_id'=>'1',
+        ]);
+        Matter::create([
+            'slug'=> str_slug('trial-3'),
+            'version'=>'v-1',
+            'matter'=>'Algoritmo',
             'semester'=>'cuatro',
             'credit'=>100,
             'ht'=>3,

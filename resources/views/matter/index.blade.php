@@ -4,5 +4,5 @@
 @elseif(Auth::user()->hasRole(1))
 	@include('matter.admin.index')
 @elseif(Auth::user()->hasRole(4))
-	@include('matter.adminCurricular.index')
+	@include('matter.adminCurricular.indexCareer')
 @endif

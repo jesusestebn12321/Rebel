@@ -107,6 +107,21 @@
                   <i class="ni education_hat mr-2"></i>
                   <h5>Semestre | {{ $matter_user->matter->semester }}</h5>
                 </div>
+                <div>
+              <i class="ni education_hat mr-2"></i>
+              <h5>Horas</h5><hr>
+              <div class="row">
+                <div class="col">
+                  <h5>HT <hr> {{$matter_user->ht}}</h5>
+                </div>
+                <div class="col">
+                  <h5>HL <hr> {{$matter_user->hl}}</h5>
+                </div>
+                <div class="col">
+                  <h5>HP <hr> {{$matter_user->hp}}</h5>
+                </div>
+              </div><hr>
+            </div>
                 <div class="h5 mt-4">
                   <i class="ni business_briefcase-24 mr-2"></i>Carrera | {{$matter_user->matter->career->career}} 
                 </div>

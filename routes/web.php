@@ -164,10 +164,14 @@ Route::group(['middleware'=>['verifiUser']],function(){
 //AdminCurricular 
 	Route::group(['middleware'=>['authen','rol'],'rol'=>['4']],function(){
 
+		Route::get('/Contents/{slug}', ['as'=>'Contents.show','uses'=>'ContentController@show']);
+		
 		Route::post('/Matter/RollBackContent',['as'=>'rollback','uses'=>'ContentController@VersionBack']);
 		
 
-			Route::get('/Matter/Show/{slug}',['middleware'=>'OneContent','as'=>'Matters.show','uses'=>'MatterController@showAll']);
+		Route::get('/Matter/Show/{slug}',['middleware'=>'OneContent','as'=>'Matters.show','uses'=>'MatterController@showAll']);
+
+		Route::get('/Matter/Career/{slug}',['as'=>'Matters.index.show','uses'=>'CareerController@showMatter']);
 		
 		
 		Route::get('/Verify/Content/{slug}',['as'=>'verify.content','uses'=>'adminCurricular@verify']);

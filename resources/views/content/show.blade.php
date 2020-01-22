@@ -35,7 +35,7 @@
             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
               <div class="d-flex justify-content-between">
 
-                @if($teacher->hasRole(5) && Auth::user()->hasRole(2))
+                @if(Auth::user()->hasRole(2) && Auth::user()->teacher[0]->hasRole(5))
                 <a href="{{route('Contents.delete',$content->slug)}}" class="btn btn-sm btn-danger mr-4">Borrar</a>
                 @endif
 

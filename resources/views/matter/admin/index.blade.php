@@ -132,6 +132,8 @@
 	                      	<td id='td_Edit{{$item->id}}'>{{ $item->updated_at }}</td>
 	                      	<td>
 	                      		<a class="btn-primary btn" title="Ver Materia" href="{{route('Matters.show',$item->slug)}}"><i class="fa fa-eye"></i></a>
+                            <a class="btn-info btn" title="Ver Materia" href="{{route('Matters.edit',$item->slug)}}"><i class="fa fa-edit"></i></a>
+                            <a class="btn-danger btn" title="Ver Materia" href="{{route('Matters.delete',$item->slug)}}"><i class="fa fa-remove"></i></a>
 		                    </td>
 	                    </tr>
 	                  	@empty

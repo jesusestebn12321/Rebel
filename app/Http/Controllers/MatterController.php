@@ -7,12 +7,13 @@ use Equivalencias\Http\Requests\MatterRequests;
 use Illuminate\Http\Request;
 
 
+use Equivalencias\contentVersion;
 use Equivalencias\MatterUser;
 use Equivalencias\Content;
-use Equivalencias\contentVersion;
 use Equivalencias\Teacher;
 use Equivalencias\Matter;
 use Equivalencias\Career;
+use Equivalencias\Area;
 use Auth;
 use input;
 
@@ -21,10 +22,11 @@ class MatterController extends Controller
 {
    public function index()
     {
-
+        
         $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->first();
         $matter=Matter::all();
         $career=Career::all();
+        $area=Area::all();
         $teacher=Teacher::where('user_id',Auth::user()->id)->first();
         $contentV=contentVersion::all();
         return view('matter.index',compact('career','matter','matter_user','teacher','contentV'));
@@ -90,7 +92,6 @@ class MatterController extends Controller
     public function showAll($slug){
         $matter=Matter::where('slug','=',$slug)->first();
         $content=Content::where('matter_id',$matter->id)->first();
-        //dd($content);
         $contentV=contentVersion::all();
         return view('matter.adminCurricular.show',compact('matter','content','contentV'));
     }
@@ -127,7 +128,7 @@ class MatterController extends Controller
     {
         
         $matter=Matter::where('slug',$slug)->firstOrFail();
-        $matter->version=$request->version;
+        $matter->version=2;
         $matter->matter=$request->matter;
         $matter->semester=$request->semester;
         $matter->credit=$request->credit;

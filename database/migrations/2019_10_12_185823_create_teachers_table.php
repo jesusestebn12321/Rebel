@@ -25,10 +25,6 @@ class CreateTeachersTable extends Migration
             $table->foreign('rol_id')->references('id')
             ->on('rols');
 
-            $table->unsignedInteger('matter_id')->nullable();
-            $table->foreign('matter_id')->references('id')
-            ->on('matters')
-            ->onDelete('set null');
 
             $table->boolean('admin_confirmed')->default(0);
 
