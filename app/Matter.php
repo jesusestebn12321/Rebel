@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Matter extends Model{
     protected $table='matters';
-    protected $fillable = ['id','slug','matter','version','career_id'];
+    protected $fillable = ['id','slug','matter','version','semester','credit','ht','hp','hl','career_id'];
    	public function career(){
     	return $this->belongsTo(Career::class,'career_id');
     }
