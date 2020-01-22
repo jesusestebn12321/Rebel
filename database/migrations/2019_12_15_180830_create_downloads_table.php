@@ -16,6 +16,7 @@ class CreateDownloadsTable extends Migration
         Schema::create('downloads', function (Blueprint $table) {
             $table->increments('id');
             $table->string('slug')->unique();
+            
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')
                   ->on('users')

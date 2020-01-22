@@ -18,12 +18,20 @@ class CreateMattersTable extends Migration
             $table->string('slug')->unique();
             $table->string('matter');
             $table->string('version');
+            $table->string('semester');
+            $table->integer('credit');
+            $table->integer('ht')->default(0);
+            $table->integer('hl')->default(0);
+            $table->integer('hp')->default(0);
+
 
             $table->unsignedInteger('career_id')->nullable();
             $table->foreign('career_id')->references('id')
                      ->on('careers')
                      ->onDelete('set null');
 
+           
+            
             $table->timestamps();
         });
     }

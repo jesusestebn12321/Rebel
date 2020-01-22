@@ -17,11 +17,14 @@ class CreateContentsTable extends Migration
             $table->increments('id');
             $table->string('slug')->unique();
             $table->string('version');
-            $table->string('title');
-            $table->longText('introdution');
+            $table->longText('justification');
+            $table->longText('purpose');
             $table->longText('content');
+            $table->longText('methodology');
+            $table->longText('evaluation');
             $table->boolean('status')->default(0);
             $table->boolean('confirmation')->default(0);
+            
 
             $table->unsignedInteger('matter_id')->nullable();
             $table->foreign('matter_id')->references('id')

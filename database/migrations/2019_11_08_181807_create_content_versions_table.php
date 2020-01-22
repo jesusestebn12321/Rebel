@@ -17,9 +17,11 @@ class CreateContentVersionsTable extends Migration
             $table->increments('id');
             $table->string('slug')->unique();
             $table->string('version');
-            $table->string('title');
-            $table->longText('introdution');
+            $table->longText('justification');
+            $table->longText('purpose');
             $table->longText('content');
+            $table->longText('methodology');
+            $table->longText('evaluation');
 
             $table->unsignedInteger('content_id')->nullable();
             $table->foreign('content_id')->references('id')
