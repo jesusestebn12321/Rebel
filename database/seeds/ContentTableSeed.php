@@ -14,33 +14,41 @@ class ContentTableSeed extends Seeder
     {
         Content::create([
             'slug'=> str_slug('Titlte_1'),
-            'title'=>'Estructura',
+            'justification'=>'Estructura',
             'version'=>'1',
-            'introdution'=>'asdasdasdasdasdsadasd',
+            'purpose'=>'asdasdasdasdasdsadasd',
+            'methodology'=>'asdasdasdasdasdsadasd',
+            'evaluation'=>'asdasdasdasdasdsadasd',
             'content'=> 'asdasdasdasdasdasdasdasd',
             'matter_id'=>1
         ]);
         Content::create([
             'slug'=> str_slug('Titlte_2'),
-            'title'=>'Matematica',
+            'justification'=>'Matematica',
             'version'=>'1',
-            'introdution'=>'asdasdasdasdasdsadasd',
+            'purpose'=>'asdasdasdasdasdsadasd',
+            'methodology'=>'asdasdasdasdasdsadasd',
+            'evaluation'=>'asdasdasdasdasdsadasd',
             'content'=> 'asdasdasdggggasdasdasdasdasd',
             'matter_id'=>1
         ]);
         Content::create([
             'slug'=> str_slug('Titlte_4'),
-            'title'=>'Logica',
+            'justification'=>'Logica',
             'version'=>'1',
-            'introdution'=>'asdasdasdasdasdsadasd',
+            'purpose'=>'asdasdasdasdasdsadasd',
+            'methodology'=>'asdasdasdasdasdsadasd',
+            'evaluation'=>'asdasdasdasdasdsadasd',
             'content'=> 'asdasdasdasdasaaaaaaaaaaaaaaaasdasdasd',
             'matter_id'=>1
         ]);
         Content::create([
             'slug'=> str_slug('Titlte_5'),
-            'title'=>'Algoritmo',
+            'justification'=>'Algoritmo',
             'version'=>'1',
-            'introdution'=>'asdasdasdasdasdsadasd',
+            'purpose'=>'asdasdasdasdasdsadasd',
+            'methodology'=>'asdasdasdasdasdsadasd',
+            'evaluation'=>'asdasdasdasdasdsadasd',
             'content'=> 'asdasdasdasdasaaaaaaaaaaaaaaaasdasdasd',
             'matter_id'=>1
         ]);
