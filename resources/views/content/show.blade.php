@@ -44,19 +44,48 @@
                 <input type="hidden" id="id_matter" value="{{$matter->id}}" >
               </div>
             </div>
+            <div class="card-header">
+              <div class="container">
+                <div class='row'>
+
+                  <div class="col">
+                    <label>Semestre</label>
+                    <p>{!!  $content->matters->semester !!}</p>
+                  </div>
+                  <div class="col">
+                    <label>Codigo</label>
+                      <p>{!! $content->slug !!}</p>
+                  </div> 
+                </div>
+              </div>
+            </div>
             <div class="card-body pt-0 pt-md-4">
               <div class="text-center">
                 <h3>
                   {!!$content->title!!}
                   <input type="text" id="title{{$content->id}}" class="d-none form-control" name="title">
                 </h3>
-                <hr class="my-4">
-                <label>Introduccion</label>
-                <p>{!!  $content->introdution!!}</p>
-                <textarea name="introdution" id="introdution{{$content->id}}" class="d-none form-control" ></textarea><p>
-                <label>Contenido</label>
+                <label>Justificación</label>
+                <p>{!!  $content->justification!!}</p>
+                <textarea name="justification" id="justification{{$content->id}}" class="d-none form-control" ></textarea><p>
+                
+                <hr><label>Propocito</label>
+                <p>{!!  $content->purpose!!}</p>
+                <textarea name="purpose" id="purpose{{$content->id}}" class="d-none form-control" ></textarea><p>
+                
+                <hr><label>Contenido</label><p>
                 {!!  $content->content!!}</p>
                 <textarea name="content" id="content{{$content->id}}" class="d-none form-control" ></textarea>
+
+                <hr><label>Estrategia Metodologia</label><p>
+                {!!  $content->methodology!!}</p>
+                <textarea name="methodology" id="methodology{{$content->id}}" class="d-none form-control" ></textarea>
+
+                <hr><label>Estrategia Evalución</label><p>
+                {!!  $content->evaluation!!}</p>
+                <textarea name="evaluation" id="evaluation{{$content->id}}" class="d-none form-control" ></textarea>
+                
+
                 </form>
               </div>
             </div>

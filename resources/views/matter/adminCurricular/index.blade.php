@@ -18,7 +18,7 @@
 	                    <th scope="col">ID</th>
 	                    <th scope="col">Codigo</th>
 	                    <th scope="col">Unidad Curricular</th>
-                      <th scope="col">Nª contenido</th>
+                      	<th scope="col">Nª contenido</th>
 	                    <th scope="col">Nª en espera o sin verificar</th>
 	                    <th scope="col">Created_at</th>
 	                    <th scope="col">Updated_at</th>

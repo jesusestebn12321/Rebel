@@ -58,8 +58,6 @@
             <tr>
               <th scope="col">ID</th>
               <th scope="col">Codigo</th>
-              <th scope="col">Contenido</th>
-              <th scope="col">Introduccion</th>
               <th scope="col">Versión</th>
               <th scope="col">Estatus</th>
               <th scope="col">Validado</th>
@@ -73,8 +71,6 @@
             <tr>
               <td>{!!$item->id!!}</td>
               <td>{!!$item->slug!!}</td>
-              <td>{!!$item->content!!}</td>
-              <td>{!!$item->introdution!!}</td>
               <td>{!!$item->version!!}</td>
               <td>
                 @if($item->status==false)

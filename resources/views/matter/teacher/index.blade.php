@@ -103,7 +103,9 @@
                 </h3>
                 <div>
                   <i class="ni education_hat mr-2"></i>
-                  <h5>Versión | {{ $matter_user->matter->version }}</h5>
+                  <h5>Credito | {{ $matter_user->matter->credit }}</h5>
+                  <i class="ni education_hat mr-2"></i>
+                  <h5>Semestre | {{ $matter_user->matter->semester }}</h5>
                 </div>
                 <div class="h5 mt-4">
                   <i class="ni business_briefcase-24 mr-2"></i>Carrera | {{$matter_user->matter->career->career}} 
@@ -147,7 +149,6 @@
                   <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Codigo</th>
-                    <th scope="col">Titulo</th>
                     <th scope="col">Version</th>
                     <th scope="col">Estatus</th>
                     <th scope="col">Confirmacón</th>
@@ -161,7 +162,6 @@
                     <tr>
                       <td>{{$item->id}}</td>
                       <td>{!!$item->slug!!}</td>
-                      <td><label>{!!$item->title!!}</label></td>
                       <td>{!!$item->version!!}</td>
                       <td>
                         @if($item->status==false)Desactualizada

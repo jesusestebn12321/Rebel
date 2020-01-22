@@ -41,6 +41,47 @@
                             </span>
                         @endif
                     </div>
+                    
+                    <div class="form-group{{ $errors->has('semester') ? ' has-error' : '' }}">
+                        <input id="semester" type="text" placeholder="Sementre" class="form-control" name="semester" autofocus required >
+                        @if ($errors->has('semester'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('semester') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="form-group{{ $errors->has('credit') ? ' has-error' : '' }}">
+                        <input id="credit" type="number" placeholder="Credito Unidad Curricular" class="form-control" name="credit" autofocus required >
+                        @if ($errors->has('credit'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('credit') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="form-group{{ $errors->has('ht') ? ' has-error' : '' }}">
+                        <input id="ht" type="number" placeholder="HT" class="form-control" name="ht" autofocus required >
+                        @if ($errors->has('ht'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('ht') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="form-group{{ $errors->has('hl') ? ' has-error' : '' }}">
+                        <input id="hl" type="number" placeholder="HL" class="form-control" name="hl" autofocus required >
+                        @if ($errors->has('hl'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('hl') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="form-group{{ $errors->has('hp') ? ' has-error' : '' }}">
+                        <input id="hp" type="number" placeholder="HP" class="form-control" name="hp" autofocus required >
+                        @if ($errors->has('hp'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('hp') }}</strong>
+                            </span>
+                        @endif
+                    </div>
 
                     <div class="form-group{{ $errors->has('career_id') ? ' has-error' : '' }}">
                         <select id="career_id" class='form-control' value='0' name="career_id" size='1'>

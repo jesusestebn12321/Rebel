@@ -80,8 +80,12 @@
 	                  <tr>
 	                    <th scope="col">ID</th>
 	                    <th scope="col">Codigo</th>
-	                    <th scope="col">Verción</th>
 	                    <th scope="col">Unidad Curricular</th>
+                      <th scope="col">Semestre</th>
+                      <th scope="col">Credito</th>
+                      <th scope="col">HL</th>
+                      <th scope="col">HT</th>
+                      <th scope="col">HP</th>
 	                    <th scope="col">Nª contenido</th>
 	                    <th scope="col">Created_at</th>
 	                    <th scope="col">Updated_at</th>
@@ -95,18 +99,34 @@
 	                      	<td>
 	                      		{{$item->id}}
 	                      	</td>
-	                      	<td>
-	                       		<input type="hidden" id='slug{{$item->id}}' value='{{$item->slug}}'>
-	                        	{{ $item->slug }}
-	                      	</td>
-	                      	<td>
-	                        	<input type="hidden" id='version{{$item->id}}' value='{{$item->version}}'>
-	                        	{{ $item->version }}
-	                      	</td>
+                          <td>
+                            <input type="hidden" id='slug{{$item->id}}' value='{{$item->slug}}'>
+                            {{ $item->slug }}
+                          </td>
 	                      	<td id='td_matter{{$item->id}}'>
 	                       		<label id='labelEditmatter{{$item->id}}'>{{ $item->matter}}</label>
 	                        	<input class='d-none' id="EditUniversity{{$item->id}}" value="{{$item->matter}}">
 	                      	</td>
+                          <td>
+                            <input type="hidden" id='{{$item->id}}' value='{{$item->semester}}'>
+                            {{ $item->semester }}
+                          </td>
+                          <td>
+                            <input type="hidden" id='{{$item->id}}' value='{{$item->credit}}'>
+                            {{ $item->credit }}
+                          </td>
+                          <td>
+                            <input type="hidden" id='{{$item->id}}' value='{{$item->hl}}'>
+                            {{ $item->hl }}
+                          </td>
+                          <td>
+                            <input type="hidden" id='{{$item->id}}' value='{{$item->ht}}'>
+                            {{ $item->ht }}
+                          </td>
+                          <td>
+                            <input type="hidden" id='{{$item->id}}' value='{{$item->hp}}'>
+                            {{ $item->hp }}
+                          </td>
 	                      	<td>{{$item->content->count()}}</td>
 	                      	<td id='td_Create{{$item->id}}'>{{ $item->created_at }}</td>
 	                      	<td id='td_Edit{{$item->id}}'>{{ $item->updated_at }}</td>
