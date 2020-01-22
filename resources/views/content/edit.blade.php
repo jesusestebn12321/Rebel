@@ -2,13 +2,7 @@
 @section('title','| Contenido')
 @section('js')
 <script type="text/javascript">
-  $('#content').wysihtml5({
-    toolbar: { fa: true }
-  });
-  $('#title').wysihtml5({
-    toolbar: { fa: true }
-  });
-  $('#introdution').wysihtml5({
+  $('textarea').wysihtml5({
     toolbar: { fa: true }
   });
 </script>
@@ -25,18 +19,28 @@
               <input type="hidden" id="id_matter" value="$matter_user->matter[0]->id" >
                 
                 <hr class="my-4">
-                <label>Titulo:</label>
-                <textarea id="title" class=" form-control" name="title">{!!$content->title!!}</textarea>
+                <label>Justificacion:</label>
+                <textarea id="justification" class=" form-control" name="justification">{!!$content->justification!!}</textarea>
               </h3>
               <hr class="my-4">
-              <label>Introduccion:</label>
+              <label>Proposito:</label>
               
-              <textarea name="introdution" id="introdution" class=" form-control" >{!! $content->introdution !!}</textarea>
+              <textarea name="purpose" id="purpose" class=" form-control" >{!! $content->purpose !!}</textarea>
 
               <hr class="my-4">
-              <label>Contenido:</label>
+              <label>Contenido Programático:</label>
               
               <textarea name="content" id="content" class=" form-control" >{!! $content->content !!}</textarea>
+
+              <hr class="my-4">
+              <label>Estrategia Metodológica:</label>
+              
+              <textarea name="methodology" id="methodology" class=" form-control" >{!! $content->methodology !!}</textarea>
+
+              <hr class="my-4">
+              <label>Estrategia Evaluativa:</label>
+              
+              <textarea name="evaluation" id="evaluation" class=" form-control" >{!! $content->evaluation !!}</textarea>
           </div>
         </div>
         <div class="card-footer">
