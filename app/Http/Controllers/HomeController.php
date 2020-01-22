@@ -58,10 +58,6 @@ class HomeController extends Controller
             $matter= Matter::all()->count();
             $career= Career::all()->count();
 
-            
-
-
-
             $label=['Estudiantes','Profesores','Coordinadores','Areas','Carreras','Materias','Contenidos','Versiones de Contenidos'];
 
             $data = [$students,$teacher,$coordinadores,$area,$career,$matter,$content,$contentV];
@@ -69,7 +65,7 @@ class HomeController extends Controller
             return $json;
 
         }
-        elseif (Auth::user()->hasRole(2)) {
+        elseif (Auth::user()->hasRole(2) || Auth::user()->hasRole(4)) {
             # code...
 
             $teacher=Teacher::where('rol_id','=',2)->get()->count();
