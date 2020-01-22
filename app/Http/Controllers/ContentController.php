@@ -44,7 +44,7 @@ class ContentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ContentRequests $request)
+    public function store(Request $request)
     {
         $slug=str_slug($request->title.rand());
 
@@ -102,24 +102,27 @@ class ContentController extends Controller
      * @param  \Equivalencias\Content  $content
      * @return \Illuminate\Http\Response
      */
-    public function update(ContentRequests $request, $slug)
+    public function update(Request $request, $slug)
     {
         $content=Content::where('slug',$slug)->firstOrFail();
         $contentV=ContentVersion::where('content_id',$content->id)->get();
         $version=$contentV->count();
-        
         $slug=str_slug($content->version.$content->title.rand());
         $contentV=ContentVersion::create([
                 'slug'=>$slug,
-                'title'=>$content->title,
-                'content'=>$content->content,
                 'version'=>$content->version,
-                'introdution'=>$content->introdution,
+                'justification'=>$content->justification,
+                'purpose'=>$content->purpose,
+                'content'=>$content->content,
+                'methodology'=>$content->methodology,
+                'evaluation'=>$content->evaluation,
                 'content_id'=>$content->id,
             ]);
         $content->version=$version+1;
-        $content->title=$request->input('title');
-        $content->introdution=$request->input('introdution');
+        $content->justification=$request->input('justification');
+        $content->purpose=$request->input('purpose');
+        $content->methodology=$request->input('methodology');
+        $content->evaluation=$request->input('evaluation');
         $content->content=$request->input('content');
         $content->status=0;
         $content->confirmation=false;
