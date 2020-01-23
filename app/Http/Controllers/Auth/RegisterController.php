@@ -67,6 +67,7 @@ class RegisterController extends Controller
             'rol' => 'required|in:teacher,students',
             'dni'      => 'required|integer|min:1|unique:users,dni',
             'g-recaptcha-response' => new Captcha()
+            
         ]);
     }
 
