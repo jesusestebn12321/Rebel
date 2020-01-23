@@ -9,37 +9,35 @@
 		
 		table {
 			width: 126.2% !important;
+			height: 70% !important;
 			margin-left: 2cm !important;
 			margin-right: 3cm !important;
 			margin-top: .1cm !important;
-			margin-bottom: 2cm !important;
+			margin-bottom: 1cm !important;
 			/*margin-top: 5%;*/
 			min-width: 100% !important;
-			min-height: 100% !important;
-		} 
+			min-height: 10% !important;
+		}
+		h3,h4{text-transform: uppercase;}
 		
 		td{
 			/*darle uniformidad a los bordes tablas*/
 			border:  1px solid black !important;
-			width:100%;
-			border-top: 1px solid #000001 !important;
-			border-bottom: 1px solid #000001 !important;
-			border-left: 1px solid #000001 !important;
-			border-right: 1px solid #000001 !important;
-			padding-top: 0in;
-			padding-bottom: 0in;
-			padding-left: 0.02in;
-			padding-right: 0.08in; 
+			width:10%;
+			min-height: 10px !important;
+			padding: 1px;
+			margin:1px;
 			background: #ffffff !important;
 		}
 		p{
 			background: #ffffff; border: none; padding: 0in; page-break-inside: auto; widows: 0; orphans: 0; page-break-after: auto;
 
 		}
-		font{
+		.font{
 			background: #ffffff !important;
 			color:#000000 !important;
 			font-family: Arial, serif;
+			font: 15px !important;
 		}
 		span{
 			color:#000000 !important;
@@ -74,64 +72,29 @@
 		}
 
 		.nueva-pagina {
-			/*
 			margin-top: 8cm !important;
 			position: absolute !important;
-				
-			*/
 		}
 	</style>
 @endsection
 @section('content')
-	<div style="padding: 15px; padding-left: 10px">
-
-			<p align=CENTER style="margin-left: .5in; margin-bottom: 0in">
-				<img src="{{asset('logo/unerg.png')}}" name="image1.png" align="left" width="87" height="36" border=0>
-				<font>
-					<font style="font-size: 9pt">REPÚBLICA BOLIVARIANA DE VENEZUELA
-					</font>
-				</font>
-				<div align="right" style="float: right; position: relative !important">
-					<img style="padding: 0px" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(100)->generate($url)) !!} ">
-				</div>
-			</p>
-			<p align=CENTER style="margin-left: .5in; margin-bottom: 0in"><font><font style="font-size: 9pt">UNIVERSIDAD
-			NACIONAL EXPERIMENTAL DE LOS LLANOS RÓMULO GALLEGOS</font></font></p>
-			<p align=CENTER style="margin-left: .5in; margin-bottom: 0in"><font><font style="font-size: 9pt">VICERRECTORADO
-			ACADÉMICO</font></font></p>
-			<p align=CENTER style="margin-left: .5in; margin-bottom: 0in"><font><font style="font-size: 9pt">SAN
-			JUAN DE LOS MORROS</font></font></p>
-			<p align=CENTER style="margin-left: .5in; margin-bottom: 0in"><font><font style="font-size: 9pt">ESTADO
-			GUÁRICO</font></font></p>
-			<p align=CENTER style="margin-bottom: .5in; background: #ffffff; border: none; font-weight: normal; page-break-inside: auto; widows: 0; orphans: 0; ; page-break-after: auto">
-			</p>
-			<div style="display:inline-block; margin-left: 10px;padding-bottom:5px;padding-top:5px;margin-top:-10px;top:-10px;position:relative">
-				<div>
-					<b>Nombre y Apellido:</b>{{Auth::user()->name}} {{Auth::user()->lastname}}
-				</div>
-				<div>
-					<b>Cedula:</b>{{Auth::user()->dni}}
-				</div>
-				<div>
-					<b>E-mail:</b>{{Auth::user()->email}}
-				</div>
-		</div>
-	</div>
-@foreach($contents as $item)
-<table width="60" cellpadding="7" cellspacing="0" >
-	<col width=12>
-	<col width=7>
-	<col width=6>
-	<col width=1>
-	<col width=11>
-	<col width=2>
-	<col width=1>
-	<col width=5>
-	<col width=5>
+	
+@foreach($contents as $key=>$item)
+@include('pdf.layouts.header')
+<table cellpadding="7" cellspacing="0" >
+	<col >
+	<col >
+	<col >
+	<col >
+	<col >
+	<col >
+	<col >
+	<col >
+	<col >
 	<tr>
-		<td colspan=9 width=20 Valign="center">
-			<p align=center>
-				<h3><b>PROGRAMA</b></h3>
+		<td colspan=9 Valign="center">
+			<p align=center style="width: 10px">
+				<h3>PROGRAMA</h3>
 			</p>
 		</td>
 	</tr>
@@ -139,120 +102,120 @@
 		<td colspan=9 Valign=TOP>
 			<p align=CENTER>
 				<span>
-				<font>{{$item->matters->career->career}}</SPAN></font>
+				<font class="font">{{$item->matters->career->career}}</span></font>
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td colspan=9 Valign=TOP align="left">
+			<p align=JUSTIFY>
+				<h4>UNIDAD CURRICULAR</h4>
 			</p>
 		</td>
 	</tr>
 	<tr>
 		<td colspan=9 Valign=TOP>
-			<p align=JUSTIFY>
-				<span><font><span><font><font><span><B><span>UNIDAD CURRICULAR</SPAN></b></SPAN></font></font></SPAN></font></SPAN>
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td colspan=9 width=20 Valign=TOP>
 			<p align=LEFT>
-			<font><font>{{ $item->matters->matter }}</font></font></p>
+			<font>{{ $item->matters->matter }}</font></font></p>
 		</td>
 	</tr>
 	<tr>
-		<td ROWSPAN=2 width=120>
+		<td ROWSPAN=2 valign="top" align="center">
 			<p align=CENTER>
-			<span><font><span><font><font><span><B><span>SEMESTRE</SPAN></b></SPAN></font></font></SPAN></font></SPAN></p>
+			<h4>SEMESTRE</h4></p>
 		</td>
-		<td ROWSPAN=2 width=78>
+		<td ROWSPAN=2 valign="top" align="center">
 			<p align=CENTER>
-			<span><font><span><font><font><span><B><span>CÓDIGO</SPAN></b></SPAN></font></font></SPAN></font></SPAN></p>
+			<h4>CÓDIGO</h4></p>
 		</td>
-		<td ROWSPAN=2 colspan=2 width=93>
+		<td ROWSPAN=2 colspan=2 valign="top" align="center">
 			<p align=CENTER>
-			<span><font><span><font><font><span><B><span>CRÉDITOS</SPAN></b></SPAN></font></font></SPAN></font></SPAN></p>
+			<h4>CRÉDITOS</h4></p>
 		</td>
-		<td ROWSPAN=2 width=118>
+		<td ROWSPAN=2 valign="top" align="center">
 			<p align=CENTER>
-			<span><font><span><font><font><span><B><span>CARÁCTER</SPAN></b></SPAN></font></font></SPAN></font></SPAN></p>
+			<h4>CARÁCTER</h4></p>
 		</td>
-		<td colspan=4 width=1>
+		<td colspan=4 valign="top" align="center">
 			<p align=CENTER>
-			<span><font><B>HORAS*</b></font></span></p>
+			<h4>HORAS*</h4></p>
 		</td>
 	</tr>
 	<tr>
-		<td colspan=2 width=53>
+		<td colspan=2 valign="top" align="center">
 			<p align=CENTER>
-			<span><font><span><font><font><span><B><span>HT</SPAN></b></SPAN></font></font></SPAN></font></SPAN></p>
+			<h4>HT</h4></p>
 		</td>
-		<td width=53>
+		<td valign="top" align="center">
 			<p align=CENTER>
-			<span><font><span><font><font><span><B><span>HL</SPAN></b></SPAN></font></font></SPAN></font></SPAN></p>
+			<h4>HL</h4></p>
 		</td>
-		<td width=52>
+		<td valign="top" align="center">
 			<p align=CENTER>
-			<span><font><span><font><font><span><B><span>HP</SPAN></b></SPAN></font></font></SPAN></font></SPAN></p>
+			<h4>HP</h4></p>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<p align=CENTER><font size="3">{{$item->matters->semester}}</font></p>
+			<p align=CENTER><font class="font">{{$item->matters->semester}}</font></p>
 		</td>
-		<td width=78>
-			<p align=CENTER><font><font>{{$item->matters->slug}}</font></font>
+		<td>
+			<p align=CENTER><font class="font">{{$item->matters->slug}}</font>
 			</p>
 		</td>
-		<td colspan=2 width=93>
+		<td colspan=2>
 			<p align=CENTER>
-			<font><font>{{$item->matters->credit}}</font></font></p>
+			<font class="font">{{$item->matters->credit}}</font></p>
 		</td>
-		<td width=118>
+		<td>
 			<p align=CENTER>
-			<span><font><span><font><font><span><span>OBLIGATORIO</SPAN></SPAN></font></font></SPAN></font></SPAN></p>
+			<span><font>OBLIGATORIO</font></span></p>
 		</td>
-		<td colspan=2 width=53>
+		<td colspan=2>
 			<p align=CENTER>
-			<font><font>{{$item->matters->ht}}</font></font></p>
+			<font class="font">{{$item->matters->ht}}</font></p>
 		</td>
-		<td width=53>
+		<td>
 			<p align=CENTER>
-			<font><font>{{$item->matters->hl}}</font></font></p>
+			<font class="font">{{$item->matters->hl}}</font></font></p>
 		</td>
-		<td width=52>
+		<td>
 			<p align=CENTER>
-			<font><font>{{$item->matters->hp}}</font></font></p>
+			<font class="font">{{$item->matters->hp}}</font></font></p>
 		</td>
 	</tr>
 	<tr>
-		<td colspan=3 width=289>
+		<td colspan=3>
 			<p align=LEFT>
-			<span><font><span><font><font><span><B><span>DIRECCIÓN</SPAN></b></SPAN></font></font></SPAN></font></SPAN></p>
+			<h4>DIRECCIÓN</h4></p>
 		</td>
-		<td colspan=6 width=346>
+		<td colspan=6>
 			<p align=LEFT>
-			<span><font><span><font><font><span><B><span>DEPARTAMENTO</SPAN></b></SPAN></font></font></SPAN></font></SPAN></p>
+			<h4>DEPARTAMENTO</h4></p>
 		</td>
 	</tr>
 	<tr>
-		<td colspan=3 width=289>
+		<td colspan=3>
 			<p align=CENTER>
-			<font>{{$item->matters->career->area->area}}</font></p>
+			<font class="font">{{$item->matters->career->area->area}}</font></p>
 		</td>
-		<td colspan=6 width=346>
+		<td colspan=6>
 			<p align=CENTER>
-			<span><font><span><font>{{$item->matters->career->area->departamento?'me falta campo':'me falta campo'}}</font></p>
-		</td>
-	</tr>
-	<tr>
-		<td colspan=6 width=484>
-			<p align=CENTER>
-			<span><font><span><font><font><span><B><span>AUTORES</SPAN></b></SPAN></font></font></SPAN></font></SPAN></p>
-		</td>
-		<td colspan=3 width=151>
-			<p align=CENTER>
-			<span><font><span><font><font><span><B><span>VERSIÓN</SPAN></b></SPAN></font></font></SPAN></font></SPAN></p>
+			<span><font><span><font class="font">{{$item->matters->career->area->departamento?'me falta campo':'me falta campo'}}</font></p>
 		</td>
 	</tr>
 	<tr>
-		<td colspan=6 width=289 HEIGHT=10>
+		<td colspan=6>
+			<p align=CENTER>
+			<h4>AUTORES</h4></p>
+		</td>
+		<td colspan=3>
+			<p align=CENTER>
+			<h4>VERSIÓN</h4></p>
+		</td>
+	</tr>
+	<tr>
+		<td colspan=6 HEIGHT=10>
 			<UL>
 				@foreach($item->matters->matter_user as $items)
 				<LI><p align=LEFT style="margin-bottom: 0in;">
@@ -262,63 +225,83 @@
 				@endforeach
 			</UL>
 		</td>
-		<td colspan=3 width=151>
+		<td colspan=3>
 			<p align=CENTER>
-			<span><font>{{$item->version}}</font></SPAN></p>
+			<span><font class="font">{{$item->version}}</font></span></p>
 		</td>
 	</tr>
-	<tr>
-		<td colspan=9 width=20 Valign=TOP>
+
+	@for($i=0;$i < count($contenidos_paginados);$i++)
+		@if($key==$i)
+		<tr>
+			<td colspan=9 Valign=TOP>
+				<p align=LEFT>
+				<h4>JUSTIFICACIÓN</h4></p>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=9 Valign=TOP >
+			{{-- prototipo  --}}
+			<div style="width: 100%; padding: 4px;margin:1px">
+				<p align=JUSTIFY style="display: inline-block;text-indent: 5px;text-align: justify;"><font class="font">
+						{!!  $contenidos_paginados[$i]['justification']  !!}
+				</font></font></p>
+			</div></td>
+		</tr>
+		@endif
+	@endfor
+	@for($i=0;$i < count($contenidos_paginados);$i++)
+		@if($key==$i)
+		<tr>
+			<td colspan=9 Valign=TOP>
+				<p align=LEFT>
+				<h4>PROPÓSITOS</h4></p>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=9 Valign=TOP>
+				<p align=JUSTIFY><font class="font">{!!$contenidos_paginados[$i]['purpose']!!} </font></font></p>
+			</td>
+		</tr>
+		@endif
+	@endfor
+	@for($i=0;$i < count($contenidos_paginados);$i++)
+		@if($key==$i)
+		<tr>
+			<td colspan=9 Valign=TOP>
+				<p align=LEFT>
+				<h4>CONTENIDO
+				PROGRAMÁTICO</h4></p>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=9 Valign=TOP>
+			 <p align=JUSTIFY><font class="font">{!!$contenidos_paginados[$i]['content']!!}</font></font></p>
+			</td>
+		</tr>
+		@endif
+	@endfor
+
+
+	<tr Valign=TOP>
+		<td colspan=4 >
 			<p align=LEFT>
-			<span><font><span><font><font><span><B><span>JUSTIFICACIÓN</SPAN></b></SPAN></font></font></SPAN></font></SPAN></p>
+			<h4>ESTRATEGIAS
+			METODOLÓGICAS</h4></p>
 		</td>
-	</tr>
-	<tr>
-		<td colspan=9 width=20 Valign=TOP>
-			<p align=JUSTIFY><font><font>{{$item->justification}}</font></font></p>
-		</td>
-	</tr>
-	<tr>
-		<td colspan=9 width=20 Valign=TOP>
+		<td colspan=5 >
 			<p align=LEFT>
-			<span><font><span><font><font><span><B><span>PROPÓSITOS</SPAN></b></SPAN></font></font></SPAN></font></SPAN></p>
-		</td>
-	</tr>
-	<tr>
-		<td colspan=9 width=20 Valign=TOP>
-			<p align=JUSTIFY><font><font>{{$item->purpose}}</font></font></p>
-		</td>
-	</tr>
-	<tr>
-		<td colspan=9 width=20 Valign=TOP>
-			<p align=LEFT>
-			<span><font><span><font><font><span><B><span>CONTENIDO
-			PROGRAMÁTICO</SPAN></b></SPAN></font></font></SPAN></font></SPAN></p>
-		</td>
-	</tr>
-	<tr>
-		<td colspan=9 width=20 Valign=TOP>
-		 <p align=JUSTIFY><font><font>{{$item->content}}</font></font></p>
+			<h4>ESTRATEGIAS
+			DE EVALUACIÓN</h4></p>
 		</td>
 	</tr>
 	<tr Valign=TOP>
-		<td colspan=4 width=15>
-			<p align=LEFT>
-			<span><font><span><font><font><span><B><span>ESTRATEGIAS
-			METODOLÓGICAS</SPAN></b></SPAN></font></font></SPAN></font></SPAN></p>
+		<td colspan=4 ><p align=JUSTIFY><font class="font">{{$item->methodology}}</font></font></p>
 		</td>
-		<td colspan=5 width=15>
-			<p align=LEFT>
-			<span><font><span><font><font><span><B><span>ESTRATEGIAS
-			DE EVALUACIÓN</SPAN></b></SPAN></font></font></SPAN></font></SPAN></p>
-		</td>
-	</tr>
-	<tr Valign=TOP>
-		<td colspan=4 width=15><p align=JUSTIFY><font><font>{{$item->methodology}}</font></font></p>
-		</td>
-		<td colspan=5 width=15><p align=JUSTIFY><font><font>{{$item->evaluation}}</font></font></p>
+		<td colspan=5 ><p align=JUSTIFY><font class="font">{{$item->evaluation}}</font></font></p>
 		</td>
 	</tr>
 </table>
 @endforeach
+
 @endsection

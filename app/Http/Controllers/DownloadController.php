@@ -22,12 +22,54 @@ use Illuminate\Support\Collection;
 class DownloadController extends Controller
 {
     //descargar pdf Equivalencias para los estudiantes 
+
+    public function paginacion($campo,$caracteres){
+        $palabra=$campo;
+        $palabra=explode(' ', $palabra);
+        $n= count($palabra);
+        $x='';
+        $i=0;
+        foreach ($palabra as $item) {
+            # code...
+            $i++;
+            if ($caracteres==$i) {
+                # code...
+                $x= $x.' '.$item . '<br>' ;
+                $i=0;
+            } else {
+                # code...
+                $x= $x.' '.$item;
+            }
+        }
+        $campo=$x;
+        $i=0;
+        return $campo;
+    }
+    public function createRegisterDownload(){
+        $slug=str_slug('downloand-'.Auth::user()->id.'-'.now().'-equivalencia');
+
+        return  Download::Create([
+            'slug'=>$slug,
+            'user_id'=>Auth::user()->id,
+            'start_student'=>now(),
+            'last_student'=>now(),
+            'status'=>0,
+            ]);
+
+    }
+
+
     public function equivalenciaStudents($slug, Request $request){
 
+        
         $matter_user= StudentMatter::where('user_id',Auth::user()->id)->get();
         $i=0;
 
         foreach ($matter_user as $item) {
+            $contentP='';
+            $justification='';
+            $purpose='';
+            
             $version=$item->version;
             $content=Content::where('version',$version)
                 ->where('matter_id',$item->id)->first();
@@ -39,25 +81,33 @@ class DownloadController extends Controller
                         if ($item_version->version == $version) {
                             $contents[$i]=Arr::add($item_version,$i,null);
                             //dd($contents);
+                            $contentP=$this->paginacion($item_version->content,25);
+                            $justification=$this->paginacion($item_version->justification,25);
+                            $purpose=$this->paginacion($item_version->purpose,25);
+                            
+                            $contenidos_paginados[$i]=array('content' => $contentP,'justification'=> $justification,'purpose'=>$purpose );
                         }
                     }
                 }
             }if($content){
                 $contents[$i]=Arr::add($content,$i,null);
+                
+                $contentP=$this->paginacion($content->content,25);
+                $justification=$this->paginacion($content->justification,25);
+                $purpose=$this->paginacion($content->purpose,25);
+                
+                $contenidos_paginados[$i]=array('content' => $contentP,'justification'=> $justification,'purpose'=>$purpose );
+                
             }
             $i++;
         }
-        //dd($contents);
-        $slug=str_slug('downloand-'.Auth::user()->id.'-'.now().'-equivalencia');
-        Download::Create([
-            'slug'=>$slug,
-            'user_id'=>Auth::user()->id,
-            'start_student'=>now(),
-            'last_student'=>now(),
-            'status'=>0,
-            ]);
+            $contenidos_paginados=Collection::make($contenidos_paginados);
+        
+        $this->createRegisterDownload();
+
         $url=url('/VerificarEquivalencia/{'.Auth::user()->id.'}/');
-        $pdf=PDF::loadView('pdf.equivalencia',compact('contents','today','url'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif']);
+        $pdf=PDF::loadView('pdf.equivalencia',compact('contents','contenidos_paginados','today','url'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif']);
+        //$pdf->render();
         $pdf->download('Equivalencia_'.Auth::user()->dni.'_'.now().'.pdf');
         return $pdf->stream('Equivalencia_'.Auth::user()->dni.'_'.now().'pdf');
     }
