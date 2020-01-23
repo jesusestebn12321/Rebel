@@ -5,6 +5,7 @@ namespace Equivalencias\Http\Controllers\Auth;
 use Equivalencias\User;
 use Equivalencias\Area;
 use Equivalencias\Career;
+use Equivalencias\Mail\VerificationEmail;
 use Carbon\Carbon;
 use Mail;
 use Equivalencias\Http\Controllers\Controller;
@@ -89,14 +90,12 @@ class RegisterController extends Controller
         }else{
             $data['rol']=3;
         }
-        //
+        
         $mail=Mail::send('emails.confimation_code', $data, function($message) use ($data) {
             $message->from($data['email'],'Rebel');
             $message->to($data['email'], $data['name'])->subject('Por favor confirma tu correo, para poder iniciar seccion en el sistema Rebel');
         });
-        if ($mail->fails()) {
-            return redirect()->back()->withInput()->withErrors($mail->errors());
-        }
+        
 
         $user= User::create([
             'name'      => $data['name'],
