@@ -30,6 +30,10 @@
   }
 </script>
 @endsection
+@section('header_js')
+<script src='https://www.google.com/recaptcha/api.js'></script>
+@endsection
+
 @section('content')
 <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8">
@@ -138,6 +142,7 @@
                   @endif
                 </div>
 
+                
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
@@ -146,6 +151,19 @@
                     <input id="password-confirm" placeholder="Confirme Contraseña" type="password" class="form-control" name="password_confirmation" required>
                   </div>
                 </div>
+                
+                <div class="form-group">
+                  <div class="col-md-6 offset-md-4">
+                      <div class="g-recaptcha" data-sitekey="{{ env('CAPTCHA_SITE_KEY') }}"></div>
+                      @if ($errors->has('g-recaptcha-response'))
+                          <span class="invalid-feedback" style="display: block;">
+                              <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                          </span>
+                      @endif
+                  </div>
+
+                </div>
+
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary mt-4">Crear cuenta</button>
                 </div>

@@ -44,6 +44,7 @@
               <span class="text-muted" {{ old('remember') ? 'checked' : '' }}>Recordar</span>
             </label>
           </div>
+          
           <div class="text-center">
             <button type="submit" class="btn btn-primary my-4">Iniciar</button>
           </div>

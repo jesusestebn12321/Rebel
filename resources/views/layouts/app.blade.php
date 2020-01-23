@@ -15,6 +15,7 @@
   <!-- Argon CSS -->
   <link type="text/css" href="{{asset('template/assets/css/argon.css')}}" rel="stylesheet">
   <link type="text/css" href="{{asset('plugins/css/main.css')}}" rel="stylesheet">
+  @yield('header_js')
 </head>
 
 <body class="bg-default">

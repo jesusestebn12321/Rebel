@@ -11,6 +11,7 @@ use Equivalencias\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Str as Str;
+use Equivalencias\Rules\Captcha;
 
 class RegisterController extends Controller
 {
@@ -32,7 +33,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -63,7 +64,8 @@ class RegisterController extends Controller
             'email'    => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'rol' => 'required|in:teacher,students',
-            'dni'      => 'required|integer|min:1|unique:users,dni'
+            'dni'      => 'required|integer|min:1|unique:users,dni',
+            'g-recaptcha-response' => new Captcha()
         ]);
     }
 
