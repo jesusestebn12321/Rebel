@@ -81,9 +81,9 @@ class DownloadController extends Controller
                         if ($item_version->version == $version) {
                             $contents[$i]=Arr::add($item_version,$i,null);
                             //dd($contents);
-                            $contentP=$this->paginacion($item_version->content,25);
-                            $justification=$this->paginacion($item_version->justification,25);
-                            $purpose=$this->paginacion($item_version->purpose,25);
+                            $contentP=$this->paginacion($item_version->content,20);
+                            $justification=$this->paginacion($item_version->justification,20);
+                            $purpose=$this->paginacion($item_version->purpose,20);
                             
                             $contenidos_paginados[$i]=array('content' => $contentP,'justification'=> $justification,'purpose'=>$purpose );
                         }
@@ -92,9 +92,10 @@ class DownloadController extends Controller
             }if($content){
                 $contents[$i]=Arr::add($content,$i,null);
                 
-                $contentP=$this->paginacion($content->content,25);
-                $justification=$this->paginacion($content->justification,25);
-                $purpose=$this->paginacion($content->purpose,25);
+                $contentP=$this->paginacion($content->content,20);
+                $justification=$this->paginacion($content->justification,20);
+                $purpose=$this->paginacion($content->purpose,20);
+
                 
                 $contenidos_paginados[$i]=array('content' => $contentP,'justification'=> $justification,'purpose'=>$purpose );
                 
