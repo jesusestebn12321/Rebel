@@ -110,7 +110,7 @@ class DownloadController extends Controller
         $pdf=PDF::loadView('pdf.equivalencia',compact('contents','contenidos_paginados','today','url'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif']);
         //$pdf->render();
         $pdf->download('Equivalencia_'.Auth::user()->dni.'_'.now().'.pdf');
-        return $pdf->stream('Equivalencia_'.Auth::user()->dni.'_'.now().'pdf');
+        return $pdf->stream('Equivalencia_'.Auth::user()->dni.'_'.now().'.pdf');
     }
     //descargar pdf de los profesores
     public function adminTeacher(){
