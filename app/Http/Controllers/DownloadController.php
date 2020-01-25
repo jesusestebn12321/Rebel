@@ -2,6 +2,8 @@
 
 namespace Equivalencias\Http\Controllers;
 use Illuminate\Http\Request;
+use Equivalencias\Http\Requests\DownloadRequests;
+use Equivalencias\Rules\Captcha;
 
 use Equivalencias\contentVersion;
 use Equivalencias\StudentMatter;
@@ -18,6 +20,7 @@ use collect;
 use Auth;
 use json;
 use PDF;
+use Validator;
 use Illuminate\Support\Collection;
 class DownloadController extends Controller
 {
@@ -45,23 +48,34 @@ class DownloadController extends Controller
         $i=0;
         return $campo;
     }
-    public function createRegisterDownload(){
-        $slug=str_slug('downloand-'.Auth::user()->id.'-'.now().'-equivalencia');
 
-        return  Download::Create([
-            'slug'=>$slug,
-            'user_id'=>Auth::user()->id,
-            'start_student'=>now(),
-            'last_student'=>now(),
-            'status'=>0,
-            ]);
+    public function createRegisterDownload(Request $request){
+        //dd($request);
+        $rule=['g-recaptcha-response' => new Captcha()];
+        $message=[];
+
+        $validator=Validator::make($request->all(), $rule,$message);
+        if($validator->fails()){
+            $message='Debe Completar el reCatcha';
+            return false;
+        }else{
+
+            $slug=str_slug('downloand-'.Auth::user()->id.'-'.now().'-equivalencia');
+
+            return  Download::Create([
+                'slug'=>$slug,
+                'user_id'=>Auth::user()->id,
+                'start_student'=>now(),
+                'last_student'=>now(),
+                'status'=>false,
+                ]);
+        }
 
     }
 
 
     public function equivalenciaStudents($slug, Request $request){
 
-        
         $matter_user= StudentMatter::where('user_id',Auth::user()->id)->get();
         $i=0;
 
@@ -103,14 +117,16 @@ class DownloadController extends Controller
             $i++;
         }
             $contenidos_paginados=Collection::make($contenidos_paginados);
-        
-        $this->createRegisterDownload();
-
-        $url=url('/VerificarEquivalencia/{'.Auth::user()->id.'}/');
-        $pdf=PDF::loadView('pdf.equivalencia',compact('contents','contenidos_paginados','today','url'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif']);
-        //$pdf->render();
-        $pdf->download('Equivalencia_'.Auth::user()->dni.'_'.now().'.pdf');
-        return $pdf->stream('Equivalencia_'.Auth::user()->dni.'_'.now().'.pdf');
+        $download=$this->createRegisterDownload($request);
+        if($download==false){
+            return redirect()->route('home')->with('messages','No completo el reCatcha');
+        }else{
+            $url=url('/VerificarEquivalencia/{'.Auth::user()->id.'}/');
+            $pdf=PDF::loadView('pdf.equivalencia',compact('contents','contenidos_paginados','today','url'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif']);
+            
+            $pdf->download('Equivalencia_'.Auth::user()->dni.'_'.now().'.pdf');
+            return $pdf->stream('Equivalencia_'.Auth::user()->dni.'_'.now().'.pdf');
+        }
     }
     //descargar pdf de los profesores
     public function adminTeacher(){
