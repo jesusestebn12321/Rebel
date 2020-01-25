@@ -19,7 +19,7 @@ Route::get('/noPermission', function () {
 	return view('permission.noPermission', compact('matter_user'));
 });
 
-Route::get('/DownloadEquivalencias/{slug}',['as'=>'equivalencia','uses'=>'DownloadController@equivalenciaStudents']);
+
 
 Route::get('/ErrorContent/{id}', ['as'=>'content.error','uses'=>'ContentController@error']);
 
@@ -159,6 +159,8 @@ Route::group(['middleware'=>['verifiUser']],function(){
 //Estudiasnte 
 	Route::group(['middleware'=>['authen','rol'],'rol'=>['3']],function(){
 		Route::get('/Download/{slug}',['as'=>'Download.index','uses'=>'DownloadController@index']);
+
+		Route::post('/DownloadEquivalencias/{slug}',['as'=>'equivalencia','uses'=>'DownloadController@equivalenciaStudents']);
 	});
 
 //AdminCurricular 
