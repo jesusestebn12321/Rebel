@@ -18,7 +18,7 @@ class CareerController extends Controller
 {
     
     public function index(){
-        $career=Career::all();
+        $career=Career::paginate(10);
         $area=Area::all();
         return view('career.index',compact('area','career'));
     }
