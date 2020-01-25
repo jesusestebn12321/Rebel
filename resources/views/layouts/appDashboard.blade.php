@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
 
   <link  type="text/css" href="{{asset('plugins/css/main.css')}}" rel="stylesheet">
+  @yield('header_js')
 </head>
 
   @if(Auth::user()->hasRole(2) && !isset($matter_user))
