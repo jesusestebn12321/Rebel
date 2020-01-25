@@ -48,6 +48,35 @@ class DownloadController extends Controller
         $i=0;
         return $campo;
     }
+    public function corte($margen,$model_arg,$corte_en,$thead_arg){
+        $model=$model_arg;
+        $conut_model=$model->count()/$corte_en;
+        $i=0;
+        $x=0;
+        $thead='';
+        foreach ($model as $key => $item) {
+            if ($i==$corte_en) {
+                for ($q=0; $q < count($thead_arg); $q++) { 
+                    $thead= $thead .'<th class="th" colspan=9 Valign="center">
+                    <p align=center style="width: 10px">
+                        <h3>'.$thead_arg[$q]['name'].'</h3>
+                    </p>
+                </th>';
+            }                
+            $html=[ 'id'=>$key,'html'=>'<table class="table" cellpadding="7" cellspacing="0" style="margin-top:'. $margen .'cm  !important"><col><col><col><col>
+                <thead>'.$thead.'</thead>
+            <tbody>'];
+                $paginacion[$x]=Arr::add($html,$x,null);
+                $i=0;
+                $x++;
+            }else{
+
+                $i++;
+            }
+            $thead='';
+        }
+        return $paginacion;
+    }
 
     public function createRegisterDownload(Request $request){
         //dd($request);
@@ -83,10 +112,10 @@ class DownloadController extends Controller
             $contentP='';
             $justification='';
             $purpose='';
-            
+
             $version=$item->version;
             $content=Content::where('version',$version)
-                ->where('matter_id',$item->id)->first();
+            ->where('matter_id',$item->id)->first();
                 //dd($content);
             if (!$content) {
                 foreach ($item->matter->content as $items) {
@@ -98,32 +127,32 @@ class DownloadController extends Controller
                             $contentP=$this->paginacion($item_version->content,20);
                             $justification=$this->paginacion($item_version->justification,20);
                             $purpose=$this->paginacion($item_version->purpose,20);
-                            
+
                             $contenidos_paginados[$i]=array('content' => $contentP,'justification'=> $justification,'purpose'=>$purpose );
                         }
                     }
                 }
             }if($content){
                 $contents[$i]=Arr::add($content,$i,null);
-                
+
                 $contentP=$this->paginacion($content->content,20);
                 $justification=$this->paginacion($content->justification,20);
                 $purpose=$this->paginacion($content->purpose,20);
 
-                
+
                 $contenidos_paginados[$i]=array('content' => $contentP,'justification'=> $justification,'purpose'=>$purpose );
-                
+
             }
             $i++;
         }
-            $contenidos_paginados=Collection::make($contenidos_paginados);
+        $contenidos_paginados=Collection::make($contenidos_paginados);
         $download=$this->createRegisterDownload($request);
         if($download==false){
             return redirect()->route('home')->with('messages','No completo el reCatcha');
         }else{
             $url=url('/VerificarEquivalencia/{'.Auth::user()->id.'}/');
             $pdf=PDF::loadView('pdf.equivalencia',compact('contents','contenidos_paginados','today','url'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif']);
-            
+
             $pdf->download('Equivalencia_'.Auth::user()->dni.'_'.now().'.pdf');
             return $pdf->stream('Equivalencia_'.Auth::user()->dni.'_'.now().'.pdf');
         }
@@ -148,12 +177,19 @@ class DownloadController extends Controller
     }
     //descargar pdf careras 
     public function adminArea(){
-        $area=Area::all()->paginate(7);
-        dd($area);
+        $thead = array(
+            ['name' =>'ID'],
+            ['name' =>'Universidad'],
+            ['name' =>'Area'],
+            ['name' =>'Coordenadas'],
+            ['name' =>'Creada'],
+            );
+        $area=Area::all();
+        $corte=$this->corte(2,$area,18,$thead);
+
         $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
         $url=url('/Areas');
-        return View('QR.pdfContentQR',compact('area','today','url'));
-        $pdf=PDF::loadView('pdf.areaAll',compact('area','today','url'));
+        $pdf=PDF::loadView('pdf.areaAll',compact('corte','area','pdf','today','url'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif']);
         $pdf->download('ReportesDeLasAreas.pdf');
         return $pdf->stream();
     }
