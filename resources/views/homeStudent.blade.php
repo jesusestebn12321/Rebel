@@ -1,7 +1,19 @@
 @extends('layouts.appDashboard')
 @section('title','| Dashboard')
 @section('nameTitleTemplate','Dashboard')
+@section('header_js')
+<script src='https://www.google.com/recaptcha/api.js'></script>
+@endsection
 @include('layouts.modales.content.modalShowContent')
+@include('layouts.modales.PDF.suveryDownload')
+@section('mensaje')
+@if (Session::has('messages'))
+<div class='alert alert-danger'>
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	<p>{{ Session::get('messages') }}</p>
+</div>
+@endif
+@endsection
 @section('content')
 <div class="row mt-5">
 	<div class="col">
