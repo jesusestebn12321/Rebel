@@ -85,10 +85,6 @@
 </table>
 <script type="text/php">
     if ( isset($pdf) ) {
-        // OLD 
-        // $font = Font_Metrics::get_font("helvetica", "bold");
-        // $pdf->page_text(72, 18, "{PAGE_NUM} of {PAGE_COUNT}", $font, 6, array(255,0,0));
-        // v.0.7.0 and greater
         $x = 72;
         $y = 810;
         $text = "Pagina {PAGE_NUM} de {PAGE_COUNT}";
