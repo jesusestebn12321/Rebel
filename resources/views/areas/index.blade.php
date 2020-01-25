@@ -94,7 +94,7 @@
               <span class="h2 font-weight-bold mb-0">Reporte de las Areas</span>
             </div>
             <div class="col-auto">
-              <a href="{{route('report.area')}}" class='text-white'>
+              <a href="{{route('report.area')}}" target="_blank" class='text-white'>
                 <div class="icon icon-shape bg-info text-white rounded-circle shadow">
                   <i class="fa fa-download"></i>
                 </div>
