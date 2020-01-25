@@ -7,6 +7,8 @@ use Equivalencias\Address;
 use Equivalencias\University;
 use Illuminate\Http\Request;
 use Equivalencias\Http\Requests\AreaRequests;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class AreaController extends Controller
 {
@@ -16,7 +18,7 @@ class AreaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $area=Area::all();
+        $area=Area::paginate(10);
         $address=Address::all();
         $university=University::all();
         return view('areas.index',compact('area','university','address'));

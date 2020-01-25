@@ -120,7 +120,6 @@
             <h3 class="text-white mb-0">Areas</h3>
           </div>
         </div>
-
       </div>
       <div class="table-responsive">
         <table class="table align-items-center table-dark table-flush">
@@ -136,45 +135,52 @@
             </tr>
           </thead>
           <tbody>
-           @forelse($area as $item)
-           <tr id='{{$item->id}}'>
-            <td>
-              <input type="hidden" id='id{{$item->id}}' value='{{$item->slug}}'>
-              {{ $item->id }}
-            </td>
-            <td id='td_Area{{$item->id}}'>
-              <label id='labelEditUniversity{{$item->id}}'>{{ $item->university->university }}</label>
-              <input class='d-none' id="EditUniversity{{$item->id}}" value="{{$item->university->id}}">
-            </td>
-            <td id='td_Area{{$item->id}}'>
-              <label id='labelEditArea{{$item->id}}'>{{ $item->area }}</label>
-              <input class='d-none' id="EditAreaI{{$item->id}}" value="{{$item->area}}">
-            </td>
+            @forelse($area as $item)
+            <tr id='{{$item->id}}'>
+              <td>
+                <input type="hidden" id='id{{$item->id}}' value='{{$item->slug}}'>
+                {{ $item->id }}
+              </td>
+              <td id='td_Area{{$item->id}}'>
+                <label id='labelEditUniversity{{$item->id}}'>{{ $item->university->university }}</label>
+                <input class='d-none' id="EditUniversity{{$item->id}}" value="{{$item->university->id}}">
+              </td>
+              <td id='td_Area{{$item->id}}'>
+                <label id='labelEditArea{{$item->id}}'>{{ $item->area }}</label>
+                <input class='d-none' id="EditAreaI{{$item->id}}" value="{{$item->area}}">
+              </td>
+              <td id='td_Address{{$item->id}}'>
+                <label id='labelEditAddress{{$item->id}}'>{{ $item->address->addres }}</label>
+                <input class='d-none' id="EditAddress{{$item->id}}" value="{{$item->address_id}}">
+              </td>
+              <td id='td_Create{{$item->id}}'>{{ $item->created_at }}</td>
+              <td id='td_Edit{{$item->id}}'>{{ $item->updated_at }}</td>
+              <td>
+                <a class="btn-primary btn" title='Ver Area' onclick="show({{$item->id}})" data-target='#showArea' data-toggle='modal' href="#!"><i class="fa fa-eye"></i></a>
 
-            <td id='td_Address{{$item->id}}'>
-              <label id='labelEditAddress{{$item->id}}'>{{ $item->address->addres }}</label>
-              <input class='d-none' id="EditAddress{{$item->id}}" value="{{$item->address_id}}">
-            </td>
-            <td id='td_Create{{$item->id}}'>{{ $item->created_at }}</td>
-            <td id='td_Edit{{$item->id}}'>{{ $item->updated_at }}</td>
-            <td>
-             <a class="btn-primary btn" title='Ver Area' onclick="show({{$item->id}})" data-target='#showArea' data-toggle='modal' href="#!"><i class="fa fa-eye"></i></a>
+                <a class="btn-danger btn" title="Borrar Area" href="{{route('Areas.delete',$item->slug)}}"><i class="fa fa-remove"></i></a>
 
-             <a class="btn-danger btn" title="Borrar Area" href="{{route('Areas.delete',$item->slug)}}"><i class="fa fa-remove"></i></a>
-
-             <a class="btn-info btn" title="Editar Area" data-target='#editArea' data-toggle='modal'  id="btn-1_{{$item->id}}" onclick="edit({{$item->id}})" href="#!"><i class="fa fa-edit"></i></a>
-           </td>
-         </tr>
-         @empty
-
-          <tr>
-            <td>
-              <font class='center'>No existen registros</font>
-            </td>
-         </tr>
-         @endforelse
+                <a class="btn-info btn" title="Editar Area" data-target='#editArea' data-toggle='modal'  id="btn-1_{{$item->id}}" onclick="edit({{$item->id}})" href="#!"><i class="fa fa-edit"></i></a>
+              </td>
+            </tr>
+            @empty
+            <tr>
+              <td>
+                <font class='center'>No existen registros</font>
+              </td>
+            </tr>
+            @endforelse
           </tbody>
         </table>
+      </div>
+      <div class="card-footer bg-default py-4">
+        <nav aria-label="...">
+          <ul class="pagination justify-content-end mb-0">
+            <li class="page-item ">
+              {{ $area->links() }}
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   </div>
