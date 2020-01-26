@@ -14,16 +14,19 @@
 	</spam>
 	<br><br>
 	<p align="center" >
-		<ul style="list-style: none">
-			<li class="p">
-				<b>Nombre y Apellido:</b>{{Auth::user()->name}} {{Auth::user()->lastname}}
-			</li>
-			<li class="p">
-				<b>Cedula:</b>{{Auth::user()->dni}}
-			</li>
-			<li class="p">
-				<b>E-mail:</b>{{Auth::user()->email}}
-			</li>
-		</ul>
+		 @guest
+		 @else
+			<ul style="list-style: none">
+				<li class="p">
+					<b>Nombre y Apellido:</b>{{Auth::user()->name}} {{Auth::user()->lastname}}
+				</li>
+				<li class="p">
+					<b>Cedula:</b>{{Auth::user()->dni}}
+				</li>
+				<li class="p">
+					<b>E-mail:</b>{{Auth::user()->email}}
+				</li>
+			</ul>
+		@endguest
 	</p>
 </header>
