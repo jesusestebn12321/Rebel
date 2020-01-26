@@ -26,7 +26,7 @@ class DownloadController extends Controller
 {
     //descargar pdf Equivalencias para los estudiantes 
 
-    public function paginacion($campo,$caracteres){
+    public function salto_linea_palabra($campo,$caracteres){
         $palabra=$campo;
         $palabra=explode(' ', $palabra);
         $n= count($palabra);
@@ -37,7 +37,7 @@ class DownloadController extends Controller
             $i++;
             if ($caracteres==$i) {
                 # code...
-                $x= $x.' '.$item . '<br>' ;
+                $x= $x.' '.$item.'<br>';
                 $i=0;
             } else {
                 # code...
@@ -48,6 +48,36 @@ class DownloadController extends Controller
         $i=0;
         return $campo;
     }
+    public function salto_linea_caracters($model,$range=50){
+        $long_str=strlen($model);
+        $div=round($long_str/$range)-1;
+        $palabra='';
+        $corte='';
+        $count=0;
+        $x=0;
+        $str=str_split($model);
+        for ($i=0;$i<count($str);$i++) { 
+            if($count==20){
+
+                $recomponer=explode(' ', $palabra);
+                $palabra_completa=$recomponer[0].' '.$recomponer[1];
+                $corte=$palabra_completa.'<br>'.$str[$i];
+                $palabra=$corte;
+                $x++;   
+                $count=0;
+
+            }if($i==55){
+                dd($corte,$palabra_completa,$recomponer,$palabra,$model,$count);
+            }
+            else{
+                $palabra=$palabra.$str[$i];
+                $count++;
+            }
+        }
+        dd($long_str,$count,$palabra); 
+        return $palabra;
+    }
+
     public function corte($margen,$model_arg,$corte_en,$thead_arg){
         $model=$model_arg;
         $conut_model=$model->count()/$corte_en;
@@ -64,7 +94,7 @@ class DownloadController extends Controller
                 </th>';
             }                
             $html=[ 'id'=>$key,'html'=>'<table class="table" cellpadding="7" cellspacing="0" style="margin-top:'. $margen .'cm  !important"><col><col><col><col>
-                <thead>'.$thead.'</thead>
+            <thead>'.$thead.'</thead>
             <tbody>'];
                 $paginacion[$x]=Arr::add($html,$x,null);
                 $i=0;
@@ -124,20 +154,24 @@ class DownloadController extends Controller
                         if ($item_version->version == $version) {
                             $contents[$i]=Arr::add($item_version,$i,null);
                             //dd($contents);
-                            $contentP=$this->paginacion($item_version->content,20);
-                            $justification=$this->paginacion($item_version->justification,20);
-                            $purpose=$this->paginacion($item_version->purpose,20);
+                            $contentP=$this->salto_linea_palabra($item_version->content,20);
+                            $justification=$this->salto_linea_palabra($item_version->justification,20);
+                            $purpose=$this->salto_linea_palabra($item_version->purpose,20);
 
                             $contenidos_paginados[$i]=array('content' => $contentP,'justification'=> $justification,'purpose'=>$purpose );
+
+
                         }
                     }
                 }
             }if($content){
                 $contents[$i]=Arr::add($content,$i,null);
 
-                $contentP=$this->paginacion($content->content,20);
-                $justification=$this->paginacion($content->justification,20);
-                $purpose=$this->paginacion($content->purpose,20);
+                $contentP=$this->salto_linea_palabra($content->content,20);
+                $justification=$this->salto_linea_palabra($content->justification,20);
+                $purpose=$this->salto_linea_palabra($content->purpose,20);
+
+                //$x=$this->salto_linea_caracters($content->content,50);
 
 
                 $contenidos_paginados[$i]=array('content' => $contentP,'justification'=> $justification,'purpose'=>$purpose );
