@@ -173,7 +173,7 @@ class DownloadController extends Controller
 
                 //$x=$this->salto_linea_caracters($content->content,50);
 
-
+                //con esto guardo de donde fue descargada la equivalencia $_SERVER['HTTP_USER_AGENT']);
                 $contenidos_paginados[$i]=array('content' => $contentP,'justification'=> $justification,'purpose'=>$purpose );
 
             }
