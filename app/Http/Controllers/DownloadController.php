@@ -246,7 +246,42 @@ class DownloadController extends Controller
         return $pdf->stream();
     }
     //descargar pdf de los profesores a quien coordina
-    public function CoordinadorTeachers($slug){
+    public function CareerPublic($slug){
+        $area=Area::where('slug',$slug)->first();
+        $json=Career::where('area_id',$area->id)->get();
+        return $json;
+    }
+    public function ContentPublic(Request $request){
+        //area_public_slug;
+        //career_public_slug;
+        $career=Career::where('slug',$request->career_public_slug)->first();
+        $matter=Matter::where('career_id',$career->id)->get();
+        $i=0;
+        foreach ($matter as $key => $item) {
+            # code...
+
+            $content=Content::where('matter_id',$item->id)->first();
+            if($content){
+                //dd($content);
+                $contents[$i]=Arr::add($content,$i,null);
+                $contentP=$this->salto_linea_palabra($content->content,20);
+                $justification=$this->salto_linea_palabra($content->justification,20);
+                $purpose=$this->salto_linea_palabra($content->purpose,20);
+                
+                $contenidos_paginados[$i]=array('content' => $contentP,'justification'=> $justification,'purpose'=>$purpose );
+                $i++;
+            }
+        }
+
+        $contenidos_paginados=Collection::make($contenidos_paginados);
+
+        $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
+        $url=url('/ContentPublicVerifi/'.$request->career_public_slug);//aqui se va a filtrar por una vista las materias pertenecientes a esa carrera
+        
+        $pdf=PDF::loadView('pdf.contentPublic',compact('contenidos_paginados','matter','pdf','today','url'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif']);
+        $pdf->download('ContenidosPublicos.pdf');
+        return $pdf->stream();
+
 
     }
 }
