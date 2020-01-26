@@ -13,12 +13,12 @@
 		<p style="text-align: center;padding:10px;color:white" >Para ello simplemente debes hacer click en el siguiente enlace:</p>
 		<p style="text-align:center;padding:10px">
 			<a style="padding:20px;text-decoration: none;width:10px;height:100%;background:#2dce89;color:#fff;border-radius:20px;"  href="{{ url('/register/verify/' . $confirmation_code) }}">
-				Click para confirmar tu email, para poder apceder al sistema Rebel.
+				Click para confirmar tu email.
 			</a>	
 		</p>
 	</main>
 	<footer style="padding: 20px;color:white;background:#11cdef;border-bottom-right-radius: 20px;border-bottom-left-radius: 20px">
-        &copy; 2019 <a href="#!" class="font-weight-bold ml-1" target="_blank"></a>
+        &copy; {{now()}} <a href="#!" class="font-weight-bold ml-1" target="_blank"></a>
 	</footer>
 </body>
 </html>
