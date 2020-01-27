@@ -253,4 +253,5 @@
 @endforeach
 @endforeach
 </main>
+<footer>{!! $script !!}</footer>
 @endsection

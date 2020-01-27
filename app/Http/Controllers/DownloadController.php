@@ -272,13 +272,27 @@ class DownloadController extends Controller
                 $i++;
             }
         }
+        $script='<script type="text/php">
+    if ( isset($pdf) ) {
+        $x = 72;
+        $y = 810;
+        $text = "Pagina {PAGE_NUM} de {PAGE_COUNT}";
+        $font = $fontMetrics->get_font("monospace");
+        $size = 8;
+        $color = array(0,0,0);
+        $word_space = 0.0;  //  default
+        $char_space = 0.0;  //  default
+        $angle = 0.0;   //  default
+        $pdf->page_text($x, $y, $text, $font, $size, $color, $word_space, $char_space, $angle);
+    }
+</script>';
 
         $contenidos_paginados=Collection::make($contenidos_paginados);
 
         $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
         $url=url('/ContentPublicVerifi/'.$request->career_public_slug);//aqui se va a filtrar por una vista las materias pertenecientes a esa carrera
         
-        $pdf=PDF::loadView('pdf.contentPublic',compact('contenidos_paginados','matter','pdf','today','url'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif']);
+        $pdf=PDF::loadView('pdf.contentPublic',compact('contenidos_paginados','matter','pdf','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
         $pdf->download('ContenidosPublicos.pdf');
         return $pdf->stream();
 
