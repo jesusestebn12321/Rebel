@@ -83,18 +83,7 @@
 	@endforeach
 	</tbody>
 </table>
-<script type="text/php">
-    if ( isset($pdf) ) {
-        $x = 72;
-        $y = 810;
-        $text = "Pagina {PAGE_NUM} de {PAGE_COUNT}";
-        $font = $fontMetrics->get_font("monospace");
-        $size = 10;
-        $color = array(0,0,0);
-        $word_space = 0.0;  //  default
-        $char_space = 0.0;  //  default
-        $angle = 0.0;   //  default
-        $pdf->page_text($x, $y, $text, $font, $size, $color, $word_space, $char_space, $angle);
-    }
-</script>
+<footer>
+	<p style="text-align: center;color: black;margin-right: 1cm;margin-top: 1cm">{!! $script !!}</p>
+</footer>
 @endsection

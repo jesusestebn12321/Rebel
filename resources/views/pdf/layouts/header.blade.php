@@ -18,15 +18,18 @@
 		 @else
 			<ul style="list-style: none">
 				<li class="p">
-					<b>Nombre y Apellido:</b>{{Auth::user()->name}} {{Auth::user()->lastname}}
+					<b>Nombre y Apellido: </b>{{Auth::user()->name}} {{Auth::user()->lastname}}
 				</li>
 				<li class="p">
-					<b>Cedula:</b>{{Auth::user()->dni}}
+					<b>Cedula: </b>{{Auth::user()->dni}}
 				</li>
 				<li class="p">
-					<b>E-mail:</b>{{Auth::user()->email}}
+					<b>E-mail: 	</b>{{Auth::user()->email}}
 				</li>
 			</ul>
 		@endguest
+	</p>
+	<p align="right" valign='top'  style="font-size:19px !important">
+		Fecha: {{$today}}
 	</p>
 </header>

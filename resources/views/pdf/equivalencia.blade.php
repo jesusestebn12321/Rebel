@@ -247,8 +247,11 @@
 	</tbody>
 </table>
 <footer>
-	<p style="text-align: right;color: black;margin-right: 1cm;margin-top: 1cm">Pagina {{$key+1}}</p>
+	<p style="text-align: right;color: black;margin-right: 1cm;margin-top: 1cm">{{$today}} </p>
 </footer>
 @endforeach
 </main>
+<footer>
+	<p style="text-align: right;color: black;margin-right: 1cm;margin-top: 1cm">{!! $script !!}</p>
+</footer>
 @endsection

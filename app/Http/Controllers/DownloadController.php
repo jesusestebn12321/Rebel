@@ -25,7 +25,24 @@ use Illuminate\Support\Collection;
 class DownloadController extends Controller
 {
     //descargar pdf Equivalencias para los estudiantes 
-
+    public function script_paginacion(){
+        $script='<script type="text/php">
+            if ( isset($pdf) ) {
+                $x = 72;
+                $y = 810;
+                $text = "Pagina {PAGE_NUM} de {PAGE_COUNT}";
+                $font = $fontMetrics->get_font("monospace");
+                $size = 8;
+                $color = array(0,0,0);
+                $word_space = 0.0;  //  default
+                $char_space = 0.0;  //  default
+                $angle = 0.0;   //  default
+                $pdf->page_text($x, $y, $text, $font, $size, $color, $word_space, $char_space, $angle);
+            }
+        </script>';
+        return $script;
+    }
+    
     public function salto_linea_palabra($campo,$caracteres){
         $palabra=$campo;
         $palabra=explode(' ', $palabra);
@@ -181,11 +198,14 @@ class DownloadController extends Controller
         }
         $contenidos_paginados=Collection::make($contenidos_paginados);
         $download=$this->createRegisterDownload($request);
+        $script=$this->script_paginacion();
+        $today=Carbon::now();
+
         if($download==false){
             return redirect()->route('home')->with('messages','No completo el reCatcha');
         }else{
             $url=url('/VerificarEquivalencia/{'.Auth::user()->id.'}/');
-            $pdf=PDF::loadView('pdf.equivalencia',compact('contents','contenidos_paginados','today','url'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif']);
+            $pdf=PDF::loadView('pdf.equivalencia',compact('contents','contenidos_paginados','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
 
             $pdf->download('Equivalencia_'.Auth::user()->dni.'_'.now().'.pdf');
             return $pdf->stream('Equivalencia_'.Auth::user()->dni.'_'.now().'.pdf');
@@ -194,7 +214,7 @@ class DownloadController extends Controller
     //descargar pdf de los profesores
     public function adminTeacher(){
         $teacher=Teacher::all();
-        $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
+        $today = Carbon::now();
         $url=url('/Teacher');
         $pdf=PDF::loadView('pdf.teacherAll',compact('teacher','today','url'));
         $pdf->download('ReportesDeLosTeacher'.now().'.pdf');
@@ -203,7 +223,7 @@ class DownloadController extends Controller
     //descargar pdf de las materias
     public function adminMatter(){
         $matter=Matter::all();
-        $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
+        $today = Carbon::now();
         $url=url('/Matter');
         $pdf=PDF::loadView('pdf.teacherAll',compact('matter','today','url'));
         $pdf->download('ReportesDeLasMaterias'.now().'.pdf');
@@ -220,16 +240,17 @@ class DownloadController extends Controller
             );
         $area=Area::all();
         $corte=$this->corte(2,$area,18,$thead);
+        $script=$this->script_paginacion();
 
-        $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
+        $today = Carbon::now();
         $url=url('/Areas');
-        $pdf=PDF::loadView('pdf.areaAll',compact('corte','area','pdf','today','url'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif']);
+        $pdf=PDF::loadView('pdf.areaAll',compact('corte','area','pdf','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
         $pdf->download('ReportesDeLasAreas.pdf');
         return $pdf->stream();
     }
     public function adminCareer(){
         $career=Career::all();
-        $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
+        $today = Carbon::now();
         $url=url('/Careers');
         $pdf=PDF::loadView('pdf.careerAll',compact('career','today','url'));
         $pdf->download('ReportesDeLasCarreras'.now().'.pdf');
@@ -238,7 +259,7 @@ class DownloadController extends Controller
     //descargar pdf materias y contenido de la materias del profesor correspondiente
     public function teacherMatter($slug){
         $teacher=Teacher::where('user_id',Auth::user()->id)->first();
-        $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
+        $today = Carbon::now();
         $url=url('/VerificarDescargaProfesor/'.Auth::user()->id);
         $matter_user=MatterUser::where('user_id',Auth::user()->id)->first();
         $pdf=PDF::loadView('pdf.matterTeacher',compact('matter_user','content','teacher','today','url'));
@@ -272,24 +293,11 @@ class DownloadController extends Controller
                 $i++;
             }
         }
-        $script='<script type="text/php">
-    if ( isset($pdf) ) {
-        $x = 72;
-        $y = 810;
-        $text = "Pagina {PAGE_NUM} de {PAGE_COUNT}";
-        $font = $fontMetrics->get_font("monospace");
-        $size = 8;
-        $color = array(0,0,0);
-        $word_space = 0.0;  //  default
-        $char_space = 0.0;  //  default
-        $angle = 0.0;   //  default
-        $pdf->page_text($x, $y, $text, $font, $size, $color, $word_space, $char_space, $angle);
-    }
-</script>';
+        $script=$this->script_paginacion();
 
         $contenidos_paginados=Collection::make($contenidos_paginados);
 
-        $today = Carbon::now()->format('l jS \\of F Y h:i:s A');
+        $today = Carbon::now();
         $url=url('/ContentPublicVerifi/'.$request->career_public_slug);//aqui se va a filtrar por una vista las materias pertenecientes a esa carrera
         
         $pdf=PDF::loadView('pdf.contentPublic',compact('contenidos_paginados','matter','pdf','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
