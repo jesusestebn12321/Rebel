@@ -247,9 +247,6 @@
 		</tr>
 	</tbody>
 </table>
-<footer>
-	<p style="text-align: center;color: black;margin-right: 1cm;margin-top: 1cm">{{$today}}</p>
-</footer>
 @endforeach
 @endforeach
 </main>
