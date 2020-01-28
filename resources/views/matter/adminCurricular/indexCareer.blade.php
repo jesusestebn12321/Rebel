@@ -1,5 +1,5 @@
-@section('title','| Unidades Curriculares')
-@section('nameTitleTemplate','Unidades Curriculares')	
+@section('title','| Carreras')
+@section('nameTitleTemplate','Carreras')	
 @section('content')
 <div class="row mt-5">
     <div class="col">
@@ -7,7 +7,7 @@
             <div class="card-header bg-transparent border-0">
               <div class="row align-items-center">
                 <div class="col-8">
-                  <h3 class="text-white mb-0">Unidades Curricula</h3>
+                  <h3 class="text-white mb-0">Carreras</h3>
                 </div>
               </div>
             </div>
@@ -57,6 +57,15 @@
 	                </tbody>
               	</table>
             </div>
+            <div class="card-footer bg-default py-4">
+        <nav aria-label="...">
+          <ul class="pagination justify-content-end mb-0">
+            <li class="page-item ">
+              {{ $career->links() }}
+            </li>
+          </ul>
+        </nav>
+      </div>
         </div>
     </div>
 </div>

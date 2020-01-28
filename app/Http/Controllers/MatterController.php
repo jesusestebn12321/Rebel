@@ -25,7 +25,7 @@ class MatterController extends Controller
         
         $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->first();
         $matter=Matter::paginate(10);
-        $career=Career::all();
+        $career=Career::paginate(10);
         $area=Area::all();
         $teacher=Teacher::where('user_id',Auth::user()->id)->first();
         $contentV=contentVersion::all();

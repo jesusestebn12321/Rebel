@@ -33,7 +33,7 @@ class CareerController extends Controller
     }
     public function showMatter($slug){
         $career=Career::where('slug',$slug)->first();
-        $matter=Matter::where('career_id',$career->id)->get();
+        $matter=Matter::where('career_id',$career->id)->paginate(10);
         $teacher=Teacher::where('user_id',Auth::user()->id)->first();
         $contentV=contentVersion::all();
         return view('matter.adminCurricular.index',compact('career','matter','matter_user','teacher','contentV'));

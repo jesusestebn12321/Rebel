@@ -48,7 +48,7 @@
               <span class="h2 font-weight-bold mb-0">Reporte de las Unidades Curriculares</span>
             </div>
             <div class="col-auto">
-              <a href="{{route('report.matter')}}" class='text-white'>
+              <a href="{{route('report.matter')}}" target="_blank" class='text-white'>
                 <div class="icon icon-shape bg-info text-white rounded-circle shadow">
                   <i class="fa fa-download"></i>
                 </div>

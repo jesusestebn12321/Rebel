@@ -224,8 +224,12 @@ class DownloadController extends Controller
     public function adminMatter(){
         $matter=Matter::all();
         $today = Carbon::now();
+        
+        $script=$this->script_paginacion();
+        
         $url=url('/Matter');
-        $pdf=PDF::loadView('pdf.teacherAll',compact('matter','today','url'));
+        $pdf=PDF::loadView('pdf.matterAll',compact('matter','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
+        
         $pdf->download('ReportesDeLasMaterias'.now().'.pdf');
         return $pdf->stream();
     }
