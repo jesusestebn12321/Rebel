@@ -249,10 +249,20 @@ class DownloadController extends Controller
         return $pdf->stream();
     }
     public function adminCareer(){
+        $thead = array(
+            ['name' =>'ID'],
+            ['name' =>'Universidad'],
+            ['name' =>'Area'],
+            ['name' =>'Carrera'],
+            ['name' =>'Modalidad'],
+            ['name' =>'Creada'],
+            );
         $career=Career::all();
+        $corte=$this->corte(2,$career,16,$thead);
+        $script=$this->script_paginacion();
         $today = Carbon::now();
         $url=url('/Careers');
-        $pdf=PDF::loadView('pdf.careerAll',compact('career','today','url'));
+        $pdf=PDF::loadView('pdf.careerAll',compact('corte','career','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);;
         $pdf->download('ReportesDeLasCarreras'.now().'.pdf');
         return $pdf->stream();
     }
