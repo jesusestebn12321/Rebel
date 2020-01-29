@@ -110,14 +110,14 @@
               <div class="form-group">
                 <label class="form-control-label" for="input-alfterpass">Contraseña Antigua</label>
                 <input type="password" name="mypassword" id="input-username" class="form-control form-control-alternative" placeholder="*********" value="">
-                <div class="text-danger">{{$errors->first('password')}}</div>
+                <div class="text-danger">{{$errors->first('mypassword')}}</div>
               </div>
             </div>
             <div class="col-lg-6">
               <div class="form-group">
                 <label class="form-control-label" for="input-password">Nueva Contraseña</label>
                 <input type="password" name="password" id="input-username" class="form-control form-control-alternative" placeholder="*********" value="">
-                <div class="text-danger">{{$errors->first('mypassword')}}</div>
+                <div class="text-danger">{{$errors->first('password')}}</div>
               </div>
             </div>
             <div class="col-lg-6">

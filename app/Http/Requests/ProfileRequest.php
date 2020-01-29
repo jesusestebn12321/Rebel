@@ -25,7 +25,7 @@ class ProfileRequest extends FormRequest
     {
         return [
             'mypassword' => 'required|min:6|max:18',
-            'password' => 'required|confirmed|min:6|max:18',
+            'password' => 'required|confirmed|min:6|max:18|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%]).*$/',
         ];
     }
     public function messages()
@@ -38,6 +38,7 @@ class ProfileRequest extends FormRequest
             'password.confirmed' => 'Las contraseña no coinciden',
             'password.min' => 'El mínimo permitido son 6 caracteres',
             'password.max' => 'El máximo permitido son 18 caracteres',
+            'password.regex' => 'La contraseña tiene que tener letras y caracters especiales',
         ];
     }
 }
