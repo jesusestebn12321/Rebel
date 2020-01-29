@@ -1,14 +1,12 @@
 @extends('pdf.layouts.app')
 @section('title','Equivalencia')
 @section('content')
+
 @include('pdf.layouts.header')
-<main style="margin-bottom: 1px;height: auto;">
 
 @foreach($matter as $x)
 @foreach($x->content as $key=>$item)
-@if($key!=0)
-<!--p style="margin-bottom: 100px;height: 20%;background: red "></p-->	
-@endif
+
 <table class="table" cellpadding="7" cellspacing="0" style="margin-top: 3cm !important">
 	<col >
 	<col >
@@ -157,12 +155,16 @@
 		<tr>
 			<td class="td" colspan=6>
 				<ul>
-					@foreach($item->matters->matter_user as $items)
+					@forelse($item->matters->matter_user as $items)
 					<li><p class="font" align=LEFT style="margin-bottom: 0in;">
 						{!!$items->teacher->user->name!!}.
 						{!!$items->teacher->user->lastname!!}
 					</p></li>
-					@endforeach
+					@empty
+						<p class="font" align=LEFT style="margin-bottom: 0in;">
+							No tiene Autores.
+						</p>
+					@endforelse
 				</ul>
 			</td>
 			<td class="td" colspan=3>
@@ -248,7 +250,6 @@
 	</tbody>
 </table>
 @endforeach
+{!! $script !!}
 @endforeach
-</main>
-<footer>{!! $script !!}</footer>
 @endsection
