@@ -215,10 +215,24 @@ class DownloadController extends Controller
     }
     //descargar pdf de los profesores
     public function adminTeacher(){
+        $thead = array(
+            ['name' =>'ID'],
+            ['name' =>'Nombre'],
+            ['name' =>'Apellido'],
+            ['name' =>'Cedula'],
+            ['name' =>'E-mail'],
+            ['name' =>'Cargo'],
+            ['name' =>'Creada'],
+            ['name' =>'Ultimo inicio de sección'],
+            );
+
         $teacher=Teacher::all();
         $today = Carbon::now();
+        $corte=$this->corte(2,$teacher,18,$thead);
+        $script=$this->script_paginacion();
         $url=url('/Teacher');
-        $pdf=PDF::loadView('pdf.teacherAll',compact('teacher','today','url'));
+
+        $pdf=PDF::loadView('pdf.teacherAll',compact('corte','script','teacher','today','url'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
         $pdf->download('ReportesDeLosTeacher'.now().'.pdf');
         return $pdf->stream();
     }
@@ -235,9 +249,7 @@ class DownloadController extends Controller
         $matter=Matter::all();
         $corte=$this->corte(2,$matter,18,$thead);
         $script=$this->script_paginacion();
-        $today = Carbon::now();
-        
-        $script=$this->script_paginacion();
+        $today = Carbon::now();        
         $url=url('/Matter');
         $pdf=PDF::loadView('pdf.matterAll',compact('corte','matter','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
         
@@ -277,7 +289,7 @@ class DownloadController extends Controller
         $script=$this->script_paginacion();
         $today = Carbon::now();
         $url=url('/Careers');
-        $pdf=PDF::loadView('pdf.careerAll',compact('corte','career','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);;
+        $pdf=PDF::loadView('pdf.careerAll',compact('corte','career','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
         $pdf->download('ReportesDeLasCarreras'.now().'.pdf');
         return $pdf->stream();
     }
@@ -287,7 +299,19 @@ class DownloadController extends Controller
         $today = Carbon::now();
         $url=url('/VerificarDescargaProfesor/'.Auth::user()->id);
         $matter_user=MatterUser::where('user_id',Auth::user()->id)->first();
-        $pdf=PDF::loadView('pdf.matterTeacher',compact('matter_user','content','teacher','today','url'));
+        $script=$this->script_paginacion();
+        $content=Content::where('matter_id',$matter_user->matter->id)->first();
+        if($content){
+            $contents[0]=Arr::add($content,0,null);
+            $contentP=$this->salto_linea_palabra($content->content,20);
+            $justification=$this->salto_linea_palabra($content->justification,20);
+            $purpose=$this->salto_linea_palabra($content->purpose,20);
+                
+            $contenidos_paginados[0]=array('content' => $contentP,'justification'=> $justification,'purpose'=>$purpose );
+        }
+
+        //dd($contenidos_paginados);
+        $pdf=PDF::loadView('pdf.matterTeacher',compact('matter_user','content','teacher','today','url','contenidos_paginados','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
         $pdf->download('ReportesProfesoresMaterias'.now().'.pdf');
         return $pdf->stream();
     }
