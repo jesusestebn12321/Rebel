@@ -5,7 +5,7 @@
 <style type="text/css">
 	@media print {
 		.page-break {
-		    page-break-after: always;
+			page-break-after: always;
 		}
 	}
 </style>
@@ -14,9 +14,9 @@
 @foreach($area as $key=>$item)
 
 
-	@if($key==0)
-		<table class="page-break table" cellpadding="7" cellspacing="0" style="margin-top: 2cm !important">
-			<col>
+@if($key==0)
+<table class="page-break table" cellpadding="7" cellspacing="0" style="margin-top: 2cm !important">
+	<col>
 	<col>
 	<col>
 	<col>
@@ -51,36 +51,41 @@
 		</tr>
 	</thead>
 	<tbody>
-	@endif
-	@for($i=0;count($corte)>$i;$i++)
-		@if($corte[$i]['id']==$key)
-			{!! $corte[$i]['html']   !!}
 		@endif
-	@endfor
+		@for($i=0;count($corte)>$i;$i++)
+		@if($corte[$i]['id']==$key)
+		{!! $corte[$i]['html']   !!}
+		@endif
+		@endfor
 
 		<tr>
 			<td class="td" colspan=9 Valign=TOP>
 				<p align=center>
-				<font class="font">{{ $item->id }}</font></font></p>
+					<font class="font">{{ $item->id }}</font>
+				</p>
 			</td>
 			<td class="td" colspan=9 Valign=TOP>
 				<p align=center>
-				<font class="font">{{ $item->university->university }}</font></font></p>
+					<font class="font">{{ $item->university->university }}</font>
+				</p>
 			</td>
 			<td class="td" colspan=9 Valign=TOP>
 				<p align=center>
-				<font class="font">{{ $item->area }}</font></font></p>
+					<font class="font">{{ $item->area }}</font>
+				</p>
 			</td>
 			<td class="td" colspan=9 Valign=TOP>
 				<p align=center>
-				<font class="font">{{ $item->address->addres }}</font></font></p>
+					<font class="font">{{ $item->address->addres }}</font>
+				</p>
 			</td>
 			<td class="td" colspan=9 Valign=TOP>
 				<p align=center>
-				<font class="font">{{ $item->created_at }}</font></font></p>
+					<font class="font">{{ $item->created_at }}</font>
+				</p>
 			</td>
 		</tr>
-	@endforeach
+		@endforeach
 	</tbody>
 </table>
 <footer>

@@ -1,75 +1,257 @@
+
 @extends('pdf.layouts.app')
+@section('title','Equivalencia')
 @section('content')
-	<div style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 20px; padding-left: 10px">
-	<div style="float: right; position: relative !important">
-	<img style="padding: 0px" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(100)->generate($url)) !!} ">
-	</div>
-	<div style="width:60px;height:60px;display:inline-block;">
-		<img style="width:100%;height:100%" class="reporte-logo" class="user-image" alt="Logo">
-	</div>
-	<div style="display:inline-block; margin-left: 10px;padding-bottom:10px;padding-top:10px;margin-top:-10px;top:-10px;position:relative">
-		<div>
-			<b>Nombre y Apellido:</b> {{$teacher->user->name}} {{$teacher->user->lastname}}
-		</div>
-		<div>
-			<b>Cedula:</b>{{$teacher->user->dni}}
-		</div>
-		<div>
-			<b>E-mail:</b>{{$teacher->user->email}}
-		</div>
-	</div>
-	<center>
-		<h2 class="titulo-header-reporte">Algo</h2>
-	</center>
-</div>
-<table cellspacing="0" border="0">
-	<colgroup width="40"></colgroup><colgroup width="40"></colgroup><colgroup width="40"></colgroup><colgroup width="40"></colgroup><colgroup width="315"></colgroup><colgroup width="136"></colgroup>
+@include('pdf.layouts.header')
+<table class="table" cellpadding="7" cellspacing="0" style="margin-top: 3cm !important">
+	<col >
+	<col >
+	<col >
+	<col >
+	<col >
+	<col >
+	<col >
+	<col >
+	<col >
 	<thead>
 		<tr>
-			
-			<th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">ID</font></b></th>
-	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Carera</font></b></th>
-	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Codigo de la Unidad Curricular</font></b></th>
-	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Titulo de la Unidad Curricular</font></b></th>
-	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Creado</font></b></th>
-	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Editado</font></b></th>
-			
+			<th class='th' colspan=9 Valign="center">
+				<p align=center style="width: 10px">
+					<h3>PROGRAMA</h3>
+				</p>
+			</th>
+		</tr>
+		
+	</thead>
+	<tbody>
+		<tr>
+			<td class="td" colspan=9 Valign=TOP>
+				<p align=CENTER>
+					<span>
+					<font class="font">{!!$matter_user->matter->career->career!!}</span></font>
+				</p>
+			</td>
+		</tr>
+	</tbody>
+	<thead>
+		<tr>
+			<th class='th' colspan=9 Valign=TOP align="left">
+				<p align=JUSTIFY>
+					<h4>UNIDAD CURRICULAR</h4>
+				</p>
+			</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $matter_user->matter->id}}</font></b></td>
-			<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $matter_user->matter->career->career}}</font></b></td>
-			<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="2">{!!$matter_user->matter->slug !!}</font></b></td>
-			<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="2" colspan="2">{!! $matter_user->matter->matter !!}</font></b></td>
-			<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $matter_user->matter->created_at }}</font></b></td>
-			<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $matter_user->matter->updated_at }}</font></b></td>
+			<td class="td" colspan=9 Valign=TOP>
+				<p align=center>
+				<font class="font">{!!$matter_user->matter->matter!!}</font>
+				</p>
+			</td>
 		</tr>
-		<tr>
-	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" colspan="12" valign="center"><b><font face="Tahoma" size="1">Contenido</font></b></th>
-	    </tr>
-		<tr>
-			<th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">ID</font></b></th>
-			<th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Codigo</font></b></th>
-			<th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Titulo</font></b></th>
-			<th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Version</font></b></th>
-			<th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Creado</font></b></th>
-			<th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Editado</font></b></th>
-		</tr>
-
-		@foreach($matter_user->matter->content as $item)
-			@if($item->confirmation==1)
-			<tr>
-				<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->id }}</font></b></td>
-				<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{!! $item->slug !!}</font></b></td>
-				<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{!! $item->title !!}</font></b></td>
-				<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->version }}</font></b></td>
-				<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->created_at }}</font></b></td>
-				<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->updated_at }}</font></b></td>
-			</tr>
-			@endif
-		@endforeach
 	</tbody>
-	<tfoot><tr><td></td></tr></tfoot>
+	<thead>
+		<tr>
+			<th class='th' height="1" style="padding: 0px" ROWSPAN=2 valign="top" align="center">
+				<p align=CENTER>
+				<h4>SEMESTRE</h4></p>
+			</th>
+			<th class='th' height="1" style="padding: 0px" ROWSPAN=2 valign="top" align="center">
+				<p align=CENTER>
+				<h4>CÓDIGO</h4></p>
+			</th>
+			<th class='th' height="1" style="padding: 0px" ROWSPAN=2 colspan=2 valign="top" align="center">
+				<p align=CENTER>
+				<h4>CRÉDITOS</h4></p>
+			</th>
+			<th class='th' height="1" style="padding: 0px" ROWSPAN=2 valign="top" align="center">
+				<p align=CENTER>
+				<h4>CARÁCTER</h4></p>
+			</th>
+			<th class='th' height="1" style="padding: 0px" colspan=4 valign="top" align="center">
+				<p align=CENTER>
+				<h4>HORAS*</h4></p>
+			</th>
+		</tr>
+		<tr>
+			<th class='th' height="1" style="padding: 0px" colspan=2 valign="top" align="center">
+				<p align=CENTER>
+				<h4>HT</h4></p>
+			</th>
+			<th class='th' height="1" style="padding: 0px" valign="top" align="center">
+				<p align=CENTER>
+				<h4>HL</h4></p>
+			</th>
+			<th class='th' height="1" style="padding: 0px" valign="top" align="center">
+				<p align=CENTER>
+				<h4>HP</h4></p>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<p align=CENTER><font class="font">{!!$matter_user->matter->semester!!}</font>
+				</p>
+			</td>
+			<td>
+				<p align=CENTER><font class="font">{!!$matter_user->matter->slug!!}</font>
+				</p>
+			</td>
+			<td class="td" colspan=2>
+				<p align=CENTER>
+				<font class="font">{!!$matter_user->matter->credit!!}</font>
+				</p>
+			</td>
+			<td>
+				<p align=CENTER>
+				<span><font class="font">OBLIGATORIO</font></span></p>
+			</td>
+			<td class="td" colspan=2>
+				<p align=CENTER>
+				<font class="font">{!!$matter_user->matter->ht!!}</font>
+				</p>
+			</td>
+			<td>
+				<p align=CENTER>
+				<font class="font">{!!$matter_user->matter->hl!!}</font>
+				</p>
+			</td>
+			<td>
+				<p align=CENTER>
+				<font class="font">{!!$matter_user->matter->hp!!}</font>
+				</p>
+			</td>
+		</tr>
+	</tbody>
+	<thead>	
+		<tr>
+			<th class='th' colspan=9>
+				<p align=LEFT>
+				<h4>DIRECCIÓN</h4></p>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="td" colspan="9">
+				<p align=CENTER>
+				<font class="font">{!!$matter_user->matter->career->area->area!!}</font>
+				</p>
+			</td>
+		</tr>
+	</tbody>
+	<thead>
+		<tr>
+			<th class='th' colspan=6>
+				<p align=CENTER>
+				<h4>AUTORES</h4></p>
+			</th>
+			<th class='th' colspan=3>
+				<p align=CENTER>
+				<h4>VERSIÓN</h4></p>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="td" colspan=6>
+				<ul>
+					@foreach($matter_user->matter->matter_user as $items)
+					<li><p class="font" align=LEFT style="margin-bottom: 0in;">
+						{!!$items->teacher->user->name!!}.
+						{!!$items->teacher->user->lastname!!}
+					</p></li>
+					@endforeach
+				</ul>
+			</td>
+			<td class="td" colspan=3>
+				<p align=CENTER>
+				<span><font class="font">{!!$matter_user->matter->version!!}</font></span></p>
+			</td>
+		</tr>
+	</tbody>
+
+	@for($i=0;$i < count($contenidos_paginados);$i++)
+		<thead>
+			<tr>
+				<th class='th' colspan=9 Valign=TOP>
+					<p align=LEFT>
+					<h4>JUSTIFICACIÓN</h4></p>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="td" colspan=9 Valign=TOP >
+				<div style="width: 100%; padding: 4px;margin:1px">
+					<p align=JUSTIFY style="display: inline-block;text-indent: 5px;text-align: justify;"><font class="font">
+							{!!  $contenidos_paginados[$i]['justification']  !!}
+					</font>
+					</p>
+				</div></td>
+			</tr>
+		</tbody>
+		<thead>
+			<tr>
+				<th class='th' colspan=9 Valign=TOP>
+					<p align=LEFT>
+					<h4>PROPÓSITOS</h4></p>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="td" colspan=9 Valign=TOP>
+					<p align=JUSTIFY><font class="font">{!!$contenidos_paginados[$i]['purpose']!!} </font>
+					</p>
+				</td>
+			</tr>
+		</tbody>
+		<thead>
+			<tr>
+				<td class="td" colspan=9 Valign=TOP>
+					<p align=LEFT>
+					<h4>CONTENIDO PROGRAMÁTICO</h4></p>
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="td" colspan=9 Valign=TOP>
+				 <p align=JUSTIFY><font class="font">{!!$contenidos_paginados[$i]['content']!!}</font>
+				 </p>
+				</td>
+			</tr>
+		</tbody>
+	@endfor
+	<thead>
+		<tr Valign=TOP>
+			<th class='th' colspan=4>
+				<p align=LEFT>
+				<h4>ESTRATEGIAS
+				METODOLÓGICAS</h4></p>
+			</th>
+			<th class='th' colspan=5 >
+				<p align=LEFT>
+				<h4>ESTRATEGIAS
+				DE EVALUACIÓN</h4></p>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr Valign=TOP>
+			<td class="td" colspan=4 ><p align=JUSTIFY><font class="font">{!!$matter_user->methodology!!}</font>
+			</p>
+			</td>
+			<td class="td" colspan=5 ><p align=JUSTIFY><font class="font">{!!$matter_user->evaluation!!}</font>
+			</p>
+			</td>
+		</tr>
+	</tbody>
 </table>
+<footer>
+	<p style="text-align: right;color: black;margin-right: 1cm;margin-top: 1cm">{!! $script !!}</p>
+</footer>
 @endsection

@@ -4,7 +4,7 @@
 <style type="text/css">
 	@media print {
 		.page-break {
-		    page-break-after: always;
+			page-break-after: always;
 		}
 	}
 </style>
@@ -12,9 +12,9 @@
 @foreach($matter as $key=>$item)
 
 
-	@if($key==0)
-		<table class="page-break table" cellpadding="7" cellspacing="0" style="margin-top: 2cm !important">
-			<col>
+@if($key==0)
+<table class="page-break table" cellpadding="7" cellspacing="0" style="margin-top: 2cm !important">
+	<col>
 	<col>
 	<col>
 	<col>
@@ -59,44 +59,51 @@
 		</tr>
 	</thead>
 	<tbody>
-	@endif
+		@endif
 		@for($i=0;count($corte)>$i;$i++)
-				@if($corte[$i]['id']==$key)
-					{!! $corte[$i]['html']   !!}
-				@endif
+		@if($corte[$i]['id']==$key)
+		{!! $corte[$i]['html']   !!}
+		@endif
 		@endfor
 
 		<tr>
 			<td class="td" colspan=9 Valign=TOP>
 				<p align=center>
-				<font class="font">{{ $item->id }}</font></font></p>
+					<font class="font">{{ $item->id }}</font>
+				</p>
 			</td>
 			<td class="td" colspan=9 Valign=TOP>
 				<p align=center>
-				<font class="font">{{ $item->slug }}</font></font></p>
+					<font class="font">{{ $item->slug }}</font>
+				</p>
 			</td>
 			<td class="td" colspan=9 Valign=TOP>
 				<p align=center>
-				<font class="font">{{ $item->career->area->area }}</font></font></p>
+					<font class="font">{{ $item->career->area->area }}</font>
+				</p>
 			</td>
 			<td class="td" colspan=9 Valign=TOP>
 				<p align=center>
-				<font class="font">{{ $item->career->career }}</font></font></p>
+					<font class="font">{{ $item->career->career }}</font>
+				</p>
 			</td>
 			<td class="td" colspan=9 Valign=TOP>
 				<p align=center>
-				<font class="font">{{ $item->career->modalidad }}</font></font></p>
+					<font class="font">{{ $item->career->modalidad }}</font>
+				</p>
 			</td>
 			<td class="td" colspan=9 Valign=TOP>
 				<p align=center>
-				<font class="font">{{ $item->matter }}</font></font></p>
+					<font class="font">{{ $item->matter }}</font>
+				</p>
 			</td>
 			<td class="td" colspan=9 Valign=TOP>
 				<p align=center>
-				<font class="font">{{ $item->created_at }}</font></font></p>
+					<font class="font">{{ $item->created_at }}</font>
+				</p>
 			</td>
 		</tr>
-	@endforeach
+		@endforeach
 	</tbody>
 </table>
 <footer>

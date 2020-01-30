@@ -21,7 +21,7 @@
 		.comment{ display:none;  }
 		table {
 			width: 80% !important;
-			margin-left: 2.5cm !important;
+			margin-left: 1cm !important;
 			margin-right: 3cm !important;
 			margin-top: 2cm !important;
 			margin-bottom: 2cm !important;
