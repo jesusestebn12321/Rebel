@@ -20,6 +20,24 @@
       </div>
     </div>
   </div>
+  @elseif(url()->current()==url('/noPermission'))
+    <div class="container-fluid align-items-center">
+    <div class="header-body">
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <h1 class="display-3 text-white" style='text-align: center'>Hola
+            {{Auth::user()->name}}! </h1>
+            <hr class='bg-white display-3 col-2'>
+            <p class="text-white mt-0 mb-5" style='text-align: center'>Ups! al parecer no tienes permisos para utilizar esta función...<br>Pagina No permitida para este el usuario {{Auth::user()->name}}.</p>
+            <p class="text-white mt-0 mb-5" style='text-align: center'>
+              
+            <a href="{{url('/')}}" class="btn btn-info btn-sm">INICIO</a>
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
   @else
   <div class="container-fluid">
     <div class="header-body">
