@@ -101,6 +101,7 @@ class DownloadController extends Controller
         $i=0;
         $x=0;
         $thead='';
+        $paginacion=[];
         foreach ($model as $key => $item) {
             if ($i==$corte_en) {
                 for ($q=0; $q < count($thead_arg); $q++) { 
@@ -116,7 +117,8 @@ class DownloadController extends Controller
                 $paginacion[$x]=Arr::add($html,$x,null);
                 $i=0;
                 $x++;
-            }else{
+            }
+            else{
 
                 $i++;
             }
@@ -222,13 +224,22 @@ class DownloadController extends Controller
     }
     //descargar pdf de las materias
     public function adminMatter(){
+        $thead = array(
+            ['name' =>'ID'],
+            ['name' =>'Area'],
+            ['name' =>'Carrera'],
+            ['name' =>'Modalidad'],
+            ['name' =>'Und. Curricular'],
+            ['name' =>'Creada'],
+            );
         $matter=Matter::all();
+        $corte=$this->corte(2,$matter,18,$thead);
+        $script=$this->script_paginacion();
         $today = Carbon::now();
         
         $script=$this->script_paginacion();
-        
         $url=url('/Matter');
-        $pdf=PDF::loadView('pdf.matterAll',compact('matter','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
+        $pdf=PDF::loadView('pdf.matterAll',compact('corte','matter','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
         
         $pdf->download('ReportesDeLasMaterias'.now().'.pdf');
         return $pdf->stream();

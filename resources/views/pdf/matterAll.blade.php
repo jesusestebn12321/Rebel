@@ -9,49 +9,93 @@
 	}
 </style>
 
+@foreach($matter as $key=>$item)
 
-<table cellspacing="0" border="0">
-	<colgroup width="40"></colgroup><colgroup width="40"></colgroup><colgroup width="40"></colgroup><colgroup width="40"></colgroup><colgroup width="315"></colgroup><colgroup width="136"></colgroup>
+
+	@if($key==0)
+		<table class="page-break table" cellpadding="7" cellspacing="0" style="margin-top: 2cm !important">
+			<col>
+	<col>
+	<col>
+	<col>
+	<col>
 	<thead>
 		<tr>
-			
-			<th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">ID</font></b></th>
-	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Codigo</font></b></th>
-	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Areas</font></b></th>
-	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Carrera</font></b></th>
-	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Modalidad</font></b></th>
-	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Unidad Curricular</font></b></th>
-	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Titulo del contenido en vigencia</font></b></th>
-	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Creada</font></b></th>
-	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Editada</font></b></th>
+			<th class='th' colspan=9 Valign="center">
+				<p align=center style="width: 10px">
+					<h3>ID</h3>
+				</p>
+			</th>
+			<th class='th' colspan=9 Valign="center">
+				<p align=center style="width: 10px">
+					<h3>Codigo</h3>
+				</p>
+			</th>
+			<th class='th' colspan=9 Valign="center">
+				<p align=center style="width: 10px">
+					<h3>Area</h3>
+				</p>
+			</th>
+			<th class='th' colspan=9 Valign="center">
+				<p align=center style="width: 10px">
+					<h3>Carrera</h3>
+				</p>
+			</th>
+			<th class='th' colspan=9 Valign="center">
+				<p align=center style="width: 10px">
+					<h3>Modalidad</h3>
+				</p>
+			</th>
+			<th class='th' colspan=9 Valign="center">
+				<p align=center style="width: 10px">
+					<h3>Und. Curricular</h3>
+				</p>
+			</th>
+			<th class='th' colspan=9 Valign="center">
+				<p align=center style="width: 10px">
+					<h3>Creada</h3>
+				</p>
+			</th>
 		</tr>
 	</thead>
 	<tbody>
-	@foreach($matter as $item)
-	<tr>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->id }}</font></b>
-		</td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->slug }}</font></b>
-		</td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->career->area->area }}</font></b>
-		</td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->career->career }}</font></b>
-		</td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->career->modalidad }}</font></b>
-		</td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->matter }}</font></b>
-		</td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">
-		 @foreach($item->content as $contenidos)
-		 	{{$contenidos->confirmation?$contenidos->title:''}}
-		 @endforeach
-		</font></b>
-		</td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->created_at }}</font></b>
-		</td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->updated_at }}</font></b>
-		</td>
-	</tr>
+	@endif
+		@for($i=0;count($corte)>$i;$i++)
+				@if($corte[$i]['id']==$key)
+					{!! $corte[$i]['html']   !!}
+				@endif
+		@endfor
+
+		<tr>
+			<td class="td" colspan=9 Valign=TOP>
+				<p align=center>
+				<font class="font">{{ $item->id }}</font></font></p>
+			</td>
+			<td class="td" colspan=9 Valign=TOP>
+				<p align=center>
+				<font class="font">{{ $item->slug }}</font></font></p>
+			</td>
+			<td class="td" colspan=9 Valign=TOP>
+				<p align=center>
+				<font class="font">{{ $item->career->area->area }}</font></font></p>
+			</td>
+			<td class="td" colspan=9 Valign=TOP>
+				<p align=center>
+				<font class="font">{{ $item->career->career }}</font></font></p>
+			</td>
+			<td class="td" colspan=9 Valign=TOP>
+				<p align=center>
+				<font class="font">{{ $item->career->modalidad }}</font></font></p>
+			</td>
+			<td class="td" colspan=9 Valign=TOP>
+				<p align=center>
+				<font class="font">{{ $item->matter }}</font></font></p>
+			</td>
+			<td class="td" colspan=9 Valign=TOP>
+				<p align=center>
+				<font class="font">{{ $item->created_at }}</font></font></p>
+			</td>
+		</tr>
 	@endforeach
 	</tbody>
 </table>
