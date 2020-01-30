@@ -58,11 +58,10 @@ class HomeController extends Controller
             $contentV= contentVersion::all()->count();
             $matter= Matter::all()->count();
             $career= Career::all()->count();
-            $download= Download::all()->count();
 
-            $label=['Estudiantes','Profesores','Coordinadores','Areas','Carreras','Materias','Contenidos','Versiones de Contenidos','Descargas'];
+            $label=['Estudiantes','Profesores','Coordinadores','Areas','Carreras','Materias','Contenidos','Versiones de Contenidos'];
 
-            $data = [$students,$teacher,$coordinadores,$area,$career,$matter,$content,$contentV,$download];
+            $data = [$students,$teacher,$coordinadores,$area,$career,$matter,$content,$contentV];
             $json=array("label"=>$label,"data"=>$data);
             return $json;
 
