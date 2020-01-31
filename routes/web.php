@@ -13,8 +13,8 @@
 
 // rama master  
 use Equivalencias\Career;
+
 Route::get('/Chart', 'HomeController@chart');
-Route::get('/ChartDownload', 'HomeController@ChartDownload');
 Route::get('/noPermission', function () {
 	$matter_user=Auth::user();
 	return view('permission.noPermission', compact('matter_user'));
