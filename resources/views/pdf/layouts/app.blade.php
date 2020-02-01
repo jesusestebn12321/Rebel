@@ -150,6 +150,9 @@
 	  .nueva-pagina {
 	    	page-break-before: always;
 	  }
+	  .paginar {
+	    	page-break-before: always;
+	  }
 	}
 
 	.nueva-pagina {

@@ -94,6 +94,17 @@ class DownloadController extends Controller
         dd($long_str,$count,$palabra); 
         return $palabra;
     }
+    public function paginacion_vertical(){
+
+
+
+
+
+        dd($count_justifucation,$count_purpose,$count_content);
+
+
+        return $paginacion;
+    }
 
     public function corte($margen,$model_arg,$corte_en,$thead_arg){
         $model=$model_arg;
@@ -301,17 +312,19 @@ class DownloadController extends Controller
         $matter_user=MatterUser::where('user_id',Auth::user()->id)->first();
         $script=$this->script_paginacion();
         $content=Content::where('matter_id',$matter_user->matter->id)->first();
-        if($content){
+        /*if($content){
             $contents[0]=Arr::add($content,0,null);
+            
             $contentP=$this->salto_linea_palabra($content->content,20);
             $justification=$this->salto_linea_palabra($content->justification,20);
             $purpose=$this->salto_linea_palabra($content->purpose,20);
                 
             $contenidos_paginados[0]=array('content' => $contentP,'justification'=> $justification,'purpose'=>$purpose );
-        }
+        
+        }*/
 
         //dd($contenidos_paginados);
-        $pdf=PDF::loadView('pdf.matterTeacher',compact('matter_user','content','teacher','today','url','contenidos_paginados','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
+        $pdf=PDF::loadView('pdf.matterTeacher',compact('matter_user','content','teacher','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
         $pdf->download('ReportesProfesoresMaterias'.now().'.pdf');
         return $pdf->stream();
     }

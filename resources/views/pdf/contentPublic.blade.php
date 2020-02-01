@@ -1,11 +1,9 @@
 @extends('pdf.layouts.app')
 @section('title','Equivalencia')
 @section('content')
-
 @include('pdf.layouts.header')
-
-@foreach($matter as $x)
-@foreach($x->content as $key=>$item)
+@foreach($matter as $key=>$x)
+@foreach($x->content as $item)
 
 <table class="table" cellpadding="7" cellspacing="0" style="margin-top: 3cm !important">
 	<col >
@@ -174,8 +172,6 @@
 		</tr>
 	</tbody>
 
-	@for($i=0;$i < count($contenidos_paginados);$i++)
-		@if($key==$i)
 		<thead>
 			<tr>
 				<th class='th' colspan=9 Valign=TOP>
@@ -187,11 +183,12 @@
 		<tbody>
 			<tr>
 				<td class="td" colspan=9 Valign=TOP >
-				<div style="width: 100%; padding: 4px;margin:1px">
-					<p align=JUSTIFY style="display: inline-block;text-indent: 5px;text-align: justify;"><font class="font">
-							{!!  $contenidos_paginados[$i]['justification']  !!}
-					</font></font></p>
-				</div></td>
+					<div style="width: 100%; padding: 4px;margin:1px">
+						<p align=JUSTIFY style="display: inline-block;text-indent: 5px;text-align: justify;"><font class="font">
+								{!!  $item->justification  !!}
+						</font></font></p>
+					</div>
+				</td>
 			</tr>
 		</tbody>
 		<thead>
@@ -205,7 +202,9 @@
 		<tbody>
 			<tr>
 				<td class="td" colspan=9 Valign=TOP>
-					<p align=JUSTIFY><font class="font">{!!$contenidos_paginados[$i]['purpose']!!} </font></font></p>
+					<div style="width: 100%; padding: 4px;margin:1px">
+						<p align=JUSTIFY><font class="font">{!!$item->purpose!!} </font></font></p>
+					</div>
 				</td>
 			</tr>
 		</tbody>
@@ -220,12 +219,12 @@
 		<tbody>
 			<tr>
 				<td class="td" colspan=9 Valign=TOP>
-				 <p align=JUSTIFY><font class="font">{!!$contenidos_paginados[$i]['content']!!}</font></font></p>
+					<div style="width: 100%; padding: 4px;margin:1px">
+					 	<p align=JUSTIFY><font class="font">{!!$item->content!!}</font></font></p>
+					</div>
 				</td>
 			</tr>
 		</tbody>
-		@endif
-	@endfor
 	<thead>
 		<tr Valign=TOP>
 			<th class='th' colspan=4>
@@ -242,9 +241,15 @@
 	</thead>
 	<tbody>
 		<tr Valign=TOP>
-			<td class="td" colspan=4 ><p align=JUSTIFY><font class="font">{!!$item->methodology!!}</font></font></p>
+			<td class="td" colspan=4 >
+				<div style="width: 100%; padding: 4px;margin:1px">
+					<p align=JUSTIFY><font class="font">{!!$item->methodology!!}</font></font></p>
+				</div>
 			</td>
-			<td class="td" colspan=5 ><p align=JUSTIFY><font class="font">{!!$item->evaluation!!}</font></font></p>
+			<td class="td" colspan=5 >
+				<div style="width: 100%; padding: 4px;margin:1px">
+					<p align=JUSTIFY><font class="font">{!!$item->evaluation!!}</font></font></p>
+				</div>
 			</td>
 		</tr>
 	</tbody>

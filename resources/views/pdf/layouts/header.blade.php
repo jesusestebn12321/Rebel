@@ -18,6 +18,15 @@
 		 @else
 			<ul style="list-style: none">
 				<li class="p">
+					@if(Auth::user()->hasRole(1))
+					<b>Administrador</b>
+					@elseif(Auth::user()->hasRole(2))
+					<b>Profesor</b>
+					@else
+					<b>Estudiante</b>
+					@endif
+				</li>
+				<li class="p">
 					<b>Nombre y Apellido: </b>{{Auth::user()->name}} {{Auth::user()->lastname}}
 				</li>
 				<li class="p">

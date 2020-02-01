@@ -4,8 +4,7 @@
 @section('content')
 @include('pdf.layouts.header')
 <table class="table" cellpadding="7" cellspacing="0" style="margin-top: 3cm !important">
-	<col >
-	<col >
+	
 	<col >
 	<col >
 	<col >
@@ -168,12 +167,11 @@
 			</td>
 			<td class="td" colspan=3>
 				<p align=CENTER>
-				<span><font class="font">{!!$matter_user->matter->version!!}</font></span></p>
+				<span><font class="font">{!!$matter_user->matter->content[0]->version!!}</font></span></p>
 			</td>
 		</tr>
 	</tbody>
 
-	@for($i=0;$i < count($contenidos_paginados);$i++)
 		<thead>
 			<tr>
 				<th class='th' colspan=9 Valign=TOP>
@@ -186,11 +184,11 @@
 			<tr>
 				<td class="td" colspan=9 Valign=TOP >
 				<div style="width: 100%; padding: 4px;margin:1px">
-					<p align=JUSTIFY style="display: inline-block;text-indent: 5px;text-align: justify;"><font class="font">
-							{!!  $contenidos_paginados[$i]['justification']  !!}
+					<p align=JUSTIFY style="display: inline-block;text-indent: 5px;text-align: justify;"><font class="font">{!!$matter_user->matter->content[0]->justification!!}
 					</font>
 					</p>
-				</div></td>
+				</div>
+				</td>
 			</tr>
 		</tbody>
 		<thead>
@@ -204,8 +202,10 @@
 		<tbody>
 			<tr>
 				<td class="td" colspan=9 Valign=TOP>
-					<p align=JUSTIFY><font class="font">{!!$contenidos_paginados[$i]['purpose']!!} </font>
+				<div style="width: 100%; padding: 4px;margin:1px">
+					<p align=JUSTIFY style="display: inline-block;text-indent: 5px;text-align: justify;"><font class="font">{!!$matter_user->matter->content[0]->purpose!!}</font>
 					</p>
+				</div>
 				</td>
 			</tr>
 		</tbody>
@@ -220,12 +220,17 @@
 		<tbody>
 			<tr>
 				<td class="td" colspan=9 Valign=TOP>
-				 <p align=JUSTIFY><font class="font">{!!$contenidos_paginados[$i]['content']!!}</font>
+				<div style="width: 100%; padding: 4px;margin:1px">
+				 <p align=JUSTIFY style="display: inline-block;text-indent: 5px;text-align: justify;"><font class="font">{!!$matter_user->matter->content[0]->content!!}</font>
 				 </p>
 				</td>
+				</div>
 			</tr>
 		</tbody>
-	@endfor
+	</table>
+	<table class="table" style="height:auto !important;margin-top: 2cm !important">
+	<col >
+	<col >
 	<thead>
 		<tr Valign=TOP>
 			<th class='th' colspan=4>
@@ -242,11 +247,18 @@
 	</thead>
 	<tbody>
 		<tr Valign=TOP>
-			<td class="td" colspan=4 ><p align=JUSTIFY><font class="font">{!!$matter_user->methodology!!}</font>
-			</p>
+			<td class="td" style="color:black !important" colspan=4 >
+				<div style="width: 100%; padding: 4px;margin:1px">
+					<p align=JUSTIFY><font class="font">{!!$matter_user->matter->content[0]->methodology!!}</font>
+					
+					</p>
+				</div>
 			</td>
-			<td class="td" colspan=5 ><p align=JUSTIFY><font class="font">{!!$matter_user->evaluation!!}</font>
-			</p>
+			<td class="td" colspan=5 >
+				<div style="width: 100%; padding: 4px;margin:1px">
+					<p align=JUSTIFY><font class="font">{!!$matter_user->matter->content[0]->evaluation!!}</font>
+					</p>
+				</div>
 			</td>
 		</tr>
 	</tbody>
