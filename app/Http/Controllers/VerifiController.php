@@ -3,9 +3,10 @@
 namespace Equivalencias\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Equivalencias\User;
 use Equivalencias\MatterUser;
+use Equivalencias\Download;
 use Equivalencias\Teacher;
+use Equivalencias\User;
 use Auth;
 class VerifiController extends Controller
 {
@@ -54,8 +55,9 @@ class VerifiController extends Controller
     }
     public function verifyEquivalencia($slug){
         #tengo que buscar en las descargas a ver si el estudiante lo descarga para ver el dia y todo eso y verificar la descarga
+        $download=Download::where('slug',$slug)->first();
         
-        #return view('verifi.equivalencia',compact('data'));
+        return view('verifi.equivalencia',compact('download'));
 
     }
 }

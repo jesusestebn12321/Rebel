@@ -217,7 +217,7 @@ class DownloadController extends Controller
         if($download==false){
             return redirect()->route('home')->with('messages','No completo el reCatcha');
         }else{
-            $url=url('/VerificarEquivalencia/{'.Auth::user()->id.'}/');
+            $url=url('/VerificarEquivalencia/{'.$download->slug.'}');
             $pdf=PDF::loadView('pdf.equivalencia',compact('contents','contenidos_paginados','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
 
             $pdf->download('Equivalencia_'.Auth::user()->dni.'_'.now().'.pdf');
