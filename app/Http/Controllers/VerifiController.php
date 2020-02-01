@@ -52,4 +52,10 @@ class VerifiController extends Controller
 
         return back()->with('success',$message);
     }
+    public function verifyEquivalencia($slug){
+        #tengo que buscar en las descargas a ver si el estudiante lo descarga para ver el dia y todo eso y verificar la descarga
+        
+        #return view('verifi.equivalencia',compact('data'));
+
+    }
 }
