@@ -70,6 +70,10 @@ class RegisterController extends Controller
             
         ]);
     }
+    public function showRegistrationForm(){
+        $area=area::all();
+        return view('auth.register',compact('area'));
+    }
 
     /**
      * Create a new user instance after a valid registration.

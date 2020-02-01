@@ -1,7 +1,39 @@
 @extends('layouts.app')
 @section('title','Register')
+@include('layouts.modales.PDF.pdfPublic')
+
 @section('js')
-<script>
+<script type="text/javascript">
+  var area_public_slug=$('#area_public_slug');
+  var html='';
+  area_public_slug.click(function(){
+    if(area_public_slug.val()!=0){
+      $.ajax({
+        type: "GET",
+        url: APP_URL+"/CareerPublic/"+area_public_slug.val(),
+        dataType: "json"
+        ,success: function (response) {
+          console.log('success');
+
+          $('#div_career_public').removeClass('d-none');
+          html='<option value="0">Carreras</option>';
+          for (var i = 0; response.length>i ; i++){ 
+            html+='<option value="'+response[i].slug+'">'+response[i].id+' - '+response[i].career+'</option>';
+          }
+          $('#career_public').html(html);
+          //$('body > div > div.header.pb-8.pt-5.pt-lg-8.d-flex.align-items-center > div > div > div > div > div > div').append('<div class="col mb-6 pt-5 mb-xl-0 alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><p>Exito</p></div>');
+
+
+        }
+      });
+    }
+  });
+  $('#career_public').click(function(){
+    if($('#career_public').val()!=0){
+      $('#button_download').removeClass('d-none');
+    }
+  });
+
   $('#career_id').click(function(){
     var carrera=$('#career_id');
     var area=$('#area_id');
