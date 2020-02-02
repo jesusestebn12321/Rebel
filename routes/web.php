@@ -115,6 +115,8 @@ Route::group(['middleware'=>['verifiUser']],function(){
 		Route::get('/Coordinador',['as'=>'coordinador.index','uses'=>'TeacherController@indexCoordinador']);
 
 		Route::get('/RemoverCargo/{slug}',['as'=>'coordinador.remove','uses'=>'TeacherController@coordinadorRemove']);
+
+		Route::get('/CoordinadorAdd',['as'=>'coordinador.add','uses'=>'TeacherController@coordinadorAdd']);
 		
 		Route::post('/MattersUsers/create',['as'=>'MattersTeacher.add','uses'=>'MatterUserController@add']);
 		Route::get('/MattersUsers/search/{dni}','MatterUserController@search');

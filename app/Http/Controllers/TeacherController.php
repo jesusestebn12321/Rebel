@@ -4,6 +4,8 @@ namespace Equivalencias\Http\Controllers;
 
 use Equivalencias\Teacher;
 use Equivalencias\MatterUser;
+use Equivalencias\Matter;
+use Equivalencias\User;
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
@@ -19,7 +21,8 @@ class TeacherController extends Controller
     }
     public function indexCoordinador(){
         $teacher=teacher::where('rol_id',5)->get();
-        return view('users.teacher.coordinador',compact('teacher'));
+        $matter=Matter::all();
+        return view('users.teacher.coordinador',compact('teacher','matter'));
     }
     public function coordinadorRemove($slug){
         $teacher=teacher::where('slug',$slug)->first();
@@ -30,6 +33,31 @@ class TeacherController extends Controller
           text: "Al remover el cargo",
           icon: "success",
       })</script>');
+    }
+    public function coordinadorAdd(Request $request){
+        try {
+            $user=User::where('dni',$request->dni)->where('rol_id',2)->firstOrFail();
+            $slug=str_slug($request->dni.$request->matter.'_'.rand());
+            $teacher=Teacher::create([
+                    'slug'=>$slug,
+                    'user_id'=>$user->id,
+                    'rol_id'=>5,
+                    'admin_confirmed'=>true,
+
+                ]);
+            return back()->with('success','<script>swal({
+                title: "Exito!",
+              text: "Al crear un nuevo coordinador",
+              icon: "success",
+          })</script>');
+            
+        } catch (Illuminate\Database\QueryException $e) {
+            return back()->with('success','<script>swal({
+            title: "Error!",
+          text: "Se produjo un error al agregar a este coordinador, chequee los datos.",
+          icon: "error",
+      })</script>');
+        }
     }
     /**
      * Show the form for creating a new resource.

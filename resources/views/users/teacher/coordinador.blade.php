@@ -1,6 +1,25 @@
 @extends('layouts.appDashboard')
 @section('title','| Cordinadores')
 @section('nameTitleTemplate','Cordinadores')
+@section('js')
+<script type="text/javascript">
+  $('#dni').keyup(function(){
+      var dni=$('#dni');
+      console.log('exito'+dni.val());
+      $.ajax({
+        type: "GET",
+        url: APP_URL+"/seacherTeacher/"+dni.val(),
+        dataType: "json",
+        success: function (response) {
+          console.log(response);
+          $('#name').text(response.name);
+          $('#lastname').text(response.lastname);
+          $('#email').text(response.email);
+        },
+      });
+  });
+</script>
+@endsection
 @section('headerContent')
 @include('layouts.modales.Users.Teacher.modalAddCoordinador')
 <div class="container">
