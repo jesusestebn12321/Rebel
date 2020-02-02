@@ -167,11 +167,11 @@
             <td id='Create{{$item->id}}'><label >{{ $item->created_at }}</label></td>
             <td id='Edit{{$item->id}}'><label >{{ $item->updated_at }}</label></td>
             <td>
-              <a class="btn-primary btn" title='Ver Area' onclick="show({{$item->id}})" data-target='#showCareer' data-toggle='modal' href="#!"><i class="fa fa-eye"></i></a>
+              <a class="btn-primary btn" title='Ver' onclick="show({{$item->id}})" data-target='#showCareer' data-toggle='modal' href="#!"><i class="fa fa-eye"></i></a>
 
-              <a class="btn-danger btn" title="Borrar Area" href="{{route('Careers.delete',$item->slug)}}"><i class="fa fa-remove"></i></a>
+              <a class="btn-danger btn" title="Borrar " href="#" onclick="deletes('{{$item->slug}}','/Career/Delete/')"><i class="fa fa-remove"></i></a>
 
-              <a class="btn-info btn" title="Editar Carrera" id="btn-1_{{$item->id}}" onclick="edit({{$item->id}})" data-target='#editCareer' data-toggle='modal'  id="btn-1_{{$item->id}}" href="#!"><i class="fa fa-edit"></i></a>
+              <a class="btn-info btn" title="Editar" id="btn-1_{{$item->id}}" onclick="edit({{$item->id}})" data-target='#editCareer' data-toggle='modal'  id="btn-1_{{$item->id}}" href="#!"><i class="fa fa-edit"></i></a>
 
            </td>
           </tr>
