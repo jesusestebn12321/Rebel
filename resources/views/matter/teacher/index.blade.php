@@ -123,7 +123,7 @@
               </div><hr>
             </div>
                 <div class="h5 mt-4">
-                  <i class="ni business_briefcase-24 mr-2"></i>Carrera | {{$matter_user->matter->career->career}} 
+                  <i class="ni business_briefcase-24 mr-2"></i>Carrera | {{$matter_user->matter->career? $matter_user->matter->career : ''}} 
                 </div>
                 <div class="card-footer">
                  <div class="text-center">
