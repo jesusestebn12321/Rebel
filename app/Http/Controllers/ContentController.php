@@ -68,9 +68,10 @@ class ContentController extends Controller
      * @param  \Equivalencias\Content  $content
      * @return \Illuminate\Http\Response
      */
-    public function show($id){
-        $content=Content::where('id',$id)->first();
-        $matter= Matter::where('id',$content->matters->id)->firstOrFail();
+    public function show($slug){
+        $content=Content::where('slug',$slug)->first();
+        
+        $matter= Matter::where('id',$content->matters->id)->first();
         return view('content.show',compact('content','matter'));
     }
 
