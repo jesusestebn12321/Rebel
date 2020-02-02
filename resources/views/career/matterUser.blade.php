@@ -150,9 +150,11 @@
             <div class="col">
               <div class="card-profile-stats d-flex justify-content-center ml-3 mt-md-5">
                 <div>
+                  @if(isset($item->content))
                   <div class="d-flex justify-content-between">
-                    <a href="{{route('Contents.show',$item->id)}}" class='btn btn-warning'>Ver Contenidos <span class="badge badge-default text-white">{{$item->content->count()}}</span> </a>  
+                    <a href="{{route('Contents.show',$item->content[0]->slug)}}" class='btn btn-warning'>Ver Contenidos </a>  
                   </div>
+                  @endif
                 </div>
               </div>
             </div>
@@ -182,7 +184,10 @@
     </div>
   </form>
   @empty
-    <font class='center'>No existen registros</font>
+    <div class="alert alert-success col text-center">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+      No hay Und. Curriculares para esta carrera
+  </div>
   @endforelse
 </div>
 
