@@ -90,10 +90,28 @@
         <div class="card-body">
           <div class="row">
             <div class="col">
+              <span class="h2 font-weight-bold mb-0">Coordinadores</span>
+            </div>
+            <div class="col-auto">
+              <a href="{{route('coordinador.index')}}" class='text-white'>
+                <div class="icon icon-shape bg-blue text-white rounded-circle shadow">
+                  <i class="fa fa-users"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-lg-6 pt-4">
+      <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
               <span class="h2 font-weight-bold mb-0">Reporte de las Profesores</span>
             </div>
             <div class="col-auto">
-              <a href="{{route('report.teacher')}}" class='text-white'>
+              <a href="{{route('report.teacher')}}" target="_blank" class='text-white'>
                 <div class="icon icon-shape bg-default text-white rounded-circle shadow">
                   <i class="fa fa-download"></i>
                 </div>

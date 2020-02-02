@@ -17,6 +17,20 @@ class TeacherController extends Controller
         $teacher=teacher::all();
         return view('users.teacher.index',compact('teacher'));
     }
+    public function indexCoordinador(){
+        $teacher=teacher::where('rol_id',5)->get();
+        return view('users.teacher.coordinador',compact('teacher'));
+    }
+    public function coordinadorRemove($slug){
+        $teacher=teacher::where('slug',$slug)->first();
+        $teacher->rol_id=2;
+        $teacher->save();
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+          text: "Al remover el cargo",
+          icon: "success",
+      })</script>');
+    }
     /**
      * Show the form for creating a new resource.
      *

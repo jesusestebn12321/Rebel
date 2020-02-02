@@ -111,7 +111,12 @@ Route::group(['middleware'=>['verifiUser']],function(){
 
 		Route::get('/Teacher',['as'=>'Teacher.index','uses'=>'TeacherController@index']);
 		Route::get('/AdminVerify/{slug}',['as'=>'admin.verify','uses'=>'VerifiController@AdminVerify']);
-		Route::POST('/MattersUsers/create',['as'=>'MattersTeacher.add','uses'=>'MatterUserController@add']);
+
+		Route::get('/Coordinador',['as'=>'coordinador.index','uses'=>'TeacherController@indexCoordinador']);
+
+		Route::get('/RemoverCargo/{slug}',['as'=>'coordinador.remove','uses'=>'TeacherController@coordinadorRemove']);
+		
+		Route::post('/MattersUsers/create',['as'=>'MattersTeacher.add','uses'=>'MatterUserController@add']);
 		Route::get('/MattersUsers/search/{dni}','MatterUserController@search');
 
 	});
