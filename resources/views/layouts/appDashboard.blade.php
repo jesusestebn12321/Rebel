@@ -59,6 +59,8 @@
     <script src="{{asset('plugins/input-mask/jquery.inputmask.js')}}"></script>
 
     <script src="{{asset('template/assets/js/argon.js')}}"></script>
+    <script src="{{asset('plugins/js/alert.js')}}"></script>
+
     <script>
       var APP_URL={!!json_encode(url('/'))!!};
     </script>
