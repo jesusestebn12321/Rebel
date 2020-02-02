@@ -95,9 +95,9 @@
               <td>
               @if(Auth::user()->hasRole(4))
                 @if($item->confirmation==true)
-                  <a href="{{route('remove.content',$item->slug)}}" class="btn btn-sm btn-danger">Desautorizar</a>
+                  <a href="#" onclick="desactualiza_actualizar('{{$item->slug}}','/Remove/Content/','decatualizar')" class="btn btn-sm btn-danger">Desautorizar</a>
                 @elseif($item->confirmation==false)
-                  <a href="{{route('verify.content',$item->slug)}}" id="edit1_{{$item->id}}" class="btn btn-sm btn-info">Verificar</a>
+                  <a href="#" onclick="desactualiza_actualizar('{{$item->slug}}','/Verify/Content/','actualizar')" id="edit1_{{$item->id}}" class="btn btn-sm btn-info">Verificar</a>
                 @endif
                 @endif
                 <a href="{{route('Contents.show', $item->slug)}}" class="btn btn-sm btn-warning">Ver</a>
