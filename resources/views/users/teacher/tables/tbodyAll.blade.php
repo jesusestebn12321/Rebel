@@ -14,11 +14,12 @@
   <td>{{ $item->user->updated_at }}</td>
   <td>
     <a class="btn-primary btn" href="{{route('Profile.Teacher.show',$item->slug)}}" title="Ver Usuario"><i class="fa fa-eye"></i></a>
-    <a class="btn-danger btn" href="{{route('User.delete',$item->user->slug)}}" title="Borrar Usuario"><i class="fa fa-remove"></i></a>
+    <a class="btn-danger btn" href="#"
+    onclick="deletes('{{$item->user->slug}}','/User/Delete/')" title="Borrar Usuario"><i class="fa fa-remove"></i></a>
     @if($item->admin_confirmed!=1)
-    <a href="{{ route('admin.verify', $item->slug)}}" title="Verificar" class="btn-success btn"><i class="fa fa-vimeo"></i></a>
+    <a href="#" onclick="verify_user('{{$item->slug}}','/AdminVerify/','Verificar')" title="Verificar" class="btn-success btn"><i class="fa fa-vimeo"></i></a>
     @else
-    <a href="{{ route('admin.verify', $item->slug)}}" title="Remover Verificacion" class="btn-warning btn"><i class="fa fa-vimeo"></i></a>
+    <a href="#" onclick="verify_user('{{$item->slug}}','/AdminVerify/','Remover Verificación')" title="Remover Verificación" class="btn-warning btn"><i class="fa fa-vimeo"></i></a>
     @endif
  </td>
 </tr>
