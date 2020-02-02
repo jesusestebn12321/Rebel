@@ -25,10 +25,18 @@ class ProfileController extends Controller
             $user = new User;
             $user->where('email', '=', Auth::user()->email)
                 ->update(['password' => bcrypt($request->password)]);
-            return back()->with('status', 'Password cambiado con éxito');
+            return back()->with('messages', '<script>swal({
+            title: "Exito!",
+            text: "La contraseña se cambiado con éxito",
+            icon: "success",
+        })</script>');
         }
         else{
-            return back()->with('messages', 'Credenciales incorrectas');
+            return back()->with('messages', '<script>swal({
+            title: "Error!",
+            text: "Credenciales incorrectas",
+            icon: "error",
+        })</script>');
         }
     }
 }

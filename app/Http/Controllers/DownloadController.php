@@ -215,7 +215,11 @@ class DownloadController extends Controller
         $today=Carbon::now();
 
         if($download==false){
-            return redirect()->route('home')->with('messages','No completo el reCatcha');
+            return redirect()->route('home')->with('messages','<script>swal({
+            title: "Error!",
+            text: "No completo el reCatcha",
+            icon: "error",
+        })</script>');
         }else{
             $url=url('/VerificarEquivalencia/{'.$download->slug.'}');
             $pdf=PDF::loadView('pdf.equivalencia',compact('contents','contenidos_paginados','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
@@ -312,16 +316,7 @@ class DownloadController extends Controller
         $matter_user=MatterUser::where('user_id',Auth::user()->id)->first();
         $script=$this->script_paginacion();
         $content=Content::where('matter_id',$matter_user->matter->id)->first();
-        /*if($content){
-            $contents[0]=Arr::add($content,0,null);
-            
-            $contentP=$this->salto_linea_palabra($content->content,20);
-            $justification=$this->salto_linea_palabra($content->justification,20);
-            $purpose=$this->salto_linea_palabra($content->purpose,20);
-                
-            $contenidos_paginados[0]=array('content' => $contentP,'justification'=> $justification,'purpose'=>$purpose );
         
-        }*/
 
         //dd($contenidos_paginados);
         $pdf=PDF::loadView('pdf.matterTeacher',compact('matter_user','content','teacher','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);

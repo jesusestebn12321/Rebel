@@ -20,17 +20,17 @@ use input;
 
 class MatterController extends Controller
 {
-   public function index()
-    {
-        
-        $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->first();
-        $matter=Matter::paginate(10);
-        $career=Career::paginate(10);
-        $area=Area::all();
-        $teacher=Teacher::where('user_id',Auth::user()->id)->first();
-        $contentV=contentVersion::all();
-        return view('matter.index',compact('career','matter','matter_user','teacher','contentV'));
-    }
+ public function index()
+ {
+
+    $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->first();
+    $matter=Matter::paginate(10);
+    $career=Career::paginate(10);
+    $area=Area::all();
+    $teacher=Teacher::where('user_id',Auth::user()->id)->first();
+    $contentV=contentVersion::all();
+    return view('matter.index',compact('career','matter','matter_user','teacher','contentV'));
+}
 
     /**
      * Show the form for creating a new resource.
@@ -61,18 +61,14 @@ class MatterController extends Controller
             'hp'=>$request->hp,
             'hl'=>$request->hl,
             'career_id'=>$request->career_id,
-        ]);
-        /*for ($i=0; $i < $request->numberContent; $i++) { 
-            $slug=str_slug($request->slug.rand());
-            $content=new Content();
-            $content->slug=$slug;
-            $content->title=$request->input('title_'.$i);
-            $content->content=$request->input('content_'.$i);
-            $content->matter_id=$matter->id;
-            $content->save();
-            
-        }*/
-        return back()->with('success','Se a creado con exito la materia');
+            ]);
+
+        
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+            text: "La Und. Curricular se ha creado",
+            icon: "success",
+        })</script>');
     }
 
     /**
@@ -126,7 +122,7 @@ class MatterController extends Controller
      */
     public function update(Request $request, $slug)
     {
-        
+
         $matter=Matter::where('slug',$slug)->firstOrFail();
         $matter->version=2;
         $matter->matter=$request->matter;
@@ -137,7 +133,11 @@ class MatterController extends Controller
         $matter->hl=$request->hl;
         $matter->career_id=$request->career_id;
         $matter->save();
-        return back()->with('success','Se a editado con exito la materia');
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+            text: "La Und. Curricular se ha editado",
+            icon: "success",
+        })</script>');
     }
     public function updateAll(Request $request, $slug)
     {
@@ -159,7 +159,11 @@ class MatterController extends Controller
 
         }
 
-        return back()->with('success','Se a editado con exito la materia y sus contenidos');
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+            text: "Se a editado con exito la materia y sus contenidos",
+            icon: "success",
+        })</script>');
     }
     public function asignarIndex(){
         $career=Career::all();
@@ -178,7 +182,11 @@ class MatterController extends Controller
             'matter_id'=>$request->matter_id,
             'user_id'=>$teacher->id
             ]);
-        return back()->with('success','Unidad curricular asignada con exito.');
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+            text: "Unidad curricular asignada con exito.",
+            icon: "success",
+        })</script>');
     }
 
 
@@ -192,7 +200,11 @@ class MatterController extends Controller
     {   
         $matter=Matter::where('slug',$slug)->firstOrFail();
         $matter->delete();
-        return back()->with('success','Se a borrado con exito la materia');
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+            text: "La Und. Curricular se ha eliminado",
+            icon: "success",
+        })</script>');
         
     }
 }

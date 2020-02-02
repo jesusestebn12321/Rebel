@@ -33,7 +33,7 @@ class VerifiController extends Controller
         $user->confirmation_code = null;
         $user->save();
 
-        return redirect('/home')->with('notification', 'Has confirmado correctamente tu correo!');
+        return redirect('/')->with('notification', 'Has confirmado correctamente tu correo!');
     }
     public function AdminVerify($slug){
         
@@ -41,11 +41,19 @@ class VerifiController extends Controller
         if ($teacher->admin_confirmed==1) {
             # code...
             $teacher->admin_confirmed = false;
-            $message='Se le removio la verificacion al usuario';
+            $message='<script>swal({
+            title: "Exito!",
+            text: "Se le removio la verificacion al usuario",
+            icon: "success",
+        })</script>';
         } else {
             # code...
             $teacher->admin_confirmed = true;
-            $message='Usuario Verificado Por el Administrador';
+            $message='<script>swal({
+            title: "Exito!",
+            text: "Usuario Verificado Por el Administrador",
+            icon: "success",
+        })</script>';
             
         }
         $teacher->save();
@@ -53,6 +61,7 @@ class VerifiController extends Controller
 
         return back()->with('success',$message);
     }
+    
     public function verifyEquivalencia($slug){
         #tengo que buscar en las descargas a ver si el estudiante lo descarga para ver el dia y todo eso y verificar la descarga
         $download=Download::where('slug',$slug)->first();

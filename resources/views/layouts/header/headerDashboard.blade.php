@@ -50,16 +50,10 @@
           </div>
           @endif
           @if (Session::has('messages'))
-          <div class='alert alert-danger'>
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <p>{{ Session::get('messages') }}</p>
-          </div>
+            {!! Session::get('messages') !!}
           @endif
           @if (Session::has('success'))
-          <div class='alert alert-success'>
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <p>{{ Session::get('success') }}</p>
-          </div>
+            {!! Session::get('success') !!}
           @endif
           @yield('headerContent')
         </div>

@@ -25,7 +25,11 @@ class CareerController extends Controller
     public function store(CareerRequests $request){
         $slug=str_slug($request->modalidad.'-'.$request->career.'_'.rand());
         $career=Career::create(['career'=>$request->career,'modalidad'=>$request->modalidad,'slug'=>$slug,'area_id'=>$request->area_id]);
-        return back()->with('success','Se a creado con exito la carrera');
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+          text: "La Carrera se ha creado",
+          icon: "success",
+      })</script>');
     }
     public function show($id){
         $career=Career::where('area_id','=',$id)->get();
@@ -57,6 +61,10 @@ class CareerController extends Controller
     public function delete($slug){
         $career=Career::where('slug','=',$slug)->firstOrFail();
         $career->delete();
-        return back()->with('success','Se a borrado con exito la carrera');
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+          text: "La carrera se ha eliminado",
+          icon: "success",
+      })</script>');
     }
 }

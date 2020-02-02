@@ -45,7 +45,11 @@ class AreaController extends Controller
             'university_id'=>$request->university_id,
             'slug'=>$slug,
         ]);
-        return back()->with('success','Se a creado con exito el area');
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+          text: "La Area se ha creado",
+          icon: "success",
+      })</script>');
 
     }
 
@@ -67,7 +71,11 @@ class AreaController extends Controller
         try {
             $area=Area::Where('slug','=',$slug)->firstOrFail();
             $area->delete();
-            return back()->with('success','Exito');
+            return back()->with('success','<script>swal({
+            title: "Exito!",
+          text: "La Area se ha eliminado",
+          icon: "success",
+      })</script>');
         } catch (Illuminate\Database\QueryException $e) {
             return back()->with('success','Error esta area contiene carreras');
         }
@@ -76,7 +84,11 @@ class AreaController extends Controller
         try {
             $area=Area::Where('slug','=',$slug)->firstOrFail();
             $area->delete();
-            return back()->with('success','Se a borrado con exito el area');
+            return back()->with('success','<script>swal({
+            title: "Exito!",
+          text: "La Area se ha eliminado",
+          icon: "success",
+      })</script>');
         } catch (Illuminate\Database\QueryException $e) {
             return back()->with('success','Se produjo un error esta area contiene carreras');
         }

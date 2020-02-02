@@ -16,7 +16,7 @@ class UniversityController extends Controller{
             $address=Address::create([
                 'slug'=>$slug,
                 'addres'=>$request->address,
-            ]);
+                ]);
             $request->address_id=$address->id;       
         }
         $slug=str_slug($request->university.'-'.$request->address_id.'_'.rand());
@@ -24,8 +24,12 @@ class UniversityController extends Controller{
             'university'=>$request->university,
             'address_id'=>$request->address_id,
             'slug'=>$slug,
-        ]);
-        return back()->with('success','Se a creado con exito la universidad');
+            ]);
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+          text: "La universidad se creo con exito!",
+          icon: "success",
+      })</script>');
     }
     public function show($id){
     }
@@ -40,11 +44,19 @@ class UniversityController extends Controller{
     public function destroy($slug){
         $university=University::Where('slug','=',$slug)->firstOrFail();
         $university->delete();
-        return back()->with('success','Se a borrado con exito la universidad');
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+          text: "La universidad se ha eliminado",
+          icon: "success",
+      })</script>');
     }
     public function delete($slug){
         $university=University::Where('slug','=',$slug)->firstOrFail();
         $university->delete();
-        return back()->with('success','Se a borrado con exito la universidad');
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+          text: "La universidad se ha eliminado",
+          icon: "success",
+      })</script>');
     }
 }

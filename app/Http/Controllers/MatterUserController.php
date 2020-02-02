@@ -44,7 +44,11 @@ class MatterUserController extends Controller
                 'user_id'=>Auth::user()->id,
             ]);
         // dd($request);
-        return back()->with('success','Lleno el perfil con exito');
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+            text: "Lleno el perfil con exito",
+            icon: "success",
+        })</script>');
     }
     public function asignar(Request $request,$id)
     {
@@ -54,7 +58,11 @@ class MatterUserController extends Controller
                 'user_id'=>$user->id,
             ]);
         // dd($request);
-        return back()->with('success','Unidad curricular asignada con exito');
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+            text: "Und. Curricular fue asignada con exito",
+            icon: "success",
+        })</script>');
     }
     public function add(Request $request){
         $teacher=User::where('dni',$request->user_id)->firstOrFail();
@@ -64,7 +72,11 @@ class MatterUserController extends Controller
                 'user_id'=>$teacher->id,
                 'admin_confirmed'=>true
             ]);
-        return back()->with('success','Se a añadido con exito la materia');
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+            text: "Se a añadido con exito la Und. Curricular",
+            icon: "success",
+        })</script>');
     }
     public function search($dni){
         
@@ -121,6 +133,9 @@ class MatterUserController extends Controller
     public function destroy($id){
         $matter_user=MatterUser::where('id',$id)->firstOrFail();
         $matter_user->delete();
-        return back()->with('success','Exito');   
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+            icon: "success",
+        })</script>');   
     }
 }

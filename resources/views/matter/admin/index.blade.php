@@ -133,7 +133,7 @@
 	                      	<td>
 	                      		<a class="btn-primary btn" title="Ver Materia" href="{{route('Matters.show',$item->slug)}}"><i class="fa fa-eye"></i></a>
                             <a class="btn-info btn" title="Ver Materia" href="{{route('Matters.edit',$item->slug)}}"><i class="fa fa-edit"></i></a>
-                            <a class="btn-danger btn" title="Ver Materia" href="{{route('Matters.delete',$item->slug)}}"><i class="fa fa-remove"></i></a>
+                            <a class="btn-danger btn" title="Ver Materia" href="#" onclick="deletes('{{$item->slug}}','/Matters/delete/')"><i class="fa fa-remove"></i></a>
 		                    </td>
 	                    </tr>
 	                  	@empty

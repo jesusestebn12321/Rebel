@@ -54,7 +54,11 @@ class UsersController extends Controller
         $user->name=$request->name;
         $user->lastname=$request->lastname;
         $user->save();
-        return back()->with('success','Exito al editar sus datos personales');
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+            text: "Exito al editar sus datos personales",
+            icon: "success",
+        })</script>');
     }
     public function Supdate(Request $request,$slug){
         $user=User::where('id',$request->id)->firstOrFail();
@@ -62,12 +66,20 @@ class UsersController extends Controller
         $user->dni=$request->dni;
         $user->lastname=$request->lastname;
         $user->save();
-        return back()->with('success','Exito al editar sus datos personales');
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+            text: "Exito al editar sus datos personales",
+            icon: "success",
+        })</script>');
     }
     public function destroy($slug)
     {
         $user=User::where('slug',$slug)->firstOrFail();
         $user->delete();
-        return back()->with('success','Se a borrado con exito el usuario');
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+            text: "Se a borrado con exito el usuario",
+            icon: "success",
+        })</script>');
     }
 }
