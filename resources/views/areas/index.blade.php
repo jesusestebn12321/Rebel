@@ -63,41 +63,7 @@
       }
     });
   });
-  function deletes(slug){
-    swal({
-      title: "¿Desea eliminar este item "+slug+"?",
-      text: "La Area se eliminara en caso de que precione OK!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        $.ajax({
-          url: APP_URL+'/Areas/Delete/'+slug,
-          method: 'GET',
-          success: function (respuesta) {
-            swal({
-              icon: "success",
-              title: "Exito",
-              text: "Sea eliminado el item con exito!",
-            });
-            location.reload();
-
-          },error(e){
-            swal('Error en url',{
-              icon: "error",
-            });
-          }
-        });
-      }else{
-        swal("Se cancelo la acción!",{
-          title:'Acción Cancelada',
-          icon:"info",
-        });
-      }
-    });
-  }
-
+  
  
 
 </script>
@@ -195,7 +161,7 @@
               <td>
                 <a class="btn-primary btn" title='Ver Area' onclick="show({{$item->id}})" data-target='#showArea' data-toggle='modal' href="#!"><i class="fa fa-eye"></i></a>
 
-                <a class="btn-danger btn" onclick="deletes('{{$item->slug}}')" title="Borrar Area" href="#"><i class="fa fa-remove"></i></a>
+                <a class="btn-danger btn" onclick="deletes('{{$item->slug}}','/Areas/Delete/')" title="Borrar Area" href="#"><i class="fa fa-remove"></i></a>
 
                 <a class="btn-info btn" title="Editar Area" data-target='#editArea' data-toggle='modal'  id="btn-1_{{$item->id}}" onclick="edit({{$item->id}})" href="#!"><i class="fa fa-edit"></i></a>
               </td>
