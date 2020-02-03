@@ -142,6 +142,12 @@ class DownloadController extends Controller
         //dd($request);
         $rule=['g-recaptcha-response' => new Captcha()];
         $message=[];
+        
+        if(Auth::user()){
+            $user=Auth::user()->id;
+        }else{
+            $user=NULL;
+        }
 
         $validator=Validator::make($request->all(), $rule,$message);
         if($validator->fails()){
@@ -149,17 +155,16 @@ class DownloadController extends Controller
             return false;
         }else{
 
-            $slug=str_slug('downloand-'.Auth::user()->id.'-'.now().'-equivalencia');
+            $slug=str_slug('downloand-'.$user.'-'.now().'-equivalencia');
 
             return  Download::Create([
                 'slug'=>$slug,
-                'user_id'=>Auth::user()->id,
+                'user_id'=>$user,
                 'start_student'=>now(),
                 'last_student'=>now(),
-                'status'=>false,
+                'status'=>true,
                 ]);
         }
-
     }
 
 
@@ -351,7 +356,7 @@ class DownloadController extends Controller
             }
         }
         $script=$this->script_paginacion();
-
+        $download=$this->createRegisterDownload($request);
         $contenidos_paginados=Collection::make($contenidos_paginados);
 
         $today = Carbon::now();

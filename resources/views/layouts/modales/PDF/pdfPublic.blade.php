@@ -41,7 +41,7 @@
           </div>
 
           <div class="form-group">
-            <div class="col-md-6 offset-md-4">
+            <div class="col">
               <div class="g-recaptcha" data-sitekey="{{ env('CAPTCHA_SITE_KEY') }}"></div>
               @if ($errors->has('g-recaptcha-response'))
               <span class="invalid-feedback" style="display: block;">
