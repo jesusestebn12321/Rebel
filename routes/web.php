@@ -178,7 +178,9 @@ Route::group(['middleware'=>['verifiUser']],function(){
 	Route::group(['middleware'=>['authen','rol'],'rol'=>['3']],function(){
 		Route::get('/Download/{slug}',['as'=>'Download.index','uses'=>'DownloadController@index']);
 
-		Route::post('/DownloadEquivalencias/{slug}',['as'=>'equivalencia','uses'=>'DownloadController@equivalenciaStudents']);
+		Route::get('/DownloadEquivalencias/{slug}',['as'=>'equivalencia','uses'=>'DownloadController@equivalenciaStudents']);
+		
+		Route::post('/DownloadAllContent',['as'=>'all.content','uses'=>'DownloadController@search_content']);
 	});
 
 //AdminCurricular 
