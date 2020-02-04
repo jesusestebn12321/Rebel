@@ -1,11 +1,13 @@
 @extends('pdf.layouts.app')
 @section('title','Equivalencia')
 @section('content')
+
 @include('pdf.layouts.header')
 @foreach($matter as $key=>$x)
 @foreach($x->content as $item)
+<main style="height:20cm">
 
-<table class="table" cellpadding="7" cellspacing="0" style="margin-top: 3cm !important">
+<table class="table" cellpadding="7" cellspacing="0" style="margin-top: 2cm !important;">
 	<col >
 	<col >
 	<col >
@@ -254,6 +256,7 @@
 		</tr>
 	</tbody>
 </table>
+</main>
 @endforeach
 {!! $script !!}
 @endforeach

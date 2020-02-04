@@ -1,9 +1,9 @@
-@extends('pdf.layouts.app')
+@extends('pdf.layouts.appAuth')
 @section('title','Equivalencia')
 @section('content')
 @include('pdf.layouts.header')
-<main style="margin-bottom: 1px;height: auto;">
 
+<main style="margin-bottom: 1px;height: auto;">
 @foreach($contents as $key=>$item)
 @if($key!=0)
 <!--p style="margin-bottom: 100px;height: 20%;background: red "></p-->	
@@ -173,7 +173,7 @@
 
 	@for($i=0;$i < count($contenidos_paginados);$i++)
 		@if($key==$i)
-		<thead>
+		<thead class="">
 			<tr>
 				<th class='th' colspan=9 Valign=TOP>
 					<p align=LEFT>
@@ -206,6 +206,9 @@
 				</td>
 			</tr>
 		</tbody>
+		</table>
+			<br>
+		<table class="table" cellpadding="7" cellspacing="0" style="margin-top: 3cm !important">
 		<thead>
 			<tr>
 				<td class="td" colspan=9 Valign=TOP>
@@ -246,6 +249,7 @@
 		</tr>
 	</tbody>
 </table>
+<span class="nueva-pagina"></span>
 @endforeach
 </main>
 <footer>
