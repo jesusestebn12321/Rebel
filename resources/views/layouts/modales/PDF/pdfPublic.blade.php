@@ -10,7 +10,7 @@
         <button class="close" aria-hidden="true" data-dismiss="modal" id='close'>&times;</button>
       </div>
       <div class="modal-body">
-      <form class="form-horizontal" method="GET" action="{{route('download.public',Auth::user()->slug)}}">
+      <form class="form-horizontal" method="GET" action="{{route('download.public')}}">
           {{ csrf_field() }}
           
           <div class="form-group{{ $errors->has('area_public_slug') ? ' has-error' : '' }}">
