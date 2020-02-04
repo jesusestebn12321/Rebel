@@ -4,14 +4,49 @@
 @section('header_js')
 <script src='https://www.google.com/recaptcha/api.js'></script>
 @endsection
+@section('js')
+
+<script type="text/javascript">
+  var area_slug=$('#area_slug');
+  var html='';
+  area_slug.click(function(){
+    if(area_slug.val()!=0){
+      $.ajax({
+        type: "GET",
+        url: APP_URL+"/CareerPublic/"+area_slug.val(),
+        dataType: "json"
+        ,success: function (response) {
+          console.log('success');
+
+          $('#div_career').removeClass('d-none');
+          html='<option value="0">Carreras</option>';
+          for (var i = 0; response.length>i ; i++){ 
+            html+='<option value="'+response[i].slug+'">'+response[i].id+' - '+response[i].career+'</option>';
+          }
+          $('#career').html(html);
+          //$('body > div > div.header.pb-8.pt-5.pt-lg-8.d-flex.align-items-center > div > div > div > div > div > div').append('<div class="col mb-6 pt-5 mb-xl-0 alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><p>Exito</p></div>');
+
+
+        }
+      });
+    }
+  });
+  $('#career').click(function(){
+    if($('#career').val()!=0){
+      $('#button_download').removeClass('d-none');
+    }
+  });
+  $('#last_date').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' });
+
+
+</script>
+@endsection
 @include('layouts.modales.content.modalShowContent')
 @include('layouts.modales.PDF.suveryDownload')
+@include('layouts.modales.PDF.searchContent')
 @section('mensaje')
 @if (Session::has('messages'))
-<div class='alert alert-danger'>
-	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	<p>{{ Session::get('messages') }}</p>
-</div>
+	{!! Session::get('messages') !!}
 @endif
 @endsection
 @section('content')
