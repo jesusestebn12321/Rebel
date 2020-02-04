@@ -166,12 +166,75 @@ class DownloadController extends Controller
                 ]);
         }
     }
+    public function search_content(Request $request){
+        $rule=['last_date' => 'required|date'];
+        $message=['last_date'];
+        $anio=now()->format('yy');
+        $year=explode('/',$request->last_date);
+        $year=$year[2];
+        $validator=Validator::make($request->all(), $rule,$message);
+        if($year>$anio || $validator->fails()){
+        
+            $message='Error con la fecha';
+            return back()->with('success','<script>swal({
+                icon:"error",
+                title:"Error",
+                text:"Corrige la fecha de para poder iniciar con la descarga del contenido."
+            })</script>');
+        }else{
+            $career=Career::where('slug',$request->career_slug)->first();
+            $matter=Matter::where('career_id',$career->id)->get();
+            $i=0; 
+            $y=0;
+            $contenedorV=[];
+            $contenedor=[];
+            foreach ($matter as $key => $item) {
+                $content=Content::where('matter_id',$item->id)->first();
+                $contentV=contentVersion::where('matter_id',$item->id)->first();
+                if ($content){
+                    $contenedor[$i]=Arr::add($content,$i,null);
+                    $i++;
+
+                }elseif($contentV){
+                    $contenedorV[$y]=Arr::add($contentV,$y,null);
+                    $y++;
+                }
+            }
+            $contenedorFinal=[];
+            $acum=[];
+            $acumV=[];
+            foreach ($contenedor as $key => $item){
+                $acum=$item->whereYear('created_at',$year)->get();
+                if($acum){
+                    $contenedorFinal=Arr::add($acum,$key,null);
+                }
+                else{
+                    foreach ($contenedorV as $items) {
+                        $acumV=$items->whereYear('created_at',$year )->first();
+                        $contenedorFinal=Arr::add($acumV,$key,null);
+                    }
+                }
+            }
+
+            dd($request,$matter,$acum,$year,$contenedorV,$contenedor,$contenedorFinal);
+
+            $download=$this->createRegisterDownload($request);
+            $script=$this->script_paginacion();
+            $today=Carbon::now();
+            $url=url('/VerificarEquivalencia/{'.$download->slug.'}');
+            $pdf=PDF::loadView('pdf.equivalencia',compact('contents','contenidos_paginados','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
+            $pdf->download('Contenido_'.Auth::user()->dni.'_'.$request->last_time.'.pdf');
+            return $pdf->stream('Equivalencia_'.Auth::user()->dni.'_'.$request->last_time.'.pdf');
+            
+        }
+    }
 
 
     public function equivalenciaStudents($slug, Request $request){
 
         $matter_user= StudentMatter::where('user_id',Auth::user()->id)->get();
         $i=0;
+            //dd($matter_user);
 
         foreach ($matter_user as $item) {
             $contentP='';
@@ -181,9 +244,8 @@ class DownloadController extends Controller
             $version=$item->version;
             $content=Content::where('version',$version)
             ->where('matter_id',$item->id)->first();
-                //dd($content);
-            if (!$content) {
-                foreach ($item->matter->content as $items) {
+            if(!$content){
+                foreach($item->matter->content as $items){
                     $content_version=contentVersion::where('content_id',$items->id)->get();
                     foreach ($content_version as $item_version) {
                         if ($item_version->version == $version) {
@@ -194,12 +256,10 @@ class DownloadController extends Controller
                             $purpose=$this->salto_linea_palabra($item_version->purpose,20);
 
                             $contenidos_paginados[$i]=array('content' => $contentP,'justification'=> $justification,'purpose'=>$purpose );
-
-
                         }
                     }
                 }
-            }if($content){
+            }elseif($content){
                 $contents[$i]=Arr::add($content,$i,null);
 
                 $contentP=$this->salto_linea_palabra($content->content,20);
@@ -214,7 +274,8 @@ class DownloadController extends Controller
             }
             $i++;
         }
-        $contenidos_paginados=Collection::make($contenidos_paginados);
+        $contenidos_paginados=Collection::make($contents);
+
         $download=$this->createRegisterDownload($request);
         $script=$this->script_paginacion();
         $today=Carbon::now();
@@ -342,7 +403,6 @@ class DownloadController extends Controller
         $i=0;
         foreach ($matter as $key => $item) {
             # code...
-
             $content=Content::where('matter_id',$item->id)->first();
             if($content){
                 //dd($content);
@@ -360,7 +420,8 @@ class DownloadController extends Controller
         $contenidos_paginados=Collection::make($contenidos_paginados);
 
         $today = Carbon::now();
-        $url=url('/ContentPublicVerifi/'.$request->career_public_slug);//aqui se va a filtrar por una vista las materias pertenecientes a esa carrera
+        $url=url('/ContentPublicVerifi/'.$request->career_public_slug);
+        //aqui se va a filtrar por una vista las materias pertenecientes a esa carrera
         
         $pdf=PDF::loadView('pdf.contentPublic',compact('contenidos_paginados','matter','pdf','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
         $pdf->download('ContenidosPublicos.pdf');
