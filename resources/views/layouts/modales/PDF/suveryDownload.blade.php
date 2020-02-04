@@ -14,7 +14,7 @@
                     {{ csrf_field() }}
                     
                     <div class="form-group">
-                      <div class="col-md-6 offset-md-4">
+                      <div class="col-md-6">
                           <div class="g-recaptcha" data-sitekey="{{ env('CAPTCHA_SITE_KEY') }}"></div>
                           @if ($errors->has('g-recaptcha-response'))
                               <span class="invalid-feedback" style="display: block;">
