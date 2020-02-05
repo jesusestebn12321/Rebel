@@ -10,7 +10,7 @@
                 <button class="close" aria-hidden="true" data-dismiss="modal" id='close'>&times;</button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="{{route('equivalencia',Auth::user()->slug)}}">
+                <form class="form-horizontal" method="get" action="{{route('equivalencia',Auth::user()->slug)}}">
                     {{ csrf_field() }}
                     
                     <div class="form-group">
