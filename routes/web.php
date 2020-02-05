@@ -134,6 +134,11 @@ Route::group(['middleware'=>['verifiUser']],function(){
 			Route::group(['middleware'=>['teacher_roles']],function(){
 
 				Route::apiResource('/Contents','ContentController',['parameters'=>['Contents'=>'slug']]);
+				
+				Route::get('/Contenido/Crear/{slug}',['as'=>'Contents.create','uses'=>'ContentController@create']);
+
+				Route::post('/Contenido/Store',['as'=>'Contents.coordinador.store','uses'=>'ContentController@store']);
+
 				Route::apiResource('/MatterUser','MatterUserController',['parameters'=>['MatterUser'=>'slug'],'only'=>['index','update']]);
 				Route::get('/Matter/Asignar',['as'=>'Matter.asignar.index','uses'=>'MatterController@asignarIndex']);
 				
@@ -145,6 +150,14 @@ Route::group(['middleware'=>['verifiUser']],function(){
 				Route::post('/Matter/RollBackContent',['as'=>'rollback','uses'=>'ContentController@VersionBack']);
 
 				Route::get('/DownloadTeacherMatter/{slug}',['as'=>'reportTeacher.matter','uses'=>'DownloadController@teacherMatter']);
+				
+				Route::get('/Contents/Edit/{slug}', ['as'=>'Contents.edit','uses'=>'ContentController@edit']);
+				
+				Route::get('/Contents/upDate/{slug}',['as'=>'Contents.up_date','uses'=>'ContentController@update']);
+				
+				Route::get('/Contents/Delete/{slug}',['as'=>'Contents.delete', 'uses'=>'ContentController@destroy'] );
+				
+				Route::get('/Contents/UpdateStatus/{slug}',['as'=>'Contents.update_status', 'uses'=>'ContentController@update_status'] );
 			});
 					
 			Route::get('/Matter',['as'=>'Matter.index','uses'=>'MatterController@index']);
@@ -155,13 +168,6 @@ Route::group(['middleware'=>['verifiUser']],function(){
 			
 			Route::get('/Contents/{slug}', ['as'=>'Contents.show','uses'=>'ContentController@show']);
 			
-			Route::get('/Contents/Edit/{slug}', ['as'=>'Contents.edit','uses'=>'ContentController@edit']);
-			
-			Route::get('/Contents/upDate/{slug}',['as'=>'Contents.up_date','uses'=>'ContentController@update']);
-			
-			Route::get('/Contents/Delete/{slug}',['as'=>'Contents.delete', 'uses'=>'ContentController@destroy'] );
-
-			Route::get('/Contents/UpdateStatus/{slug}',['as'=>'Contents.update_status', 'uses'=>'ContentController@update_status'] );
 			
 			Route::apiResource('/MatterUser','MatterUserController',['only'=>['store']]);
 			
