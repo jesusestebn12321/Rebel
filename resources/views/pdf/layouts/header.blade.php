@@ -12,8 +12,8 @@
 	<spam align="right" style="float: right; position: relative !important;top:-65;padding: 0px">
 		<img style="padding: 0px" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(200)->generate($url)) !!} ">
 	</spam>
-	<br><br>
-	<p align="center" >
+	<br>
+	<p align="center" style="display:inline;" >
 		 @guest
 		 @else
 			<ul style="list-style: none">
@@ -38,7 +38,7 @@
 			</ul>
 		@endguest
 	</p>
-	<p align="right" valign='top'  style="font-size:19px !important">
+	<p align="right" valign='top'  style="display:inline;position:absolute;top:70;right:10;font-size:19px !important">
 		Fecha: {{$today}}
 	</p>
 </header>
