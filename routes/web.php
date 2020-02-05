@@ -180,7 +180,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 
 		Route::get('/DownloadEquivalencias/{slug}',['as'=>'equivalencia','uses'=>'DownloadController@equivalenciaStudents']);
 		
-		Route::post('/DownloadAllContent',['as'=>'all.content','uses'=>'DownloadController@search_content']);
+		Route::get('/DownloadAllContent',['as'=>'all.content','uses'=>'DownloadController@search_content']);
 	});
 
 //AdminCurricular 
