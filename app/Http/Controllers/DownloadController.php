@@ -206,23 +206,20 @@ class DownloadController extends Controller
             foreach ($contenedor as $key => $item){
                 $acum=$item->whereYear('created_at',$year)->get();
                 if($acum){
-                    $contenedorFinal=Arr::add($acum,$key,null);
+                    $contenedorFinal=Collection::make($acum);
                 }
                 else{
                     foreach ($contenedorV as $items) {
                         $acumV=$items->whereYear('created_at',$year )->first();
-                        $contenedorFinal=Arr::add($acumV,$key,null);
+                        $contenedorFinal=Collection::make($acumV);
                     }
                 }
             }
-
-            dd($request,$matter,$acum,$year,$contenedorV,$contenedor,$contenedorFinal);
-
-            $download=$this->createRegisterDownload($request);
+            
             $script=$this->script_paginacion();
             $today=Carbon::now();
-            $url=url('/VerificarEquivalencia/{'.$download->slug.'}');
-            $pdf=PDF::loadView('pdf.equivalencia',compact('contents','contenidos_paginados','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
+            $url=url('/VerificarEquivalencia/');
+            $pdf=PDF::loadView('pdf.searchContentDate',compact('contenedorFinal','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
             $pdf->download('Contenido_'.Auth::user()->dni.'_'.$request->last_time.'.pdf');
             return $pdf->stream('Equivalencia_'.Auth::user()->dni.'_'.$request->last_time.'.pdf');
             
