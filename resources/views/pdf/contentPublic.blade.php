@@ -94,10 +94,10 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>
+			<td class="td">
 				<p align=CENTER><font class="font">{!!$item->matters->semester!!}</font></p>
 			</td>
-			<td>
+			<td class="td">
 				<p align=CENTER><font class="font">{!!$item->matters->slug!!}</font>
 				</p>
 			</td>
@@ -105,7 +105,7 @@
 				<p align=CENTER>
 				<font class="font">{!!$item->matters->credit!!}</font></p>
 			</td>
-			<td>
+			<td class="td">
 				<p align=CENTER>
 				<span><font class="font">OBLIGATORIO</font></span></p>
 			</td>
@@ -113,11 +113,11 @@
 				<p align=CENTER>
 				<font class="font">{!!$item->matters->ht!!}</font></p>
 			</td>
-			<td>
+			<td class="td">
 				<p align=CENTER>
 				<font class="font">{!!$item->matters->hl!!}</font></font></p>
 			</td>
-			<td>
+			<td class="td">
 				<p align=CENTER>
 				<font class="font">{!!$item->matters->hp!!}</font></font></p>
 			</td>
