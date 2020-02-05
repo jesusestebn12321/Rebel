@@ -57,7 +57,7 @@
               <span class="h2 font-weight-bold mb-5">Crear un contenido</span>
             </div>
             <div class="col-auto">
-              <a href="#" title data-original-title="Agregar contenido" data-target='#createContent' data-toggle='modal' class='text-white'>
+              <a href="{{route('Contents.create',$matter_user->matter->slug)}}" title data-original-title="Agregar contenido" class='text-white'>
                 <div class="icon icon-shape bg-success text-white rounded-circle shadow">
                   <i class="fa fa-plus"></i>
                 </div>
@@ -75,7 +75,7 @@
               <span class="h2 font-weight-bold mb-0">Reporte de la Unidad Curricular</span>
             </div>
             <div class="col-auto">
-              <a href="{{route('reportTeacher.matter',Auth::user()->slug)}}" class='text-white'>
+              <a target="_blank" href="{{route('reportTeacher.matter',Auth::user()->slug)}}" class='text-white'>
                 <div class="icon icon-shape bg-info text-white rounded-circle shadow">
                   <i class="fa fa-download"></i>
                 </div>
@@ -123,7 +123,7 @@
               </div><hr>
             </div>
                 <div class="h5 mt-4">
-                  <i class="ni business_briefcase-24 mr-2"></i>Carrera | {{$matter_user->matter->career? $matter_user->matter->career : ''}} 
+                  <i class="ni business_briefcase-24 mr-2"></i>Carrera | {{$matter_user->matter->career? $matter_user->matter->career->career : ''}} 
                 </div>
                 <div class="card-footer">
                  <div class="text-center">
