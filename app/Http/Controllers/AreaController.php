@@ -77,7 +77,11 @@ class AreaController extends Controller
           icon: "success",
       })</script>');
         } catch (Illuminate\Database\QueryException $e) {
-            return back()->with('success','Error esta area contiene carreras');
+            return back()->with('success','<script>swal({
+            title: "Error!",
+          text: "Se produjo un error esta area contiene carreras",
+          icon: "error",
+      })</script>');
         }
     }
     public function delete($slug){
@@ -90,7 +94,11 @@ class AreaController extends Controller
           icon: "success",
       })</script>');
         } catch (Illuminate\Database\QueryException $e) {
-            return back()->with('success','Se produjo un error esta area contiene carreras');
+            return back()->with('success','<script>swal({
+            title: "Error!",
+          text: "Se produjo un error esta area contiene carreras",
+          icon: "error",
+      })</script>');
         }
     }
 }
