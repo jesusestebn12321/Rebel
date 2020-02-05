@@ -16,7 +16,7 @@
 		<tr>
 			<th class='th' colspan=9 Valign="center">
 				<p align=center style="width: 10px">
-					<h3>PROGRAMA</h3>
+					<h4>PROGRAMA</h4>
 				</p>
 			</th>
 		</tr>
