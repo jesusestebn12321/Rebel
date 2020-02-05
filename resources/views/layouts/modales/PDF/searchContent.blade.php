@@ -10,7 +10,7 @@
         <button class="close" aria-hidden="true" data-dismiss="modal" id='close'>&times;</button>
       </div>
       <div class="modal-body">
-      <form class="form-horizontal" method="post" action="{{route('all.content')}}">
+      <form class="form-horizontal" method="get" action="{{route('all.content')}}">
           {{ csrf_field() }}
           
           <div class="form-group{{ $errors->has('area_slug') ? ' has-error' : '' }}">
