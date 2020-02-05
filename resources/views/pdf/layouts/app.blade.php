@@ -58,9 +58,6 @@
         margin: 0cm .5cm;
         font-family: Arial;
     }
-    html{
-    	
-    }
     body {
         margin: 2cm 3cm 2cm 1cm;
     }
