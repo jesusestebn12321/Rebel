@@ -55,7 +55,7 @@
               <span class="h2 font-weight-bold mb-0">Crear un contenido</span>
             </div>
             <div class="col-auto">
-              <a href="#" title data-original-title="Agregar contenido" data-target='#createContent' data-toggle='modal' class='text-white'>
+              <a href="{{route('Contents.create',$matter->slug)}}" title data-original-title="Agregar contenido"  class='text-white'>
                 <div class="icon icon-shape bg-success text-white rounded-circle shadow">
                   <i class="fa fa-plus"></i>
                 </div>
@@ -85,7 +85,6 @@
     </div>
   </div>
 </div>
-@include('layouts.modales.content.modalCreateContents')
 @include('layouts.modales.MatterTeacher.teacherMatter')
 
 @endsection
