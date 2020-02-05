@@ -20,11 +20,21 @@
     function edit(arg){
       var countContent=$('#countContent');
       var input_matter=$('#input_matter'+arg);
-      var input_version=$('#input_version'+arg);
+      var input_semester=$('#input_semester'+arg);
       var input_slug=$('#input_slug'+arg);
+      var input_credit=$('#input_credit'+arg);
+      var input_ht=$('#input_ht'+arg);
+      var input_hp=$('#input_hp'+arg);
+      var input_hl=$('#input_hl'+arg);
+      
       var label_matter=$('#label_matter'+arg);
-      var label_version=$('#label_version'+arg);
+      var label_semester=$('#label_semester'+arg);
       var label_slug=$('#label_slug'+arg);
+      var label_credit=$('#label_credit'+arg);
+      var label_ht=$('#label_ht'+arg);
+      var label_hp=$('#label_hp'+arg);
+      var label_hl=$('#label_hl'+arg);
+      
       var divLabels=$('#divLabels'+arg);
       var divInput=$('#divInput'+arg);
       var btn_edit=$('#btn_edit'+arg);
@@ -32,15 +42,25 @@
       var btn_success=$('#btn_success'+arg);
       
       rDnone(input_matter);
-      rDnone(input_version);
+      rDnone(input_semester);
       rDnone(input_slug);
+      rDnone(input_credit);
+      rDnone(input_ht);
+      rDnone(input_hl);
+      rDnone(input_hp);
+
       rDnone(divInput);
       rDnone(btn_cancelar);
       rDnone(btn_success);
       
       aDnone(label_matter);
+      aDnone(label_semester);
       aDnone(label_slug);
-      aDnone(label_version);
+      aDnone(label_credit);
+      aDnone(label_hp);
+      aDnone(label_ht);
+      aDnone(label_hl);
+
       aDnone(divLabels);
       aDnone(btn_edit);
 
@@ -48,12 +68,24 @@
     }
     function cancelar(arg){
       var countContent=$('#countContent');
+      
       var input_matter=$('#input_matter'+arg);
-      var input_version=$('#input_version'+arg);
+      var input_semester=$('#input_semester'+arg);
       var input_slug=$('#input_slug'+arg);
+      var input_credit=$('#input_credit'+arg);
+      var input_ht=$('#input_ht'+arg);
+      var input_hp=$('#input_hp'+arg);
+      var input_hl=$('#input_hl'+arg);
+      
       var label_matter=$('#label_matter'+arg);
-      var label_version=$('#label_version'+arg);
+      var label_semester=$('#label_semester'+arg);
       var label_slug=$('#label_slug'+arg);
+      var label_credit=$('#label_credit'+arg);
+      var label_ht=$('#label_ht'+arg);
+      var label_hp=$('#label_hp'+arg);
+      var label_hl=$('#label_hl'+arg);
+      
+      
       var divLabels=$('#divLabels'+arg);
       var divInput=$('#divInput'+arg);
       var btn_cancelar=$('#btn_cancelar'+arg);
@@ -61,15 +93,23 @@
       var btn_success=$('#btn_success'+arg);
 
       aDnone(input_matter);
-      aDnone(input_version);
+      aDnone(input_semester);
       aDnone(input_slug);
+      aDnone(input_credit);
+      aDnone(input_ht);
+      aDnone(input_hl);
+      aDnone(input_hp);
       aDnone(divInput);
       aDnone(btn_cancelar);
       aDnone(btn_success);
     
       rDnone(label_matter);
+      rDnone(label_semester);
       rDnone(label_slug);
-      rDnone(label_version);
+      rDnone(label_credit);
+      rDnone(label_ht);
+      rDnone(label_hp);
+      rDnone(label_hl);
       rDnone(divLabels);
       rDnone(btn_edit);
 
@@ -114,7 +154,6 @@
 @endsection
 @section('content')
 <div class="row">
-  {{-- {{ $matter }} --}}
   @forelse($matter as $item)
   <form action="{{ route('Matters.up_date',$item->slug) }}" class="form-horizontal col-6" method="GET">    
     <input type="hidden" name="countContent" value="{{$item->content->count()}}" id="countContent">
@@ -132,29 +171,62 @@
             <input type="text" value="{{$item->matter}}" class="form-control d-none" id="input_matter{{$item->id}}" name="matter">
           </div>
           </h1>
-          <h2><i class="fa fa-tv"></i> Vercion: 
-            <span id="label_version{{$item->id}}"> {{ $item->version }}</span> 
+          <h2><i class="fa fa-tv"></i> Semestre: 
+            <span id="label_semester{{$item->id}}"> {{ $item->semester }}</span> 
           </h2>
           <div class="form-group col-9 center">
-            <input type="text" value="{{$item->version}}" class="form-control d-none" id="input_version{{$item->id}}" name="version">
+            <input type="text" value="{{$item->semester}}" class="form-control d-none" id="input_semester{{$item->id}}" name="semester">
           </div>
           <h3><i class="fa fa-key"></i> Codigo: 
             <span id="label_slug{{$item->id}}"> {{ $item->slug }}</span> 
           </h3>
           <div class="form-group col-9 center">
-            <input type="text" value="{{$item->slug}}" class="form-control d-none" id="input_slug{{$item->id}}" name="slug">
+            <input type="text" value="{{$item->slug}}" class="form-control d-none" id="input_slug{{$item->id}}" disabled name="slug">
           </div>
+          <h3><i class="fa fa-credit-card"></i> Und. Credito: 
+            <span id="label_credit{{$item->id}}"> {{ $item->credit }}</span> 
+          </h3>
+          <div class="form-group col-9 center">
+            <input type="text" value="{{$item->credit}}" class="form-control d-none" id="input_credit{{$item->id}}" name="credit">
+          </div>
+
+          <h3><i class="fa fa-clock-o"></i> Hora 
+          </h3>
+          <div class="form-group col-9 center">
+            <table style="width: 100%">
+              <thead>
+                <tr>
+                  <th>HT</th>
+                  <th>HL</th>
+                  <th>HP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <input type="text" value="{{$item->ht}}" class="form-control d-none" id="input_ht{{$item->id}}" name="ht">
+                    <span id="label_ht{{$item->id}}"> {{ $item->ht }}</span>
+                    </td>
+                  <td>
+                    <input type="text" value="{{$item->hl}}" class="form-control d-none" id="input_hl{{$item->id}}" name="hl">
+                    <span id="label_hl{{$item->id}}"> {{ $item->hl }}</span> 
+                  </td>
+                  <td>
+                    <input type="text" value="{{$item->hp}}" class="form-control d-none" id="input_hp{{$item->id}}" name="hp">
+                    <span id="label_hp{{$item->id}}"> {{ $item->hp }}</span> 
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
         </div>
         <div class="card-body pt-0">
           <div class="row">
             <div class="col">
               <div class="card-profile-stats d-flex justify-content-center ml-3 mt-md-5">
                 <div>
-                  @if(isset($item->content))
-                  <div class="d-flex justify-content-between">
-                    <a href="{{route('Contents.show',$item->content[0]->slug)}}" class='btn btn-warning'>Ver Contenidos </a>  
-                  </div>
-                  @endif
+                  
                 </div>
               </div>
             </div>
@@ -189,6 +261,7 @@
       No hay Und. Curriculares para esta carrera
   </div>
   @endforelse
+  
 </div>
 
 @endsection
