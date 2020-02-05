@@ -47,7 +47,11 @@
         $('#editCareer').modal('hide');
         $('.modal-backdrop').remove();
 
-        $('body > div > div.header.pb-8.pt-5.pt-lg-8.d-flex.align-items-center > div > div > div > div > div > div').append('<div class="col mb-6 pt-5 mb-xl-0 alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><p>Exito</p></div>');
+        swal({
+          title: "Exito!",
+          text: "Se edito la carrera con exito",
+          icon: "success",
+      })
       }
     });
   });
