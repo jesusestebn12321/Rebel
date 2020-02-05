@@ -68,7 +68,7 @@
     header {
 		font: 25px monospace !important;
         position: fixed;
-        top: 0cm;
+        top: .6cm;
         left: 0cm;
         right: 0cm;
         height: auto;
