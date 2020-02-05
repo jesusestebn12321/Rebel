@@ -228,7 +228,12 @@
 			</tr>
 		</tbody>
 	</table>
-	<table class="table" style="height:auto !important;margin-top: 2cm !important">
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<table class="table" style="height:auto !important;margin-top: 3cm !important">
 	<col >
 	<col >
 	<thead>
