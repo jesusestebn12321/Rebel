@@ -34,8 +34,11 @@ class ContentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(){
-        
+    public function create($slug){
+        $content=new Content();
+        $matter=Matter::where('slug',$slug)->first();
+        $matter_user=MatterUser::where('id',Auth::user()->id)->first();
+        return view('content.create',compact('matter','matter_user','content'));   
     }
 
     /**
@@ -47,18 +50,24 @@ class ContentController extends Controller
     public function store(Request $request)
     {
         $slug=str_slug($request->title.rand());
-
         $content= Content::create([
             'title'=>$request->input('title'),
-            'content'=>$request->input('content'),
-            'version'=>$request->input('version'),
-            'introdution'=>$request->input('introdution'),
             'slug'=>$slug,
+            'version'=>$request->input('version'),
+            'justification'=>$request->input('justification'),
+            'content'=>$request->input('content'),
+            'purpose'=>$request->input('purpose'),
+            'methodology'=>$request->input('methodology'),
+            'evaluation'=>$request->input('evaluation'),
             'matter_id'=>$request->input('matter_id'),
             'status'=>1,
             'confirmation'=>0
             ]);
-        return back()->with('success','Se a creado con exito el contenido');
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+          text: "Se a creado con exito el contenido",
+          icon: "success",
+      })</script>');
 
     }
 
@@ -70,9 +79,10 @@ class ContentController extends Controller
      */
     public function show($slug){
         $content=Content::where('slug',$slug)->first();
+        $matter_user=MatterUser::where('id',Auth::user()->id)->first();
         
         $matter= Matter::where('id',$content->matters->id)->first();
-        return view('content.show',compact('content','matter'));
+        return view('content.show',compact('content','matter','matter_user'));
     }
 
     /**
@@ -107,14 +117,14 @@ class ContentController extends Controller
         $version=$contentV->count();
         $slug=str_slug($content->version.$content->title.rand());
         $contentV=ContentVersion::create([
-                'slug'=>$slug,
-                'version'=>$content->version,
-                'justification'=>$content->justification,
-                'purpose'=>$content->purpose,
-                'content'=>$content->content,
-                'methodology'=>$content->methodology,
-                'evaluation'=>$content->evaluation,
-                'content_id'=>$content->id,
+            'slug'=>$slug,
+            'version'=>$content->version,
+            'justification'=>$content->justification,
+            'purpose'=>$content->purpose,
+            'content'=>$content->content,
+            'methodology'=>$content->methodology,
+            'evaluation'=>$content->evaluation,
+            'content_id'=>$content->id,
             ]);
         $content->version=$version+1;
         $content->justification=$request->input('justification');
@@ -125,7 +135,11 @@ class ContentController extends Controller
         $content->status=0;
         $content->confirmation=false;
         $content->save();
-        return redirect()->route('Matter.index')->with('success','Se a editado con exito el contenido');
+        return redirect()->route('Matter.index')->with('success','<script>swal({
+            title: "Exito!",
+          text: "Se a editado con exito el contenido",
+          icon: "success",
+      })</script>');
     }
 
     public function update_status($slug){
@@ -141,7 +155,11 @@ class ContentController extends Controller
         $content->status=1;
         $content->save();
 
-        return back()->with('success','Contenido Actualizado.');
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+          text: "Contenido Actualizado.",
+          icon: "success",
+      })</script>');
     }
 
     public function VersionBack(Request $request){
@@ -178,7 +196,7 @@ class ContentController extends Controller
                 'version'=>$content->version,
                 'introdution'=>$content->introdution,
                 'content_id'=>$content->id,
-            ]);
+                ]);
 
             $content->version=$contentVersion->version;
             $content->title=$contentVersion->title;
@@ -205,6 +223,10 @@ class ContentController extends Controller
     {   
         $content=Content::where('slug',$slug)->firstOrFail();
         $content->delete();
-        return back()->with('success','Se a borrado con exito el contenido');
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+          text: "Borrado el Contenido",
+          icon: "success",
+      })</script>');
     }
 }
