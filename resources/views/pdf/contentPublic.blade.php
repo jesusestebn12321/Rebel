@@ -173,7 +173,8 @@
 			</td>
 		</tr>
 	</tbody>
-
+		@foreach($cont as $items)
+		@if($x->id==$items->matter_id)
 		<thead>
 			<tr>
 				<th class='th' colspan=9 Valign=TOP>
@@ -187,7 +188,7 @@
 				<td class="td" colspan=9 Valign=TOP >
 					<div style="width: 100%; padding: 4px;margin:1px">
 						<p align=JUSTIFY style="display: inline-block;text-indent: 5px;text-align: justify;"><font class="font">
-								{!!  $item->justification  !!}
+								{!!$items->justification!!}
 						</font></font></p>
 					</div>
 				</td>
@@ -205,7 +206,7 @@
 			<tr>
 				<td class="td" colspan=9 Valign=TOP>
 					<div style="width: 100%; padding: 4px;margin:1px">
-						<p align=JUSTIFY><font class="font">{!!$item->purpose!!} </font></font></p>
+						<p align=JUSTIFY><font class="font">{!! $items->purpose !!}</font></font></p>
 					</div>
 				</td>
 			</tr>
@@ -222,7 +223,7 @@
 			<tr>
 				<td class="td" colspan=9 Valign=TOP>
 					<div style="width: 100%; padding: 4px;margin:1px">
-					 	<p align=JUSTIFY><font class="font">{!!$item->content!!}</font></font></p>
+					 	<p align=JUSTIFY><font class="font">{!!$items->content!!}</font></font></p>
 					</div>
 				</td>
 			</tr>
@@ -245,16 +246,18 @@
 		<tr Valign=TOP>
 			<td class="td" colspan=4 >
 				<div style="width: 100%; padding: 4px;margin:1px">
-					<p align=JUSTIFY><font class="font">{!!$item->methodology!!}</font></font></p>
+					<p align=JUSTIFY><font class="font">{!!$items->methodology!!}</font></font></p>
 				</div>
 			</td>
 			<td class="td" colspan=5 >
 				<div style="width: 100%; padding: 4px;margin:1px">
-					<p align=JUSTIFY><font class="font">{!!$item->evaluation!!}</font></font></p>
+					<p align=JUSTIFY><font class="font">{!!$items->evaluation!!}</font></font></p>
 				</div>
 			</td>
 		</tr>
 	</tbody>
+	@endif
+	@endforeach
 </table>
 </main>
 @endforeach
