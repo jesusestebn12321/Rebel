@@ -398,6 +398,7 @@ class DownloadController extends Controller
         $career=Career::where('slug',$request->career_public_slug)->first();
         $matter=Matter::where('career_id',$career->id)->get();
         $i=0;
+        $contents=[];
         foreach ($matter as $key => $item) {
             # code...
             $content=Content::where('matter_id',$item->id)->first();
@@ -412,17 +413,23 @@ class DownloadController extends Controller
                 $i++;
             }
         }
+        $cont=Collection::make($contents);
         $script=$this->script_paginacion();
         $download=$this->createRegisterDownload($request);
-        $contenidos_paginados=Collection::make($contenidos_paginados);
+        if($download==false){
+            return back()->with('messages','<script>swal({
+                title: "Error!",
+                text: "No completo el reCatcha",
+                icon: "error",
+            })</script>');
+        }else{
 
-        $today = Carbon::now();
-        $url=url('/ContentPublicVerifi/'.$request->career_public_slug);
-        //aqui se va a filtrar por una vista las materias pertenecientes a esa carrera
-        
-        $pdf=PDF::loadView('pdf.contentPublic',compact('contenidos_paginados','matter','pdf','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
-        $pdf->download('ContenidosPublicos.pdf');
-        return $pdf->stream();
+            $today = Carbon::now();
+            $url=url('/ContentPublicVerifi/'.$request->career_public_slug);
+            $pdf=PDF::loadView('pdf.contentPublic',compact('cont','matter','pdf','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
+            $pdf->download('ContenidosPublicos.pdf');
+            return $pdf->stream();
+        }
 
 
     }
