@@ -13,19 +13,24 @@ class adminCurricular extends Controller
         $content=Content::where('slug',$slug)->first();
        
         $content_verify=Content::where('matter_id',$content->matters->id)->get();
-
+        if($content->status==0){
+            $content->status=1;    
+        }
         foreach ($content_verify as $item) {
             # code...
             $item->confirmation=false;
-            $item->status=0;
             $item->save();
         }
         //dd($content);
+        
         $content->confirmation=true;
-        $content->status=1;
         $content->save();
 
-        return back()->with('success','Contenido Verificado.');
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+          text: "Contenido Verificado.",
+          icon: "error",
+      })</script>');
     }
     public function one_content($id,Request $request){
         $matter=Matter::where('id',$id)->first();
@@ -45,9 +50,12 @@ class adminCurricular extends Controller
         $content=Content::where('slug',$slug)->first();
         $content->confirmation=0;
         $content->status=0;
-        //dd($content);
         $content->save();
-        return back()->with('success','Contenido Verificado.');
+        return back()->with('success','<script>swal({
+            title: "Exito!",
+          text: "Contenido Verificado.",
+          icon: "error",
+      })</script>');
     }
 
     public function show($slug){
