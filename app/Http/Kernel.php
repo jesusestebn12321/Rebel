@@ -63,5 +63,6 @@ class Kernel extends HttpKernel
         'matter_user'=> \Equivalencias\Http\Middleware\Matter_User::class,
         'teacher_roles'=> \Equivalencias\Http\Middleware\Teacher_Roles::class,
         'OneContent'=> \Equivalencias\Http\Middleware\OneContent::class,
+        'rolAdmin'=> \Equivalencias\Http\Middleware\rolAdmin::class,
     ];
 }
