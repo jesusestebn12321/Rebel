@@ -167,7 +167,7 @@
 			</td>
 			<td class="td" colspan=3>
 				<p align=CENTER>
-				<span><font class="font">{!!$matter_user->matter->content[0]->version!!}</font></span></p>
+				<span><pre>{!! $content->version !!}</pre></span></p>
 			</td>
 		</tr>
 	</tbody>
@@ -184,8 +184,8 @@
 			<tr>
 				<td class="td" colspan=9 Valign=TOP >
 				<div style="width: 100%; padding: 4px;margin:1px">
-					<p align=JUSTIFY style="display: inline-block;text-indent: 5px;text-align: justify;"><font class="font">{!!$matter_user->matter->content[0]->justification!!}
-					</font>
+					<p align=JUSTIFY style="display: inline-block;text-indent: 5px;text-align: justify;"><pre>{!!$content->justification!!}
+					</pre>
 					</p>
 				</div>
 				</td>
@@ -203,7 +203,7 @@
 			<tr>
 				<td class="td" colspan=9 Valign=TOP>
 				<div style="width: 100%; padding: 4px;margin:1px">
-					<p align=JUSTIFY style="display: inline-block;text-indent: 5px;text-align: justify;"><font class="font">{!!$matter_user->matter->content[0]->purpose!!}</font>
+					<p align=JUSTIFY style="display: inline-block;text-indent: 5px;text-align: justify;"><pre>{!!$content->purpose!!}</pre>
 					</p>
 				</div>
 				</td>
@@ -221,7 +221,7 @@
 			<tr>
 				<td class="td" colspan=9 Valign=TOP>
 				<div style="width: 100%; padding: 4px;margin:1px">
-				 <p align=JUSTIFY style="display: inline-block;text-indent: 5px;text-align: justify;"><font class="font">{!!$matter_user->matter->content[0]->content!!}</font>
+				 <p align=JUSTIFY style="display: inline-block;text-indent: 5px;text-align: justify;"><pre>{!!$content->content!!}</pre>
 				 </p>
 				</td>
 				</div>
@@ -243,7 +243,7 @@
 				<h4>ESTRATEGIAS
 				METODOLÓGICAS</h4></p>
 			</th>
-			<th class='th' colspan=5 >
+			<th class='th' colspan=5>
 				<p align=LEFT>
 				<h4>ESTRATEGIAS
 				DE EVALUACIÓN</h4></p>
@@ -254,14 +254,14 @@
 		<tr Valign=TOP>
 			<td class="td" style="color:black !important" colspan=4 >
 				<div style="width: 100%; padding: 4px;margin:1px">
-					<p align=JUSTIFY><font class="font">{!!$matter_user->matter->content[0]->methodology!!}</font>
+					<p align=JUSTIFY><pre>{!!$content->methodology!!}</pre>
 					
 					</p>
 				</div>
 			</td>
 			<td class="td" colspan=5 >
 				<div style="width: 100%; padding: 4px;margin:1px">
-					<p align=JUSTIFY><font class="font">{!!$matter_user->matter->content[0]->evaluation!!}</font>
+					<p align=JUSTIFY><pre>{!!$content->evaluation!!}</pre>
 					</p>
 				</div>
 			</td>
