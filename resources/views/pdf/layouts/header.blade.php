@@ -8,10 +8,11 @@
 	<span align="center" class="p" style="display:inline-block;margin-left:42%;padding-bottom:-15px ">VICERRECTORADO ACADÉMICO</span>
 	<span align="center" class="p" style="display:inline-block;margin-left:43%;padding-bottom:-17px !important">SAN JUAN DE LOS MORROS</span>
 	<spam align="center" class="p" style="display:inline-block;margin-left:46%;padding-bottom:-10px !important">ESTADO GUÁRICO</spam>
-	
+	@guest
 	<spam align="right" style="float: right; position: relative !important;top:-65;padding: 0px">
 		<img style="padding: 0px" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(200)->generate($url)) !!} ">
 	</spam>
+	@endguest
 	<br>
 	<p align="center" style="display:inline;" >
 		 @guest
