@@ -215,7 +215,14 @@ class DownloadController extends Controller
                     }
                 }
             }
-            
+            if(!count($contenedorFinal)){
+                return back()->with('success','<script>swal({
+                icon:"error",
+                title:"Error",
+                text:"No se encontro Ningun contenido en esta fecha."
+            })</script>');
+            }else{
+
             $script=$this->script_paginacion();
             $today=Carbon::now();
             $url=url('/VerificarEquivalencia/');
@@ -223,21 +230,18 @@ class DownloadController extends Controller
             $pdf->download('Contenido_'.Auth::user()->dni.'_'.$request->last_time.'.pdf');
             return $pdf->stream('Equivalencia_'.Auth::user()->dni.'_'.$request->last_time.'.pdf');
             
+            }
         }
     }
 
 
     public function equivalenciaStudents($slug, Request $request){
-
         $matter_user= StudentMatter::where('user_id',Auth::user()->id)->get();
         $i=0;
-            //dd($matter_user);
-
         foreach ($matter_user as $item) {
             $contentP='';
             $justification='';
             $purpose='';
-
             $version=$item->version;
             $content=Content::where('version',$version)
             ->where('matter_id',$item->id)->first();
@@ -247,7 +251,6 @@ class DownloadController extends Controller
                     foreach ($content_version as $item_version) {
                         if ($item_version->version == $version) {
                             $contents[$i]=Arr::add($item_version,$i,null);
-                            //dd($contents);
                             $contentP=$this->salto_linea_palabra($item_version->content,20);
                             $justification=$this->salto_linea_palabra($item_version->justification,20);
                             $purpose=$this->salto_linea_palabra($item_version->purpose,20);
@@ -258,21 +261,14 @@ class DownloadController extends Controller
                 }
             }elseif($content){
                 $contents[$i]=Arr::add($content,$i,null);
-
                 $contentP=$this->salto_linea_palabra($content->content,20);
                 $justification=$this->salto_linea_palabra($content->justification,20);
                 $purpose=$this->salto_linea_palabra($content->purpose,20);
-
-                //$x=$this->salto_linea_caracters($content->content,50);
-
-                //con esto guardo de donde fue descargada la equivalencia $_SERVER['HTTP_USER_AGENT']);
                 $contenidos_paginados[$i]=array('content' => $contentP,'justification'=> $justification,'purpose'=>$purpose );
-
             }
             $i++;
         }
         $contenidos_paginados=Collection::make($contents);
-
         $download=$this->createRegisterDownload($request);
         $script=$this->script_paginacion();
         $today=Carbon::now();
@@ -286,11 +282,11 @@ class DownloadController extends Controller
         }else{
             $url=url('/VerificarEquivalencia/{'.$download->slug.'}');
             $pdf=PDF::loadView('pdf.equivalencia',compact('contents','contenidos_paginados','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
-
             $pdf->download('Equivalencia_'.Auth::user()->dni.'_'.now().'.pdf');
             return $pdf->stream('Equivalencia_'.Auth::user()->dni.'_'.now().'.pdf');
         }
     }
+
     //descargar pdf de los profesores
     public function adminTeacher(){
         $thead = array(
@@ -378,32 +374,28 @@ class DownloadController extends Controller
         $url=url('/VerificarDescargaProfesor/'.Auth::user()->id);
         $matter_user=MatterUser::where('user_id',Auth::user()->id)->first();
         $script=$this->script_paginacion();
-        $content=Content::where('matter_id',$matter_user->matter->id)->first();
-        
+        $contents=[];
+        $content=Content::where('status',1)->first();
+        $contents=Collection::make($content);
 
-        //dd($contenidos_paginados);
-        $pdf=PDF::loadView('pdf.matterTeacher',compact('matter_user','content','teacher','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
+        $pdf=PDF::loadView('pdf.matterTeacher',compact('matter_user','content','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true,'setIsHtml5ParserEnabled'=>true,'rendered'=>true]);
+        
         $pdf->download('ReportesProfesoresMaterias'.now().'.pdf');
         return $pdf->stream();
     }
-    //descargar pdf de los profesores a quien coordina
     public function CareerPublic($slug){
         $area=Area::where('slug',$slug)->first();
         $json=Career::where('area_id',$area->id)->get();
         return $json;
     }
     public function ContentPublic(Request $request){
-        //area_public_slug;
-        //career_public_slug;
-        $career=Career::where('slug',$request->career_public_slug)->first();
+       $career=Career::where('slug',$request->career_public_slug)->first();
         $matter=Matter::where('career_id',$career->id)->get();
         $i=0;
         $contents=[];
         foreach ($matter as $key => $item) {
-            # code...
             $content=Content::where('matter_id',$item->id)->first();
             if($content){
-                //dd($content);
                 $contents[$i]=Arr::add($content,$i,null);
                 $contentP=$this->salto_linea_palabra($content->content,20);
                 $justification=$this->salto_linea_palabra($content->justification,20);
@@ -423,7 +415,6 @@ class DownloadController extends Controller
                 icon: "error",
             })</script>');
         }else{
-
             $today = Carbon::now();
             $url=url('/ContentPublicVerifi/'.$request->career_public_slug);
             $pdf=PDF::loadView('pdf.contentPublic',compact('cont','matter','pdf','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
