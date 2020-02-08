@@ -6,7 +6,7 @@
       </button>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="{{url('/')}}">
-        <img src="{{asset('template/assets/img/brand/blue.png')}}" class="navbar-brand-img" alt="...">
+        <p class="rebel-font" style="font-size:1.2cm;color: black">REBEL</p>
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">

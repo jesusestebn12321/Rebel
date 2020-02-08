@@ -1,8 +1,17 @@
+@font-face{
+    font-family:'rebel-fonts';
+    src: local('Abandon.ttf') format('truetype');
+    src: url('Abandon.ttf') format('truetype');
+    font-weight: normal;
+  font-style: normal;
+}
 .input input[value]:not([value=""]) > label{
   background:#00FFEE;
   color:#00FFEE;
 }
-
+.rebel-font{
+  font-family: rebel-fonts !important;
+}
 .radios { 
   position:relative;
   display: block;
