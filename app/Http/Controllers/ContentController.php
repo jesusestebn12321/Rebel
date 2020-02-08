@@ -126,7 +126,7 @@ class ContentController extends Controller
             'evaluation'=>$content->evaluation,
             'content_id'=>$content->id,
             ]);
-        $content->version=$version+1;
+        $content->version=$request->input('version');
         $content->justification=$request->input('justification');
         $content->purpose=$request->input('purpose');
         $content->methodology=$request->input('methodology');
