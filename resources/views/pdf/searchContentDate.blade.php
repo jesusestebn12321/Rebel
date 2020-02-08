@@ -3,7 +3,7 @@
 @section('content')
 @include('pdf.layouts.header')
 
-<main style="margin-bottom: 1px;height: auto;">
+<main style="margin-bottom: 1px">
 @foreach($contenedorFinal as $key=>$item)
 @if($key!=0)
 <!--p style="margin-bottom: 100px;height: 20%;background: red "></p-->	
@@ -189,10 +189,10 @@
 		<tbody>
 			<tr>
 				<td class="td" colspan=9 Valign=TOP >
-				<div style="width: 100%; padding: 4px;margin:1px">
-					<p align=JUSTIFY style="display: inline-block;text-indent: 5px;text-align: justify;"><font class="font">
+				<div style="">
+					<p align=JUSTIFY style=""><pre>
 							{!!  $item->justification  !!}
-					</font></font></p>
+					</pre></p>
 				</div></td>
 			</tr>
 		</tbody>
@@ -207,11 +207,15 @@
 		<tbody>
 			<tr>
 				<td class="td" colspan=9 Valign=TOP>
-					<p align=JUSTIFY><font class="font">{!!$item->purpose!!} </font></font></p>
+					<p align=JUSTIFY><pre>{!!$item->purpose!!}</pre></p>
 				</td>
 			</tr>
 		</tbody>
 		</table>
+			<br>
+			<br>
+			<br>
+			<br>
 			<br>
 		<table class="table" cellpadding="7" cellspacing="0" style="margin-top: 3cm !important">
 		<thead>
@@ -225,7 +229,8 @@
 		<tbody>
 			<tr>
 				<td class="td" colspan=9 Valign=TOP>
-				 <p align=JUSTIFY><font class="font">{!!$item->content!!}</font></font></p>
+					<p align=JUSTIFY><pre>{!!$item->content!!}</pre></p>
+					
 				</td>
 			</tr>
 		</tbody>
@@ -245,9 +250,18 @@
 	</thead>
 	<tbody>
 		<tr Valign=TOP>
-			<td class="td" colspan=4 ><p align=JUSTIFY><font class="font">{!!$item->methodology!!}</font></font></p>
+			<td class="td" colspan=4 ><p align=JUSTIFY>
+				<p align=JUSTIFY><pre>{!!$item->methodology!!}</pre></p>
+					
+			<pre class="font">
+			</pre></p>
 			</td>
-			<td class="td" colspan=5 ><p align=JUSTIFY><font class="font">{!!$item->evaluation!!}</font></font></p>
+			<td class="td" colspan=5 ><p align=JUSTIFY>
+				<div>
+					<p align=JUSTIFY><pre>{!!$item->evaluation!!}</pre></p>
+				</div>
+			<pre>
+			</pre></p>
 			</td>
 		</tr>
 	</tbody>
