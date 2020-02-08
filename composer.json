@@ -13,7 +13,6 @@
         "laravel/telescope": "^2.1",
         "laravel/tinker": "~1.0",
         "laraveles/spanish": "^1.4",
-        "rap2hpoutre/laravel-log-viewer": "^1.3",
         "simplesoftwareio/simple-qrcode": "^2.0"
     },
     "require-dev": {
