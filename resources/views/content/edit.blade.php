@@ -16,7 +16,9 @@
           <div class="text-center">
             <h3 class="text-center">
             <form action="{{route('Contents.up_date',$content->slug)}}">
-              <input type="hidden" id="id_matter" value="$matter_user->matter[0]->id" >
+              <input type="hidden" id="id_matter" value="{{$matter_user->matter[0]->id}}" >
+              <label>Version del contenido</label>
+              <input type="text" class='form-control' disabled name="version" id="id_matter" value="{!!$content->version!!}" >
                 
                 <hr class="my-4">
                 <label>Justificacion:</label>
