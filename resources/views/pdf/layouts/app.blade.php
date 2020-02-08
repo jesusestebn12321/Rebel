@@ -99,6 +99,8 @@
  
     }.table {
 		width: 155% !important;
+		max-height: 60% !important;
+		max-width:150% !important;
 		height: 60% !important;
 		margin-left: 2cm !important;
 		margin-right: 6cm !important;
@@ -133,6 +135,13 @@
 		text-align: left !important;
 		font: 20px monospace !important;
 		padding: 10px;
+	}pre{
+		word-break: keep-all !important;
+		background: transparent;
+		color:#000000 !important;
+		text-align: left !important;
+		font: 20px monospace !important;
+		
 	}
 	span{
 		color:#000000 !important;
