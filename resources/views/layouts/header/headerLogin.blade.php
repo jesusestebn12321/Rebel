@@ -8,8 +8,8 @@ background-color: rgba(100, 100, 100, .2)">
   <div class="header-body text-center mb-7">
     <div class="row justify-content-center">
       <div class="col-lg-12 col-md-12">
-        <h1 ><a href="{{url('/')}}" class="text-white">Bienvenido/a!</a></h1>
-        <p class="text-lead text-light">Sistema de equivalencias Rebel </p>
+        <a href="{{url('/')}}" class="text-white"><p class="text-lead text-white rebel" style="font-size:2cm">REBEL</p></a>
+        <h1 class="text-white">Bienvenido/a!</h1>
       </div>
     </div>
   </div>

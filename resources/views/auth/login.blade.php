@@ -33,6 +33,11 @@
       $('#button_download').removeClass('d-none');
     }
   });
+  $(window).ready(function($e){
+    setTimeout(function(){
+      $('.alert').addClass('d-none');      
+    }, 2500);
+  });
 
 </script>
 @endsection
@@ -44,6 +49,9 @@
   <div class="col-lg-5 col-md-7">
     <div class="card bg-secondary shadow border-0">
       <div class="card-header bg-transparent pb-5">
+        <div style="max-width:6cm;min-width:6cm;margin: 0 auto">
+          <img style="width: 100%" src="{{asset('logo/unerg.png')}}">
+        </div>
         <div class="text-muted text-center mt-2 mb-3"><small>Inicio sección</small></div>
       </div>
       <div class="card-body px-lg-5 py-lg-5">

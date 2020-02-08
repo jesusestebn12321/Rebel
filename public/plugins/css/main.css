@@ -1,3 +1,13 @@
+@font-face{
+    font-family:'rebel-fonts';
+    src: local('Abandon.ttf') format('truetype');
+    src: url('Abandon.ttf') format('truetype');
+    font-weight: normal;
+  font-style: normal;
+}
+.rebel{
+  font:1.2cm rebel-fonts;
+}
 .input input[value]:not([value=""]) > label{
   background:#00FFEE;
   color:#00FFEE;

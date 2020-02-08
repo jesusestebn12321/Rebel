@@ -71,6 +71,9 @@
         <div class="col-lg-6 col-md-8">
           <div class="card bg-secondary shadow border-0">
             <div class="card-body px-lg-5 py-lg-5">
+             <div style="max-width:6cm;min-width:6cm;margin: 0 auto">
+          <img style="width: 100%" src="{{asset('logo/unerg.png')}}">
+        </div>
               <div class="text-center text-muted mb-4">
                 <small>Datos personales para crear un usuario</small>
               </div>
@@ -200,6 +203,12 @@
                   <button type="submit" class="btn btn-primary mt-4">Crear cuenta</button>
                 </div>
               </form>
+            </div>
+
+          </div>
+          <div class="row mt-3">
+            <div class="col text-right">
+              <a href="{{url('login')}}" class="text-light"><small>Iniciar Sección</small></a>
             </div>
           </div>
         </div>
