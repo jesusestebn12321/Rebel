@@ -9,11 +9,7 @@
 		}
 	}
 </style>
-
-
 @foreach($area as $key=>$item)
-
-
 @if($key==0)
 <table class="page-break table" cellpadding="7" cellspacing="0" style="margin-top: 2cm !important">
 	<col>
