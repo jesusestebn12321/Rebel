@@ -5,8 +5,8 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <!-- Brand -->
-      <a class="rebel navbar-brand pt-0" href="{{url('/')}}" style="color:#fff">
-        REBEL
+      <a class="navbar-brand pt-0 pb-0" href="{{url('/')}}">
+        <h1 class="rebel text-dark" style="font-size:1cm;padding:none">REBEL</h1>
       </a> 
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
@@ -14,10 +14,11 @@
           <a class="nav-link font-italic" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="{{asset('template/assets/img/brand/favicon.png')}}">
+                <img alt="Image placeholder" src="{{asset('template/assets/img/theme/user.jpg')}}">
               </span>
             </div>
           </a>
+          @include('layouts.nav.menu')
         </li>
       </ul>
       <!-- Collapse -->
@@ -27,7 +28,7 @@
           <div class="row">
             <div class="col-6 collapse-brand">
               <a href="{{url('/')}}">
-                <img src="{{asset('template/assets/img/brand/favicon.png')}}">
+                <h1 class="rebel text-dark" style="font-size:1cm;padding:none">REBEL</h1>
               </a>
             </div>
             <div class="col-6 collapse-close">
