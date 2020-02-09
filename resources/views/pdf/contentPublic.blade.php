@@ -5,8 +5,6 @@
 @include('pdf.layouts.header')
 @foreach($matter as $key=>$x)
 @foreach($x->content as $item)
-<main style="height:20cm">
-
 <table class="table" cellpadding="7" cellspacing="0" style="margin-top: 2cm !important;">
 	<col >
 	<col >
@@ -50,7 +48,7 @@
 		<tr>
 			<td class="td" colspan=9 Valign=TOP>
 				<p align=center>
-				<font class="font">{!! $item->matters->matter !!}</font></font></p>
+				<font class="font">{!! $item->matters->matter !!}</font></p>
 			</td>
 		</tr>
 	</tbody>
@@ -115,11 +113,11 @@
 			</td>
 			<td class="td">
 				<p align=CENTER>
-				<font class="font">{!!$item->matters->hl!!}</font></font></p>
+				<font class="font">{!!$item->matters->hl!!}</font></p>
 			</td>
 			<td class="td">
 				<p align=CENTER>
-				<font class="font">{!!$item->matters->hp!!}</font></font></p>
+				<font class="font">{!!$item->matters->hp!!}</font></p>
 			</td>
 		</tr>
 	</tbody>
@@ -173,8 +171,6 @@
 			</td>
 		</tr>
 	</tbody>
-		@foreach($cont as $items)
-		@if($x->id==$items->matter_id)
 		<thead>
 			<tr>
 				<th class='th' colspan=9 Valign=TOP>
@@ -187,9 +183,9 @@
 			<tr>
 				<td class="td" colspan=9 Valign=TOP >
 					<div style="width: 100%; padding: 4px;margin:1px">
-						<p align=JUSTIFY style="display: inline-block;text-indent: 5px;text-align: justify;"><font class="font">
-								{!!$items->justification!!}
-						</font></font></p>
+						<p align=JUSTIFY style="display: inline-block;text-indent: 5px;text-align: justify;"><pre>
+								{!!$item->justification!!}
+						</pre></p>
 					</div>
 				</td>
 			</tr>
@@ -206,7 +202,7 @@
 			<tr>
 				<td class="td" colspan=9 Valign=TOP>
 					<div style="width: 100%; padding: 4px;margin:1px">
-						<p align=JUSTIFY><font class="font">{!! $items->purpose !!}</font></font></p>
+						<p align=JUSTIFY><pre>{!! $item->purpose !!}</pre></p>
 					</div>
 				</td>
 			</tr>
@@ -221,13 +217,26 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td class="td" colspan=9 Valign=TOP>
+				<td class="td" style="min-width:2cm!important" colspan=9 Valign=TOP>
 					<div style="width: 100%; padding: 4px;margin:1px">
-					 	<p align=JUSTIFY><font class="font">{!!$items->content!!}</font></font></p>
+					 	<p align=JUSTIFY><pre>{!!$item->content!!}</pre></p>
 					</div>
 				</td>
 			</tr>
 		</tbody>
+	</table>
+	<br>	
+	<br>	
+	<br>	
+	<br>
+	<br>
+	<br>
+	<span class="nueva-pagina"></span>	
+	<br>
+	<br>
+	<br>
+	<br>
+	<table class="table" cellpadding="7" cellspacing="0" style="margin-top: 3cm !important" style="width: 200%!important;height: 160%!important;max-height: 160% !important;margin-bottom:160%!important">
 	<thead>
 		<tr Valign=TOP>
 			<th class='th' colspan=4>
@@ -246,20 +255,25 @@
 		<tr Valign=TOP>
 			<td class="td" colspan=4 >
 				<div style="width: 100%; padding: 4px;margin:1px">
-					<p align=JUSTIFY><font class="font">{!!$items->methodology!!}</font></font></p>
+					<p align=JUSTIFY><pre>{!!$item->methodology!!}</pre></p>
 				</div>
 			</td>
 			<td class="td" colspan=5 >
 				<div style="width: 100%; padding: 4px;margin:1px">
-					<p align=JUSTIFY><font class="font">{!!$items->evaluation!!}</font></font></p>
+					<p align=JUSTIFY><pre>{!!$item->evaluation!!}</pre></p>
 				</div>
 			</td>
 		</tr>
 	</tbody>
-	@endif
-	@endforeach
 </table>
-</main>
+<br><br><br><br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 @endforeach
 {!! $script !!}
 @endforeach
