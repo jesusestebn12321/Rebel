@@ -112,13 +112,13 @@
               <h5>Horas</h5><hr>
               <div class="row">
                 <div class="col">
-                  <h5>HT <hr> {{$matter_user->ht}}</h5>
+                  <h5>HT <hr> {!!$matter_user->matter->ht!!}</h5>
                 </div>
                 <div class="col">
-                  <h5>HL <hr> {{$matter_user->hl}}</h5>
+                  <h5>HL <hr> {{$matter_user->matter->hl}}</h5>
                 </div>
                 <div class="col">
-                  <h5>HP <hr> {{$matter_user->hp}}</h5>
+                  <h5>HP <hr> {{$matter_user->matter->hp}}</h5>
                 </div>
               </div><hr>
             </div>
