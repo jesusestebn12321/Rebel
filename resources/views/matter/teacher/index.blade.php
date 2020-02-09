@@ -45,10 +45,10 @@
 
 </script>
 @endsection
-@if($teacher->hasRole(5))
 @section('headerContent')
 <div class="container">
   <div class="row">
+@if($teacher->hasRole(5))
     <div class="col-xl-4 col-lg-6 pt-4 mb-4">
       <div class="card card-stats mb-9 mb-xl-0">
         <div class="card-body">
@@ -67,6 +67,7 @@
         </div>
       </div>
     </div>
+@endif
     <div class="col-xl-4 col-lg-6 pt-4">
       <div class="card card-stats mb-4 mb-xl-0">
         <div class="card-body">
@@ -89,7 +90,6 @@
 </div>
 @include('layouts.modales.content.modalCreateContents')
 @endsection
-@endif
 @section('content')
 <div class="container-fluid mt--8">
       <div class="row">
