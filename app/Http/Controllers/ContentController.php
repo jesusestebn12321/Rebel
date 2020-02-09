@@ -63,7 +63,7 @@ class ContentController extends Controller
             'status'=>1,
             'confirmation'=>0
             ]);
-        return back()->with('success','<script>swal({
+        return redirect()->route('Matter.index')->with('success','<script>swal({
             title: "Exito!",
           text: "Se a creado con exito el contenido",
           icon: "success",
