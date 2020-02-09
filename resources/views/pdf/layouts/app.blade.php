@@ -105,8 +105,6 @@
 		margin-right: 6cm !important;
 		margin-top: 1cm !important;
 		margin-bottom: .5cm !important;
-		min-width: 100% !important;
-		min-height: 5% !important;
 		position: all ;
 	}
 	.td,.th{
@@ -139,7 +137,7 @@
 		background: transparent;
 		color:#000000 !important;
 		text-align: left !important;
-		font: 20px monospace !important;
+		font: 16px monospace !important;
 		
 	}
 	span{
