@@ -1,4 +1,3 @@
-{{-- falta el editar --}}
 @extends('layouts.appDashboard')
 @section('title','| Areas')
 @section('nameTitleTemplate','Areas')
