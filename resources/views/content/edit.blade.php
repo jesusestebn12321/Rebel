@@ -18,7 +18,7 @@
             <form action="{{route('Contents.up_date',$content->slug)}}">
               <input type="hidden" id="id_matter" value="{{$matter_user->matter[0]->id}}" >
               <label>Version del contenido</label>
-              <input type="text" class='form-control' disabled name="version" id="id_matter" value="{!!$content->version!!}" >
+              <input type="hidden" class='form-control' name="version"  value="{!!$content->version!!}" >
                 
                 <hr class="my-4">
                 <label>Justificacion:</label>
