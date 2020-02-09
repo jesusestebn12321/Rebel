@@ -1,4 +1,4 @@
-@extends('pdf.layouts.app')
+@extends('pdf.layouts.appGlobal')
 @section('content')
 @include('pdf.layouts.header')
 <style type="text/css">

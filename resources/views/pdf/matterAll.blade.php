@@ -1,4 +1,4 @@
-@extends('pdf.layouts.app')
+@extends('pdf.layouts.appGlobal')
 @section('content')
 @include('pdf.layouts.header')
 <style type="text/css">
@@ -10,8 +10,6 @@
 </style>
 
 @foreach($matter as $key=>$item)
-
-
 @if($key==0)
 <table class="page-break table" cellpadding="7" cellspacing="0" style="margin-top: 2cm !important">
 	<col>
@@ -63,9 +61,12 @@
 		@for($i=0;count($corte)>$i;$i++)
 		@if($corte[$i]['id']==$key)
 		{!! $corte[$i]['html']   !!}
+		<br>
+		<br>
+		<br>
+		<br>
 		@endif
 		@endfor
-
 		<tr>
 			<td class="td" colspan=9 Valign=TOP>
 				<p align=center>
