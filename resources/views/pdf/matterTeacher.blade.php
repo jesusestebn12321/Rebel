@@ -1,10 +1,9 @@
 
 @extends('pdf.layouts.app')
-@section('title','Equivalencia')
+@section('title',$matter_user->matter->matter)
 @section('content')
 @include('pdf.layouts.header')
 <table class="table" cellpadding="7" cellspacing="0" style="margin-top: 3cm !important">
-	
 	<col >
 	<col >
 	<col >
@@ -20,7 +19,6 @@
 				</p>
 			</th>
 		</tr>
-		
 	</thead>
 	<tbody>
 		<tr>
