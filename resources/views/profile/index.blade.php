@@ -16,14 +16,14 @@
   <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
     <div class="card card-profile shadow">
       <div class="row justify-content-center">
-        <div class="col-lg-3 ">
+        <div class="col-12">
           <div class="card-profile-image">
             <a href="#">
               <img src="{{ asset('template/assets/img/theme/user.jpg') }}" class="rounded-circle">
             </a>
           </div>
           <div class="card-header">
-            <div class="col-4 ml-8 text-right">
+            <div class="col-12 ml-5 text-right">
               <a id="btn-edit-fullname" class="text-white btn btn-sm btn-primary">Editar</a>
             </div>
           </div>
@@ -66,15 +66,17 @@
 
           <div class="h3 mt-4 font-weight-300">
             <i class="ni location_pin mr-2"></i>
-            @if(Auth::user()->hasRole(3) || Auth::user()->hasRole(2))
-              <b>
-                {{ Auth::user()->hasRole(2)?'Profesor':'Estudiante'}}
-                @if(Auth::user()->teacher[0]->hasRole(5))
-                  Coordinador
-                @endif
-              </b>
-            @elseif(Auth::user()->hasRole(4) || Auth::user()->hasRole(1))
-              <b>{{Auth::user()->hasRole(1)?'Administrador':'Administrador Curricular'}}</b>
+            @if(Auth::user()->hasRole(1))
+              <b>Administrador</b>
+            @endif
+            @if(Auth::user()->hasRole(2))
+              <b>Profesor</b>
+            @endif
+            @if(Auth::user()->hasRole(3))
+              <b>Estudiante</b>
+            @endif
+            @if(Auth::user()->hasRole(4))
+              <b>Administrador Curricular</b>
             @endif
           </div>
           </div>
