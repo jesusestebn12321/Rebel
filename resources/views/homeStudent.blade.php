@@ -41,7 +41,6 @@
 
 </script>
 @endsection
-@include('layouts.modales.content.modalShowContent')
 @include('layouts.modales.PDF.suveryDownload')
 @include('layouts.modales.PDF.searchContent')
 @section('mensaje')
@@ -64,23 +63,19 @@
 	         	<table class="table align-items-center table-dark table-flush">
 		          	<thead class="thead-dark">
 		            	<tr>
-		              	<th scope="col">ID</th>
 		              	<th scope="col">Codigo</th>
 		              	<th scope="col">Unidad Curricular</th>
 		              	<th scope="col">Contenido</th>
 		              	<th scope="col">Created_at</th>
-		              	<th scope="col">Updated_at</th>
 		            	</tr>
 		          	</thead>
 		          	<tbody>
 		           	@forelse($matter_user as $item)
 		              	<tr>
-		                 	<td>{{$item->matter->slug }}</td>
-		                 	<td>{{$item->matter->version }}</td>
+		                 	<td>{{$item->matter->slug}}</td>
 		                 	<td>{{$item->matter->matter}}</td>
-		                 	<td><a href="#" data-target='#showContent' class="btn btn-sm btn-info" data-toggle='modal'>VER</a></td>
+		                 	<td><a target="_blank" href="{{route('Contents.show',$item->matter->content[0]->slug)}}"  class="btn btn-sm btn-info">VER</a></td>
 		                 	<td>{{$item->matter->created_at }}</td>
-		                 	<td>{{$item->matter->updated_at }}</td>
 		              	</tr>
 		             @empty
 		             	<tr>
