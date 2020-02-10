@@ -4,15 +4,22 @@
 @section('content')
 <div class="row">
 	<div class="col-xl-12">
-		<div class="card  shadow">
-			<div class="card-header bg-transparent">
-				<div class="row align-items-center">
-					<div class="col">
-						<h2 class="mb-0">Descarga</h2>
-					</div>
-				</div>
-			</div>
-			<div class="card-body">
+		<div class="card  card-profile shadow">
+			 <div class="row justify-content-center">
+        <div class="col-12">
+          <div class="card-profile-image">
+            <a href="#">
+              <img src="{{ asset('template/assets/img/theme/user.jpg') }}" class="rounded-circle">
+            </a>
+          </div>
+          <div class="card-header">
+            <div class="col-12  ml-8 text-left">
+				<h2 class="mb-0">Descarga</h2>
+            </div>
+          </div>
+        </div>
+      </div><br>
+			<div class="card-body pt-0 pt-md-6">
 				<div class="row">
 					@if($download->user)
 					<div class="col-lg-12">
@@ -34,12 +41,18 @@
 						</div>
 					</div>
 					@else
-						
+
+					<div class="col-lg-12">
+						<div class="row">
+							<div class="col"><h3><i class="fa fa-user"></i>User-Agent:</h3></div>
+							<div class="col"><b>{{$download->user_agent}}</b></div>
+						</div>
+					</div>
 					@endif
 					<div class="col-lg-12">
 						<div class="row">
 							<div class="col"><h3><i class="fa fa-star"></i> Estado:</h3></div>
-							<div class="col"><b>{{$download->status?'V':'V'}}</b></div>
+							<div class="col"><b>{{$download->status?'Validado':'V'}}</b></div>
 						</div>
 					</div>
 				</div>
