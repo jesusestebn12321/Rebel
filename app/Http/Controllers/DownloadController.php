@@ -156,13 +156,14 @@ class DownloadController extends Controller
         }else{
 
             $slug=str_slug('downloand-'.$user.'-'.now().'-equivalencia');
-
+            $user_agent=$request->header('user-agent');
             return  Download::Create([
                 'slug'=>$slug,
                 'user_id'=>$user,
                 'start_student'=>now(),
                 'last_student'=>now(),
                 'status'=>true,
+                'user_agent'=>$user_agent,
                 ]);
         }
     }
@@ -416,7 +417,6 @@ class DownloadController extends Controller
             })</script>');
         }else{
             $today = Carbon::now();
-            //dd($download);
             $url=url('/VerificarEquivalencia/'.$download->slug);
             $pdf=PDF::loadView('pdf.contentPublic',compact('cont','matter','pdf','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
             $pdf->download('ContenidosPublicos.pdf');
