@@ -37,12 +37,12 @@
     <i class="ni ni-book-bookmark text-indigo"></i> Unidades Curriculares
   </a>
 </li>     
-<!--<li class="nav-item">
-  <a class="nav-link font-italic" href="#!">
-    <i class="ni ni-briefcase-24 text-red"></i> Direcciones
+<li class="nav-item">
+  <a class="nav-link font-italic" target="_blank" href="{{route('telescope')}}">
+    <i class="ni ni-badge text-red"></i> Vitacora
   </a>
 </li>
-<li class="nav-item">
+<!--<li class="nav-item">
   <a class="nav-link font-italic" href="#!">
     <i class="ni ni-badge text-success"></i> Departamentos
   </a>
