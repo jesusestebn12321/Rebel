@@ -42,7 +42,6 @@
           <th scope="col">Nª contenido</th>
           <th scope="col">Created_at</th>
           <th scope="col">Updated_at</th>
-          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -55,11 +54,6 @@
           <td>{{$item->matter->content->count()}}</td>
           <td>{{$item->matter->created_at}}</td>
           <td>{{$item->matter->updated_at}}</td>
-          <td>
-            <a class="btn-primary btn" href="{{route('Matters.show',$item->matter->slug)}}"><i class="fa fa-eye"></i></a>
-            <a class="btn-danger btn" href="{{route('Matters.delete',$item->matter->slug)}}"><i class="fa fa-remove"></i></a> 
-            <a class="btn-info btn" href="{{route('Matters.edit',$item->matter->slug)}}"><i class="fa fa-edit"></i></a>
-          </td>
         </tr>
       @empty
         <tr><td>no hay unidades curriculares</td></tr>

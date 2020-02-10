@@ -1,56 +1,90 @@
-@extends('pdf.layouts.app')
+@extends('pdf.layouts.appGlobal')
+@section('title','Areas')
 @section('content')
-	<div style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 20px; padding-left: 10px">
-	<div style="float: right; position: relative !important">
-		<b>asdasdasd</b>
-	</div>
-	<div style="width:60px;height:60px;display:inline-block;">
-		<img style="width:100%;height:100%" class="reporte-logo" class="user-image" alt="Logo">
-	</div>
-	<div style="display:inline-block; margin-left: 10px;padding-bottom:10px;padding-top:10px;margin-top:-10px;top:-10px;position:relative">
-		<div>
-			<b>ENTIDAD FEDERAL:</b> sadasdasd
-		</div>
-		<div>
-			<b>CÓDIGO PRESUPUESTARIO Y NOMBRE DEL MUNICIPIO:</b>asdsadasd
-		</div>
-		<div>
-			<b>PERÍODO PRESUPUESTARIO:</b>sadasdasd
-		</div>
-	</div>
-	<center>
-		<h2 class="titulo-header-reporte">sadasdasd</h2>
-	</center>
-</div>
-<table cellspacing="0" border="0">
-	<colgroup width="40"></colgroup><colgroup width="40"></colgroup><colgroup width="40"></colgroup><colgroup width="40"></colgroup><colgroup width="315"></colgroup><colgroup width="136"></colgroup>
+@include('pdf.layouts.header')
+<style type="text/css">
+	@media print {
+		.page-break {
+			page-break-after: always;
+		}
+	}
+</style>
+@foreach($area as $key=>$item)
+@if($key==0)
+<table class="page-break table" cellpadding="7" cellspacing="0" style="margin-top: 2cm !important">
+	<col>
+	<col>
+	<col>
+	<col>
+	<col>
 	<thead>
 		<tr>
-			
-			<th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">ID</font></b></th>
-	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Universidad</font></b></th>
-	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Areas</font></b></th>
-	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Coordenadas</font></b></th>
-	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Created_at</font></b></th>
-	        <th style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">Updated_at</font></b></th>
+			<th class='th' colspan=9 Valign="center">
+				<p align=center style="width: 10px">
+					<h3>ID</h3>
+				</p>
+			</th>
+			<th class='th' colspan=9 Valign="center">
+				<p align=center style="width: 10px">
+					<h3>Universidad</h3>
+				</p>
+			</th>
+			<th class='th' colspan=9 Valign="center">
+				<p align=center style="width: 10px">
+					<h3>Area</h3>
+				</p>
+			</th>
+			<th class='th' colspan=9 Valign="center">
+				<p align=center style="width: 10px">
+					<h3>Coordenadas</h3>
+				</p>
+			</th>
+			<th class='th' colspan=9 Valign="center">
+				<p align=center style="width: 10px">
+					<h3>Creada</h3>
+				</p>
+			</th>
 		</tr>
 	</thead>
 	<tbody>
-	@foreach($area as $item)
-	<tr>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->university->university }}</font></b>
-		</td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->area }}</font></b>
-		</td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->address->addres }}</font></b>
-		</td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->created_at }}</font></b>
-		</td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign="center"><b><font face="Tahoma" size="1">{{ $item->updated_at }}</font></b>
-		</td>
-	</tr>
-	@endforeach
+		@endif
+		@for($i=0;count($corte)>$i;$i++)
+		@if($corte[$i]['id']==$key)
+		{!! $corte[$i]['html']   !!}
+		@endif
+		@endfor
+
+		<tr>
+			<td class="td" colspan=9 Valign=TOP>
+				<p align=center>
+					<font class="font">{{ $item->id }}</font>
+				</p>
+			</td>
+			<td class="td" colspan=9 Valign=TOP>
+				<p align=center>
+					<font class="font">{{ $item->university->university }}</font>
+				</p>
+			</td>
+			<td class="td" colspan=9 Valign=TOP>
+				<p align=center>
+					<font class="font">{{ $item->area }}</font>
+				</p>
+			</td>
+			<td class="td" colspan=9 Valign=TOP>
+				<p align=center>
+					<font class="font">{{ $item->address->addres }}</font>
+				</p>
+			</td>
+			<td class="td" colspan=9 Valign=TOP>
+				<p align=center>
+					<font class="font">{{ $item->created_at }}</font>
+				</p>
+			</td>
+		</tr>
+		@endforeach
 	</tbody>
-	<tfoot><tr><td></td></tr></tfoot>
 </table>
+<footer>
+	<p style="text-align: center;color: black;margin-right: 1cm;margin-top: 1cm">{!! $script !!}</p>
+</footer>
 @endsection

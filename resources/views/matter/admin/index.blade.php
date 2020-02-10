@@ -40,6 +40,24 @@
         </div>
       </div>
     </div>
+    <div class="col-xl-4 col-lg-6 pt-4">
+      <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <span class="h2 font-weight-bold mb-0">Reporte de las Unidades Curriculares</span>
+            </div>
+            <div class="col-auto">
+              <a href="{{route('report.matter')}}" target="_blank" class='text-white'>
+                <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                  <i class="fa fa-download"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 @endsection
@@ -62,8 +80,12 @@
 	                  <tr>
 	                    <th scope="col">ID</th>
 	                    <th scope="col">Codigo</th>
-	                    <th scope="col">Verción</th>
 	                    <th scope="col">Unidad Curricular</th>
+                      <th scope="col">Semestre</th>
+                      <th scope="col">Credito</th>
+                      <th scope="col">HL</th>
+                      <th scope="col">HT</th>
+                      <th scope="col">HP</th>
 	                    <th scope="col">Nª contenido</th>
 	                    <th scope="col">Created_at</th>
 	                    <th scope="col">Updated_at</th>
@@ -77,39 +99,63 @@
 	                      	<td>
 	                      		{{$item->id}}
 	                      	</td>
-	                      	<td>
-	                       		<input type="hidden" id='slug{{$item->id}}' value='{{$item->slug}}'>
-	                        	{{ $item->slug }}
-	                      	</td>
-	                      	<td>
-	                        	<input type="hidden" id='version{{$item->id}}' value='{{$item->version}}'>
-	                        	{{ $item->version }}
-	                      	</td>
+                          <td>
+                            <input type="hidden" id='slug{{$item->id}}' value='{{$item->slug}}'>
+                            {{ $item->slug }}
+                          </td>
 	                      	<td id='td_matter{{$item->id}}'>
 	                       		<label id='labelEditmatter{{$item->id}}'>{{ $item->matter}}</label>
 	                        	<input class='d-none' id="EditUniversity{{$item->id}}" value="{{$item->matter}}">
 	                      	</td>
+                          <td>
+                            <input type="hidden" id='{{$item->id}}' value='{{$item->semester}}'>
+                            {{ $item->semester }}
+                          </td>
+                          <td>
+                            <input type="hidden" id='{{$item->id}}' value='{{$item->credit}}'>
+                            {{ $item->credit }}
+                          </td>
+                          <td>
+                            <input type="hidden" id='{{$item->id}}' value='{{$item->hl}}'>
+                            {{ $item->hl }}
+                          </td>
+                          <td>
+                            <input type="hidden" id='{{$item->id}}' value='{{$item->ht}}'>
+                            {{ $item->ht }}
+                          </td>
+                          <td>
+                            <input type="hidden" id='{{$item->id}}' value='{{$item->hp}}'>
+                            {{ $item->hp }}
+                          </td>
 	                      	<td>{{$item->content->count()}}</td>
 	                      	<td id='td_Create{{$item->id}}'>{{ $item->created_at }}</td>
 	                      	<td id='td_Edit{{$item->id}}'>{{ $item->updated_at }}</td>
 	                      	<td>
 	                      		<a class="btn-primary btn" title="Ver Materia" href="{{route('Matters.show',$item->slug)}}"><i class="fa fa-eye"></i></a>
-	                        	<a class="btn-danger btn" title="Borrar Materia" href="{{route('Matters.delete',$item->slug)}}"><i class="fa fa-remove"></i></a> 
-	                        	<a class="btn-info btn" title="Editar Materia" href="{{route('Matters.edit',$item->slug)}}"><i class="fa fa-edit"></i></a>
-	                        	<a class="btn-success btn" title="Crear Contenido a la Materia" data-target='#createContent' data-toggle='modal' onclick="loadContent({{$item->id}})" href="#!"><i class="fa fa-file"></i></a>
+                            <a class="btn-info btn" title="Ver Materia" href="{{route('Matters.edit',$item->slug)}}"><i class="fa fa-edit"></i></a>
+                            <a class="btn-danger btn" title="Ver Materia" href="#" onclick="deletes('{{$item->slug}}','/Matters/delete/')"><i class="fa fa-remove"></i></a>
 		                    </td>
 	                    </tr>
 	                  	@empty
-						<tr>
-								
-							<td>
-				              <font class='center'>No existen registros</font>
-	                      	</td>
-						</tr>
-         				@endforelse
+          						<tr>
+          								
+          							<td>
+				                  <font class='center'>No existen registros</font>
+	                      </td>
+						          </tr>
+         				      @endforelse
 	                </tbody>
               	</table>
             </div>
+             <div class="card-footer bg-default py-4">
+        <nav aria-label="...">
+          <ul class="pagination justify-content-end mb-0">
+            <li class="page-item ">
+              {{ $matter->links() }}
+            </li>
+          </ul>
+        </nav>
+      </div>
         </div>
     </div>
 </div>

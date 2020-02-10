@@ -50,7 +50,7 @@
               <td>{{ $item->updated_at }}</td>
               <td>
                 <a class="btn-primary btn" title="Ver" href="{{route('Profile.show',$item->slug)}}"><i class="fa fa-eye"></i></a>
-              	<a class="btn-danger btn" title="Borrar" href="{{route('User.delete',$item->slug)}}"><i class="fa fa-remove"></i></a>
+              	<a class="btn-danger btn" title="Borrar" href="#" onclick="deletes('{{$item->slug}}','/User/Delete/')" ><i class="fa fa-remove"></i></a>
               	<a class="btn-info btn" title="Editar" onclick="edit({{$item->id}})" href="#" data-target='#editStudent' data-toggle='modal'><i class="fa fa-edit"></i></a>
               </td>
             </tr>
