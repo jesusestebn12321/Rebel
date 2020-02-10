@@ -19,13 +19,7 @@ Route::get('/', function () {
 });
 Auth::routes();
 
-
-
 Route::get('/Chart', 'HomeController@chart');
-
-
-Route::get('/VerificarEquivalencia/{slug}', 'VerifiController@verifyEquivalencia');
-
 
 Route::get('/noPermission', function () {
 	$matter_user=Auth::user();
@@ -57,6 +51,9 @@ Route::group(['middleware'=>['verifiUser']],function(){
 		Route::get('/telescope', ['uses'=>'\Laravel\Telescope\Http\Controllers\HomeController@index ']);
 
 		//--------------------------------REPORTES------------------------------------
+		
+		
+		Route::get('/VerificarEquivalencia/{slug}', 'VerifiController@verifyEquivalencia');
 		
 		Route::get('/ReporteArea', ['as'=>'report.area','uses'=>'DownloadController@adminArea']);
 
@@ -175,6 +172,9 @@ Route::group(['middleware'=>['verifiUser']],function(){
 			Route::get('/Career/Show/{id}',['as'=>'Career.show','uses'=>'CareerController@show']);
 			Route::get('/Matter/Show/{id}',['as'=>'Matter.show','uses'=>'MatterController@showTwo']);
 
+
+			Route::get('/VerificarEquivalencia/{slug}', 'VerifiController@verifyEquivalencia');
+
 		});
 		
 
@@ -208,6 +208,9 @@ Route::group(['middleware'=>['verifiUser']],function(){
 		
 		Route::get('/Remove/Content/{slug}',['as'=>'remove.content','uses'=>'adminCurricular@remove']);
 		Route::get('/Matters',['as'=>'Matters.index','uses'=>'MatterController@index']);
+
+
+		Route::get('/VerificarEquivalencia/{slug}', 'VerifiController@verifyEquivalencia');
 
 	});
 
