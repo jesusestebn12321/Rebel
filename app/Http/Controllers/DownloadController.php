@@ -416,7 +416,8 @@ class DownloadController extends Controller
             })</script>');
         }else{
             $today = Carbon::now();
-            $url=url('/ContentPublicVerifi/'.$request->career_public_slug);
+            //dd($download);
+            $url=url('/VerificarEquivalencia/'.$download->slug);
             $pdf=PDF::loadView('pdf.contentPublic',compact('cont','matter','pdf','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true]);
             $pdf->download('ContenidosPublicos.pdf');
             return $pdf->stream();

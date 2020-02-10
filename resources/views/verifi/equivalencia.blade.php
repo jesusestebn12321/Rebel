@@ -14,6 +14,7 @@
 			</div>
 			<div class="card-body">
 				<div class="row">
+					@if($download->user)
 					<div class="col-lg-12">
 						<div class="row">
 							<div class="col"><h3><i class=" fa fa-user"></i> Usuario:</h3></div>
@@ -32,6 +33,9 @@
 							<div class="col"><b>{{$download->user->email}}</b></div>
 						</div>
 					</div>
+					@else
+						
+					@endif
 					<div class="col-lg-12">
 						<div class="row">
 							<div class="col"><h3><i class="fa fa-star"></i> Estado:</h3></div>

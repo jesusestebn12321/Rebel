@@ -66,6 +66,7 @@ class VerifiController extends Controller
         #tengo que buscar en las descargas a ver si el estudiante lo descarga para ver el dia y todo eso y verificar la descarga
         $download=Download::where('slug',$slug)->first();
         
+        
         return view('verifi.equivalencia',compact('download'));
 
     }
