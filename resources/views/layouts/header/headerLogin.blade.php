@@ -15,7 +15,7 @@ background-color: rgba(100, 100, 100, .2)">
   </div>
 </div>
 <div class="separator separator-bottom separator-skew zindex-100">
-  <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1">
+  <svg x="0" y="0" viewBox="0 100 25600 10000" preserveAspectRatio="none" version="1.1">
     <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
   </svg>
 </div>

@@ -20,7 +20,7 @@
   <div class="main-content">
     <!-- Header -->
     @include('layouts.nav.navVerifi')
-    <div class="header bg-gradient-primary py-7 py-lg-8">
+    <div class="header app-header py-7 py-lg-8" style="background-image: url({{ asset('template/assets/img/theme/profile-cover.jpg') }})">
         @include('layouts.header.headerVerifi')
     </div>
     <!-- Page content -->
@@ -29,7 +29,7 @@
     </div>
   </div>
   <!-- Footer -->
-  <footer class="py-5">
+  <footer class="py-5" style="color:white">
     @include('layouts.footer.footerLogin')
   </footer>
   <!-- Argon Scripts -->
