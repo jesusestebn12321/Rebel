@@ -49,6 +49,20 @@ class ContentController extends Controller
      */
     public function store(Request $request)
     {
+        $last_content=Content::where('matter_id',$request->input('matter_id'))->first();
+        $start_content_version=contentVersion::create([
+            'title'=>$last_content->title,
+            'slug'=>$last_content->slug,
+            'version'=>$last_content->version,
+            'justification'=>$last_content->justification,
+            'content'=>$last_content->content,
+            'purpose'=>$last_content->purpose,
+            'methodology'=>$last_content->methodology,
+            'evaluation'=>$last_content->evaluation,
+            'matter_id'=>$last_content->matter_id,
+            'content_id'=>$last_content->id,
+          ]);
+        $last_content->delete();
         $slug=str_slug($request->title.rand());
         $content= Content::create([
             'title'=>$request->input('title'),
@@ -60,9 +74,10 @@ class ContentController extends Controller
             'methodology'=>$request->input('methodology'),
             'evaluation'=>$request->input('evaluation'),
             'matter_id'=>$request->input('matter_id'),
-            'status'=>1,
+            'status'=>0,
             'confirmation'=>0
             ]);
+
         return redirect()->route('Matter.index')->with('success','<script>swal({
             title: "Exito!",
           text: "Se a creado con exito el contenido",
@@ -162,56 +177,44 @@ class ContentController extends Controller
       })</script>');
     }
 
-    public function VersionBack(Request $request){
-        $contentVersion=ContentVersion::where('slug',$request->input('slug'))->first();
-        $content=Content::where('id',$contentVersion->content_id)->first();
-        $contentAll=ContentVersion::where('content_id',$contentVersion->content_id)->get();
-        $if=0;
-        $else=0;
-        foreach ($contentAll as $item) {
-            if ($item->content==$content->content && $item->title==$content->title && $item->introdution==$content->introdution) {
-                $if++;
-            } else {
-                $else++;
-                
-            }    
-        }
+    public function VersionBack($slug){
+        $old_contentVersion=ContentVersion::where('slug',$slug)->first();
+        $old_content=Content::where('matter_id',$old_contentVersion->matter_id)->first();
+        $new_content=Content::create([
+            'title'=>$old_contentVersion->title,
+            'slug'=>$old_contentVersion->slug,
+            'version'=>$old_contentVersion->version,
+            'justification'=>$old_contentVersion->justification,
+            'content'=>$old_contentVersion->content,
+            'purpose'=>$old_contentVersion->purpose,
+            'methodology'=>$old_contentVersion->methodology,
+            'evaluation'=>$old_contentVersion->evaluation,
+            'matter_id'=>$old_contentVersion->matter_id,
+          ]);
 
-        if ($if>=1) {
-            $content->version=$contentVersion->version;
-            $content->title=$contentVersion->title;
-            $content->introdution=$contentVersion->introdution;
-            $content->content=$contentVersion->content;
-            $content->status=0;
-            $content->confirmation=false;
-            $content->save();
+        $new_content_version=contentVersion::create([
+            'title'=>$old_content->title,
+            'slug'=>$old_content->slug,
+            'version'=>$old_content->version,
+            'justification'=>$old_content->justification,
+            'content'=>$old_content->content,
+            'purpose'=>$old_content->purpose,
+            'methodology'=>$old_content->methodology,
+            'evaluation'=>$old_content->evaluation,
+            'matter_id'=>$old_content->matter_id,
+            'content_id'=>$old_content->id,
+          ]);
+        $old_contentVersion->delete();
+        $old_content->delete();
 
-            return back()->with('success','Se a cambiado la version deñ contenido con exito.');
-        } else {
-            $slug=str_slug($content->version.$content->title.rand());
-            $contentV=ContentVersion::create([
-                'slug'=>$slug,
-                'title'=>$content->title,
-                'content'=>$content->content,
-                'version'=>$content->version,
-                'introdution'=>$content->introdution,
-                'content_id'=>$content->id,
-                ]);
-
-            $content->version=$contentVersion->version;
-            $content->title=$contentVersion->title;
-            $content->introdution=$contentVersion->introdution;
-            $content->content=$contentVersion->content;
-            $content->status=0;
-            $content->confirmation=false;
-            $content->save();
-
-
-            return back()->with('success','Se a cambiado la version deñ contenido con exito.');
-
-        }
-        //dd('else='.$else.'if='.$if);
         
+
+            return back()->with('success','<script>swal({
+            title: "Exito!",
+          text: "Se produjo un cambio de version exitosamente",
+          icon: "success",
+      })</script>');
+
     }
     /**
      * Remove the specified resource from storage.
