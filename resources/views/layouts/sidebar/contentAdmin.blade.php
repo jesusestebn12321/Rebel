@@ -39,11 +39,6 @@
 </li>     
 <li class="nav-item">
   <a class="nav-link font-italic" target="_blank" href="{{route('telescope')}}">
-    <i class="ni ni-badge text-red"></i> Vitacora
+    <i class="ni ni-badge text-red"></i> Bitacora
   </a>
 </li>
-<!--<li class="nav-item">
-  <a class="nav-link font-italic" href="#!">
-    <i class="ni ni-badge text-success"></i> Departamentos
-  </a>
-</li>-->          
