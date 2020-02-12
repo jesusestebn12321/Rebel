@@ -17,8 +17,7 @@
   <link rel="stylesheet" href="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
 
   <script src="{{asset('plugins/sweetalert/docs/assets/sweetalert/sweetalert.min.js')}}"></script>
-
-  <link  type="text/css" href="{{asset('plugins/css/main.css')}}" rel="stylesheet">
+  
   @yield('header_js')
 </head>
 

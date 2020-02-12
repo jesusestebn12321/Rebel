@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('title','Login')
 @include('layouts.modales.PDF.pdfPublic')
-
 @section('js')
 <script type="text/javascript">
   var area_public_slug=$('#area_public_slug');
@@ -41,8 +40,12 @@
 @endsection
 @section('content')
 <div class="auto-form-wrapper">
-  <div class="text-muted text-center mt-2 mb-3">
-    <small>Inicio sección</small></div>
+  <div class="card-header mb-4 bg-transparent pb-5">
+    <div class="text-muted text-center mt-2 mb-3">
+      <h3>Inicio sección</h3>
+    </div>
+  </div>
+  <div class="card-body px-lg-5 py-lg-5">
     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
       {{ csrf_field() }}
 
@@ -52,7 +55,7 @@
           <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
           <div class="input-group-append">
             <span class="input-group-text">
-              <i class="mdi mdi-check-circle-outline"></i>
+              <i class="fa fa-check-circle"></i>
             </span>
           </div>
 
@@ -73,7 +76,7 @@
 
           <div class="input-group-append">
             <span class="input-group-text">
-              <i class="mdi mdi-check-circle-outline"></i>
+              <i class="fa fa-check-circle"></i>
             </span>
           </div>
           @if ($errors->has('password'))
@@ -96,4 +99,5 @@
       </div>
     </form>
   </div>
-  @endsection
+</div>
+@endsection
