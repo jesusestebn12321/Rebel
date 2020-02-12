@@ -66,20 +66,30 @@ class HomeController extends Controller
             return $json;
 
         }
-        elseif (Auth::user()->hasRole(2) || Auth::user()->hasRole(4)) {
-            # code...
-
+        elseif (Auth::user()->hasRole(2)) {
             $teacher=Teacher::where('rol_id','=',2)->get()->count();
             $coordinadores=Teacher::where('rol_id','=',5)->get()->count();
             $contents= MatterUser::where('user_id',Auth::user()->id)->first();
             $content=$contents->matter->content->count();
-            
-
             $label=['Profesores','Coordinadores','Contenidos'];
-
             $data = [$teacher,$coordinadores,$content];
             $json=array("label"=>$label,"data"=>$data);
             return $json;      
+        }
+        elseif (Auth::user()->hasRole(4)) {
+            $teacher=Teacher::where('rol_id','=',2)->get()->count();
+            $coordinadores=Teacher::where('rol_id','=',5)->get()->count();
+            $matter= Matter::all();
+            $content= Content::all();
+            $contentV= ContentVersion::all();
+
+            $matter=$matter->count();
+            $content=$content->count();
+            $contentV=$contentV->count();
+            $label=['Profesores','Coordinadores','Materias','Contenidos','Conidos Resiclados'];
+            $data = [$teacher,$coordinadores,$matter,$content,$contentV];
+            $json=array("label"=>$label,"data"=>$data);
+            return $json;         
         }
     }
 }
