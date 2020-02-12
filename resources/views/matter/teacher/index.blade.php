@@ -212,7 +212,9 @@
                 @endforelse
                 @if($teacher->hasRole(5))
                 <thead class="thead-dark">
-                  <tr><td scope="col"  colspan="100"><h3 class="text-white">Contenidos Reciclados</h3></td></tr>
+                  <tr><td scope="col"  colspan="100"><h3 class="text-white text-center">Contenidos Reciclados</h3></td></tr>
+                </thead>
+                <thead class="bg-primary">
                   <tr>
                     <td scope="col" colspan="1">ID</td>
                     <td scope="col" colspan="2">Codigo</td>
