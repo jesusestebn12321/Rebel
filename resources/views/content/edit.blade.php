@@ -5,6 +5,89 @@
   $('textarea').wysihtml5({
     toolbar: { fa: true }
   });
+  function edit_or_versionar(slug){
+    var version=$('#version');
+    var justification=$('#justification');
+    var purpose=$('#purpose');
+    var content=$('#content');
+    var methodology=$('#methodology');
+    var evaluation=$('#evaluation');
+    var content_id=$('#id');
+    swal({
+      title: "¿Desea editar o editar y versionar el contenido "+slug+"?",
+      icon: "info",
+      closeModal: true,
+      buttons: {
+        cancel: true,
+        confirm: "Solo Editar",
+        roll: {
+          text: "Editar y versionar",
+          value: "rollback",
+        },
+      },
+      dangerMode: true,
+
+    }).then((willDelete) => {
+      if (willDelete==true) {
+        //alert('true');
+        $.ajax({
+          url: APP_URL+'/Contents/upDate/'+slug,
+          method: 'GET',
+          data:{
+            'version':version.val(),
+            'justification':justification.val(),
+            'purpose':purpose.val(),
+            'content':content.val(),
+            'methodology':methodology.val(),
+            'evaluation':evaluation.val(),
+            'rollback':false,
+          },
+          success: function (respuesta) {
+            swal({
+              title: "Exito!",
+              text: "Se a editado con exito el contenido",
+              icon: "success",
+            })
+            window.location=APP_URL+'/Matter';
+            //debugger;
+          },error(e){
+            swal('Error en url',{
+              icon: "error",
+            });
+          }
+        });
+      }if (willDelete=='rollback') {
+        //alert('rollback');
+        $.ajax({
+          url: APP_URL+'/Contents/upDate/'+slug,
+          method: 'GET',
+          data:{
+            'version':version.val(),
+            'justification':justification.val(),
+            'purpose':purpose.val(),
+            'content':content.val(),
+            'methodology':methodology.val(),
+            'evaluation':evaluation.val(),
+            'rollback':true,
+          },
+          success: function (respuesta) {
+            swal({
+              title: "Exito!",
+              text: "Se a editado y versionado con exito el contenido",
+              icon: "success",
+            })
+            window.location=APP_URL+'/Matter';
+            //debugger;
+
+          },error(e){
+            swal('Error en url',{
+              icon: "error",
+            });
+          }
+        });
+      }
+    });
+  }
 </script>
 @endsection
 @section('content')
@@ -15,10 +98,10 @@
         <div class="card-body pt-0 pt-md-4">
           <div class="text-center">
             <h3 class="text-center">
-            <form action="{{route('Contents.up_date',$content->slug)}}">
+            <form action="#">
               <input type="hidden" id="id_matter" value="{{$matter_user->matter[0]->id}}" >
               <label>Version del contenido</label>
-              <input type="hidden" class='form-control' name="version"  value="{!!$content->version!!}" >
+              <input type="hidden" class='form-control' id="version" name="version"  value="{!!$content->version!!}" >
                 
                 <hr class="my-4">
                 <label>Justificacion:</label>
@@ -61,7 +144,7 @@
                     </div>
                   </div>
                 </div>
-              <button type="submit" class="btn btn-block btn-info">Editar</button>
+              <a href="#" onclick="edit_or_versionar('{{$content->slug}}')" class="btn btn-block btn-info">Editar</a>
             </form>
           </div>
         </div>

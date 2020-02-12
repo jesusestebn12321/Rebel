@@ -128,10 +128,19 @@ class ContentController extends Controller
     public function update(Request $request, $slug)
     {
         $content=Content::where('slug',$slug)->firstOrFail();
-        $contentV=ContentVersion::where('content_id',$content->id)->get();
-        $version=$contentV->count();
-        $slug=str_slug($content->version.$content->title.rand());
-        $contentV=ContentVersion::create([
+        
+        if($request->rollback=='true'){
+          
+          $content->justification=$request->input('justification');
+          $content->purpose=$request->input('purpose');
+          $content->methodology=$request->input('methodology');
+          $content->evaluation=$request->input('evaluation');
+          $content->content=$request->input('content');
+          $content->status=0;
+          $content->confirmation=false;
+          
+          $slug=str_slug($content->version.$content->title.rand());
+          $contentV=ContentVersion::create([
             'slug'=>$slug,
             'version'=>$content->version,
             'justification'=>$content->justification,
@@ -140,21 +149,29 @@ class ContentController extends Controller
             'methodology'=>$content->methodology,
             'evaluation'=>$content->evaluation,
             'content_id'=>$content->id,
+            'matter_id'=>$content->matter_id,
             ]);
-        $content->version=$request->input('version');
-        $content->justification=$request->input('justification');
-        $content->purpose=$request->input('purpose');
-        $content->methodology=$request->input('methodology');
-        $content->evaluation=$request->input('evaluation');
-        $content->content=$request->input('content');
-        $content->status=0;
-        $content->confirmation=false;
-        $content->save();
-        return redirect()->route('Matter.index')->with('success','<script>swal({
+          $content->version=$request->input('version').'-1';
+          $content->save();
+        }else{
+          
+          $content->version=$request->input('version');
+          $content->justification=$request->input('justification');
+          $content->purpose=$request->input('purpose');
+          $content->methodology=$request->input('methodology');
+          $content->evaluation=$request->input('evaluation');
+          $content->content=$request->input('content');
+          $content->status=0;
+          $content->confirmation=false;
+          $content->save();
+        }
+        
+        $json='<script>swal({
             title: "Exito!",
           text: "Se a editado con exito el contenido",
           icon: "success",
-      })</script>');
+      })</script>';
+        return $request;
     }
 
     public function update_status($slug){
