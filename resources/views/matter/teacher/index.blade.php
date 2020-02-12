@@ -210,6 +210,31 @@
                 @empty
                 
                 @endforelse
+                @if($teacher->hasRole(5))
+                <thead class="thead-dark">
+                  <tr><td scope="col"  colspan="100"><h3 class="text-white">Contenidos Reciclados</h3></td></tr>
+                  <tr>
+                    <td scope="col" colspan="1">ID</td>
+                    <td scope="col" colspan="2">Codigo</td>
+                    <td scope="col" colspan="2">Version</td>
+                    <td scope="col" colspan="2">Creada</td>
+                    <td scope="col" colspan=""></td>
+                  </tr>
+                </thead>
+                @forelse($contentV as $item)
+                  <tr>
+                    <td colspan="1">{{$item->id}}</td>
+                    <td colspan="2">{{$item->slug}}</td>
+                    <td colspan="2">{{$item->version}}</td>
+                    <td colspan="2">{{$item->created_at}}</td>
+                    <td colspan="1">
+                      <a href="{{route('rollback',$item->slug)}}"  class="btn btn-sm btn-success" >RollBack</a>
+                      <a href="#"  class="btn btn-sm btn-info" >Ver</a>
+                    </td>
+                  </tr>
+                @empty
+                @endforelse
+                @endif
               </table>
             </div>
           </div>
