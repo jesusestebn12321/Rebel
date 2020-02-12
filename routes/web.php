@@ -143,7 +143,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 				Route::get('/Matter/Asignar/{id}',['as'=>'Matter.asignar.teacher','uses'=>'MatterUserController@asignar']);
 				Route::get('/Matter/Asignar/Delete/{id}',['as'=>'Matter.asignar.delete','uses'=>'MatterUserController@destroy']);
 
-				Route::post('/Matter/RollBackContent',['as'=>'rollback','uses'=>'ContentController@VersionBack']);
+				Route::get('/RollBackContent/{slug}',['as'=>'rollback','uses'=>'ContentController@VersionBack']);
 
 				Route::get('/DownloadTeacherMatter/{slug}',['as'=>'reportTeacher.matter','uses'=>'DownloadController@teacherMatter']);
 				
@@ -193,7 +193,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 
 		Route::get('/Contents/{slug}', ['as'=>'Contents.show','uses'=>'ContentController@show']);
 		
-		Route::post('/Matter/RollBackContent',['as'=>'rollback','uses'=>'ContentController@VersionBack']);
+		Route::get('/RollBackContent/{slug}',['as'=>'rollback','uses'=>'ContentController@VersionBack']);
 		
 
 		Route::get('/Matter/Show/{slug}',['middleware'=>'OneContent','as'=>'Matters.show','uses'=>'MatterController@showAll']);
