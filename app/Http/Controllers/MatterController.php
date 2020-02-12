@@ -28,7 +28,7 @@ class MatterController extends Controller
     $career=Career::paginate(10);
     $area=Area::all();
     $teacher=Teacher::where('user_id',Auth::user()->id)->first();
-    $contentV=contentVersion::all();
+    $contentV=contentVersion::where('matter_id',$matter_user->matter_id)->get();
     return view('matter.index',compact('career','matter','matter_user','teacher','contentV'));
 }
 
