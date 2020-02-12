@@ -1,8 +1,47 @@
 @extends('layouts.app')
-@section('title','restableser contraseña')
+@section('title','Restableser contraseña')@section('js')
+<script type="text/javascript">
+  var area_public_slug=$('#area_public_slug');
+  var html='';
+  area_public_slug.click(function(){
+    if(area_public_slug.val()!=0){
+      $.ajax({
+        type: "GET",
+        url: APP_URL+"/CareerPublic/"+area_public_slug.val(),
+        dataType: "json"
+        ,success: function (response) {
+          console.log('success');
+
+          $('#div_career_public').removeClass('d-none');
+          html='<option value="0">Carreras</option>';
+          for (var i = 0; response.length>i ; i++){ 
+            html+='<option value="'+response[i].slug+'">'+response[i].id+' - '+response[i].career+'</option>';
+          }
+          $('#career_public').html(html);
+        }
+      });
+    }
+  });
+  $('#career_public').click(function(){
+    if($('#career_public').val()!=0){
+      $('#button_download').removeClass('d-none');
+    }
+  });
+  $(window).ready(function($e){
+    setTimeout(function(){
+      $('.alert').addClass('d-none');      
+    }, 3000);
+  });
+
+</script>
+@endsection
 @section('content')
+@include('layouts.header.headerLogin')
 <div class="auto-form-wrapper">
     <div class="card-header bg-transparent pb-5">
+        <div style="max-width:6cm;min-width:6cm;margin: 0 auto">
+            <img style="width: 100%" src="{{asset('logo/unerg.png')}}">
+        </div>
         <div class="text-muted text-center mt-2 mb-3">
             <h3>Restableser Contraseña</h3>
         </div>

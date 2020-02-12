@@ -2,10 +2,11 @@
 <div class="alert" style="position: fixed;width:100%;left:0;top:0;border-radius:0px;height:2.5cm;
 background-color: rgba(100, 100, 100, .2)">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
-<h3 class="text-white" style="padding-left:30%;padding-top:1rem">Descarga de los contenidos de las Und. Curriculares <a href="#" data-target='#downloadPublic' data-toggle='modal' class="btn bg-gradient-indigo text-white" >Descargar</a></h3>
+<h3 class="text-white" style="padding-left:30%;padding-top:1rem">Descarga de los contenidos de las Und. Curriculares <a href="#" data-target='#downloadPublic' data-toggle='modal' class="btn btn-sm bg-gradient-indigo text-white" >Descargar</a></h3>
 </div>
+<header>
 <div class="container">
-  <div class="header-body text-center mb-7">
+  <div class="header-body text-center mt-8 mb-1">
     <div class="row justify-content-center">
       <div class="col-lg-12 col-md-12">
         <a href="{{url('/')}}" class="text-white"><p class="text-lead text-white rebel" style="font-size:2cm">REBEL</p></a>
@@ -29,3 +30,4 @@ background-color: rgba(100, 100, 100, .2)">
   </svg>
 </div>
 @endguest
+</header>

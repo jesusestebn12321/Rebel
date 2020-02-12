@@ -18,6 +18,8 @@
 
   <script src="{{asset('plugins/sweetalert/docs/assets/sweetalert/sweetalert.min.js')}}"></script>
   
+  <link rel="stylesheet" href="{{asset('plugins/css/main.css')}}">
+  
   @yield('header_js')
 </head>
 

@@ -20,9 +20,6 @@
             html+='<option value="'+response[i].slug+'">'+response[i].id+' - '+response[i].career+'</option>';
           }
           $('#career_public').html(html);
-          //$('body > div > div.header.pb-8.pt-5.pt-lg-8.d-flex.align-items-center > div > div > div > div > div > div').append('<div class="col mb-6 pt-5 mb-xl-0 alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><p>Exito</p></div>');
-
-
         }
       });
     }
@@ -35,7 +32,7 @@
   $(window).ready(function($e){
     setTimeout(function(){
       $('.alert').addClass('d-none');      
-    }, 2500);
+    }, 3000);
   });
 
 </script>
@@ -44,6 +41,7 @@
 <script src='https://www.google.com/recaptcha/api.js'></script>
 @endsection
 @section('content')
+@include('layouts.header.headerLogin')
 <div class="auto-form-wrapper">
   <div class="card-header mb-4 bg-transparent pb-5">
     <div style="max-width:6cm;min-width:6cm;margin: 0 auto">

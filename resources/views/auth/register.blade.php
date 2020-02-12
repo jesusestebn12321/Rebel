@@ -67,6 +67,7 @@
 @endsection
 
 @section('content')
+@include('layouts.header.headerLogin')
 <div class="auto-form-wrapper">
   <div class="card-header mb-4 bg-transparent pb-5">
              <div style="max-width:6cm;min-width:6cm;margin: 0 auto">
