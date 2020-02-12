@@ -64,7 +64,7 @@ class VerifiController extends Controller
     
     public function verifyEquivalencia($slug){
         $download=Download::where('slug',$slug)->first();        
-        return view('verifi.equivalencia',compact('download'));
+        return view('verify.contenido',compact('download'));
 
     }
 }

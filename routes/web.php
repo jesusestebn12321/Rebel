@@ -10,13 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// rama master  
 use Equivalencias\Career;
 
 Route::get('/', function () {
 	return view('auth.login');
 });
+
 Auth::routes();
 
 Route::get('/Chart', 'HomeController@chart');
@@ -32,7 +31,7 @@ Route::get('/ErrorContent/{id}', ['as'=>'content.error','uses'=>'ContentControll
 Route::get('/CareerPublic/{slug}','DownloadController@CareerPublic');
 Route::get('/DownloadPublic',['as'=>'download.public','uses'=>'DownloadController@ContentPublic']);
 
-Route::get('/Verifi',['as'=>'verifi','uses'=>'VerifiController@index']); // rutas de verificacion de email
+Route::get('/Verify',['as'=>'verifi','uses'=>'VerifiController@index']); // rutas de verificacion de email
 Route::get('/AdminVerify',['as'=>'admin-verify','uses'=>'VerifiController@AdminVerifyIndex']); // rutas de verificacion por admin index
 Route::get('/register/verify/{code}','VerifiController@verify'); // rutas de verificacion de email
 
