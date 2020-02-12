@@ -377,12 +377,19 @@ class DownloadController extends Controller
         $script=$this->script_paginacion();
         $contents=[];
         $content=Content::where('status',1)->first();
-        $contents=Collection::make($content);
-
-        $pdf=PDF::loadView('pdf.matterTeacher',compact('matter_user','content','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true,'setIsHtml5ParserEnabled'=>true,'rendered'=>true]);
-        
-        $pdf->download('ReportesProfesoresMaterias'.now().'.pdf');
-        return $pdf->stream();
+        if(!$content){
+            return back()->with('success','<script>swal({
+            title: "Error!",
+          text: "El contenido existente uno esta actualizado o no hay ninguncontenido para esta Und. Curricular",
+          icon: "error",
+      })</script>');
+        }else{
+            $contents=Collection::make($content);
+            $pdf=PDF::loadView('pdf.matterTeacher',compact('matter_user','content','today','url','script'))->setOptions(['dpi' => 200, 'defaultFont' => 'sans-serif','isPhpEnabled'=>true,'setIsHtml5ParserEnabled'=>true,'rendered'=>true]);
+            
+            $pdf->download('ReportesProfesoresMaterias'.now().'.pdf');
+            return $pdf->stream();
+        }        
     }
     public function CareerPublic($slug){
         $area=Area::where('slug',$slug)->first();
