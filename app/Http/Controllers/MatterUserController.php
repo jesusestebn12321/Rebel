@@ -4,6 +4,7 @@ namespace Equivalencias\Http\Controllers;
 
 use Equivalencias\MatterUser;
 use Equivalencias\Matter;
+use Equivalencias\Career;
 use Equivalencias\Teacher;
 use Equivalencias\User;
 use Illuminate\Http\Request;
@@ -23,6 +24,12 @@ class MatterUserController extends Controller
         $teacher=Teacher::all();
         //dd($teacher);
         return view('matter.teacher.asignarTeacherIndex',compact('teacher','matter'));
+    }
+    public function coordinadorIndex(){
+        $teacher=User::where('rol_id',2)->get();
+        $career=Career::all();
+        return view('users.teacher.coordinadorIndex',compact('teacher','career'));
+
     }
 
     /**
@@ -97,6 +104,11 @@ class MatterUserController extends Controller
             return $error;
         }
 
+    }
+    public function searchMatter($id){
+        $career=Career::where('id',$id)->first();
+        $matter=Matter::where('career_id',$career->id)->get();
+        return $matter;
     }
 
     /**
