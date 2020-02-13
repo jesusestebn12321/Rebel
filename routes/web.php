@@ -115,7 +115,13 @@ Route::group(['middleware'=>['verifiUser']],function(){
 		Route::get('/CoordinadorAdd',['as'=>'coordinador.add','uses'=>'TeacherController@coordinadorAdd']);
 		
 		Route::post('/MattersUsers/create',['as'=>'MattersTeacher.add','uses'=>'MatterUserController@add']);
-		Route::get('/MattersUsers/search/{dni}','MatterUserController@search');
+		
+		Route::get('/AddCoordinador',['as'=>'add.coordinador.index','uses'=>'MatterUserController@coordinadorIndex']);
+
+		Route::get('/MattersUsers/search/{dni}','MatterUserController@teacher');
+		
+		Route::get('/MatterAjax/{id}','MatterUserController@searchMatter');
+
 
 	});
 
@@ -136,7 +142,7 @@ Route::group(['middleware'=>['verifiUser']],function(){
 				Route::post('/Contenido/Store',['as'=>'Contents.coordinador.store','uses'=>'ContentController@store']);
 
 				Route::apiResource('/MatterUser','MatterUserController',['parameters'=>['MatterUser'=>'slug'],'only'=>['index','update']]);
-				
+
 				Route::get('/Matter/Asignar',['as'=>'Matter.asignar.index','uses'=>'MatterController@asignarIndex']);
 				
 				
