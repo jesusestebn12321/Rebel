@@ -136,11 +136,16 @@ Route::group(['middleware'=>['verifiUser']],function(){
 				Route::post('/Contenido/Store',['as'=>'Contents.coordinador.store','uses'=>'ContentController@store']);
 
 				Route::apiResource('/MatterUser','MatterUserController',['parameters'=>['MatterUser'=>'slug'],'only'=>['index','update']]);
+				
 				Route::get('/Matter/Asignar',['as'=>'Matter.asignar.index','uses'=>'MatterController@asignarIndex']);
 				
-				Route::get('/seacherTeacher/{dni}','MatterUserController@search');
+				
+				Route::get('/TeacherAdd/{slug}',['as'=>'add.teacher.index','uses'=>'MatterUserController@index']);
 
-				Route::get('/Matter/Asignar/{id}',['as'=>'Matter.asignar.teacher','uses'=>'MatterUserController@asignar']);
+				Route::get('/Teacher/Matter/{slug}/{matter}',['as'=>'add.teacher.matter','uses'=>'MatterUserController@asignar']);
+
+				
+
 				Route::get('/Matter/Asignar/Delete/{id}',['as'=>'Matter.asignar.delete','uses'=>'MatterUserController@destroy']);
 
 				Route::get('/RollBackContent/{slug}',['as'=>'rollback','uses'=>'ContentController@VersionBack']);
