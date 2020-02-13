@@ -1,14 +1,10 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://github.com/jesusestebn12321/Rebel/blob/develop/public/template/assets/img/brand/blue.png"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://github.com/jesusestebn12321/Rebel/blob/develop/public/template/assets/img/brand/blue.png" with='50'></a></p>
 
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+<a href="#">Version 2.1.6</a>
 </p>
 
-# Version 2.0.3
-# Descripcción
+# Descripción
 <p align="center">
   "Rebel" sistema de gestionamiento, administración y controlador de versiones de und. Curriculares, de la Universidad Nacional Experimental Romulo Gallegos.
 </p>
