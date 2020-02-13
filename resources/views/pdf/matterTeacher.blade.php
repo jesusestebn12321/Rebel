@@ -3,7 +3,7 @@
 @section('title',$matter_user->matter->matter)
 @section('content')
 @include('pdf.layouts.header')
-<table class="table" cellpadding="7" cellspacing="0" style="height:70%!important;margin-top: 3cm !important">
+<table class="table" cellpadding="7" cellspacing="0" style="max-height:70%!important;margin-top: 2.5cm !important">
 	<col >
 	<col >
 	<col >
@@ -11,9 +11,9 @@
 	<col >
 	<col >
 	<col >
-	<thead>
+	<thead >
 		<tr>
-			<th class='th' colspan=9 Valign="center">
+			<th class='th' colspan=9 style="height:.1rem!important" Valign="center">
 				<p align=center style="width: 10px">
 					<h4>PROGRAMA</h4>
 				</p>
@@ -72,27 +72,27 @@
 			</th>
 		</tr>
 		<tr>
-			<th class='th' height="1" style="padding: 0px" colspan=2 valign="top" align="center">
-				<p align=CENTER>
+			<th class='th' align="center" colspan=2>
+				<p align="center">
 				<h4>HT</h4></p>
 			</th>
-			<th class='th' height="1" style="padding: 0px" valign="top" align="center">
-				<p align=CENTER>
+			<th class='th' align="center">
+				<p align="center">
 				<h4>HL</h4></p>
 			</th>
-			<th class='th' height="1" style="padding: 0px" valign="top" align="center">
-				<p align=CENTER>
+			<th class='th' align="center">
+				<p align="center">
 				<h4>HP</h4></p>
 			</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<td>
+			<td class="td">
 				<p align=CENTER><font class="font">{!!$matter_user->matter->semester!!}</font>
 				</p>
 			</td>
-			<td>
+			<td class="td">
 				<p align=CENTER><font class="font">{!!$matter_user->matter->slug!!}</font>
 				</p>
 			</td>
@@ -101,7 +101,7 @@
 				<font class="font">{!!$matter_user->matter->credit!!}</font>
 				</p>
 			</td>
-			<td>
+			<td class="td">
 				<p align=CENTER>
 				<span><font class="font">OBLIGATORIO</font></span></p>
 			</td>
@@ -110,12 +110,12 @@
 				<font class="font">{!!$matter_user->matter->ht!!}</font>
 				</p>
 			</td>
-			<td>
+			<td class="td">
 				<p align=CENTER>
 				<font class="font">{!!$matter_user->matter->hl!!}</font>
 				</p>
 			</td>
-			<td>
+			<td class="td">
 				<p align=CENTER>
 				<font class="font">{!!$matter_user->matter->hp!!}</font>
 				</p>
@@ -153,19 +153,20 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td class="td" colspan=6>
+			<td class="td"  colspan=6>
 				<ul>
 					@foreach($matter_user->matter->matter_user as $items)
-					<li><p class="font" align=LEFT style="margin-bottom: 0in;">
+					<li style="list-style:none;margin:0px;padding:0px"><p class="font" align=LEFT style="margin-bottom: 0in;">
 						{!!$items->teacher->user->name!!}.
 						{!!$items->teacher->user->lastname!!}
-					</p></li>
+					</p>
+					</li>
 					@endforeach
 				</ul>
 			</td>
 			<td class="td" colspan=3>
-				<p align=CENTER>
-				<span><pre>{!! $content->version !!}</pre></span></p>
+				<p align="center" valign='center'>
+				<span>{!! $content->version !!}</span></p>
 			</td>
 		</tr>
 	</tbody>
@@ -207,24 +208,6 @@
 				</td>
 			</tr>
 		</tbody>
-		<thead>
-			<tr>
-				<td class="td" colspan=9 Valign=TOP>
-					<p align=LEFT>
-					<h4>CONTENIDO PROGRAMÁTICO</h4></p>
-				</td>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td class="td" colspan=9 Valign=TOP>
-				<div style="width: 100%; padding: 4px;margin:1px">
-				 <p align=JUSTIFY style="display: inline-block;text-indent: 5px;text-align: justify;"><pre>{!!$content->content!!}</pre>
-				 </p>
-				</td>
-				</div>
-			</tr>
-		</tbody>
 	</table>
 	<br>
 	<br>
@@ -234,6 +217,24 @@
 	<table class="table" style="height:auto !important;margin-top: 3cm !important">
 	<col >
 	<col >
+	<thead>
+		<tr>
+			<th class="th" colspan=9 Valign=TOP>
+				<p align=LEFT>
+				<h4>CONTENIDO PROGRAMÁTICO</h4></p>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="td" colspan=9 Valign=TOP>
+				<div style="width: 100%; padding: 4px;margin:1px">
+				 <p align=JUSTIFY style="display: inline-block;text-indent: 5px;text-align: justify;"><pre>{!!$content->content!!}</pre>
+				 </p>
+				</div>
+			</td>
+		</tr>
+	</tbody>
 	<thead>
 		<tr Valign=TOP>
 			<th class='th' colspan=4>
@@ -250,15 +251,15 @@
 	</thead>
 	<tbody>
 		<tr Valign=TOP>
-			<td class="td" style="color:black !important" colspan=4 >
-				<div style="width: 100%; padding: 4px;margin:1px">
+			<td class="td" colspan=4 >
+				<div>
 					<p align=JUSTIFY><pre>{!!$content->methodology!!}</pre>
 					
 					</p>
 				</div>
 			</td>
 			<td class="td" colspan=5 >
-				<div style="width: 100%; padding: 4px;margin:1px">
+				<div>
 					<p align=JUSTIFY><pre>{!!$content->evaluation!!}</pre>
 					</p>
 				</div>

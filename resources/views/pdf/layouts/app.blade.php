@@ -14,10 +14,6 @@
 	<meta name="ShareDoc" content="false">
 	@yield('style')
 	<style type="text/css">
-		body,div,table,thead,tbody,tfoot,tr,th,td,p { font-family:"Times New Roman"; font-size:x-small }
-		a.comment-indicator:hover + comment { background:#ffd; position:absolute; display:block; border:1px solid black; padding:0.5em;  } 
-		a.comment-indicator { background:red; display:inline-block; border:1px solid black; width:0.5em; height:0.5em;  } 
-		.comment{ display:none;  }
 		table {
 			width: 80% !important;
 			margin-left: 1cm !important;
@@ -77,7 +73,7 @@
         bottom: 0cm;
         left: 0cm;
         right: 0cm;
-        height: 2cm;
+        height: 1cm;
         line-height: 35px;
 		font:15px monospace !important;
     }
@@ -110,7 +106,7 @@
 	.td,.th{
 		border:  1px solid black !important;
 		outline: 1px solid black !important;
-		width:.5cm !important;
+		/*width:.5cm !important;*/
 		height:.4cm !important;
 		min-height: 10px !important;
 		padding: 1px;
@@ -120,6 +116,7 @@
 		text-transform: uppercase;
 		font: 21px monospace !important;
 		font-weight: bold;
+		margin:.1cm!important;
 	}h3{
 		text-transform: uppercase;
 		font: 19px monospace !important;
@@ -132,6 +129,7 @@
 		text-align: left !important;
 		font: 20px monospace !important;
 		padding: 10px;
+		margin:.1cm!important;
 	}pre{
 		word-break: keep-all !important;
 		background: transparent;
