@@ -1,27 +1,6 @@
 @extends('layouts.appDashboard')
 @section('title','| Unidad Curricular '. $matter->matter)
 @section('nameTitleTemplate','Unidad Curricular '. $matter->matter)
-@section('js')
-<script type="text/javascript">
-  $('#dni').keyup(function(){
-      var dni=$('#dni');
-      console.log('exito'+dni.val());
-      $.ajax({
-        type: "GET",
-        url: APP_URL+"/seacherTeacher/"+dni.val(),
-        dataType: "json",
-        success: function (response) {
-          console.log(response);
-          $('#name').text('Nombre: '+ response.name);
-          $('#lastname').text('Apellido: '+ response.lastname);
-          $('#email').text('E-mail: ' + response.email);
-        },
-      });
-  });
-
-
-</script>
-@endsection
 @section('headerContent')
 <div class="container">
   <div class="row">
@@ -33,7 +12,7 @@
               <span class="h2 font-weight-bold mb-0">Asignar un Profesor</span>
             </div>
             <div class="col-auto">
-              <a href="#" title data-original-title="Agregar contenido" data-target='#asignarTeacher' data-toggle='modal' class='text-white'>
+              <a href="{{route('add.teacher.index',$matter->slug)}}" title data-original-title="Agregar Profesor" class='text-white'>
                 <div class="icon icon-shape bg-success text-white rounded-circle shadow">
                   <i class="fa fa-plus"></i>
                 </div>
@@ -45,7 +24,6 @@
     </div>
   </div>
 </div>
-@include('layouts.modales.Matter.modalAsignar')
 @endsection
 @section('content')
 <div class="container-fluid mt--8">
