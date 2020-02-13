@@ -14,14 +14,14 @@
 </p>
 
 ## Paquetes
-    <ul>
-      <li>barryvdh/laravel-dompdf.</li>
-      <li>google/recaptcha.</li>
-      <li>laravel/telescope.</li>
-      <li>laraveles/spanish.</li>
-      <li>rap2hpoutre/laravel-log-viewer.</li>
-      <li>simplesoftwareio/simple-qrcode.</li>
-    </ul>
+<ul>
+  <li>barryvdh/laravel-dompdf.</li>
+  <li>google/recaptcha.</li>
+  <li>laravel/telescope.</li>
+  <li>laraveles/spanish.</li>
+  <li>rap2hpoutre/laravel-log-viewer.</li>
+  <li>simplesoftwareio/simple-qrcode.</li>
+</ul>
 
 ## Instalación
 
