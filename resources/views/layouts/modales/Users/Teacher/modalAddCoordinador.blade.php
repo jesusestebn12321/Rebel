@@ -20,35 +20,40 @@
                         </span>
                         @endif
                     </div>
-                    <div class="form-group"><font>Nombre: </font><label id="name"></label></div>
-                    <div class="form-group"><font>Apellido: </font><label id="lastname"></label></div>
-                    <div class="form-group"><font>E-mail: </font><label id="email"></label></div>
+                    <div class="form-group{{ $errors->has('career') ? ' has-error' : '' }}">
 
-                    <div class="form-group{{ $errors->has('matter_id') ? ' has-error' : '' }}">
-
-                         <select id="matter_id" name="matter_id" class='form-control' value='0' name="type" size='1'>       
-                            <option>Tipo</option>
-                            @foreach($matter as $item)
-                                <option value="{{$item->id}}">{{$item->id}} - {{$item->matter}}</option>
-                            @endforeach
-                        </select>
-                        @if ($errors->has('matter_id'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('matter_id') }}</strong>
-                        </span>
-                        @endif
-                    </div>
+                       <select id="career" class='form-control' value='0' size='1'>       
+                        <option>Carrera</option>
+                        @foreach($career as $item)
+                        <option value="{{$item->id}}">{{$item->id}} - {{$item->career}}</option>
+                        @endforeach
+                    </select>
+                    @if ($errors->has('career'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('career') }}</strong>
+                    </span>
+                    @endif
                 </div>
-                <div class="modal-footer"> 
-                    <div class='container'>
-                        <div class="row">        
-                            <div class="col-12">
-                             <button class='btn btn-primary btn-block'>Crear</button>
-                         </div>
-                     </form>
-                 </div>
-             </div>
-         </div>
-     </div>
- </div>
+                <div class="d-none form-group{{ $errors->has('matter') ? ' has-error' : '' }}" id="div_matter">
+                    <select id="matter" class='form-control' value='0' name="matter_id" size='1'></select>
+                    @if ($errors->has('matter'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('matter') }}</strong>
+                    </span>
+                  @endif
+
+              </div>
+          </div>
+          <div class="modal-footer"> 
+            <div class='container'>
+                <div class="row">        
+                    <div class="col-12">
+                       <button id='button' class='d-none btn btn-primary btn-block'>Crear</button>
+                   </div>
+               </form>
+           </div>
+       </div>
+   </div>
+</div>
+</div>
 </div>
