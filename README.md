@@ -12,7 +12,7 @@
 <p align="center">
   "Rebel" sistema de gestionamiento, administración y controlador de versiones de und. Curriculares, de la Universidad Nacional Experimental Romulo Gallegos.
 </p>
-## Paquetes
+## Paquetes.
     <ul>
       <li>barryvdh/laravel-dompdf.</li>
       <li>google/recaptcha.</li>
