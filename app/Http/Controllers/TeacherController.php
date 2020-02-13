@@ -39,11 +39,16 @@ class TeacherController extends Controller
             $user=User::where('dni',$request->dni)->where('rol_id',2)->firstOrFail();
             $slug=str_slug($request->dni.$request->matter.'_'.rand());
             $teacher=Teacher::create([
-                    'slug'=>$slug,
-                    'user_id'=>$user->id,
-                    'rol_id'=>5,
-                    'admin_confirmed'=>true,
-
+                'slug'=>$slug,
+                'user_id'=>$user->id,
+                'rol_id'=>5,
+                'admin_confirmed'=>true,
+            ]);
+            $slug=str_slug($request->dni.$request->matter.'_'.rand());
+            $matterUser=MatterUser::create([
+                'slug'=>$slug,
+                'user_id'=>$user->id,
+                'matter_id'=>$request->matter_id,
                 ]);
             return back()->with('success','<script>swal({
                 title: "Exito!",
