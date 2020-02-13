@@ -3,7 +3,7 @@
 @section('title',$matter_user->matter->matter)
 @section('content')
 @include('pdf.layouts.header')
-<table class="table" cellpadding="7" cellspacing="0" style="margin-top: 3cm !important">
+<table class="table" cellpadding="7" cellspacing="0" style="height:70%!important;margin-top: 3cm !important">
 	<col >
 	<col >
 	<col >
@@ -180,7 +180,7 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td class="td" colspan=9 Valign=TOP >
+				<td class="td" style="max-height:2cm!important" colspan=9 Valign=TOP >
 				<div style="width: 100%; padding: 4px;margin:1px">
 					<p align=JUSTIFY style="display: inline-block;text-indent: 5px;text-align: justify;"><pre>{!!$content->justification!!}
 					</pre>
