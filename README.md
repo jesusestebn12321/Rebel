@@ -1,9 +1,9 @@
 # Version 2.0.3
 # Descripcción
 <p align="center">
-  Esta es un sistema de información que sirve para el gestionamiento y control de contenidos de la universidad nacional experimental romulo gallegos
+  "Rebel" sistema de gestionamiento, administración y controlador de versiones de und. Curriculares, de la Universidad Nacional Experimental Romulo Gallegos.
 </p>
-##Paquetes
+## Paquetes
     <ul>
       <li>barryvdh/laravel-dompdf.</li>
       <li>google/recaptcha.</li>
@@ -13,7 +13,7 @@
       <li>simplesoftwareio/simple-qrcode.</li>
     </ul>
 
-##Instalación
+## Instalación
 
   ### Documentación
 
