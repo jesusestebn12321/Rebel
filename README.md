@@ -3,7 +3,7 @@
 <p align="center">
   Esta es un sistema de información que sirve para el gestionamiento y control de contenidos de la universidad nacional experimental romulo gallegos
 </p>
-## Paquetes
+##Paquetes
     <ul>
       <li>barryvdh/laravel-dompdf.</li>
       <li>google/recaptcha.</li>
@@ -13,7 +13,7 @@
       <li>simplesoftwareio/simple-qrcode.</li>
     </ul>
 
-## Instalación
+##Instalación
 
   ### Documentación
 
