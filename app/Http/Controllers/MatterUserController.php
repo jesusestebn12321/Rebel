@@ -3,6 +3,7 @@
 namespace Equivalencias\Http\Controllers;
 
 use Equivalencias\MatterUser;
+use Equivalencias\Matter;
 use Equivalencias\Teacher;
 use Equivalencias\User;
 use Illuminate\Http\Request;
@@ -17,8 +18,11 @@ class MatterUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
-        
+    public function index($slug){
+        $matter=Matter::where('slug',$slug)->first();
+        $teacher=Teacher::all();
+        //dd($teacher);
+        return view('matter.teacher.asignarTeacherIndex',compact('teacher','matter'));
     }
 
     /**
@@ -50,15 +54,20 @@ class MatterUserController extends Controller
             icon: "success",
         })</script>');
     }
-    public function asignar(Request $request,$id)
+    public function asignar($slug,$matter)
     {
-        $user=User::where('dni',$request->dni)->firstOrFail();
+        $user=User::where('slug',$slug)->first();
+        $matter=Matter::where('slug',$matter)->first();
         $matter_user=MatterUser::create([
-                'matter_id'=>$id,
+                'matter_id'=>$matter->id,
                 'user_id'=>$user->id,
             ]);
-        // dd($request);
-        return back()->with('success','<script>swal({
+        $matter_user=MatterUser::where('user_id','=',Auth::user()->id)->firstOrFail();
+        $matter=Matter::where('id',$matter_user->matter_id)->firstOrFail();
+        $teacherAll=MatterUser::where('matter_id',$matter->id)->get();
+        $teacher=Teacher::where('user_id','=',Auth::user()->id)->first();
+        
+        return redirect()->route('Matter.asignar.index')->with('success','<script>swal({
             title: "Exito!",
             text: "Und. Curricular fue asignada con exito",
             icon: "success",
