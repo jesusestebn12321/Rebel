@@ -11,8 +11,6 @@
         url: APP_URL+"/CareerPublic/"+area_public_slug.val(),
         dataType: "json"
         ,success: function (response) {
-          console.log('success');
-
           $('#div_career_public').removeClass('d-none');
           html='<option value="0">Carreras</option>';
           for (var i = 0; response.length>i ; i++){ 
