@@ -21,7 +21,6 @@
 </script>
 @endsection
 @section('headerContent')
-@include('layouts.modales.Users.Teacher.modalAddCoordinador')
 <div class="container">
   <div class="row">
     <div class="col col-lg-6">
@@ -32,7 +31,7 @@
               <span class="h2 font-weight-bold mb-0">Agregar un coordinador</span>
             </div>
             <div class="col-auto">
-              <a href="#" title data-original-title="Agregar un coordinador" data-target='#addCoordinador' data-toggle='modal' class="text-white">
+              <a href="{{route('add.coordinador.index')}}" title data-original-title="Agregar un coordinador" class="text-white">
                 <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
                   <i class="fa fa-plus"></i>
                 </div>
